@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('reservas');
 });
 
 
@@ -25,11 +25,14 @@ Route::get('logout', 'AdminController@logOut');
 Route::controller('admin', 'AdminController');
 
 
+Route::controller('password', 'RemindersController');
+
+
 Route::get('registrar', function(){
 	$usuario = new Usuario;
-	$usuario->usuario = 'Luis99';
+	$usuario->usuario = 'Yeins99';
 	$usuario->password = Hash::make('12345678');
-	$usuario->email = 'luis_mh@outlook.es';
+	$usuario->email = 'y_yeins@live.com';
 	$usuario->save();
 });
 

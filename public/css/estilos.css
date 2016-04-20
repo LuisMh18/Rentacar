@@ -1,0 +1,731 @@
+/*Estilos globales*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
+
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  background: #F7F7F7; }
+
+.section {
+  margin-top: 0.5em !important;
+  width: 1020px;
+  margin: 0 auto;
+  background: white; }
+
+.header {
+  width: 100%;
+  height: 125px; }
+
+.header img {
+  margin-top: 15px;
+  margin-left: 35px;
+  width: 960px; }
+
+.menu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background: #333399;
+  height: 45px !important;
+  width: 960px;
+  margin-top: 18px !important;
+  margin: 0 auto;
+  border-bottom: 3px solid #6ACCE5;
+  border-radius: 5px; }
+
+.nav-menu {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .nav-menu li {
+    margin-top: .5em;
+    width: 100%;
+    list-style: none;
+    display: inline;
+    height: 25px;
+    text-align: center;
+    border-right: 1px solid #fff; }
+    .nav-menu li:last-child {
+      border-right: 0; }
+      .nav-menu li:last-child a {
+        color: #2383FF !important; }
+    .nav-menu li a {
+      line-height: 30px;
+      color: #fff !important;
+      /*padding: 13px 45px 11px 15px;*/
+      font-size: 15px;
+      font-weight: 400; }
+      .nav-menu li a:hover {
+        color: #2383FF !important;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 400; }
+
+.section_contenidos {
+  width: 960px;
+  margin: 0 auto;
+  margin-top: 5em; }
+  .section_contenidos h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 8px; }
+  .section_contenidos .nota1 {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    padding-bottom: 20px; }
+  .section_contenidos .section_articulos {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+
+.contenidos {
+  width: 75%; }
+
+.entrega, .devolucion, .tipo, .form-ped {
+  margin-bottom: .5em;
+  box-shadow: 1px 1px 1px #eee;
+  width: 100%;
+  border: solid 1px #CCC;
+  padding: .5em;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
+  background: #fefefe;
+  /* Old browsers */
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 )
+  /* IE6-9 */ }
+
+.tipo {
+  margin-top: 1em; }
+
+.tipo .form1 .c1 .tx-requerido {
+  width: 125px; }
+
+.tipo .form2 .c3 .tx-requerido {
+  width: 88px; }
+
+.tipo-carro {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .tipo-carro .radio {
+    margin: 0;
+    padding: 0; }
+    .tipo-carro .radio label {
+      font-size: .9em; }
+
+.tipo-v {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .tipo-v .radio:first-child label {
+    margin-right: 1em; }
+  .tipo-v .radio {
+    margin: 0;
+    padding: 0; }
+    .tipo-v .radio label {
+      font-size: .9em; }
+
+.form1, .form2, .form1_d, .form3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.c1, .c2 {
+  padding: .5em;
+  width: 50%;
+  border-bottom: solid 1px #CCC; }
+
+.c1 .tx-requerido, .c4 .tx-requerido,
+.cen .tx-requerido, .cde .tx-requerido,
+.ctra .tx-requerido {
+  margin-bottom: .5em;
+  width: 60px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .c1 .tx-requerido h3, .c4 .tx-requerido h3,
+  .cen .tx-requerido h3, .cde .tx-requerido h3,
+  .ctra .tx-requerido h3 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 0 #fff;
+    margin: 0; }
+  .c1 .tx-requerido span, .c4 .tx-requerido span,
+  .cen .tx-requerido span, .cde .tx-requerido span,
+  .ctra .tx-requerido span {
+    color: red;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 10px; }
+
+.entrega .form2 .cen .tx-requerido {
+  width: 120px; }
+
+.devolucion .form2_d .cde .tx-requerido {
+  width: 140px; }
+
+.tipo .form2 .ctra .tx-requerido {
+  width: 90px; }
+
+.c2, .c3, .ce, .ct, .cn, .cc {
+  width: 50%;
+  padding: .5em;
+  border-bottom: solid 1px #CCC; }
+
+.c2 .tx-requerido, .ce .tx-requerido,
+.ct .tx-requerido, .cn .tx-requerido,
+.cc .tx-requerido {
+  margin-bottom: .5em;
+  width: 120px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .c2 .tx-requerido h3, .ce .tx-requerido h3,
+  .ct .tx-requerido h3, .cn .tx-requerido h3,
+  .cc .tx-requerido h3 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 0 #fff;
+    margin: 0; }
+  .c2 .tx-requerido span, .ce .tx-requerido span,
+  .ct .tx-requerido span, .cn .tx-requerido span,
+  .cc .tx-requerido span {
+    color: red;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 10px; }
+
+.c2 .tx-requerido {
+  width: 113px; }
+
+.form1_d .c1 .tx-requerido {
+  width: 80px; }
+
+.form1_d .c2 .tx-requerido {
+  width: 133px; }
+
+.form2_d .c3 .tx-requerido {
+  width: 140px; }
+
+.elegir_v {
+  border-top: solid 1px #CCC;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.elegir_v .c4 {
+  padding: 1em;
+  width: 50%;
+  border-left: solid 1px #CCC;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  .elegir_v .c4 span {
+    font-size: .9em; }
+
+.c3 {
+  border-bottom: 0; }
+
+.nota2 {
+  margin-top: 1.5em;
+  font-size: 13px; }
+
+.form-ped .form1 .c2 .tx-requerido {
+  width: 70px; }
+
+.form-ped .form2 .c3 {
+  border-bottom: solid 1px #CCC; }
+
+.form-ped .form3 .cn {
+  border-bottom: 0; }
+
+.form-ped .form3 .cc {
+  border-bottom: 0; }
+
+.form-ped .form2 .ce .tx-requerido {
+  width: 48px; }
+
+.form-ped .form2 .ct .tx-requerido {
+  width: 67px; }
+
+.form-ped .form3 .cn .tx-requerido {
+  width: 105px; }
+
+.form-ped .form3 .cc .tx-requerido {
+  width: 90px; }
+
+#reservar {
+  border: 1px solid #CCC;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
+  background: #fefefe;
+  /* Old browsers */
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 )
+  /* IE6-9 */ }
+
+aside .imagen1 {
+  margin-bottom: 30px; }
+
+footer {
+  background: white;
+  padding-top: 5em;
+  width: 1020px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center; }
+  footer small {
+    width: 80%;
+    border-top: 1px solid #CCC;
+    color: #919289;
+    font-size: 11px;
+    padding-top: 1.5em; }
+  footer strong {
+    color: #333333;
+    font-weight: bold;
+    font-size: 11px;
+    width: 20%;
+    border-top: 1px solid #CCC;
+    padding: 1.5em 0; }
+
+/************
+--- Dashboard------
+*************************************/
+.body_dashboard {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.div_acordeon {
+  background: #214878;
+  width: 18%;
+  height: 100%
+  /*estilos de menu principal*/
+  /*efecto luminoso en el texto de los cabeceros*/
+  /*spam para los iconos*/
+  /*quitamos puntos a las listas*/
+  /*aspecto de los enlaces*/ }
+  .div_acordeon #acordeon {
+    background-color: #1a3f6d;
+    /*color subsecciones del cordeon*/
+    width: 100%;
+    color: #c4d7ee; }
+  .div_acordeon #acordeon ul {
+    padding: 0px;
+    margin: 0px; }
+  .div_acordeon .c-icon-g {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+    .div_acordeon .c-icon-g span:first-child {
+      line-height: 30px; }
+  .div_acordeon .txt-icon {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+  .div_acordeon .logo_em {
+    margin: 1em 1em 1em 1.5em; }
+  .div_acordeon #acordeon h3 {
+    border-bottom: 1px solid #5988c1;
+    font-weight: normal;
+    line-height: 34px;
+    padding: 0 10px;
+    margin: 0px;
+    cursor: pointer;
+    background: #214878; }
+  .div_acordeon .t-admin {
+    color: #c4d7ee;
+    font-size: 16px; }
+  .div_acordeon .dahs_active {
+    background: #1a3f6d !important;
+    color: #fff !important; }
+    .div_acordeon .dahs_active a {
+      color: #fff !important; }
+  .div_acordeon #acordeon h3:hover {
+    background: #1a3f6d !important;
+    -webkit-transition: all 0.55s;
+            transition: all 0.55s;
+    border-bottom: 1px solid #82ade3;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.7); }
+  .div_acordeon #acordeon h3 span {
+    font-size: 16px;
+    margin-right: 10px; }
+  .div_acordeon #acordeon li {
+    list-style-type: none; }
+  .div_acordeon #acordeon ul ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 27px;
+    display: block;
+    padding: 2px 15px;
+    -webkit-transition: all 0.15s;
+            transition: all 0.15s;
+    border-bottom: 1px solid #044493; }
+  .div_acordeon #acordeon ul ul li a:hover {
+    background: #214878;
+    -webkit-transition: all 0.55s;
+            transition: all 0.55s; }
+  .div_acordeon #acordeon ul ul {
+    display: none; }
+  .div_acordeon #acordeon li.active ul {
+    display: block; }
+  .div_acordeon .bloque_a {
+    width: 200px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+
+.principal_dashboard {
+  background: #f7f7f7;
+  height: 100%;
+  width: 82%; }
+  .principal_dashboard .header_dashboard {
+    padding-right: 40px;
+    height: 8%;
+    background: #fff;
+    box-shadow: 0px 0px 10px  #D8D8D8;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .principal_dashboard .header_dashboard .titular_seccion {
+      color: #2996cc;
+      line-height: 50px;
+      width: 35%;
+      margin: 0; }
+
+.section_dashboard {
+  width: 100%; }
+
+.contenido_dashboard {
+  width: 100%;
+  height: 100%; }
+
+.f_admin {
+  width: 82%;
+  padding-top: 0;
+  padding-bottom: .5em;
+  position: absolute;
+  bottom: 0; }
+  .f_admin small {
+    width: 100%;
+    border-top: 0; }
+
+/*Totales dashboard----*/
+.seccion_1 {
+  position: absolute;
+  top: 10%;
+  width: 82%;
+  padding: 1em 1em 1em 2em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .seccion_1 .t_cantidad {
+    background: white;
+    width: 300px;
+    text-align: center;
+    border-radius: 5px 0px 5px 0px;
+    box-shadow: 0px 0px 10px #D8D8D8; }
+    .seccion_1 .t_cantidad h3 {
+      font-size: 1.2em;
+      color: #2996cc;
+      margin: 0;
+      padding: .5em 0; }
+    .seccion_1 .t_cantidad .caja {
+      background: #2996cc;
+      padding: 2em 0;
+      margin-bottom: 2em; }
+      .seccion_1 .t_cantidad .caja span {
+        color: #fff;
+        font-size: 3em; }
+  .seccion_1 .t_totales {
+    margin-left: 8%;
+    background: white;
+    width: 300px;
+    text-align: center;
+    border-radius: 5px 0px 5px 0px;
+    box-shadow: 0px 0px 10px #D8D8D8; }
+    .seccion_1 .t_totales h3 {
+      font-size: 1.2em;
+      color: #2996cc;
+      margin: 0;
+      padding: .5em 0; }
+    .seccion_1 .t_totales .caja {
+      background: #4ab100;
+      padding: 2em 0;
+      margin-bottom: 2em; }
+      .seccion_1 .t_totales .caja span {
+        color: #fff;
+        font-size: 3em; }
+
+/************
+Catalogo sucursales----------
+****************************************/
+.seccion_tabla {
+  box-shadow: 0px 0px 10px #D8D8D8;
+  border-radius: 5px;
+  width: 100%;
+  background: #fff; }
+  .seccion_tabla .agregar {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end; }
+    .seccion_tabla .agregar button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: .5em 2em .5em 0; }
+  .seccion_tabla .tabla_catalogo {
+    border: 1px solid #ddd;
+    width: 99%;
+    margin: 0 auto; }
+  .seccion_tabla .thead-tabla {
+    background: #214878; }
+    .seccion_tabla .thead-tabla tr {
+      color: white; }
+      .seccion_tabla .thead-tabla tr th {
+        font-size: .8em;
+        text-align: center;
+        padding: .5em 0;
+        border: 1px solid #ddd; }
+  .seccion_tabla .tabla_catalogo tbody tr td {
+    text-align: center;
+    font-size: .8em;
+    padding: .2em .5em;
+    border: 1px solid #ddd; }
+
+/*******
+ Estilos globales para los modales
+***********************************************/
+.header-modal {
+  background: #214878;
+  /* background: #58A2F6; */
+  color: white;
+  font-weight: normal;
+  border-radius: 5px 5px 0px 0px; }
+
+.body-modal {
+  padding: 1em 1.5em .5em 1.5em; }
+
+.form-modal {
+  width: 100%; }
+
+.footer-modal {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around; }
+  .footer-modal button, .footer-modal span {
+    width: 120px; }
+
+/*Texto de confirmacion de los modales*/
+.txt-delete-confirm {
+  font-size: 1em;
+  font-weight: normal; }
+
+/*---- Modal agregar gerente------*/
+.datos1, .datos2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .datos1 .form-group, .datos2 .form-group {
+    width: 47%; }
+
+/*modal para agregar plazas*/
+.checkbox-activ {
+  width: 15%;
+  margin-top: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .checkbox-activ span {
+    font-size: 1.2em; }
+
+/*--- Modal para agregar sucursal-----*/
+.dialog-sucursal {
+  width: 60%;
+  margin-top: 2em; }
+
+.datos1-s {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .datos1-s .form-group {
+    width: 31%; }
+    .datos1-s .form-group .agrupar {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; }
+      .datos1-s .form-group .agrupar select {
+        margin-right: 5px; }
+
+.form-textarea {
+  width: 60%; }
+
+.btn-add-n {
+  height: 25px;
+  margin-top: 3px;
+  font-size: 10px; }
+
+/*Modal para agregar nuevas plazas en las oficinas*/
+.datos-plaza .agrupar {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .datos-plaza .agrupar select {
+    margin-right: 5px; }
+
+/*Modal agregar usuario*/
+.error-p, .error-p-actual {
+  font-size: .8em;
+  color: #a94442; }
+
+.hidden-error-p {
+  visibility: hidden; }
+
+.hidden-error-p-actual {
+  display: none; }
+
+/*# sourceMappingURL=estilos.css.map */

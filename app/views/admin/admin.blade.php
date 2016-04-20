@@ -1,67 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Login</title>
-	{{ HTML::style('css/bootstrap.min.css') }}
-	{{ HTML::Script('js/jquery.min.js') }}
-	{{ HTML::Script('js/bootstrap.min.js') }}
+@extends('layout/plantilla')
 
-	<style>
-		html{
-			height:100%;
-		}
+@section('title')
+<title>Admin | Dashboard</title>
+@show
 
-		body{
-			font-family: Arial, Helvetica, 'Sans-serif';
-			font-size:16px;
-			height:100%;
-		}
+@section('scripts')
+ @parent
+ {{ HTML::Script('js/jquery.js') }}
+@show
 
-		.container{
+<script>
 
-		}
-
-		.header{
-			padding:.5em 2em;
-			border-bottom:2px solid #F2F2F2;
-			background:#FAFAFA;
-			display: -webkit-box;
-		    display: -webkit-flex;
-		    display: -ms-flexbox;
-		    display: flex;
-		    -webkit-box-pack:justify;
-			 -webkit-justify-content:space-between;
-			     -ms-flex-pack:justify;
-			         justify-content:space-between;
-			 -webkit-box-align:center;
-			  -webkit-align-items:center;
-			      -ms-flex-align:center;
-			          align-items:center;
-		}
-
-		.txt-dash, .liga-salir{
-			color:#BDBDBD;
-		}
-
-		.liga-salir{
-			font-size:1.5em;
-		}
-
-
-	</style>
+	$(document).ready(function(){
+		
+  	$('.t-admin').addClass('dahs_active');
+		 $('.titular_seccion').text('Dashboard');
+		
+	});
 	
-</head>
-<body>
+</script>
 
-	<div class="col-xs-12 header">
-		<h1 class="txt-dash">Dashboard</h1>
-		<a class="liga-salir" href="/logout">Salir</a>
-	</div>
-	<div class="container">
-		<div class="row">
-		</div>
-	</div>
-	
-</body>
-</html>
+
+ 
+@section('content')
+ 	<div class="t_cantidad">
+ 			<h3>N° de reservaciones</h3>
+ 				<div class="caja">
+ 					<span>#789</span>
+ 				</div>
+ 	</div>
+ 	<div class="t_totales">
+ 		<h3>Total</h3>
+ 		<div class="caja">
+ 					<span>$1256</span>
+ 				</div>
+ 	</div>
+@stop
+ 	
+ 
+

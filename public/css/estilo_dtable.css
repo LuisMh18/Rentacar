@@ -1,0 +1,58 @@
+
+		#listar__length{
+			width:250px;
+			margin:.5em;
+			float:left;
+			color:#214878;
+		}
+		
+		#listar__length label{
+			font-weight:normal;
+		}
+		
+		#listar__length select{
+			border-radius:5px;
+			border:1px solid #2996cc;
+			padding:.1em .5em;
+			width:100px;
+		}
+		
+		#listar__filter{
+			width:250px;
+			float:right;
+			margin:.5em 3em .5em 0;
+		}
+		
+		#listar__filter label{
+			font-weight:normal;
+			color:#214878;
+		}
+		
+		#listar__filter input{
+			border-radius:5px;
+			border:1px solid #2996cc;
+			padding:.1em .5em;
+			width:150px;
+		}
+		
+		#listar__info{
+			font-size:.8em;
+			width:300px;
+			margin:.5em;
+			color:#214878;
+		}
+		
+		.dataTables_paginate{
+			width:300px;
+			float:right;
+			text-align:center;
+		}
+		
+		.fancy{
+			margin-top:0;
+		}
+		
+		.fancy li a{
+			font-size:.8em;
+		}
+		

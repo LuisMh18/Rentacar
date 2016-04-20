@@ -1,8 +1,8 @@
 <?php
 
-class Grupo extends Eloquent{
-    protected $table = "grupo";
-			
+class TipoVehiculo extends Eloquent{
+    protected $table = "tipo_vehiculo";
+	
 	public function tarifaDetalles(){
 		return $this->hasMany('TarifaDetalle');
 	}
@@ -10,4 +10,3 @@ class Grupo extends Eloquent{
 
 	
 }
-

@@ -1,6 +1,6 @@
 <?php
 
 
-class Reserva extends Model {
+class Reserva extends Eloquent{
     protected $table = "reserva";
 }
