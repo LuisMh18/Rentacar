@@ -11,7 +11,7 @@ public function __construct() {
 }*/
 
 public function getIndex(){
-
+				
     return View::make('admin/login');
 }
 
@@ -57,6 +57,499 @@ if (Auth::attempt($data)) {
     }
  }
 	
+/*******
+Reservas------------
+******************************************/	
+	public function getMostrarsucursales(){
+		$id = Input::get('id');
+		
+	$sucursal = DB::table('sucursal')
+			->where('id', $id)
+	 	->first();
+	
+ return Response::json($sucursal);
+}
+	
+	
+/*******
+Configurar Tarifas-------
+******************************************/
+ public function getConfig(){
+    if(Auth::check()){
+      return View::make('admin/config');
+    } else {
+        return Redirect::to('login');
+    }
+ }
+
+	
+
+//Listar tarifas
+public function getListatarifas(){
+	$tarifas = DB::table('tarifa')
+		 ->join('oficina', 'tarifa.oficina_id', '=', 'oficina.id')
+			->select('tarifa.id', 'nombre', 'fecha_inicio', 'fecha_fin', 'estatus')
+	 	->get();
+	
+	echo json_encode($tarifas);
+}
+	
+	//Listar oficinas
+public function getSelectoficinas(){
+	$oficinas = DB::table('oficina')
+			->select('id', 'nombre')
+	 	->get();
+	
+	return Response::json(array('oficinas' => $oficinas));
+}
+	
+	//Listar grupos
+public function getSelectgrupos(){
+	$grupos = DB::table('grupo')
+			->select('id', 'descripcion_grupo')
+	 	->get();
+	
+	return Response::json(array('grupos' => $grupos));
+}
+	
+	//Listar codigos
+public function getSelectcodigos(){
+	$codigos = DB::table('codigo')
+			->select('id', 'codigo')
+	 	->get();
+	
+	return Response::json(array('codigos' => $codigos));
+}
+	
+	//Listar coberturas
+public function getSelectcoberturas(){
+	$coberturas = DB::table('cobertura')
+			->select('id', 'cobertura')
+	 	->get();
+	
+	return Response::json(array('coberturas' => $coberturas));
+}
+	
+	//Listar los vehiculos
+public function getSelectvehiculos(){
+	$vehiculos = DB::table('tipo_vehiculo')
+			->select('id', 'descripcion')
+	 	->get();
+	
+	return Response::json(array('vehiculos' => $vehiculos));
+}
+
+	
+	
+//Agregar tarifa
+public function postAgregartarifa(){
+	$id_oficina = Input::get('id_oficina');
+	$fecha_inicio = Input::get('fecha_inicio');
+	$fecha_fin = Input::get('fecha_fin');
+	$activo = Input::get('activo');
+			
+		//registramos
+		$new_t = new Tarifa;
+		$new_t->oficina_id = $id_oficina;
+		$new_t->fecha_inicio = $fecha_inicio;
+		$new_t->fecha_fin = $fecha_fin;
+		$new_t->estatus = $activo;
+		$new_t->save();
+		
+		$id_t = DB::table('tarifa')
+				->where('oficina_id', $id_oficina)
+			 ->where('fecha_inicio', $fecha_inicio)
+			 ->where('fecha_fin', $fecha_fin)
+			 ->where('estatus', $activo)
+		 	->pluck('id');
+	
+	$n_t = DB::table('tarifa')
+	 ->join('oficina', 'tarifa.oficina_id', '=', 'oficina.id')
+			->select('tarifa.id', 'nombre', 'fecha_inicio', 'fecha_fin', 'estatus')
+		 ->where('tarifa.id', $id_t)
+	 	->first();
+		
+		return Response::json($n_t);
+		
+	
+}
+	
+//Agregar tarifa detalle
+public function postAgregartarifadetalle(){
+		$datos = json_decode(Input::get('aInfo'));
+		
+		for ($i=0; $i < count($datos); $i++) {
+                    
+				$tarifa_d = new TarifaDetalle;
+				$tarifa_d->tarifa_id = $datos[$i]->id_tarifa;
+				$tarifa_d->grupo_id = $datos[$i]->id_g;
+			 $tarifa_d->codigo_id = $datos[$i]->id_c;
+			 $tarifa_d->cobertura_id = $datos[$i]->id_cobertura;
+			 $tarifa_d->tipo_vehiculo_id = $datos[$i]->id_v;
+				$tarifa_d->tarifa_por_dia = $datos[$i]->tarifa_por_dia;
+				$tarifa_d->save();
+			
+		}
+
+		
+	
+}
+	
+	
+//Eliminar tarifa
+public function getEliminartarifa(){
+	 $id = Input::get('id');
+
+	//Comprobamos si la tarifa tiene detalle
+	$t_d = DB::table('tarifa_detalle')
+							->where('tarifa_id', $id)
+							->get();
+	
+	if(count($t_d) == 0){
+		
+		
+	//Eliminamos la tarifa
+	$t = Tarifa::find($id);
+	$t->delete();
+
+		return Response::json($id);
+		
+	} else {
+		
+		
+	//obtenemos el numero total de detalles que tiene esa tarifa
+	$t_n = DB::table('tarifa_detalle')
+							->where('tarifa_id', $id)
+							->count();
+	
+		for ($i=0; $i < $t_n; $i++) {
+			
+			$t_a = DB::table('tarifa_detalle')
+							->where('tarifa_id', $id)
+							->orderBy('created_at')
+							->pluck('id');
+		
+				
+				//Eliminamos el detalle
+				$t = TarifaDetalle::find($t_a);
+				$t->delete();
+				
+			
+		}
+	
+	//Eliminamos la tarifa
+	$t = Tarifa::find($id);
+	$t->delete();
+
+		return Response::json($id);
+		
+	}
+	
+		
+
+}
+	
+	
+	//Editar tarifa
+public function getEditartarifa(){
+	$id = Input::get('id');
+	
+	$tarifa = DB::table('tarifa')
+								->where('id', $id)
+								->first();
+	
+	return Response::json($tarifa);
+	
+}
+	
+	
+//Listar oficinas para editar
+public function getSelectoficinasedit(){
+	$id = Input::get('id');
+	
+	//obtenemos el id de la oficina
+	$o = DB::table('tarifa')
+						->where('id', $id)
+						->pluck('oficina_id');
+	
+	//Listamos las oficinas
+	$oficinas = DB::table('oficina')
+			->select('id', 'nombre')
+			->where('id', '!=', $o)
+	 	->get();
+	
+	//lISTAMOS la oficina actual
+	$o_a = DB::table('oficina')
+			->select('id', 'nombre')
+			->where('id', '=', $o)
+	 	->get();
+	
+	return Response::json(array(
+		  'oficinas' => $oficinas,
+				'o_a' => $o_a
+	 ));
+}
+	
+	
+//Listar los detalles de la tarifa
+public function getListartarifadetalleedit(){
+	$id = Input::get('id');
+	
+	
+	$t_d = DB::table('tarifa_detalle')
+		 ->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
+		 ->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
+		 ->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
+		 ->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
+			->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'codigo', 'tipo_vehiculo.descripcion', 'tarifa_por_dia')
+			->where('tarifa_detalle.tarifa_id', '=', $id)
+	 	->get();
+	
+	
+	return Response::json(array(
+		  't_d' => $t_d,
+	 ));
+}
+	
+	
+//Eliminar detalle de la tarifa
+public function getElimartarifadetalle(){
+	 $id = Input::get('id');
+	 
+	 $t_d = TarifaDetalle::find($id);
+	 $t_d->delete();
+	
+}
+	
+//Listar grupos para editar
+public function getSelectgruposedit(){
+	$id = Input::get('id');
+	
+	//obtenemos el id del grupo
+	$x = DB::table('tarifa_detalle')
+						->where('id', $id)
+						->pluck('grupo_id');
+	
+	//Listamos loa grupos
+	$grupos = DB::table('grupo')
+			->select('id', 'descripcion_grupo')
+			->where('id', '!=', $x)
+	 	->get();
+	
+	//lISTAMOS el grupo actual
+	$x_a = DB::table('grupo')
+			->select('id', 'descripcion_grupo')
+			->where('id', '=', $x)
+	 	->get();
+	
+	return Response::json(array(
+		  'grupos' => $grupos,
+				'x_a' => $x_a
+	 ));
+}
+	
+//Listar los detalles al editar tarifa_detalle
+public function getSelectgruposeditdetalle(){
+	$id = Input::get('id');
+	
+	//obtenemos el id del grupo
+	$x = DB::table('tarifa_detalle')
+						->where('id', $id)
+						->pluck('grupo_id');
+	
+	//Listamos loa grupos
+	$grupos = DB::table('grupo')
+			->select('id', 'descripcion_grupo')
+			->where('id', '!=', $x)
+	 	->get();
+	
+	//lISTAMOS el grupo actual
+	$x_a = DB::table('grupo')
+			->select('id', 'descripcion_grupo')
+			->where('id', '=', $x)
+	 	->get();
+	
+	return Response::json(array(
+		  'grupos' => $grupos,
+				'x_a' => $x_a
+	 ));
+}
+	
+public function getSelectcodigoseditdetalle(){
+	$id = Input::get('id');
+	
+	$x = DB::table('tarifa_detalle')
+						->where('id', $id)
+						->pluck('codigo_id');
+	
+	$codigos = DB::table('codigo')
+			->select('id', 'codigo')
+			->where('id', '!=', $x)
+	 	->get();
+	
+	$x_a = DB::table('codigo')
+			->select('id', 'codigo')
+			->where('id', '=', $x)
+	 	->get();
+	
+	return Response::json(array(
+		  'codigos' => $codigos,
+				'x_a' => $x_a
+	 ));
+}
+	
+public function getSelectcoberturaseditdetalle(){
+	$id = Input::get('id');
+	
+	$x = DB::table('tarifa_detalle')
+						->where('id', $id)
+						->pluck('cobertura_id');
+	
+	$coberturas = DB::table('cobertura')
+			->select('id', 'cobertura')
+			->where('id', '!=', $x)
+	 	->get();
+	
+	$x_a = DB::table('cobertura')
+			->select('id', 'cobertura')
+			->where('id', '=', $x)
+	 	->get();
+	
+	return Response::json(array(
+		  'coberturas' => $coberturas,
+				'x_a' => $x_a
+	 ));
+}
+	
+public function getSelectvehiculoseditdetalle(){
+	$id = Input::get('id');
+	
+	$x = DB::table('tarifa_detalle')
+						->where('id', $id)
+						->pluck('tipo_vehiculo_id');
+	
+	$vehiculos = DB::table('tipo_vehiculo')
+			->select('id', 'descripcion')
+			->where('id', '!=', $x)
+	 	->get();
+	
+	$x_a = DB::table('tipo_vehiculo')
+			->select('id', 'descripcion')
+			->where('id', '=', $x)
+	 	->get();
+	
+	//Listamos la tarifa
+	$tarifa = DB::table('tarifa_detalle')
+						->select('tarifa_por_dia')
+						->where('id', $id)
+						->first();
+	
+	return Response::json(array(
+		  'vehiculos' => $vehiculos,
+				'x_a' => $x_a,
+		  'tarifa' => $tarifa
+	 ));
+}
+	
+	//Agregar nuevo detalle al edira tarifa
+public function getAgregartarifadetalle(){
+	$id_tarifa = Input::get('id_tarifa');
+	$grupo = Input::get('grupo');
+	$codigo = Input::get('codigo');
+	$cobertura = Input::get('cobertura');
+	$vehiculo = Input::get('vehiculo');
+	$tarifa_por_dia = Input::get('tarifa_por_dia');
+	
+	$t = new TarifaDetalle;
+	$t->tarifa_id = $id_tarifa;
+	$t->grupo_id = $grupo;
+	$t->codigo_id = $codigo;
+	$t->cobertura_id = $cobertura;
+	$t->tipo_vehiculo_id = $vehiculo;
+	$t->tarifa_por_dia = $tarifa_por_dia;
+	$t->save();
+	
+	//retornamos 
+	$t_n = DB::table('tarifa_detalle')
+								->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
+								->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
+								->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
+								->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
+								->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'codigo', 'tipo_vehiculo.descripcion', 'tarifa_por_dia')
+								->where('tarifa_id', $id_tarifa)
+		      ->where('grupo_id', $grupo)
+		      ->where('codigo_id', $codigo)
+		      ->where('cobertura_id', $cobertura)
+		      ->where('tipo_vehiculo_id', $vehiculo)
+		      ->where('tarifa_por_dia', $tarifa_por_dia)
+								->first();
+	
+	return Response::json($t_n);
+	
+}
+	
+	
+	//Actualizar tarifa detalle
+public function getActualizardetalle(){
+	$id = Input::get('id');
+	$id_tarifa = Input::get('id_tarifa');
+	$grupo = Input::get('grupo');
+	$codigo = Input::get('codigo');
+	$cobertura = Input::get('cobertura');
+	$vehiculo = Input::get('vehiculo');
+	$tarifa_por_dia = Input::get('tarifa_por_dia');
+	
+	$t = TarifaDetalle::find($id);
+	$t->tarifa_id = $id_tarifa;
+	$t->grupo_id = $grupo;
+	$t->codigo_id = $codigo;
+	$t->cobertura_id = $cobertura;
+	$t->tipo_vehiculo_id = $vehiculo;
+	$t->tarifa_por_dia = $tarifa_por_dia;
+	$t->save();
+	
+	//retornamos 
+	$t_n = DB::table('tarifa_detalle')
+								->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
+								->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
+								->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
+								->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
+								->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'codigo', 'tipo_vehiculo.descripcion', 'tarifa_por_dia')
+								->where('tarifa_detalle.id', $id)
+								->first();
+	
+	return Response::json($t_n);
+	
+}
+	
+	//Actualizar tarifa 
+public function getActualizartarifa(){
+	$id = Input::get('id');
+	$oficina = Input::get('oficina');
+	$fehca_inicio = Input::get('fehca_inicio');
+	$fecha_fin = Input::get('fecha_fin');
+	$estatus = Input::get('estatus');
+	
+	$t = Tarifa::find($id);
+	$t->oficina_id = $oficina;
+	$t->fecha_inicio = $fehca_inicio;
+	$t->fecha_fin = $fecha_fin;
+	$t->estatus = $estatus;
+	$t->save();
+	
+	//retornamos 
+	$t_n = DB::table('tarifa')
+							 ->join('oficina', 'tarifa.oficina_id', '=', 'oficina.id')
+								->select('tarifa.id', 'nombre', 'fecha_inicio', 'fecha_fin', 'estatus')
+								->where('tarifa.id', $id)
+								->first();
+	
+	return Response::json($t_n);
+	
+}
+	
+	
+	
 
 /*******
 Catalogo sucursales-------
@@ -80,6 +573,8 @@ public function getListarsucursales(){
 	echo json_encode($sucursal);
 }
 	
+	
+	
 //Listar gerentes
 public function getSelectgerentes(){
 	$gerente = DB::table('gerente')
@@ -96,6 +591,16 @@ public function getSelectplazas(){
 	 	->get();
 	
 	return Response::json(array('plazas' => $plazas));
+}
+	
+	//Listar los tipos de teléfonos
+	public function getSelectelefonos(){
+	$tel = DB::table('tipo_tel')
+			->select('id', 'nombre')
+			->where('estatus', '1')
+	 	->get();
+	
+	return Response::json(array('tel' => $tel));
 }
 	
 	//Agregar sucursal
@@ -145,15 +650,112 @@ public function postAgregarsucursal(){
 	
 }
 	
+	
+	//Agregar los telefonos de la sucursal
+	public function postAgregartelefonosucursal(){
+		$datos = json_decode(Input::get('aInfo'));
+		$id = Input::get('id');
+		
+		for ($i=0; $i < count($datos); $i++) {
+                    
+				$tel_sucursal = new TelefonoSucursal;
+				$tel_sucursal->sucursal_id = $datos[$i]->id_s;
+				$tel_sucursal->tipo_tel_id = $datos[$i]->id_t;
+				$tel_sucursal->numero = $datos[$i]->numero;
+				$tel_sucursal->save();
+			
+		}
+		
+		
+		$n_t = DB::table('sucursal')
+		    ->where('id', $id)
+						->get();
+		
+		return Response::json(array( 
+			     'n_t' => $n_t
+		  ));
+	}
+	
+	//Actualizar los telefonos de la sucursal
+	public function postActualizartelefonosucursal(){
+		$datos = json_decode(Input::get('aInfo'));
+		$id = Input::get('id');
+		
+		for ($i=0; $i < count($datos); $i++) {
+   							
+				$tel_sucursal = TelefonoSucursal::find($datos[$i]->id_t_s);
+				$tel_sucursal->sucursal_id = $datos[$i]->id_s;
+				$tel_sucursal->tipo_tel_id = $datos[$i]->id_n;
+				$tel_sucursal->numero = $datos[$i]->numero;
+				$tel_sucursal->save();
+			
+		}
+		
+		
+		$n_t = DB::table('sucursal')
+		    ->where('id', $id)
+						->get();
+		
+		return Response::json(array( 
+			     'n_t' => $n_t
+		  ));
+	}
+	
 
 //Eliminar sucursal
 public function getEliminarsucursal(){
 	 $id = Input::get('id');
 
-		$d_g = Sucursal::find($id);
-		$d_g->delete();
+	//Comprobamos si la sucursal tiene telefono
+	$t_s = DB::table('telefono_sucursal')
+							->where('sucursal_id', $id)
+							->get();
+	
+	if(count($t_s) == 0){
+		
+		
+	//Eliminamos la sucursal
+	$d_g = Sucursal::find($id);
+	$d_g->delete();
 
 		return Response::json($id);
+		
+	} else {
+		
+		
+	//obtenemos el numero total de telefonos con esa sucursal
+	$tel_n = DB::table('telefono_sucursal')
+							->where('sucursal_id', $id)
+							->count();
+	
+		for ($i=0; $i < $tel_n; $i++) {
+			
+			$t_a = DB::table('telefono_sucursal')
+							->where('sucursal_id', $id)
+							->orderBy('created_at')
+							->first();
+			
+					//Obtenemos el id de el telefono de la sucursal
+	$tel_s = DB::table('telefono_sucursal')
+							->where('sucursal_id', $id)
+		     ->orderBy('created_at')
+							->pluck('id');
+				
+				//Eliminamos el telefono
+				$t = TelefonoSucursal::find($tel_s);
+				$t->delete();
+				
+			
+		}
+	
+	//Eliminamos la sucursal
+	$d_g = Sucursal::find($id);
+	$d_g->delete();
+
+		return Response::json($id);
+		
+	}
+	
 		
 
 }
@@ -197,6 +799,57 @@ public function getSelecteditgerentes(){
 		  'gerente' => $gerente,
 				'g_a' => $g_a
 	 ));
+}
+	
+//Listar telefonos para editar
+public function getListarteleditar(){
+	$id_s = Input::get('id');
+	
+	
+	//Listamos telefonos
+	$t_s = DB::table('telefono_sucursal')
+			->join('sucursal', 'telefono_sucursal.sucursal_id', '=', 'sucursal.id')
+			->where('sucursal_id', '=', $id_s)
+			->select('numero', 'telefono_sucursal.id', 'tipo_tel_id')
+	 	->get();
+	
+	
+	return Response::json(array(
+		  't_s' => $t_s
+	 ));
+}
+	
+public function getListartelselectedit(){
+	 $id_t = Input::get('id');
+		
+	
+	//Listamos los tipos de telefonos
+	$tel = DB::table('tipo_tel')
+			->select('id', 'nombre')
+		 ->where('id', '!=', $id_t)
+		 ->where('estatus', '1')
+	 	->get();
+	
+	//lISTAMOS el telefono actual
+	$tel_a = DB::table('tipo_tel')
+			->select('id', 'nombre')
+		 ->where('id', '=', $id_t)
+	 	->get();
+	
+	return Response::json(array(
+		 'tel' => $tel,
+		 'tel_a' => $tel_a
+	 ));
+	
+}
+	
+//Eliminar telefono al editar sucursal
+public function getElimarteledit(){
+	 $id = Input::get('id');
+	 
+	 $t_s = TelefonoSucursal::find($id);
+	 $t_s->delete();
+	
 }
 	
 	
@@ -576,12 +1229,17 @@ public function postAgregarplaza(){
 public function getEliminarplaza(){
 	$id = Input::get('id');
 	
-	//comprobamos que la plaza no este en uso en el catalogo sucursal
+	//comprobamos que la plaza no este en uso en el catalogo sucursal y
+	//en el catalogo oficinas
 	$sucursal = DB::table('sucursal')
 									->where('plaza_id', $id)
 									->get();
 	
-	if(count($sucursal) == 0){
+	$oficinas = DB::table('oficina')
+									->where('plaza_id', $id)
+									->get();
+	
+	if(count($sucursal) == 0 and count($oficinas) == 0){
 					//Eliminamos
 					$d_p = Plaza::find($id);
 					$d_p->delete();
@@ -617,6 +1275,7 @@ public function getEditarplaza(){
 	
 }
 	
+
 	
 	//Actualizar plaza
 public function getActualizarplaza(){
@@ -659,6 +1318,7 @@ public function getOficinas(){
 public function getListaoficinas(){
 	$oficinas = DB::table('oficina')
 			->join('plaza', 'oficina.plaza_id', '=', 'plaza.id')
+			->select('oficina.id', 'nombre', 'clave', 'nombre_plaza')
 	 	->get();
 	
 	echo json_encode($oficinas);
@@ -723,6 +1383,75 @@ public function getEliminaroficina(){
 }
 
 	
+	//Editar oficina
+public function getEditaroficina(){
+	$id = Input::get('id');
+	
+	$oficina = DB::table('oficina')
+								->where('id', $id)
+								->first();
+
+	return Response::json($oficina);
+	
+}
+	
+	//Actualizar oficina
+public function getActualizaroficina(){
+	$id = Input::get('id');
+	$plaza = Input::get('plaza');
+	$nombre = Input::get('nombre');
+	$clave = Input::get('clave');
+	
+
+		//actualizamos
+		$new_o = Oficina::find($id);
+		$new_o->plaza_id = $plaza;
+		$new_o->nombre = $nombre;
+	 $new_o->clave = $clave;
+		$new_o->save();
+		
+		$n_o = DB::table('oficina')
+			 ->join('plaza', 'oficina.plaza_id', '=', 'plaza.id')
+			 ->select('oficina.id', 'nombre', 'clave', 'nombre_plaza')
+				->where('oficina.id', $id)
+		 	->first();
+		
+		return Response::json($n_o);
+		
+	
+}
+	
+	
+	
+	
+//Listar plazas para editar
+public function getSelecteditplazasoficina(){
+	$id = Input::get('id'); //id de la oficina
+	
+	//obtenemos el id de la plaza
+	$p = DB::table('oficina')
+						->where('id', $id)
+						->pluck('plaza_id');
+	
+	//Listamos las plazas
+	$plazas = DB::table('plaza')
+		 ->select('id', 'nombre_plaza')
+		 ->where('id', '!=', $p)
+			->where('estatus', '1')
+	 	->get();
+	
+	//lISTAMOS la plaza actual
+	$p_a = DB::table('plaza')
+				->select('id', 'nombre_plaza')
+			 ->where('id', '=', $p)
+	  	->get();
+	
+	return Response::json(array(
+		 'plazas' => $plazas,
+		 'p_a' => $p_a
+	 ));
+}
+	
 	
 /*******
 Catalogo grupos-------
@@ -751,12 +1480,12 @@ public function postAgregargrupo(){
 	$activo = Input::get('activo');
 	
 	 $n_g = new Grupo;
-		$n_g->descripcion = $nombre;
+		$n_g->descripcion_grupo = $nombre;
 	 $n_g->estatus = $activo;
 	 $n_g->save();
 	
 		$grupo = DB::table('grupo')
-								->where('descripcion', $nombre)
+								->where('descripcion_grupo', $nombre)
 								->where('estatus', $activo)
 								->first();
 	
@@ -770,12 +1499,12 @@ public function getEliminargrupo(){
 	$id = Input::get('id');
 	
 	//comprobamos que el grupo no este en uso
-	$grupo = DB::table('grupo')
-									->where('id', $id)
+	$grupo = DB::table('tarifa_detalle')
+									->where('grupo_id', $id)
 									->get();
 
 	
-	if(count($grupo)){
+	if(count($grupo) == 0){
 					//Eliminamos
 					$d_g = Grupo::find($id);
 					$d_g->delete();
@@ -786,7 +1515,7 @@ public function getEliminargrupo(){
 		 $p = "Existe";
 			$grupo = DB::table('grupo')
 			       ->where('id', $id)
-										->select('descripcion')
+										->select('descripcion_grupo')
 										->first();
 		
 		 return Response::json(array(
@@ -821,7 +1550,7 @@ public function getActualizargrupo(){
 
 		//actualizamos
 		$new_g = Grupo::find($id);
-		$new_g->descripcion = $nombre;
+		$new_g->descripcion_grupo = $nombre;
 		$new_g->estatus = $estatus;
 		$new_g->save();
 		
@@ -885,12 +1614,12 @@ public function getEliminarcodigo(){
 	$id = Input::get('id');
 	
 	//comprobamos que el codigo no este en uso
-	$codigo = DB::table('codigo')
-									->where('id', $id)
+	$codigo = DB::table('tarifa_detalle')
+									->where('codigo_id', $id)
 									->get();
 
 	
-	if(count($codigo)){
+	if(count($codigo) == 0){
 					//Eliminamos
 					$d_g = Codigo::find($id);
 					$d_g->delete();
@@ -956,6 +1685,120 @@ public function getActualizarcodigo(){
 	
 	
 /*******
+Catalogo coberturas-------
+******************************************/
+public function getCoberturas(){
+    if(Auth::check()){
+      return View::make('admin/coberturas');
+    } else {
+        return Redirect::to('login');
+    }
+ }
+	
+
+	//Listar cobertura
+public function getListacoberturas(){
+	$coberturas = DB::table('cobertura')
+	 	->get();
+	
+	echo json_encode($coberturas);
+}
+	
+	
+		//Agregar cobertura
+public function postAgregarcobertura(){
+	$cobertura = Input::get('cobertura');
+	$activo = Input::get('activo');
+	
+	 $n_c = new Cobertura;
+		$n_c->cobertura = $cobertura;
+	 $n_c->estatus = $activo;
+	 $n_c->save();
+	
+		$cobertura_n = DB::table('cobertura')
+								->where('cobertura', $cobertura)
+								->where('estatus', $activo)
+								->first();
+	
+		return Response::json($cobertura_n);
+		
+	
+}
+	
+//Eliminar cobertura
+public function getEliminarcobertura(){
+	$id = Input::get('id');
+	
+	//comprobamos que la cobertura no este en uso
+	$cobertura = DB::table('tarifa_detalle')
+									->where('cobertura_id', $id)
+									->get();
+
+	
+	if(count($cobertura) == 0){
+					//Eliminamos
+					$d_c = Cobertura::find($id);
+					$d_c->delete();
+
+					return Response::json($id);
+		
+	} else {
+		 $p = "Existe";
+			$cobertura = DB::table('cobertura')
+			       ->where('id', $id)
+										->select('cobertura')
+										->first();
+		
+		 return Response::json(array(
+					   'p' => $p, 
+				    'cobertura' => $cobertura
+			));
+	}
+	
+	
+}
+	
+	
+	//Editar cobertura
+public function getEditarcobertura(){
+	$id = Input::get('id');
+	
+	$cobertura = DB::table('cobertura')
+								->where('id', $id)
+								->first();
+	
+	return Response::json($cobertura);
+	
+}
+	
+	
+	//Actualizar cobertura
+public function getActualizarcobertura(){
+	$id = Input::get('id');
+	$cobertura = Input::get('cobertura');
+	$estatus = Input::get('estatus');
+	
+
+		//actualizamos
+		$new_c = Cobertura::find($id);
+		$new_c->cobertura = $cobertura;
+		$new_c->estatus = $estatus;
+		$new_c->save();
+		
+		$n_c = DB::table('cobertura')
+				->where('id', $id)
+			->first();
+		
+		return Response::json($n_c);
+		
+		
+	
+}
+	
+	
+	
+	
+/*******
 Catalogo vehículos-------
 ******************************************/
 public function getVehiculos(){
@@ -976,13 +1819,41 @@ public function getListavehiculos(){
 }
 	
 	
+//Ver foto del vehiculo
+public function getVerfotovehiculo(){
+	$id = Input::get('id');
+	
+	$vehiculo = DB::table('tipo_vehiculo')
+													->select('foto')
+													->where('id', $id)
+													->first();
+	
+	return Response::json($vehiculo);
+	
+}
+	
+	
 		//Agregar vehiculo
 public function postAgregarvehiculo(){
+	
+	$file = $_FILES['imagen']['name'];
+	
+		//comprobamos si existe un directorio para subir el archivo
+	//si no es así, lo creamos
+	if(!is_dir("img/vehiculos/"))
+					mkdir("img/vehiculos/", 0777);
+
+	$archivo = $_FILES['imagen']["tmp_name"];
+	$destino = "img/vehiculos/".$_FILES['imagen']['name'];
+	
+	move_uploaded_file($archivo, $destino);
+	
 	$nombre = Input::get('nombre');
-	$activo = Input::get('activo');
+	$activo = Input::get('inp-check');
 	
 	 $n_v = new TipoVehiculo;
 		$n_v->descripcion = $nombre;
+	 $n_v->foto = $_FILES['imagen']['name'];
 	 $n_v->estatus = $activo;
 	 $n_v->save();
 	
@@ -1001,12 +1872,12 @@ public function getEliminarvehiculo(){
 	$id = Input::get('id');
 	
 	//comprobamos que el grupo no este en uso
-	$vehiculo = DB::table('tipo_vehiculo')
-									->where('id', $id)
+	$vehiculo = DB::table('tarifa_detalle')
+									->where('tipo_vehiculo_id', $id)
 									->get();
 
 	
-	if(count($vehiculo)){
+	if(count($vehiculo) == 0){
 					//Eliminamos
 					$d_v = TipoVehiculo::find($id);
 					$d_v->delete();
@@ -1044,15 +1915,28 @@ public function getEditarvehiculo(){
 	
 	
 	//Actualizar vehiculo
-public function getActualizarvehiculo(){
-	$id = Input::get('id');
-	$nombre = Input::get('nombre');
-	$estatus = Input::get('estatus');
+public function postActualizarvehiculo(){
+		$file = $_FILES['imagen-edit']['name'];
 	
+		//comprobamos si existe un directorio para subir el archivo
+	//si no es así, lo creamos
+	if(!is_dir("img/vehiculos/"))
+					mkdir("img/vehiculos/", 0777);
+
+	$archivo = $_FILES['imagen-edit']["tmp_name"];
+	$destino = "img/vehiculos/".$_FILES['imagen-edit']['name'];
+	
+	move_uploaded_file($archivo, $destino);
+	
+	$id = Input::get('id_vehiculo');
+	$nombre = Input::get('nombre_edit');
+	$estatus = Input::get('inp-check_edit');
+		
 
 		//actualizamos
 		$new_v = TipoVehiculo::find($id);
 		$new_v->descripcion = $nombre;
+	 $new_v->foto = $_FILES['imagen-edit']['name'];
 		$new_v->estatus = $estatus;
 		$new_v->save();
 		
@@ -1067,42 +1951,6 @@ public function getActualizarvehiculo(){
 }
 	
 	
-	
-/*******
-Configurar Tarifas-------
-******************************************/
- public function getConfig(){
-    if(Auth::check()){
-      return View::make('admin/config');
-    } else {
-        return Redirect::to('login');
-    }
- }
-
-
-//Listar tarifas
-public function getListatarifas(){
-	$tarifas = DB::table('tarifa')
-		 ->join('oficina', 'tarifa.oficina_id', '=', 'oficina.id')
-	 	->get();
-	
-	echo json_encode($tarifas);
-}
-	
-//Listar el detalle de las tarias
-	/*
-public function getListatarifadetalle(){
-	$tarifadetalle = DB::table('tarifa_detalle')
-		 ->join('tarifa', 'tarifa_detalle.tarifa_id', '=', 'tarifa.id')
-		 ->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
-		 ->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
-		 ->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
-			->select('tarifa_id', 'grupo.descripcion', 'codigo.descripcion')
-	 	->get();
-	
-	echo json_encode($tarifadetalle);
-}
-	*/
 	
 	
 /*******
@@ -1217,10 +2065,10 @@ public function getEditarusuario(){
 	public function postVerificarpassactual(){
 		$pass = Input::get('pass');
 		
-		$iduser = Auth::user()->id;
+		$user_id = Input::get('user_id');
 
 		$p = DB::table('usuario')
-				->where('id', $iduser)->pluck('password');
+				->where('id', $user_id)->pluck('password');
 
 		if (Hash::check($pass, $p)) {
 			 $pass = "coinciden";

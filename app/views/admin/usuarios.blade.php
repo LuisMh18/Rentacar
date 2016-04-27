@@ -65,7 +65,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                 Agregar usuario
@@ -123,12 +123,12 @@
       </div>
     </div>
     
-        <!--  Modal para eliminar codigo  -->
+        <!--  Modal para eliminar usuario  -->
 <div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
                Eliminar usuario
@@ -160,7 +160,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
                Editar usuario
@@ -201,7 +201,9 @@
 																						<span class="icon-pass2-edit"></span>
 																						<span class="hidden-error-p error-p">Las contraseñas no coinciden.</span>
 																			</div>
-													 
+																			
+																			<!-- Campo escondido -->
+													 					<input type="text" id="edit_user" value="" class="hidden">
             </form>
                 
           </div>
@@ -477,6 +479,8 @@
 	$(document).on('click', '.editar-btn', function(){
 			  id = $(this).attr('value');
 		
+					user_id = $('#edit_user').attr('value', id);
+		
 					$.ajax({
 								url:  "/admin/editarusuario",
 								type: "GET",
@@ -505,11 +509,12 @@
 	  $('#pass0_edit').keyup( function(){
     if($('#pass0_edit').val()!= ""){
          pass = $('#pass0_edit').val().trim();
-
+									
+									user_id = $('#edit_user').attr('value');
         $.ajax({
             type: "POST",
             url: "/admin/verificarpassactual",
-             data: {pass: pass },
+             data: {pass: pass, user_id: user_id },
             success: function( u ){
 													  	 setTimeout(function() {
 																		

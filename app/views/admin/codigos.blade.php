@@ -66,7 +66,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar codigo
@@ -89,7 +89,7 @@
 																			</div>
 
 																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
+																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
 																					  <input id="inp-check" type="checkbox" value="">
@@ -121,7 +121,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
                Eliminar código
@@ -153,7 +153,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
                Editar codigo
@@ -176,7 +176,7 @@
 																			</div>
 
 																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
+																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
 																					  <input id="inp-check_edit" type="checkbox" value="">

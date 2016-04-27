@@ -11,6 +11,21 @@
  {{ HTML::Script('js/jquery.js') }}
  {{ HTML::script('js/bootstrap.min.js') }}
  {{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
+ <style>
+		#listar_t_length, #listar_t_info{
+			display:none;
+		}
+		
+		.fancy.pagination{
+			margin-top:.5em;
+		}
+		
+		#listar_t_filter{
+			display:none;
+		}
+		
+		
+ </style>
 @show
 
 <script>
@@ -36,7 +51,7 @@
 
 @section('content')
 
-<div class="seccion_tabla">
+<div class="seccion_tabla seccion_sucursal">
 <div class="agregar">
 	<button id="agregar-plaza" class="btn btn-primary" title="Agregar sucursal">
 		<span class="glyphicon glyphicon-plus"></span>
@@ -50,18 +65,16 @@
 					<th>Gerente</th>
 					<th>Plaza</th>
 					<th>Dirección 1</th>
-					<th>Dirección 2</th>
 					<th>Colonia</th>
 					<th>Estado</th>
-					<th>Municipio / Delegación</th>
-					<th>Referencias</th>
-					<th>CP</th>
+					<th>Municipio</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
+	
 </div>
     
  <!--Alertas-->
@@ -73,7 +86,7 @@
       <div class="modal-dialog dialog-sucursal">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar Sucursal
@@ -159,11 +172,44 @@
 																	
 													</div>
 															
+															<div class="content-t">
+															
 																<div class="form-group form-textarea">
 																			<label for="referencia" class="text-primary">Referencias: </label>
-																			<textarea id="referencia" class="form-control"></textarea>
+																			<textarea id="referencia" class="form-control" rows="4"></textarea>
 																</div>
 																
+																<div class="contenedor-tel-add">
+																		<div class="content-add-t">
+																					<h3 class="add-tel-txt">Agregar teléfono:</h3>
+																					<button id="ad-nuevo-t" class="btn-add-t btn btn-primary btn-xs" title="Agregar teléfono">
+																									<span class="glyphicon glyphicon-plus"></span>
+																					</button>
+																		</div>
+																	
+																		<div class="content-datos c-d">
+																				
+																				<table class="table table-tel">
+																						<thead>
+																							<tr>
+																								<th>
+																									<span class="text-info">Tipo:</span>
+																								</th>
+																								<th>
+																									<span class="text-info">Numero:</span>
+																								</th>
+																								<th>
+																									<span class="text-info">Quitar:</span>
+																								</th>
+																							</tr>
+																						</thead>
+																						<tbody id="c-d-telefonos">
+																						</tbody>
+																				</table>
+																		
+																		</div><!--END CONTENT DATOS-->
+																</div>
+															</div>
 													 
             </form>
                 
@@ -184,12 +230,64 @@
       </div>
     </div>
     
+    
+        <!--  Modal para agregar telefono  -->
+<div id="modal-add-tel" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-plus"></span>
+               Agregar teléfono
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+            <form class="form-modal" action="">
+																			
+																		<div class="form-group error-tel">
+																			<label for="select_tel" class="text-primary">Tipo teléfono: </label>
+																							<select class="form-control" id="select_tel">
+																						 </select>
+																 	</div>
+																	
+																	 <div class="form-group error-numero">
+																						<label for="numero" class="text-primary">Numero: </label>
+																						<input type="text" name="numero" id="numero" class="form-control" >
+																						<span class="icon-numero"></span>
+																			</div>		
+																			
+																			<!--campos escondidos-->		
+																			<input type="text" id="idtel" class="hidden" >			
+																			<input type="text" id="tipotel" class="hidden" >										
+													 
+            </form>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-add-tel" type="button" class="btn btn-danger" data-dismiss="modal">
+																	Cancelar
+															</button>
+															<span id="add-tel" class="btn btn-primary" data-dismiss="modal" >
+																		Agregar
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
        <!--  Modal para editar sucursal  -->
 <div id="modal-edit-sucursal" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog dialog-sucursal">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
                Editar Sucursal
@@ -275,10 +373,46 @@
 																	
 													</div>
 															
+																									
+													 <div class="content-t">
+															
 																<div class="form-group form-textarea">
 																			<label for="referencia_edit" class="text-primary">Referencias: </label>
-																			<textarea id="referencia_edit" class="form-control"></textarea>
+																			<textarea id="referencia_edit" class="form-control" rows="4"></textarea>
 																</div>
+																
+																<div class="contenedor-tel-add">
+																		<div class="content-add-t">
+																					<h3 class="add-tel-txt-s">Agregar teléfono:</h3>
+																					<button id="ad-nuevo-t-s" class="btn-add-t-s btn btn-primary btn-xs" title="Agregar teléfono">
+																									<span class="glyphicon glyphicon-plus"></span>
+																					</button>
+																		</div>
+																	
+																		<div class="content-datos-edit">
+																				
+																				<table class="table table-tel-edit">
+																						<thead>
+																							<tr>
+																								<th>
+																									<span class="text-info">Tipo:</span>
+																								</th>
+																								<th>
+																									<span class="text-info">Numero:</span>
+																								</th>
+																								<th>
+																									<span class="text-info">Quitar:</span>
+																								</th>
+																							</tr>
+																						</thead>
+																						<tbody id="c-d-telefonos-edit">
+																						</tbody>
+																				</table>
+																				
+																		
+																		</div><!--END CONTENT DATOS-->
+																</div>
+															</div><!--END content-t-->
 																
 													 
             </form>
@@ -287,11 +421,62 @@
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-sucursal" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-aact-sucursal-edi" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
 															<span id="add-sucursal_edit" class="btn btn-primary" data-dismiss="modal" >
 																		Actualizar
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+            <!--  Modal para agregar telefono al editar sucursal -->
+<div id="modal-add-tel-edit-s" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-plus"></span>
+               Agregar teléfono
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+            <form class="form-modal" action="">
+																			
+																		<div class="form-group error-tel-s">
+																			<label for="select_tel" class="text-primary">Tipo teléfono: </label>
+																							<select class="form-control" id="select_tel_s">
+																						 </select>
+																 	</div>
+																	
+																	 <div class="form-group error-numero-s">
+																						<label for="numero_s" class="text-primary">Numero: </label>
+																						<input type="text" name="numero_s" id="numero_s" class="form-control" >
+																						<span class="icon-numero-s"></span>
+																			</div>		
+																			
+																			<!--campos escondidos-->		
+																			<input type="text" id="idtel-s" class="hidden" >			
+																			<input type="text" id="tipotel-s" class="hidden" >										
+													 
+            </form>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-add-tel-edit-s" type="button" class="btn btn-danger" data-dismiss="modal">
+																	Cancelar
+															</button>
+															<span id="add-tel-edit-s" class="btn btn-primary" data-dismiss="modal" >
+																		Agregar
 															</span>
 													</div>
              
@@ -306,7 +491,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar gerente
@@ -368,7 +553,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar plaza
@@ -411,7 +596,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
                Eliminar sucursal
@@ -438,6 +623,39 @@
       </div>
     </div>
     
+ 
+          <!--  Modal para confirmar eliminar telefono  -->
+<div id="modal-confirm-delete-telefono" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-trash"></span>
+               Eliminar teléfono
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar este teléfono?</h3>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-quitar" type="button" class="btn btn-danger" data-dismiss="modal">
+																	No
+															</button>
+															<span id="confirm-delete-tel-s" class="btn btn-primary" data-dismiss="modal" >
+																		Si
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
     
           <!--  Modal para agregar gerente ala hora de editar sucursal-->
@@ -445,7 +663,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar gerente
@@ -508,7 +726,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar plaza
@@ -607,12 +825,9 @@
 																															l[i].nombre,
 																															l[i].nombre_plaza,
 																															l[i].direccion1,
-																															'<span class="d_'+l[i].direccion2+'"></span>'+l[i].direccion2,
 																															l[i].colonia,
 																															l[i].estado,
 																															l[i].municipio_delegacion,
-																															'<span class="r_'+l[i].referencia+'"></span>'+l[i].referencia,
-																															l[i].cp,
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar sucursal">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -625,10 +840,6 @@
 																					} //End for
 								
 								
-															  $('.d_').text('No hay');
-																	$('.d_').addClass('text-danger');
-																	$('.r_').text('No hay');
-																	$('.r_').addClass('text-danger');
 
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
@@ -643,33 +854,6 @@
 			});
 	
 
-			
-	
-	
-			$(document).on('click','.fancy > li, a',function(){	
-						$('.d_').text('No hay');
-						$('.d_').addClass('text-danger');
-						$('.r_').text('No hay');
-						$('.r_').addClass('text-danger');
-			});        
-
-
-			$(document).on('keyup', '#list_p__filter', function(){
-						$('.d_').text('No hay');
-						$('.d_').addClass('text-danger');
-						$('.r_').text('No hay');
-						$('.r_').addClass('text-danger');
-
-			});
-
-			$(document).on('click', '#list_p__length', function(){
-						$('.d_').text('No hay');
-						$('.d_').addClass('text-danger');
-						$('.r_').text('No hay');
-						$('.r_').addClass('text-danger');
-			});
-	
-	
 	
 		//Agregar sucursal -------------
 	 $(document).on('click', '#agregar-plaza', function(){
@@ -729,6 +913,112 @@
 			
 		});
 	
+	//Agregar teleono a la sucursal
+	$(document).on('click', '#ad-nuevo-t', function(){
+			$('#modal-add-tel').modal({
+      show: 'false',
+    });
+				
+						//Listamos tipos de telefonos
+			 $.ajax({
+								url:  "/admin/selectelefonos",
+								type: "GET",
+								success: function(p){
+																			
+								     	option = "";
+              s = $('#select_tel');
+									
+																		option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.tel){
+
+																			option += '<option value="'+p.tel[datos].id+'" class="'+p.tel[datos].nombre+'">'+p.tel[datos].nombre+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		
+		return false;
+	});
+	
+	$('#select_tel').on('change',function(){
+		
+		tipo = $(this).val();
+		$('#idtel').attr('value', tipo);
+		tipo_nombre = $('#select_tel option:selected').text();
+		$('#tipotel').attr('value', tipo_nombre);
+		
+	});
+	
+	$(document).on('click', '#add-tel', function(){
+		id = $('#idtel').attr('value');
+		tipo = $('#tipotel').attr('value');
+		numero = $('#numero').val();
+		
+		//Mostramos la seccion de los telefonos
+		$('.content-datos').removeClass('c-d');
+		
+		//Le cambiamos el texto
+		$('.add-tel-txt').text('Agregar otro teléfono:');
+		
+		//Agregamos los telefonos
+		$('#c-d-telefonos').append('<tr id="telefono_'+id+'">'+
+																													  '<td value="'+id+'">'+tipo+'</td>'+
+																													  '<td class="numero" value="'+numero+'">'+numero+'</td>'+
+																													  '<td><span class="quitar btn btn-xs btn-danger" value="'+id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+																													'</tr>');
+		
+		
+		//Limpiamos los campos
+		$('#select_tel').html('');
+		$('#numero').val('');
+		
+	});
+	
+	
+	//quitar telefono 
+		$(document).on('click', '.quitar', function(){
+			id = $(this).attr('value');
+			
+			$('#modal-confirm-delete-telefono').modal({
+				show:'false',
+			});
+			
+			$('#confirm-delete-tel-s').attr('value', id);
+			
+	});
+	
+	$(document).on('click', '#confirm-delete-tel-s', function(){
+			id = $(this).attr('value');
+			
+		 $('#telefono_'+id).remove();
+	});
+	
+	
+	$(document).on('click', '#no-add-tel', function(){
+		$('#select_tel').html('');
+		$('#numero').val('');
+		
+  $('.error-tel').removeClass('has-error has-feedback');
+		
+  $('.error-numero').removeClass('has-error has-feedback');
+		$('.icon-numero').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+	
+		
+		
+	});
+	
+	
+	
+	
 	$(document).on('click', '#add-sucursal', function(){
 			sucursal = $('#sucursal').val();
 	 	select_gerente = $('#select_gerente').val();
@@ -754,12 +1044,9 @@
 												'<td>'+s.nombre+'</td>'+
 												'<td>'+s.nombre_plaza+'</td>'+
 												'<td>'+s.direccion1+'</td>'+
-												'<td><span class="d_'+s.direccion2+'">'+s.direccion2+'</td>'+
 												'<td>'+s.colonia+'</td>'+
 												'<td>'+s.estado+'</td>'+
 												'<td>'+s.municipio_delegacion+'</td>'+
-												'<td><span class="r_'+s.referencia+'"></span>'+s.referencia+'</td>'+
-												'<td>'+s.cp+'</td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+s.id+'" title="Editar sucursal">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -773,14 +1060,12 @@
 									'</tr>';
 										
 									tabla_a.prepend(nueva_fila);
+									
+									registrartelefonosucursal(s.id);
 										
 										alertas("success","Sucursal "+s.nombre_sucursal+" agregada correctamente.");
 										
 									
-								$('.d_').text('No hay');
-								$('.d_').addClass('text-danger');
-								$('.r_').text('No hay');
-								$('.r_').addClass('text-danger');
 									
 								//Limpiamos los campos
 						  $('#sucursal').val('');
@@ -793,6 +1078,11 @@
 						  $('#municipio').val('');
 						  $('#cp').val('');
 						  $('#referencia').val('');
+								$('#c-d-telefonos').html('');
+								$('.content-datos').addClass('c-d');
+									
+								//Le regresamos el nombre
+								$('.add-tel-txt').text('Agregar teléfono:');
 									
 								},
 			
@@ -803,6 +1093,54 @@
 					});
 		
 	});
+	
+	
+	
+	function registrartelefonosucursal(id){
+		
+		var DATA = [];
+		
+		$('.table-tel tbody tr').each(function(){
+							id_s = id;
+							id_t  = $(this).find("td").attr('value');
+							numero  = $(this).find("td[class*='numero']").attr('value');
+
+							datos = {id_s, id_t, numero};
+
+							DATA.push(datos);
+			
+  });
+		
+		
+		if(DATA == ''){
+
+		} else {
+
+			   aInfo = JSON.stringify(DATA);
+			
+						$.ajax({
+								url:  "/admin/agregartelefonosucursal",
+								type: "POST",
+								data:{aInfo: aInfo, id: id},
+								success: function(s){
+									
+									
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		}
+		
+		
+		
+		
+		
+	}//end functiom
+	
+	
 	
 		$(document).on('click', '#no-add-sucursal', function(){
 			   $('#sucursal').val('');
@@ -815,6 +1153,36 @@
 						$('#municipio').val('');
 						$('#cp').val('');
 						$('#referencia').val('');
+			   $('#c-d-telefonos').html('');
+						$('.content-datos').addClass('c-d');
+			
+			   //Le regresamos el nombre
+						$('.add-tel-txt').text('Agregar teléfono:');
+			
+			
+      $('.error-sucursal').removeClass('has-error has-feedback');
+						$('.icon-sucursal').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+      $('.error-gerente').removeClass('has-error has-feedback');
+
+      $('.error-plaza').removeClass('has-error has-feedback');
+
+      $('.error-direccion1').removeClass('has-error has-feedback');
+						$('.icon-direccion1').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+      $('.error-colonia').removeClass('has-error has-feedback');
+						$('.icon-colonia').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	
+      $('.error-estado').removeClass('has-error has-feedback');
+						$('.icon-estado').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	
+      $('.error-municipio').removeClass('has-error has-feedback');
+						$('.icon-municipio').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+      $('.error-cp').removeClass('has-error has-feedback');
+						$('.icon-cp').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			
+			
 	});
 	
 	//Eliminar sucursal
@@ -840,7 +1208,6 @@
 
 										alertas("success","Sucursal eliminada correctamente");
 										 $('#fila_'+d).remove();
-									
 									
 								},
 			
@@ -1033,6 +1400,81 @@
 																
 					});
 			
+			
+			
+			
+			//Listar los telefonos de la sucursal
+			$.ajax({
+								url:  "/admin/listarteleditar",
+								type: "GET",
+					   data:{id: id},
+								success: function(t){
+											
+									if(t.t_s == ''){
+											//console.log('esta vacio');
+										} else {
+													$('.content-datos-edit').show();
+												tabla = $('#c-d-telefonos-edit');
+												fila = "";
+
+											for(datos in t.t_s){
+
+												fila += '<tr class="tr_actual" id="phone_'+t.t_s[datos].id+'">'+
+													'<td class="tel_actual" value="'+t.t_s[datos].tipo_tel_id+'" id="'+t.t_s[datos].id+'"><select class="s_num" id="select_numero_'+t.t_s[datos].tipo_tel_id+'">'+
+													'</select></td>'+
+													'<td><input class=" inp-edit-num" type="text" value="'+t.t_s[datos].numero+'"></td>'+
+													'<td><span class="quitar-p btn btn-xs btn-danger" value="'+t.t_s[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+													'</tr>';
+
+
+												listartelselect(t.t_s[datos].tipo_tel_id);
+
+											}//end for
+
+											tabla.append(fila);
+										}
+									
+									
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+					
+					
+					function listartelselect(id){
+						$.ajax({
+								url:  "/admin/listartelselectedit",
+								type: "GET",
+					   data:{id: id},
+								success: function(t){
+
+									 option = "";
+              s = $('#select_numero_'+t.tel_a[0].id);
+									
+														option += '<option value="'+t.tel_a[0].id+'">'+t.tel_a[0].nombre+'</option>';
+              for(datos in t.tel){
+
+																			option += '<option value="'+t.tel[datos].id+'">'+t.tel[datos].nombre+'</option>';
+																}
+
+																s.append(option);
+									
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+					}
+					
+
+			
 			//Listamos las plazas
 			 $.ajax({
 								url:  "/admin/selecteditplazas",
@@ -1065,6 +1507,156 @@
 	});
 	
 	
+		//Agregar teleono al editar sucursal
+	$(document).on('click', '#ad-nuevo-t-s', function(){
+			$('#modal-add-tel-edit-s').modal({
+      show: 'false',
+    });
+				
+						//Listamos tipos de telefonos
+			 $.ajax({
+								url:  "/admin/selectelefonos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select_tel_s');
+									
+																		option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.tel){
+
+																			option += '<option value="'+p.tel[datos].id+'" class="'+p.tel[datos].nombre+'">'+p.tel[datos].nombre+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		
+		return false;
+	});
+	
+	
+	
+		$('#select_tel_s').on('change',function(){
+		
+		tipo = $(this).val();
+		$('#idtel-s').attr('value', tipo);
+		tipo_nombre = $('#select_tel_s option:selected').text();
+		$('#tipotel-s').attr('value', tipo_nombre);
+		
+	});
+	
+	$(document).on('click', '#add-tel-edit-s', function(){
+		id = $('#idtel-s').attr('value');
+		tipo = $('#tipotel-s').attr('value');
+		numero = $('#numero_s').val();
+		
+		$('.content-datos-edit').show();
+		
+		//Mostramos la seccion de los telefonos
+		//$('.content-datos').removeClass('c-d');
+		
+		//Le cambiamos el texto
+		$('.add-tel-txt-s').text('Agregar otro teléfono:');
+		
+		//Agregamos los telefonos
+		$('#c-d-telefonos-edit').append('<tr class="tr" id="telefonoedit_'+id+'">'+
+																													  '<td class="text-info n_val" value="'+id+'">'+tipo+'</td>'+
+																													  '<td class=" text-info n_numero" value="'+numero+'">'+numero+'</td>'+
+																													  '<td><span class="quitar btn btn-xs btn-danger" value="'+id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+																													'</tr>');
+		
+		
+		//Limpiamos los campos
+		$('#select_tel_s').html('');
+		$('#numero_s').val('');
+		
+		
+	});
+	
+	
+	//quitar telefono
+		$(document).on('click', '.quitar', function(){
+			id = $(this).attr('value');
+			
+			$('#modal-confirm-delete-telefono').modal({
+				show:'false',
+			});
+			
+			$('#confirm-delete-tel-s').attr('value', id);
+		 
+	});
+	
+	
+	$(document).on('click', '#confirm-delete-tel-s', function(){
+			id = $(this).attr('value');
+			
+		 $('#telefonoedit_'+id).remove();
+	});
+	
+			$(document).on('click', '#no-quitar', function(){
+				
+			  $('#confirm-delete-tel-s').removeClass('delete-p');
+		 
+	});
+	
+	//Eliminar los telefonos que ya estaban agregados
+		$(document).on('click', '.quitar-p', function(){
+			id = $(this).attr('value');
+
+			$('#modal-confirm-delete-telefono').modal({
+				show:'false',
+			});
+			
+			$('#confirm-delete-tel-s').attr('value', id);
+			$('#confirm-delete-tel-s').addClass('delete-p');
+		 
+	});
+	
+		$(document).on('click', '.delete-p', function(){
+			id = $(this).attr('value');
+			
+							 $.ajax({
+								url:  "/admin/elimarteledit",
+								type: "GET",
+								data:{id: id},
+								success: function(p){
+										
+											$('#phone_'+id).remove();
+											$('#confirm-delete-tel-s').removeClass('delete-p');
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+			
+		 
+	});
+	
+	
+	
+	$(document).on('click', '#no-add-tel-edit-s', function(){
+		$('#select_tel_s').html('');
+		$('#numero_s').val('');
+		
+  $('.error-tel-s').removeClass('has-error has-feedback');
+	
+  $('.error-numero-s').removeClass('has-error has-feedback');
+  $('.icon-numero-s').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+	
+		
+	});
+	
+	
 	//Actualizar sucursal--------
 	$(document).on('click', '#add-sucursal_edit', function(){
 		 id = $(this).attr('value');
@@ -1092,12 +1684,9 @@
 												'<td>'+s.nombre+'</td>'+
 												'<td>'+s.nombre_plaza+'</td>'+
 												'<td>'+s.direccion1+'</td>'+
-												'<td><span class="d_'+s.direccion2+'">'+s.direccion2+'</td>'+
 												'<td>'+s.colonia+'</td>'+
 												'<td>'+s.estado+'</td>'+
 												'<td>'+s.municipio_delegacion+'</td>'+
-												'<td><span class="r_'+s.referencia+'"></span>'+s.referencia+'</td>'+
-												'<td>'+s.cp+'</td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+s.id+'" title="Editar sucursal">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -1110,14 +1699,16 @@
 											'</td>'+
 									'</tr>');
 										
+												registrartelefonosucursaledit(s.id);
+									
+												actualizartelefonosucursaledit(s.id);
 										
 										alertas("success","Sucursal "+s.nombre_sucursal+" actualizada correctamente.");
 										
 									
-								$('.d_').text('No hay');
-								$('.d_').addClass('text-danger');
-								$('.r_').text('No hay');
-								$('.r_').addClass('text-danger');
+								$('.add-tel-txt-s').text('Agregar teléfono');
+		     	$('#c-d-telefonos-edit').html('');
+								$('.content-datos-edit').hide();
 									
 									
 								},
@@ -1129,6 +1720,102 @@
 					});
 	});
 	
+	//Registramos los nuevos telefonos agregados	
+	function registrartelefonosucursaledit(id){
+		
+		var DATA = [];
+		
+		$('.table-tel-edit tbody .tr').each(function(){
+							id_s = id;
+							id_t  = $(this).find("td[class*='n_val']").attr('value');
+							numero  = $(this).find("td[class*='n_numero']").attr('value');
+							datos = {id_s, id_t, numero};
+
+							DATA.push(datos);
+			
+  });
+		
+		
+		if(DATA == ''){
+
+		} else {
+
+			   aInfo = JSON.stringify(DATA);
+			
+						$.ajax({
+								url:  "/admin/agregartelefonosucursal",
+								type: "POST",
+								data:{aInfo: aInfo, id: id},
+								success: function(s){
+									console.log('Telefonos registrados');
+									
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		}
+		
+	}//end functiom
+	
+	
+		//Actualizar los telefonos que ya estaban agregados
+	function actualizartelefonosucursaledit(id){
+		
+		var DATA = [];
+		
+		$('.table-tel-edit tbody .tr_actual').each(function(){
+							id_s = id;
+			
+							//obtenemos el id del telefono de la sucursal
+							id_t_s  = $(this).find("td[class*='tel_actual']").attr('id');
+			
+						//nuevo valor id
+			   id_n  = $(this).find('.s_num option:selected').attr('value');
+		   	//$('#select_tel option:selected').text();
+			
+							//numero actual
+							numero  = $(this).find("input[class*='inp-edit-num']").val();
+			
+							datos = {id_s, id_t_s, id_n, numero};
+
+							DATA.push(datos);
+			
+  });
+		
+		
+		if(DATA == ''){
+
+		} else {
+
+			   aInfo = JSON.stringify(DATA);
+			
+						$.ajax({
+								url:  "/admin/actualizartelefonosucursal",
+								type: "POST",
+								data:{aInfo: aInfo, id: id},
+								success: function(s){
+									console.log('Telefonos registrados');
+									
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		}
+		
+	}//end functiom
+	
+	
+	$(document).on('click', '#no-aact-sucursal-edi', function(){
+			$('.add-tel-txt-s').text('Agregar teléfono');
+			$('#c-d-telefonos-edit').html('');
+		 $('.content-datos-edit').hide();
+	});
 	
 	
 	
@@ -1361,6 +2048,8 @@
       $('.error-sucursal').removeClass('has-error has-feedback');
 						$('.icon-sucursal').removeClass('glyphicon glyphicon-remove form-control-feedback');
 });
+	
+	
 	
 	$("#select_gerente").change(function () {
       $('.error-gerente').removeClass('has-error has-feedback');
@@ -1658,6 +2347,91 @@
 });
 	
 
+	
+	
+	
+	
+	/*****************
+	------Validaciones al agregar un telefono
+	******************************************************************/
+		  $("#add-tel").click(function () {
+
+      if($("#select_tel").val() == 0){
+              $('.error-tel').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	
+	  $("#add-tel").click(function () {
+
+      if($("#numero").val().length == 0){
+														$('.error-numero').addClass('has-error has-feedback');
+							       $('.icon-numero').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+
+	
+//Foco----
+	$("#select_tel").change(function () {
+      $('.error-tel').removeClass('has-error has-feedback');
+});
+	
+	$("#numero").focus(function () {
+      $('.error-numero').removeClass('has-error has-feedback');
+						$('.icon-numero').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+	
+	
+	/*****************
+	------Validaciones al agregar un telefono al editar sucursal
+	******************************************************************/
+		  $("#add-tel-edit-s").click(function () {
+
+      if($("#select_tel_s").val() == 0){
+              $('.error-tel-s').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	
+	  $("#add-tel-edit-s").click(function () {
+
+      if($("#numero_s").val().length == 0){
+														$('.error-numero-s').addClass('has-error has-feedback');
+							       $('.icon-numero-s').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+
+	
+//Foco----
+	$("#select_tel_s").change(function () {
+      $('.error-tel-s').removeClass('has-error has-feedback');
+});
+	
+	$("#numero_s").focus(function () {
+      $('.error-numero-s').removeClass('has-error has-feedback');
+						$('.icon-numero-s').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
 
 	
 

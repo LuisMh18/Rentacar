@@ -76,6 +76,7 @@
                 <li><a href="{{ URL::to('/admin/plazas') }}">Plazas</a></li>
                 <li><a href="{{ URL::to('/admin/oficinas') }}">Oficinas</a></li>
                 <li><a href="{{ URL::to('/admin/grupos') }}">Grupos</a></li>
+                <li><a href="{{ URL::to('/admin/coberturas') }}">Coberturas</a></li>
                 <li><a href="{{ URL::to('/admin/codigos') }}">Códigos</a></li>
                 <li><a href="{{ URL::to('/admin/vehiculos') }}">Vehículos</a></li>
                 <li><a href="{{ URL::to('/admin/usuarios') }}">Usuarios</a></li>
@@ -124,9 +125,7 @@
                   </a>
 
                   <ul class="dropdown-menu">
-                      <li class="divider"></li>
-                        <li><a href="#cambiarpass" data-toggle="modal"><span class="glyphicon glyphicon-lock"></span> Cambiar Contraseña</a></li>
-                      <li class="divider"></li>
+                        <li class="divider"></li>
                         <li><a class="liga-salir" href="/logout"><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</a></li>
                       <li class="divider"></li>
                   </ul>

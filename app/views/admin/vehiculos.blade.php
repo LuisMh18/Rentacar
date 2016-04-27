@@ -47,6 +47,7 @@
 			<thead class="thead-tabla">
 				<tr>
 					<th>Descripción</th>
+					<th>Foto</th>
 					<th>Estatus</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
@@ -65,7 +66,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar vehículo
@@ -73,19 +74,24 @@
           </div>
           <div class="modal-body body-modal">
 
-            <form class="form-modal" action="">
+            <form enctype="multipart/form-data" class="formulario">
 															
 																			<div class="form-group error-vehiculo">
 																						<label for="nombre" class="text-primary">Descripción: </label>
-																						<input type="text" name="nombre" id="nombre" class="form-control" >
+																						<input type="text" name="nombre" id="nombre" class="form-control">
 																						<span class="icon-vehiculo"></span>	
+																			</div>
+																			
+																			<div class="form-group">
+																						<label for="imagen" class="text-primary error-imagen">Imagen: </label>
+																						<input type="file" name="imagen" id="imagen" accept="image/*">
 																			</div>
 
 																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
+																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
-																					  <input id="inp-check" type="checkbox" value="">
+																					  <input name="inp-check" id="inp-check" type="checkbox" value="0">
 																					</div>
 																		</div>
 
@@ -114,7 +120,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
                Eliminar vehículo
@@ -146,7 +152,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
                Editar vehículo
@@ -154,19 +160,28 @@
           </div>
           <div class="modal-body body-modal">
 
-            <form class="form-modal" action="">
+            <form enctype="multipart/form-data" class="formulario_editar">
 															
+																			<!-- Campo escondido -->
+																			<input type="text" name="id_vehiculo" id="id_vehiculo" value="" class="hidden">
+																			
 																			<div class="form-group error-vehiculo-edit">
 																						<label for="nombre_edit" class="text-primary">Descripción: </label>
 																						<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
 																						<span class="icon-vehiculo-edit"></span>
 																			</div>
+																			
+																			<div class="form-group">
+																						<label for="imagen-edit" class="text-primary error-imagen-edit">Imagen: </label>
+																						<input type="file" name="imagen-edit" id="imagen-edit" accept="image/*">
+																						<span class="txt-foto-actual text-primary" value="">Ver imagen actual</span>
+																			</div>
 
 																		<label for="paterno" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
+																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
-																					  <input id="inp-check_edit" type="checkbox" value="">
+																					  <input name="inp-check_edit" id="inp-check_edit" type="checkbox" value="">
 																					</div>
 																		</div>
 
@@ -183,6 +198,73 @@
 															<span id="confirm-act-vehiculo" class="btn btn-primary" data-dismiss="modal" >
 																		Actualizar
 															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
+          <!--  Modal para eliminar vehiculo  -->
+<div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-trash"></span>
+               Eliminar vehículo
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar este vehículo?</h3>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-add-vehiculo" type="button" class="btn btn-danger" data-dismiss="modal">
+																	No
+															</button>
+															<span id="confirm-delete-vehiculo" class="btn btn-primary" data-dismiss="modal" >
+																		Si
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
+     <!--  Modal para ver la foto del vehiculo -->
+<div id="modal-foto-vehiculo" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content modal-content-foto">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-picture"></span>
+               Foto del vehículo
+            </h4>
+          </div>
+          <div class="modal-body body-modal-foto">
+
+            <div class="content-foto" action="">
+															
+																			
+																		<img src="" id="foto-v" alt="Foto del vehiculo" width="100%">
+													 
+            </div>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal-foto">
+																<button id="no-act-vehiculo" type="button" class="btn btn-danger" data-dismiss="modal">
+																	<span class="glyphicon glyphicon-chevron-left"></span>
+																	Salir
+															</button>
 													</div>
              
           </div>
@@ -252,7 +334,8 @@
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
 																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].descripcion,
-																															'<span class="estatus_'+l[i].estatus+'"></span>',
+																															'<span id="'+l[i].id+'" class="foto-p">Ver foto</span>',
+																					          '<span class="estatus_'+l[i].estatus+'"></span>',
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar vehículo">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -265,8 +348,8 @@
 																					} //End for
 								
 								
-															  $('.estatus_0').text('Inactivo');
-																	$('.estatus_0').addClass('text-danger');
+															  $('.estatus_null').text('Inactivo');
+																	$('.estatus_null').addClass('text-danger');
 																	$('.estatus_1').text('Activo');
 																	$('.estatus_1').addClass('text-success');
 
@@ -284,26 +367,58 @@
 	
 	
 			$(document).on('click','.fancy > li, a',function(){	
-						$('.estatus_0').text('Inactivo');
-						$('.estatus_0').addClass('text-danger');
+						$('.estatus_null').text('Inactivo');
+						$('.estatus_null').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
 			});        
 
 
 			$(document).on('keyup', '#list_p__filter', function(){
-						$('.estatus_0').text('Inactivo');
-						$('.estatus_0').addClass('text-danger');
+						$('.estatus_null').text('Inactivo');
+						$('.estatus_null').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
 
 			});
 
 			$(document).on('click', '#list_p__length', function(){
-						$('.estatus_0').text('Inactivo');
-						$('.estatus_0').addClass('text-danger');
+						$('.estatus_null').text('Inactivo');
+						$('.estatus_null').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
+			});
+	
+	
+	//Foto del vehiculo ----------------------------------------------
+			$(document).on('click', '.foto-p', function(){
+						id = $(this).attr('id');
+				
+						$.ajax({
+								url:  "/admin/verfotovehiculo",
+								type: "GET",
+								data:{id: id},
+							
+							beforeSend: function(){
+            //$('#gif-agente_'+id).show();
+								    $('#foto-v').prop('src', '/img/cargando2.gif');
+        },
+							
+							
+								success: function(f){
+						      $('#foto-v').prop('src', '/img/vehiculos/'+f.foto);
+									
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+				
+						$('#modal-foto-vehiculo').modal({
+							show: 'false',
+						});
 			});
 	
 	
@@ -315,25 +430,37 @@
     });
 		});
 	
-	$(document).on('click', '#add-vehiculo', function(){
-			nombre = $('#nombre').val();
+		 $(document).on('click', '#inp-check', function(){
+			   //$(this).attr('value', '1');
+						if($('#inp-check').prop("checked") == true){
+						   $(this).attr('value', '1');
+							} else {
+									$(this).attr('value', '');
+							}
+		});
 	
-		if($('#inp-check').prop("checked") == true){
-					activo = 1;
-		} else {
-				activo = 0;
-		}
+	$(document).on('click', '#add-vehiculo', function(){
 		
-		tabla_a = $('#listar_');6
+		tabla_a = $('#listar_');
+		
+		f = $(".formulario");
+	//información del formulario
+		formData = new FormData(f[0]);
+		
 		
 		$.ajax({
 								url:  "/admin/agregarvehiculo",
 								type: "POST",
-								data:{nombre: nombre, activo: activo},
+								data: formData,
+								//necesario para subir archivos via ajax
+								cache: false,
+								contentType: false,
+								processData: false, 
 								success: function(p){
 										nueva_fila = '<tr id="fila_'+p.id+'">'+
 												'<td><span class="hidden">'+p.created_at+'</span>'+p.descripcion+'</td>'+
-												'<td><span class="estatus_'+p.estatus+'"></span></td>'+
+												'<td><span id="'+p.id+'" class="foto-p">Ver foto</span></td>'+
+											'<td><span class="estatus_'+p.estatus+'"></span></td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar vehículo">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -348,8 +475,8 @@
 										
 									tabla_a.prepend(nueva_fila);
 									
-									$('.estatus_0').text('Inactivo');
-									$('.estatus_0').addClass('text-danger');
+									$('.estatus_null').text('Inactivo');
+									$('.estatus_null').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
 										
@@ -357,8 +484,8 @@
 										
 										//Limpiamos los campos
 									$('#nombre').val('');
-									$('#inp-check').prop("checked", false)
-
+									$('#inp-check').prop("checked", false);
+									$("#imagen").val('');
 									
 									
 									
@@ -377,6 +504,10 @@
 				$('#inp-check').prop("checked", false);
 			 $('.error-vehiculo').removeClass('has-error has-feedback');
 				$('.icon-vehiculo').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			 $('.error-imagen').removeClass('error-add-image');
+			 $('#imagen').removeClass('error-add-image');
+			 $("#imagen").val('');
+			  
 	});
 	
 	//Eliminar vehiculo
@@ -419,6 +550,8 @@
 //Editar vehiculo
 	$(document).on('click', '.editar-btn', function(){
 			  id = $(this).attr('value');
+					$('.txt-foto-actual').attr('value', id);		
+		   $('#id_vehiculo').attr('value', id);		
 		
 					$.ajax({
 								url:  "/admin/editarvehiculo",
@@ -426,14 +559,13 @@
 								data:{id: id},
 								success: function(e){
 									$('#nombre_edit').val(e.descripcion);
-
 									activo = e.estatus;
 									if(activo == 1){
 											$('#inp-check_edit').prop("checked", true);
 											$('#inp-check_edit').attr('value', '1');
 									} else {
 											$('#inp-check_edit').prop("checked", false);
-											$('#inp-check_edit').attr('value', '0');
+											$('#inp-check_edit').attr('value', '');
 									}
 									
 								},
@@ -452,6 +584,38 @@
 				
 	});
 	
+	  //Foto del vehiculo al editar
+			$(document).on('click', '.txt-foto-actual', function(){
+						id = $(this).attr('value');
+				
+						$.ajax({
+								url:  "/admin/verfotovehiculo",
+								type: "GET",
+								data:{id: id},
+							
+							beforeSend: function(){
+            //$('#gif-agente_'+id).show();
+								    $('#foto-v').prop('src', '/img/cargando2.gif');
+        },
+							
+							
+								success: function(f){
+						      $('#foto-v').prop('src', '/img/vehiculos/'+f.foto);
+									
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+				
+						$('#modal-foto-vehiculo').modal({
+							show: 'false',
+						});
+			});
+	
+	
 //Actualizar vehiculo
 $(document).on('click', '#inp-check_edit', function(){
 		if($(this).prop("checked") == true){
@@ -461,21 +625,27 @@ $(document).on('click', '#inp-check_edit', function(){
 		}
 });
 	
+	
 	$(document).on('click', '#confirm-act-vehiculo', function(){
-			  id = $(this).attr('value');
-					nombre = $('#nombre_edit').val();
-					estatus = $('#inp-check_edit').val();
+			  f = $(".formulario_editar");
+			
+				//información del formulario
+					formData = new FormData(f[0]);
 		
 					$.ajax({
 								url:  "/admin/actualizarvehiculo",
-								type: "GET",
-								data:{id: id, nombre: nombre, estatus: estatus},
+								type: "POST",
+								data: formData,
+								cache: false,
+								contentType: false,
+								processData: false, 
 								success: function(p){
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
                 '<td><span class="hidden">'+p.created_at+'</span>'+p.descripcion+'</td>'+
-                '<td><span class="estatus_'+p.estatus+'"></span></td>'+
+                '<td><span id="'+p.id+'" class="foto-p">Ver foto</span></td>'+
+																'<td><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar vehículo">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -491,8 +661,8 @@ $(document).on('click', '#inp-check_edit', function(){
 									
 										alertas("success","Vehículo actualizado correctamente");
 									
-									$('.estatus_0').text('Inactivo');
-									$('.estatus_0').addClass('text-danger');
+									$('.estatus_null').text('Inactivo');
+									$('.estatus_null').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
 									
@@ -511,6 +681,9 @@ $(document).on('click', '#inp-check_edit', function(){
 	$(document).on('click', '#no-act-vehiculo', function(){
 		$('.error-vehiculo-edit').removeClass('has-error has-feedback');
 		$('.icon-vehiculo-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+		$('#imagen-edit').removeClass('error-add-image');
+		$('.error-imagen-edit').removeClass('error-add-image');
+		$("#imagen-edit").val('');
 	});
 	
 	
@@ -529,9 +702,26 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
+	  $("#add-vehiculo").click(function () {
+
+      if($("#imagen").val() == ''){
+														$('.error-imagen').addClass('error-add-image');
+							       $('#imagen').addClass('error-add-image');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
 	$("#nombre").focus(function () {
       $('.error-vehiculo').removeClass('has-error has-feedback');
 						$('.icon-vehiculo').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$("#imagen").click(function () {
+      $('.error-imagen').removeClass('error-add-image');
+		    $('#imagen').removeClass('error-add-image');
 });
 	
 	
@@ -548,9 +738,27 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
+		  $("#confirm-act-vehiculo").click(function () {
+
+      if($("#imagen-edit").val() == ''){
+														$('.error-imagen-edit').addClass('error-add-image');
+							       $('#imagen-edit').addClass('error-add-image');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
 	$("#nombre_edit").focus(function () {
       $('.error-vehiculo-edit').removeClass('has-error has-feedback');
 						$('.icon-vehiculo-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+		    $('#imagen-edit').addClass('error-add-image');
+});
+	
+	$("#imagen-edit").click(function () {
+      $('.error-imagen-edit').removeClass('error-add-image');
+		    $('#imagen-edit').removeClass('error-add-image');
 });
 
 	

@@ -65,7 +65,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar grupo
@@ -82,7 +82,7 @@
 																			</div>
 
 																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
+																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
 																					  <input id="inp-check" type="checkbox" value="">
@@ -114,7 +114,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
                Eliminar grupo
@@ -146,7 +146,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
                Editar grupo
@@ -163,7 +163,7 @@
 																			</div>
 
 																		<label for="paterno" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
+																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
 																					  <input id="inp-check_edit" type="checkbox" value="">
@@ -250,7 +250,7 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].descripcion,
+																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].descripcion_grupo,
 																															'<span class="estatus_'+l[i].estatus+'"></span>',
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar grupo">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
@@ -332,7 +332,7 @@
 								success: function(p){
 									
 										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="hidden">'+p.created_at+'</span>'+p.descripcion+'</td>'+
+												'<td><span class="hidden">'+p.created_at+'</span>'+p.descripcion_grupo+'</td>'+
 												'<td><span class="estatus_'+p.estatus+'"></span></td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar grupo">'+
@@ -353,11 +353,11 @@
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
 										
-										alertas("success","Grupo "+p.descripcion+" agregado correctamente.");
+										alertas("success","Grupo "+p.descripcion_grupo+" agregado correctamente.");
 										
 										//Limpiamos los campos
 									$('#nombre').val('');
-									$('#inp-check').prop("checked", false)
+									$('#inp-check').prop("checked", false);
 
 									
 									
@@ -400,7 +400,7 @@
 								data:{id: id},
 								success: function(d){
 									if(d.p == 'Existe'){
-										 alertas("danger","El grupo "+d.grupo.descripcion+" esta en uso.");
+										 alertas("danger","El grupo "+d.grupo.descripcion_grupo+" esta en uso.");
 									} else {
 										alertas("success","Grupo eliminado correctamente");
 										 $('#fila_'+d).remove();
@@ -425,7 +425,7 @@
 								type: "GET",
 								data:{id: id},
 								success: function(e){
-									$('#nombre_edit').val(e.descripcion);
+									$('#nombre_edit').val(e.descripcion_grupo);
 
 									activo = e.estatus;
 									if(activo == 1){
@@ -474,7 +474,7 @@ $(document).on('click', '#inp-check_edit', function(){
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.descripcion+'</td>'+
+                '<td><span class="hidden">'+p.created_at+'</span>'+p.descripcion_grupo+'</td>'+
                 '<td><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar grupo">'+

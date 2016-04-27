@@ -12,6 +12,10 @@ class TarifaDetalle extends Eloquent{
 		return $this->belongsTo('Grupo');
 	}
 	
+		public function cobertura(){
+		return $this->belongsTo('Cobertura');
+	}
+	
 	public function codigo(){
 		return $this->belongsTo('Codigo');
 	}

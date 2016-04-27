@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('reservas');
+Route::get('/', function() {
+	
+			$sucursal = DB::table('sucursal')
+													->select('id', 'nombre_sucursal')
+													->get();																						
+					
+	
+	return View::make('reservas', 	compact(
+																							  'sucursal'
+																							));
 });
 
 

@@ -21,89 +21,6 @@ body{
 	background:white;
 }
 
-.header{
-	width:100%;
-	height:125px;
-}
-
-.header img{
-	margin-top:15px;
-	margin-left:35px;
-	width:960px;
-}
-
-
-.menu{
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-	-webkit-box-align:center;
-  -webkit-align-items:center;
-      -ms-flex-align:center;
-          align-items:center;
-		-webkit-box-pack:center;
-  -webkit-justify-content:center;
-      -ms-flex-pack:center;
-          justify-content:center;
-	-webkit-box-pack:justify;
-  -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
-          justify-content:space-between;
-	
-	  	background:#333399;
-	   height:45px!important;
-				width:960px;
-	   margin-top:18px!important;
-    margin:0 auto;
-	   border-bottom:3px solid #6ACCE5;
-	   border-radius:5px;
-}
-
-.nav-menu{
-	width:100%;
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack:justify;
-  -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
-          justify-content:space-between;
-	
-	li{
-		margin-top:.5em;
-		width:100%;
-		list-style: none;
-		display: inline;
-			height:25px;
-		text-align: center;
-		border-right:1px solid #fff;
-		
-		&:last-child{
-			border-right:0;
-			a{
-					color:#2383FF!important;
-			}
-		}
-		
-		
-		a{
-				line-height:30px;
-				color:#fff!important;
-				/*padding: 13px 45px 11px 15px;*/
-				font-size: 15px;
-				font-weight: 400;
-				&:hover{
-				color:#2383FF!important;
-				text-decoration: none;
-				font-size: 15px;
-				font-weight: 400;
-			}
-		}
-		
-	}
-}
 
 .section_contenidos{
 	width:960px;
@@ -141,12 +58,14 @@ body{
 	width:75%;
 }
 
-.entrega, .devolucion, .tipo, .form-ped{
+
+/*---- Articulo 1 entrega*/
+.entrega, .devolucion, .tipo{
 	margin-bottom:.5em;
 	box-shadow: 1px 1px 1px #eee;
 	width:100%;
-		border: solid 1px #CCC;
-	padding:.5em;
+	border: solid 1px #CCC;
+
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
 background: #fefefe; /* Old browsers */
 background: -moz-linear-gradient(top,  #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%); /* FF3.6-15 */
@@ -154,252 +73,206 @@ background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); 
 background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
 	
+	display:flex;
+	padding:.5em;
+	
 }
 
+.bloque1{
+	width:50%;
+	.form-fecha{
+		width:220px;
+	}
+	
+}
+
+	.tx-requerido{
+		display:flex;
+		align-items:center;
+		margin-bottom:.5em;
+		h3{
+			margin:0;
+			margin-right:.3em;
+			margin-bottom:.5em;
+			font-size:1em;
+			font-weight: bold;
+		}
+		span{
+			 color: #cc0101;
+    font-size: 16px;
+		}
+	}
+	
+
+
+
+.bloque2{
+	width:50%;
+	padding-left:.5em;
+	text-align:left;
+	h1{
+		color:#0099FF;
+		margin:0;
+		font-size:1em;
+	}
+	.hr{
+		margin:0;
+		border-bottom: 1px dotted #50514B;
+		width:160px;
+		display:none;
+	}
+	
+	.hr-d{
+		margin:0;
+		border-bottom: 1px dotted #50514B;
+		width:160px;
+		display:none;
+	}
+	
+	h4{
+		margin-top:.1em;
+		margin-bottom:.1em;
+		font-size:1em;
+		font-weight:bold;
+	}
+	
+	.datos-d{
+		display:flex;
+		flex-direction:column;
+	}
+	
+	.nombre_direcc, .nombre_cp, .nombre_cp-d, .nombre_direcc-d{
+		display:none;
+	}
+	
+}
+
+.nota2{
+	font-size:.9em;
+	margin-top:2em;
+}
+
+/*--- END articulo 1 y d entrega y devolucion*/
+
+
+/**
+---Tipo de utomovils
+************************************************/
 .tipo{
-	margin-top:1em;
+  flex-direction:column;	
 }
 
-.tipo .form1 .c1 .tx-requerido{
-	width:125px;
-}
-
-.tipo .form2 .c3 .tx-requerido{
-	width:88px;
+.form1{
+	width:100%;
+	border-bottom: solid 1px #CCC;
+	margin-bottom:.5em;
 }
 
 .tipo-carro{
-	width:100%;
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-	-webkit-box-pack:justify;
-  -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
-          justify-content:space-between;
-	-webkit-box-align:center;
-  -webkit-align-items:center;
-      -ms-flex-align:center;
-          align-items:center;
+	display:flex;
+	margin-bottom:1em;
 	.radio{
+		width:100px;
 		margin:0;
 		padding:0;
-		label{
-			font-size:.9em;
-		}
 	}
+}
+
+.form2{
+	border-bottom: solid 1px #CCC;
+	margin-bottom:.5em;
 }
 
 .tipo-v{
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-	-webkit-box-align:center;
-  -webkit-align-items:center;
-      -ms-flex-align:center;
-          align-items:center;
-		.radio:first-child label{
-			  margin-right: 1em;
-			}
+	display:flex;
+	margin-bottom:1em;
 	.radio{
+		width:100px;
 		margin:0;
 		padding:0;
-		label{
-			font-size:.9em;
-		}
 	}
 }
 
-	.form1, .form2, .form1_d, .form3{
-			display: -webkit-box;
-   display: -webkit-flex;
-   display: -ms-flexbox;
-   display: flex;
-
-		}
-
-			.c1, .c2{
-				padding:.5em;
-				width:50%;
-				border-bottom: solid 1px #CCC;
-			}
-
-			.c1	.tx-requerido, .c4	.tx-requerido,
-    .cen	.tx-requerido, .cde .tx-requerido,
-    .ctra .tx-requerido{
-					margin-bottom:.5em;
-					width:60px;
-					display: -webkit-box;
-					display: -webkit-flex;
-					display: -ms-flexbox;
-					display: flex;
-					-webkit-box-align:center;
-  -webkit-align-items:center;
-      -ms-flex-align:center;
-          align-items:center;
-					 -webkit-box-pack:justify;
-  -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
-          justify-content:space-between;
-						h3{
-							font-size:13px;
-							font-weight: bold;
-							color: #000;
-							text-shadow: 1px 1px 0 #fff;
-							margin:0;
-						}
-							span{
-								color:red;
-								font-size:20px;
-								line-height:20px;
-								margin-top:10px;
-							}
-					
-				}
-
-	
-			.entrega .form2 .cen .tx-requerido{
-					width:120px;
-				}
-
-		.devolucion .form2_d .cde .tx-requerido{
-					width:140px;
-				}
-
-	  .tipo .form2 .ctra .tx-requerido{
-					width:90px;
-				}
-
-
-			.c2, .c3, .ce, .ct, .cn, .cc{
-				 width:50%;
-					padding:.5em;
-					border-bottom: solid 1px #CCC;
-			}
-
-		.c2	.tx-requerido, .ce	.tx-requerido,
-  .ct	.tx-requerido, .cn	.tx-requerido,
-  .cc	.tx-requerido{
-					margin-bottom:.5em;
-					width:120px;
-					display: -webkit-box;
-					display: -webkit-flex;
-					display: -ms-flexbox;
-					display: flex;
-					-webkit-box-align:center;
-  -webkit-align-items:center;
-      -ms-flex-align:center;
-          align-items:center;
-					 -webkit-box-pack:justify;
-  -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
-          justify-content:space-between;
-						h3{
-							font-size:13px;
-							font-weight: bold;
-							color: #000;
-							text-shadow: 1px 1px 0 #fff;
-							margin:0;
-						}
-							span{
-								color:red;
-								font-size:20px;
-								line-height:20px;
-								margin-top:10px;
-							}
-					
-				}
-
-.c2	.tx-requerido{
-	width:113px;
-}
-
-.form1_d .c1 .tx-requerido{
-	width: 80px;
-}
-
-.form1_d .c2 .tx-requerido{
-	width: 133px;
-}
-
-.form2_d .c3 .tx-requerido{
-	width: 140px;
-}
-
-.elegir_v{
-	border-top: solid 1px #CCC;
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.elegir_v .c4{
-	padding:1em;
-	width:50%;
-	border-left: solid 1px #CCC;
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-	-webkit-box-orient:vertical;
-  -webkit-box-direction:normal;
-  -webkit-flex-direction:column;
-      -ms-flex-direction:column;
-          flex-direction:column;
-	span{
-		font-size:.9em;
-	}
-}
-
-
+.form3{
+	width:100%;
+	display:flex;
 	.c3{
-				border-bottom:0;
-			}
+		width:50%;
+		background:white;
+		border-right: solid 1px #CCC;
+	}
+	.c4{
+		padding-left:.5em;
+		width:50%;
+		display:flex;
+		flex-direction:column;
+		span{
+			font-size:.9em;
+			font-weight:normal;
+			margin-bottom:.5em;
+		}
+	}
+}
 
-	.nota2{
-		margin-top:1.5em;
-		font-size:13px;
+/**
+---Formulario del cliente
+************************************************/
+.form-ped{
+		margin-bottom:.5em;
+	box-shadow: 1px 1px 1px #eee;
+	width:100%;
+	border: solid 1px #CCC;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
+background: #fefefe; /* Old browsers */
+background: -moz-linear-gradient(top,  #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
+padding:.5em;
+	
+}
+
+	.dato1-p{
+		border-bottom: solid 1px #CCC;
+		width:100%;
+		display:flex;
+		
+		.c_subdato1{
+			width:50%;
+			input{
+				width:80%;
+				margin-bottom:1em;
+			}
+		}
+		.c_subdato2{
+			width:50%;
+			input{
+				width:80%;
+				margin-bottom:1em;
+			}
+		}
 	}
 
-.form-ped .form1 .c2 .tx-requerido{
-	width:70px;
+.dato-d{
+	margin-top:.5em;
 }
 
-.form-ped .form2 .c3{
-	border-bottom: solid 1px #CCC;
+.dato-d-p{
+	border-bottom:0;
 }
 
-.form-ped .form3 .cn{
-	border-bottom: 0;
-}
-
-.form-ped .form3 .cc{
-	border-bottom: 0;
-}
-
-.form-ped .form2 .ce .tx-requerido{
-	width:48px;
-}
-
-.form-ped .form2 .ct .tx-requerido{
-	width:67px;
-}
-
-.form-ped .form3 .cn .tx-requerido{
-	width:105px;
-}
-
-.form-ped .form3 .cc .tx-requerido{
-	width:90px;
+#refrencia_d{
+	margin-bottom:.5em;
+	width:80%;
 }
 
 
 #reservar{
-border:1px solid #CCC;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
+	margin-top:2em;
+	margin-bottom:2em;
+	border: solid 1px #CCC;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
 background: #fefefe; /* Old browsers */
 background: -moz-linear-gradient(top,  #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* Chrome10-25,Safari5.1-6 */
@@ -407,41 +280,16 @@ background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /*
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
 }
 
-aside .imagen1{
-	margin-bottom:30px;
-}
 
-footer{
-	background:white;
-	padding-top:5em;
-	width: 1020px;
-	margin:0 auto;
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-	text-align: center;
-	small{
-		width:80%;
-		border-top: 1px solid #CCC;
-	 color: #919289;
-		font-size:11px;
-		padding-top:1.5em;
-	}
-	strong{
-		color: #333333;
-		font-weight: bold;
-		font-size:11px;
-		width:20%;
-		border-top: 1px solid #CCC;
-		padding:1.5em 0;
-	}
-}
 
+//Ocultamos el bloque de la transmision y el formulario
+.transmision, .oculto, .form-ped{
+	display:none;
+}
 
 /************
---- Dashboard------
-*************************************/
+--- Dashboard Admin------
+******************************************************/
 .body_dashboard{
 	 display: -webkit-box;
   display: -webkit-flex;
@@ -628,9 +476,13 @@ footer{
 	 padding-bottom:.5em;
 	 position:absolute;
 	 bottom:0;
+	 text-align: center;
+		background:white;
 	small{
 		width:100%;
 		border-top:0;
+		color: #333;
+		font-size:.8em;
 	}
 }
 
@@ -785,6 +637,10 @@ Catalogo sucursales----------
 
 }
 
+.check-w{
+	width:80px!important;
+}
+
 /*Texto de confirmacion de los modales*/
 .txt-delete-confirm{
 	font-size:1em;
@@ -850,9 +706,6 @@ Catalogo sucursales----------
 	}
 }
 
-.form-textarea{
-	width:60%;
-}
 
 .btn-add-n{
 	 height: 25px;
@@ -887,3 +740,296 @@ Catalogo sucursales----------
 .hidden-error-p-actual{
 	display:none;
 }
+
+/*Tabla de los telefonos de las sucursales*/
+.tabla-telefonos{
+	width:35%;
+}
+
+.contenedor-tel{
+	display:flex;
+	justify-content:space-around;
+}
+
+.nombre-tel{
+	display:flex;
+	flex-direction:column;
+}
+
+.numero-tel{
+	display:flex;
+	flex-direction:column;
+}
+
+.txt-info-n, .txt-sucursal{
+	font-size:.9em;
+}
+
+.nombre_tel, .num_tel{
+	font-size:.8em;
+}
+
+/*Parte donde se van agregando los telefono al agregar sucursal*/
+.content-t{
+	display:flex;
+}
+
+.form-textarea{
+	width:50%;
+}
+
+.contenedor-tel-add{
+	width:50%;
+	padding:0 1em;
+	max-height:120px;
+	overflow-y: scroll;
+}
+
+.content-add-t{
+	display:flex;
+	align-items: center;
+	margin-bottom:.2em;
+	margin-top:1em;
+	h3{
+		font-size:.9em;
+		margin:0;
+		margin-right:.5em;
+		margin-left:5em;
+	}
+	.btn-add-t, .btn-add-t-s{
+		height:20px;
+	}
+}
+
+.content-datos{
+	display:flex;
+	justify-content:space-around;
+}
+
+.content-datos-edit{
+	display:none;
+}
+
+.c-d{
+ visibility:hidden;
+	
+}
+
+.table-tel{
+	border:1px solid #ddd;
+	thead tr{
+		border-bottom:0;
+				th{
+				border-right:1px solid #ddd;
+				border-bottom:0;
+				padding:0;
+				font-size:.8em;
+				font-weight:normal;
+				text-align:center;
+			}
+	} 
+	
+	tbody tr td{
+		border-right:1px solid #ddd;
+		padding:0;
+		font-size:.8em;
+		text-align:center;
+	}
+}
+
+.add-tel-txt{
+	padding-left:1.2em;
+}
+
+	.n-tel{
+		display:flex;
+		flex-direction: column;
+		span{
+			font-size:.9em;
+		}
+	}
+
+	.num-tel{
+		display:flex;
+		flex-direction: column;
+		span{
+			font-size:.9em;
+		}
+	}
+
+/**********
+ Overflow para la vista de las sucursales
+***********************************************/
+.seccion_sucursal{
+	max-height:480px;
+	overflow-y: scroll;
+}
+
+
+/*-- Tablita editar telefonos*/
+.table-tel-edit{
+	border:1px solid #ddd;
+	thead tr{
+		border-bottom:0;
+				th{
+				border-right:1px solid #ddd;
+				border-bottom:0;
+				padding:0;
+				font-size:.8em;
+				font-weight:normal;
+				text-align:center;
+			}
+	} 
+	
+	tbody tr td{
+		border-right:1px solid #ddd;
+		padding:0;
+		font-size:.8em;
+		text-align:center;
+	}
+}
+
+.inp-edit-num{
+	width:100px;
+	border:0;
+	text-align:center;
+	color: #31708f;
+}
+
+.s_num{
+	border:0;
+	color: #31708f;
+}
+
+
+/*-- Modal para ver la foto del producto*/
+// enlace
+.foto-p{
+	color: #31708f;
+}
+
+.foto-p:hover{
+	color: #337ab7;
+	cursor:pointer;
+}
+
+.body-modal-foto{
+}
+
+.content-foto{
+	width:90%;
+	margin:0 auto;
+}
+
+.footer-modal-foto{
+	display:flex;
+}
+
+.modal-content-foto{
+	width:60%;
+	margin:0 auto;
+}
+
+
+/****
+ Modal para agregar tarifas------
+******************************************/
+.datos1-tarifa{
+	display:flex;
+	justify-content:space-between;
+	.form-control{
+		width:180px;
+	}
+}
+
+.estaus_tarifa{
+	width:80px;
+}
+
+.checkbox-activ{
+	width:100%;
+}
+
+//Tablita tarifa detalle---
+
+.datos1-tarifa-detalle{
+	display:flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	max-height:220px;
+	padding-right:.5em;
+}
+
+.content-add-t-d{
+	display:flex;
+	justify-content: flex-end;
+	margin-bottom:.5em;
+}
+
+.tabla_detalletarifa{
+	width:100%;
+}
+
+.thead-detalle{
+	padding:.5em 1em;
+	background: #286090;
+	width:100%;
+	border-radius:3px 3px 0 0;
+}
+
+.txt-detalle{
+	color:#fff;
+}
+
+.thead-detallet tr th{
+	padding:.5em;
+	text-align:center;
+	font-weight:normal;
+	font-size: .8em;
+	border: 1px solid #ddd;
+	color:#286090;
+}
+
+#body-tarifa-detalle tr td{
+	padding:.5em;
+	text-align:center;
+	font-weight:normal;
+	font-size: .8em;
+	border: 1px solid #ddd;
+	
+}
+
+.td_cobertura, .td_cobertura_actual, .td_cobertura_nuevo{
+	max-width:180px;
+}
+
+#body-tarifa-detalle-edit tr td{
+	padding:.5em;
+	text-align:center;
+	font-weight:normal;
+	font-size: .8em;
+	border: 1px solid #ddd;
+	
+}
+
+.btn-act-t-d{
+	width:135px!important;
+}
+
+/*Texto de error en el campo file si no se agrega la imagen*/
+.error-add-image{
+	color: #a94442!important;
+}
+
+#imagen, #imagen-edit{
+	color:#337ab7;
+	font-size:.9em;
+}
+
+.txt-foto-actual{
+	cursor:pointer;
+		&:hover{
+			color:blue;
+			}
+}
+

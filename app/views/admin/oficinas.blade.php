@@ -66,7 +66,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
                Agregar oficina
@@ -76,25 +76,21 @@
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group">
+																			<div class="form-group error-oficina">
 																						<label for="nombre" class="text-primary">Nombre: </label>
 																						<input type="text" name="nombre" id="nombre" class="form-control" >
+																						<span class="icon-oficina"></span>
 																			</div>
 																			
 																		<div class="form-group datos-plaza">
 																			<label for="seccionedit" class="text-primary">Plaza: </label>
-																			 <div class="agrupar">
-																							<select class="form-control" id="select_plaza">
-																						</select>
-																						<button id="ad-nueva-p" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva plaza">
-																							<span class="glyphicon glyphicon-plus"></span>
-																						</button>
-																			 </div>
+																							<select class="form-control" id="select_plaza"></select>
 																	</div>
 																	
-																	<div class="form-group">
+																	<div class="form-group error-clave">
 																						<label for="clave" class="text-primary">Clave: </label>
 																						<input type="text" name="clave" id="clave" class="form-control" >
+																						<span class="icon-clave"></span>
 																			</div>
 																	
 
@@ -119,53 +115,14 @@
     </div>
     
     
-           <!--  Modal para agregar plazas  -->
-<div id="modal-add-plaza" class="modal fade" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title text-center">
-              <span class="glyphicon glyphicon-plus"></span>
-               Agregar plaza
-            </h4>
-          </div>
-          <div class="modal-body body-modal">
-
-            <form class="form-modal" action="">
-															
-																			<div class="form-group">
-																						<label for="nombre_plaza" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre_plaza" id="nombre_plaza" class="form-control" >
-																			</div>
-
-													 
-            </form>
-                
-          </div>
-          <div class="modal-footer">
-													
-											 		<div class="footer-modal">
-																<button id="no-add-plaza" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-plaza" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
-             
-          </div>
-        </div>
-      </div>
-    </div>
-    
+ 
     
         <!--  Modal para eliminar oficina  -->
 <div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
                Eliminar oficina
@@ -192,33 +149,38 @@
       </div>
     </div>
     
-     <!--  Modal para editar gerente  -->
-<div id="modal-edit-plaza" class="modal fade" data-keyboard="false" data-backdrop="static">
+     <!--  Modal para editar oficina -->
+<div id="modal-edit-oficina" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
-               Editar plaza
+               Editar oficina
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group">
-																						<label for="nombre_edit" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
+																			<div class="form-group error-oficina-edit">
+																						<label for="nombre-edit" class="text-primary">Nombre: </label>
+																						<input type="text" name="nombre-edit" id="nombre-edit" class="form-control" >
+																						<span class="icon-oficina-edit"></span>
 																			</div>
-
-																		<label for="paterno" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
-																					 <span class="text-primary">Activo</span>
-																					<div class="txt-activ">
-																					  <input id="inp-check_edit" type="checkbox" value="">
-																					</div>
-																		</div>
+																			
+																		<div class="form-group">
+																			<label for="seccionedit" class="text-primary">Plaza: </label>
+																							<select class="form-control" id="select_plaza_edit"></select>
+																	</div>
+																	
+																	<div class="form-group error-clave-edit">
+																						<label for="clave-edit" class="text-primary">Clave: </label>
+																						<input type="text" name="clave-edit" id="clave-edit" class="form-control" >
+																						<span class="icon-clave-edit"></span>
+																			</div>
+																	
 
 													 
             </form>
@@ -227,10 +189,10 @@
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-plaza" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-add-oficina-edit" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
-															<span id="confirm-act-plaza" class="btn btn-primary" data-dismiss="modal" >
+															<span id="add-oficina-edit" class="btn btn-primary" data-dismiss="modal" >
 																		Actualizar
 															</span>
 													</div>
@@ -367,7 +329,7 @@
 	
 	$(document).on('click', '#add-oficina', function(){
 			nombre = $('#nombre').val();
-	  plaza = $('#select_plaza').val();
+		 plaza  = $('#select_plaza option:selected').val();
 		 clave = $('#clave').val();
 	
 		
@@ -423,61 +385,13 @@
 			 $('#nombre').val('');
 				$('#select_plaza').html('');
 				$('#clave').val('');
+			 $('.error-oficina').removeClass('has-error has-feedback');
+				$('.icon-oficina').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+    $('.error-clave').removeClass('has-error has-feedback');
+				$('.icon-clave').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
 	
-	
-	//Agregar nueva plaza
-		 $(document).on('click', '#ad-nueva-p', function(){
-			$('#modal-add-plaza').modal({
-      show: 'false',
-    });
-				return false;
-		});
-	
-	$(document).on('click', '#add-plaza', function(){
-			nombre = $('#nombre_plaza').val();
-			activo = 1;
-
-		
-		tabla_a = $('#listar_');
-		
-		$.ajax({
-								url:  "/admin/agregarplaza",
-								type: "POST",
-								data:{nombre: nombre, activo: activo},
-								success: function(p){
-									
-									option = "";
-         s = $('#select_plaza');
-
-										option += '<option value="'+p.id+'" selected>'+p.nombre_plaza+'</option>';
-
-										s.append(option);
-									
-										
-										alertas("success","Plaza "+p.nombre_plaza+" agregada correctamente.");
-										
-										//Limpiamos los campos
-									$('#nombre_plaza').val('');
-									$('#inp-check').prop("checked", false)
-
-									
-									
-									
-								},
-			
-								error: function(){
-									alert('failure');
-								}
-																
-					});
-		
-	});
-	
-		$(document).on('click', '#no-add-plaza', function(){
-			 $('#nombre_plaza').val('');
-				$('#inp-check').prop("checked", false)
-	});
 	
 	
 	//Eliminar oficina
@@ -517,26 +431,18 @@
 					});
 	});
 	
-//Editar plaza
+//Editar oficina
 	$(document).on('click', '.editar-btn', function(){
 			  id = $(this).attr('value');
 		
 					$.ajax({
-								url:  "/admin/editarplaza",
+								url:  "/admin/editaroficina",
 								type: "GET",
 								data:{id: id},
 								success: function(e){
-									$('#nombre_edit').val(e.nombre);
-
-									activo = e.estatus;
-									if(activo == 1){
-											$('#inp-check_edit').prop("checked", true);
-											$('#inp-check_edit').attr('value', '1');
-									} else {
-											$('#inp-check_edit').prop("checked", false);
-											$('#inp-check_edit').attr('value', '0');
-									}
-									
+									$('#nombre-edit').val(e.nombre);
+									$('#clave-edit').val(e.nombre);
+									$('#select_plaza_edit');
 								},
 			
 								error: function(){
@@ -544,58 +450,77 @@
 								}
 																
 					});
+		
+				//Listamos las plazas
+			 $.ajax({
+								url:  "/admin/selecteditplazasoficina",
+								type: "GET",
+							 data:{id: id},
+								success: function(p){
+								     	option = "";
+              s = $('#select_plaza_edit');
+														option += '<option value="'+p.p_a[0].id+'">'+p.p_a[0].nombre_plaza+'</option>';
+              for(datos in p.plazas){
+
+																			option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_plaza+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
 					
-					$('#modal-edit-plaza').modal({
+					$('#modal-edit-oficina').modal({
        show: 'false',
      });
 		
-				 $('#confirm-act-plaza').attr('value', id);
+				 $('#add-oficina-edit').attr('value', id);
 				
 	});
 	
-//Actualizar plaza
-$(document).on('click', '#inp-check_edit', function(){
-		if($(this).prop("checked") == true){
-				$('#inp-check_edit').attr('value', '1');
-		} else {
-				$('#inp-check_edit').attr('value', '0');
-		}
-});
-	
-	$(document).on('click', '#confirm-act-plaza', function(){
+//Actualizar oficina
+	$(document).on('click', '#add-oficina-edit', function(){
 			  id = $(this).attr('value');
-					nombre = $('#nombre_edit').val();
-					estatus = $('#inp-check_edit').val();
+		   plaza  = $('#select_plaza_edit option:selected').val();
+					nombre = $('#nombre-edit').val();
+					clave = $('#clave-edit').val();
 		
 					$.ajax({
-								url:  "/admin/actualizarplaza",
+								url:  "/admin/actualizaroficina",
 								type: "GET",
-								data:{id: id, nombre: nombre, estatus: estatus},
+								data:{id: id, plaza: plaza, nombre: nombre, clave: clave},
 								success: function(p){
-										
+									
+																		
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
                 '<td><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
-                '<td><span class="estatus_'+p.estatus+'"></span></td>'+
+                '<td><span id="plaza_'+p.plaza_id+'"></span>'+p.nombre_plaza+'</td>'+
+																'<td>'+p.clave+'</td>'+
                '<td>'+
-											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar plaza">'+
+											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar oficina">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
 														'</button>'+
 													'</td>'+
 													'<td>'+
-															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar plaza">'+
+															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar oficina">'+
 																				'<span class="glyphicon glyphicon-remove"></span>'+
 																'</button>'+
 													'</td>'+
 											'</tr>');
 										
 									
-										alertas("success","Plaza actualizada correctamente");
-									
-									$('.estatus_0').text('Inactivo');
-									$('.estatus_0').addClass('text-danger');
-									$('.estatus_1').text('Activo');
-									$('.estatus_1').addClass('text-success');
+										alertas("success","Oficina actualizada correctamente");
+										
+										$('#nombre-edit').val('');
+										$('#clave-edit').val('');
+										$('#select_plaza_edit').html('');
 									
 								},
 			
@@ -607,6 +532,16 @@ $(document).on('click', '#inp-check_edit', function(){
 					
 		
 				
+	});
+	
+	$(document).on('click', '#no-add-oficina-edit', function(){
+				$('#nombre-edit').val('');
+				$('#clave-edit').val('');
+				$('#select_plaza_edit').html('');
+		  $('.error-oficina-edit').removeClass('has-error has-feedback');
+				$('.icon-oficina-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+		  $('.error-clave-edit').removeClass('has-error has-feedback');
+				$('.icon-clave-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
 	
 	
@@ -617,6 +552,87 @@ function alertas(tipo,mensaje){
       type: tipo
     }).show();
   }
+	
+	
+		/*****************
+	------Validaciones para las oficinas
+	******************************************************************/
+	  $("#add-oficina").click(function () {
+
+      if($("#nombre").val().length == 0){
+														$('.error-oficina').addClass('has-error has-feedback');
+							       $('.icon-oficina').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	  $("#add-oficina").click(function () {
+
+      if($("#clave").val().length == 0){
+														$('.error-clave').addClass('has-error has-feedback');
+							       $('.icon-clave').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	$("#nombre").focus(function () {
+      $('.error-oficina').removeClass('has-error has-feedback');
+						$('.icon-oficina').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$("#clave").focus(function () {
+      $('.error-clave').removeClass('has-error has-feedback');
+						$('.icon-clave').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+
+		/*****************
+	------Validaciones al editar las oficinas
+	******************************************************************/
+	  $("#add-oficina-edit").click(function () {
+
+      if($("#nombre-edit").val().length == 0){
+														$('.error-oficina-edit').addClass('has-error has-feedback');
+							       $('.icon-oficina-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	  $("#add-oficina-edit").click(function () {
+
+      if($("#clave-edit").val().length == 0){
+														$('.error-clave-edit').addClass('has-error has-feedback');
+							       $('.icon-clave-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	$("#nombre-edit").focus(function () {
+      $('.error-oficina-edit').removeClass('has-error has-feedback');
+						$('.icon-oficina-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$("#clave-edit").focus(function () {
+      $('.error-clave-edit').removeClass('has-error has-feedback');
+						$('.icon-clave-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+
+
 	
 	
 	

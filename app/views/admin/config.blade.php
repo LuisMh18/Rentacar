@@ -6,11 +6,30 @@
 
 @section('scripts')
  @parent
+ {{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
  {{ HTML::style('lib/bootstrap-notify/bootstrap-notify.css') }}
  {{ HTML::style('css/estilo_dtable.css') }}
  {{ HTML::Script('js/jquery.js') }}
  {{ HTML::script('js/bootstrap.min.js') }}
+ {{ HTML::Script('js/moment.min.js') }}
+	{{ HTML::Script('js/bootstrap-datetimepicker.min.js') }}
  {{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
+ {{ HTML::script('js/accounting.min.js') }}
+ <style>
+		#listar_t_length, #listar_t_info{
+			display:none;
+		}
+		
+		.fancy.pagination{
+			margin-top:.5em;
+		}
+		
+		#listar_t_filter{
+			display:none;
+		}
+		
+		
+ </style>
 @show
 
 <script>
@@ -33,12 +52,11 @@
 </script>
 
 
-
 @section('content')
 
-<div class="seccion_tabla">
+<div class="seccion_tabla seccion_sucursal">
 <div class="agregar">
-	<button id="agregar-codigo" class="btn btn-primary" title="Agregar código">
+	<button id="agregar-tarifa" class="btn btn-primary" title="Agregar tarifa">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
@@ -46,10 +64,10 @@
 			<table id="listar_" class="tabla_catalogo">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Oficina</th>
-					<th>Fecha de inicio</th>
+					<th>Id</th>
+					<th>Oficna</th>
+					<th>Fecha inicio</th>
 					<th>Fecha fin</th>
-					<th>Total</th>
 					<th>Estatus</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
@@ -58,81 +76,106 @@
 		</table>
 	</div>
 	
- <!--<div class="tabla2">
-			<div class="agregar">
-			<button id="agregar-codigo" class="btn btn-primary" title="Agregar código">
-				<span class="glyphicon glyphicon-plus"></span>
-			</button>
-		</div>
-				<div class="tabla-sucursal">
-					<table id="listar_d" class="tabla_catalogo">
-					<thead class="thead-tabla">
-						<tr>
-							<th>Tarifa</th>
-							<th>Grupo</th>
-							<th>Código</th>
-							<th>Vehiculo</th>
-							<th>Tarifa por dia</th>
-							<th>Editar</th>
-							<th>Eliminar</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
 </div>
-</div>--><!-- END seccion_tabla -->
-
     
  <!--Alertas-->
 <div class="notifications top-right" data-html="true"></div>
     
 
-    <!--  Modal para agregar codigo  -->
-<div id="modal-add-codigo" class="modal fade" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog">
+    <!--  Modal para agregar tarifa -->
+<div id="modal-add-tarifa" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog dialog-sucursal">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
-               Agregar codigo
+               Agregar Tarifa
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group error-codigo">
-																						<label for="nombre" class="text-primary">Código: </label>
-																						<input type="text" name="nombre" id="nombre" class="form-control" >
-																						<span class="icon-codigo"></span>
+																<div class="datos1-tarifa">
+																		
+																		<div class="form-group error-oficina">
+																			<label for="select_oficina" class="text-primary">Oficina: </label>
+																							<select class="form-control" id="select_oficina"></select>
+																	 </div>
+																	 
+																	 <!--  Campo oculto   -->
+																	 <input type="text" id="tipo_oficina" value="" class="hidden">
+																		
+																			<div class="form-group error-fecha_inicio">
+																						<label for="fecha_inicio" class="text-primary">Fecha inicio: </label>
+																						<input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" >
+																						<span class="icon-fecha_inicio"></span>
 																			</div>
 																			
-																			<div class="form-group error-descripcion">
-																						<label for="descripcion" class="text-primary">Descripción: </label>
-																						<input type="text" name="descripcion" id="descripcion" class="form-control" >
-																						<span class="icon-descripcion"></span>
+																		<div class="form-group error-fecha_fin">
+																						<label for="fecha_fin" class="text-primary">Fecha fin: </label>
+																						<input type="text" name="fecha_fin" id="fecha_fin" class="form-control" >
+																						<span class="icon-fecha_fin"></span>
 																			</div>
-
-																		<label for="estatus" class="text-primary">Estatus: </label>
+																							
+																	<div class="estaus_tarifa">			
+																			<label for="estatus" class="text-primary">Estatus: </label>
 																		<div class="checkbox checkbox-activ">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
 																					  <input id="inp-check" type="checkbox" value="">
 																					</div>
 																		</div>
+																</div>
+																											
+																	
+													</div>
+															
+																		<div class="content-add-t-d">
+																					<button id="ad-nueva-tarifa-detalle" class="btn btn-primary" title="Agregar detalle">
+																									<span class="glyphicon glyphicon-plus"></span>
+																					</button>
+																		</div>
+													<div class="datos1-tarifa-detalle">
+																		
+																		<div class="seccion_tabla">
+																				
+																					<div class="tabla-sucursal">
+																							<table class="tabla_detalletarifa">
+																							<div class="thead-detalle">
+																								<span class="txt-detalle">Detalle</span>
+																							</div>
+																							<thead class="thead-detallet">
+																								<tr>
+																									<th>Grupo</th>
+																									<th>Código</th>
+																									<th>Cobertura</th>
+																									<th>Vehículo</th>
+																									<th>Tarifa por día</th>
+																									<th>Eliminar</th>
+																								</tr>														
+																							</thead>
+																							<tbody id="body-tarifa-detalle"></tbody>
+																						</table>
+																					</div>
 
-													 
+																				</div>
+
+																	
+													</div>
+															
+																						 
             </form>
                 
           </div>
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-add-tarifa" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
-															<span id="add-codigo" class="btn btn-primary" data-dismiss="modal" >
+															<span id="add-tarifa" class="btn btn-primary" data-dismiss="modal" >
 																		Agregar
 															</span>
 													</div>
@@ -142,29 +185,108 @@
       </div>
     </div>
     
-        <!--  Modal para eliminar codigo  -->
-<div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
+    
+    
+    <!-- Modal para agregar el detalle de la tarifa  -->
+    <div id="modal-tarifa-detalle" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
-              <span class="glyphicon glyphicon-trash"></span>
-               Eliminar código
+              <span class="glyphicon glyphicon-plus"></span>
+               Agregar detalle
             </h4>
           </div>
           <div class="modal-body body-modal">
 
-             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar este código?</h3>
+            <form class="form-modal" action="">
+															
+																<div class="datos1 error-tarifa-grupo">
+																			<div class="form-group">
+																						<label for="select-tarifa-grupo" class="text-primary">Grupo: </label>
+																						<select class="form-control" id="select-tarifa-grupo"></select>
+																			</div>
+
+																		<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-grupo" class="hidden">
+
+																		<div class="form-group error-tarifa-codigo">
+																						<label for="select-tarifa-codigo" class="text-primary">Código: </label>
+																						<select class="form-control" id="select-tarifa-codigo"></select>
+																		</div>
+																		<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-codigo" class="hidden">
+																		
+																</div>
+																
+														<div class="datos2">
+																	<div class="form-group error-tarifa-cobertura">
+																					<label for="select-tarifa-cobertura" class="text-primary">Cobertura: </label>
+																					<select class="form-control" id="select-tarifa-cobertura"></select>
+																	</div>
+																	<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-cobertura" class="hidden">
+
+																	<div class="form-group error-tarifa-vehiculo">
+																					<label for="select-tarifa-vehiculo" class="text-primary">Vehículo: </label>
+																					<select class="form-control" id="select-tarifa-vehiculo"></select>
+																	</div>
+																	<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-vehiculo" class="hidden">
+													 </div>
+													 
+													 <div class="datos2">
+																	<div class="form-group error-tarifa-por-dia">
+																					<label for="tarifa-por-dia" class="text-primary">Tarifa por día: </label>
+																					<input type="number" class="form-control" id="tarifa-por-dia">
+																					<span class="icon-tarifa-por-dia"></span>
+																	</div>
+													 </div>
+													 
+            </form>
                 
           </div>
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-add-tarifa-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
+																	Cancelar
+															</button>
+															<span id="add-tarifa-detalle" class="btn btn-primary" data-dismiss="modal" >
+																		Agregar
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+       
+    
+        <!--  Modal para eliminar tarifa  -->
+<div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-trash"></span>
+               Eliminar tarifa 
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar esta tarifa?</h3>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-add-tarifa" type="button" class="btn btn-danger" data-dismiss="modal">
 																	No
 															</button>
-															<span id="confirm-delete-codigo" class="btn btn-primary" data-dismiss="modal" >
+															<span id="confirm-delete-tarifa" class="btn btn-primary" data-dismiss="modal" >
 																		Si
 															</span>
 													</div>
@@ -174,53 +296,106 @@
       </div>
     </div>
     
-     <!--  Modal para editar codigo  -->
-<div id="modal-edit-codigo" class="modal fade" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog">
+     
+    
+      <!--  Modal para editar tarifa -->
+<div id="modal-edit-tarifa-detalle" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog dialog-sucursal">
         <div class="modal-content">
           <div class="modal-header header-modal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
-               Editar codigo
+               Editar Tarifa
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																	<div class="form-group error-codigo-edit">
-																						<label for="nombre_edit" class="text-primary">Código: </label>
-																						<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
-																						<span class="icon-codigo-edit"></span>
+																<div class="datos1-tarifa">
+																		
+																		<div class="form-group error-oficina_edit">
+																			<label for="select_oficina_edit" class="text-primary">Oficina: </label>
+																							<select class="form-control" id="select_oficina_edit"></select>
+																	 </div>
+																	 
+																	 <!--  Campo oculto   -->
+																	 <input type="text" id="tipo_oficina_edit" value="" class="hidden">
+																		
+																			<div class="form-group error-fecha_inicio_edit">
+																						<label for="fecha_inicio_edit" class="text-primary">Fecha inicio: </label>
+																						<input type="text" name="fecha_inicio_edit" id="fecha_inicio_edit" class="form-control" >
+																						<span class="icon-fecha_inicio_edit"></span>
 																			</div>
 																			
-																			<div class="form-group error-descripcion-edit">
-																						<label for="descripcion_edit" class="text-primary">Descripción: </label>
-																						<input type="text" name="descripcion_edit" id="descripcion_edit" class="form-control" >
-																						<span class="icon-descripcion-edit"></span>
+																		<div class="form-group error-fecha_fin_edit">
+																						<label for="fecha_fin_edit" class="text-primary">Fecha fin: </label>
+																						<input type="text" name="fecha_fin_edit" id="fecha_fin_edit" class="form-control" >
+																						<span class="icon-fecha_fin_edit"></span>
 																			</div>
-
-																		<label for="estatus" class="text-primary">Estatus: </label>
+																							
+																	<div class="estaus_tarifa">			
+																			<label for="estatus" class="text-primary">Estatus: </label>
 																		<div class="checkbox checkbox-activ">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
-																					  <input id="inp-check_edit" type="checkbox" value="">
+																					  <input id="inp-check-edit" type="checkbox" value="">
 																					</div>
 																		</div>
+																</div>
+																											
+																	
+													</div>
+															
+																		<div class="content-add-t-d">
+																					<button id="ad-nueva-tarifa-detalle-edit" class="btn btn-primary" title="Agregar detalle">
+																									<span class="glyphicon glyphicon-plus"></span>
+																					</button>
+																		</div>
+													<div class="datos1-tarifa-detalle">
+																		
+																		<div class="seccion_tabla">
+																				
+																					<div class="tabla-sucursal">
+																							<table class="tabla_detalletarifa">
+																							<div class="thead-detalle">
+																								<span class="txt-detalle">Detalle</span>
+																							</div>
+																							<!-- Campo escondido -->
+																							<input type="text" id="id_tarifa" value="" class="hidden">
+																							<thead class="thead-detallet">
+																								<tr>
+																									<th>Grupo</th>
+																									<th>Código</th>
+																									<th>Cobertura</th>
+																									<th>Vehículo</th>
+																									<th>Tarifa por día</th>
+																									<th>Editar</th>
+																									<th>Eliminar</th>
+																								</tr>														
+																							</thead>
+																							<tbody id="body-tarifa-detalle-edit"></tbody>
+																						</table>
+																					</div>
 
-													 
+																				</div>
+
+																	
+													</div>
+															
+																						 
             </form>
                 
           </div>
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-act-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-add-tarifa-edit" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
-															<span id="confirm-act-codigo" class="btn btn-primary" data-dismiss="modal" >
-																		Actualizar
+															<span id="add-tarifa-edit" class="btn btn-primary btn-act-t-d" data-dismiss="modal" >
+																		Actualizar tarifa
 															</span>
 													</div>
              
@@ -228,6 +403,194 @@
         </div>
       </div>
     </div>
+    
+    
+              <!--  Modal para confirmar eliminar tarifa detalle  -->
+<div id="modal-confirm-delete-tarifa-detalle" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-trash"></span>
+               Eliminar detalle
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar esta tarifa detalle?</h3>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-quitar-tarifa-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
+																	No
+															</button>
+															<span id="confirm-delete-tarifa-detalle" class="btn btn-primary" data-dismiss="modal" >
+																		Si
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+			 <!-- Modal para agregar el detalle de la tarifa al editar -->
+    <div id="modal-tarifa-detalle-edit" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-plus"></span>
+               Agregar detalle
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+            <form class="form-modal" action="">
+															
+																<div class="datos1 error-tarifa-grupo-edit">
+																			<div class="form-group">
+																						<label for="select-tarifa-grupo-edit" class="text-primary">Grupo: </label>
+																						<select class="form-control" id="select-tarifa-grupo-edit"></select>
+																			</div>
+
+																		<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-grupo-edit" class="hidden">
+
+																		<div class="form-group error-tarifa-codigo-edit">
+																						<label for="select-tarifa-codigo-edit" class="text-primary">Código: </label>
+																						<select class="form-control" id="select-tarifa-codigo-edit"></select>
+																		</div>
+																		<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-codigo-edit" class="hidden">
+																		
+																</div>
+																
+														<div class="datos2">
+																	<div class="form-group error-tarifa-cobertura-edit">
+																					<label for="select-tarifa-cobertura-edit" class="text-primary">Cobertura: </label>
+																					<select class="form-control" id="select-tarifa-cobertura-edit"></select>
+																	</div>
+																	<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-cobertura-edit" class="hidden">
+
+																	<div class="form-group error-tarifa-vehiculo-edit">
+																					<label for="select-tarifa-vehiculo-edit" class="text-primary">Vehículo: </label>
+																					<select class="form-control" id="select-tarifa-vehiculo-edit"></select>
+																	</div>
+																	<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-vehiculo-edit" class="hidden">
+													 </div>
+													 
+													 <div class="datos2">
+																	<div class="form-group error-tarifa-por-dia-edit">
+																					<label for="tarifa-por-dia-edit" class="text-primary">Tarifa por día: </label>
+																					<input type="number" class="form-control" id="tarifa-por-dia-edit">
+																					<span class="icon-tarifa-por-dia-edit"></span>
+																	</div>
+													 </div>
+													 
+            </form>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-add-tarifa-detalle-edit" type="button" class="btn btn-danger" data-dismiss="modal">
+																	Cancelar
+															</button>
+															<span id="add-tarifa-detalle-edit" class="btn btn-primary" data-dismiss="modal" >
+																		Agregar
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+   			 <!-- Modal para agregar el detalle de la tarifa al editar detalle-->
+    <div id="modal-tarifa-detalle-edit-detalle" class="modal fade" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header header-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title text-center">
+              <span class="glyphicon glyphicon-edit"></span>
+               Editar detalle
+            </h4>
+          </div>
+          <div class="modal-body body-modal">
+
+            <form class="form-modal" action="">
+															
+																<div class="datos1 error-tarifa-grupo-edit-detalle">
+																			<div class="form-group">
+																						<label for="select-tarifa-grupo-edit-detalle" class="text-primary">Grupo: </label>
+																						<select class="form-control" id="select-tarifa-grupo-edit-detalle"></select>
+																			</div>
+
+																		<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-grupo-edit-detalle" class="hidden">
+
+																		<div class="form-group error-tarifa-codigo-edit-detalle">
+																						<label for="select-tarifa-codigo-edit-detalle" class="text-primary">Código: </label>
+																						<select class="form-control" id="select-tarifa-codigo-edit-detalle"></select>
+																		</div>
+																		<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-codigo-edit-detalle" class="hidden">
+																		
+																</div>
+																
+														<div class="datos2">
+																	<div class="form-group error-tarifa-cobertura-edit-detalle">
+																					<label for="select-tarifa-cobertura-edit-detalle" class="text-primary">Cobertura: </label>
+																					<select class="form-control" id="select-tarifa-cobertura-edit-detalle"></select>
+																	</div>
+																	<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-cobertura-edit-detalle" class="hidden">
+
+																	<div class="form-group error-tarifa-vehiculo-edit-detalle">
+																					<label for="select-tarifa-vehiculo-edit-detalle" class="text-primary">Vehículo: </label>
+																					<select class="form-control" id="select-tarifa-vehiculo-edit-detalle"></select>
+																	</div>
+																	<!-- Campo escondido -->
+																		<input type="text" id="inp-tarifa-vehiculo-edit-detalle" class="hidden">
+													 </div>
+													 
+													 <div class="datos2">
+																	<div class="form-group error-tarifa-por-dia-edit-detalle">
+																					<label for="tarifa-por-dia-edit-detalle" class="text-primary">Tarifa por día: </label>
+																					<input type="number" class="form-control" id="tarifa-por-dia-edit-detalle">
+																					<span class="icon-tarifa-por-dia-edit-detalle"></span>
+																	</div>
+													 </div>
+													 
+            </form>
+                
+          </div>
+          <div class="modal-footer">
+													
+											 		<div class="footer-modal">
+																<button id="no-add-tarifa-detalle-edit-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
+																	Cancelar
+															</button>
+															<span id="add-tarifa-detalle-edit-detalle" class="btn btn-primary btn-act-t-d" data-dismiss="modal" >
+																	Actualizar detalle
+															</span>
+													</div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 
 
@@ -284,20 +647,19 @@
 
 			}); //End data
 
-
 											tabla_a.fnClearTable();
-													console.log(l);
+
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
+																															l[i].id,
+																															l[i].nombre,
 																															l[i].fecha_inicio,
 																															l[i].fecha_fin,
-																															l[i].total,
 																															'<span class="estatus_'+l[i].estatus+'"></span>',
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
+																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar tarifa">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar código">'+
+																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar tarifa">'+
 																					            '<span class="glyphicon glyphicon-remove"></span>'+
 																					          '</button>',
 																													]);
@@ -306,10 +668,12 @@
 																					} //End for
 								
 								
-															  $('.estatus_0').text('Inactivo');
-																	$('.estatus_0').addClass('text-danger');
-																	$('.estatus_1').text('Activo');
-																	$('.estatus_1').addClass('text-success');
+														 $('.estatus_0').text('Inactivo');
+															$('.estatus_0').addClass('text-danger');
+															$('.estatus_1').text('Activo');
+															$('.estatus_1').addClass('text-success');
+								
+								
 
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
@@ -324,89 +688,7 @@
 			});
 	
 	
-	//Listar el detalle de las tarifas
-		/*	$.ajax({
-							dataType: 'json',
-							url: "/admin/listatarifadetalle",
-							success: function (l) {
-							tabla_a = $('#listar_d').DataTable({
-									"oLanguage": { 
-													"oPaginate": { 
-													"sPrevious": "Anterior", 
-													"sNext": "Siguiente", 
-													"sLast": "Ultima", 
-													"sFirst": "Primera" 
-													}, 
-
-									"sLengthMenu": 'Mostrar <select>'+ 
-									'<option value="10">10</option>'+ 
-									'<option value="20">20</option>'+ 
-									'<option value="30">30</option>'+ 
-									'<option value="40">40</option>'+ 
-									'<option value="50">50</option>'+ 
-									'<option value="-1">Todos</option>'+ 
-									'</select> registros', 
-
-									"sInfo": "Mostrando del _START_ a _END_ (Total: _TOTAL_ resultados)", 
-									"sInfoFiltered": " - filtrados de _MAX_ registros", 
-									"sInfoEmpty": "No hay resultados de búsqueda", 
-									"sZeroRecords": "No hay registros a mostrar", 
-									"sProcessing": "Espere, por favor...", 
-									"sSearch": "Buscar:", 
-
-						}, //end o
-
-							"aaSorting": [[ 0, "desc" ]], 
-								
-								fnCreatedRow : function (nRow, aData, iDataIndex) {
-												$(nRow).attr('id', "fila_"+l[i].id);
-
-							},
-
-							"sPaginationType": "simple_numbers",
-								"sPaginationType": "bootstrap",
-
-
-
-			}); //End data
-
-											console.log(l);
-											tabla_a.fnClearTable();
-													console.log(l);
-													for(var i = 0; i < l.length; i++) {
-																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].id,
-																															l[i].fecha_inicio,
-																															l[i].fecha_fin,
-																															l[i].total,
-																															'<span class="estatus_'+l[i].estatus+'"></span>',
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
-																					            '<span class="glyphicon glyphicon-edit"></span>'+
-																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar código">'+
-																					            '<span class="glyphicon glyphicon-remove"></span>'+
-																					          '</button>',
-																													]);
-
-
-																					} //End for
-								
-								
-
-															$('.dataTables_paginate .prev a').text('Anterior');
-															$('.dataTables_paginate .next a').text('Siguiente');
-
-
-
-							},//End success
-
-							error: function () {
-											alert("failure");
-							} //end error
-			});*/
-	
-	
-			$(document).on('click','.fancy > li, a',function(){	
+				$(document).on('click','.fancy > li, a',function(){	
 						$('.estatus_0').text('Inactivo');
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
@@ -429,43 +711,312 @@
 						$('.estatus_1').addClass('text-success');
 			});
 	
+
+	
+		$(function () {
+								$('#fecha_inicio').datetimepicker({
+									format: 'YYYY-MM-DD'   
+								});
+
+				});
+	
+		$(function () {
+								$('#fecha_fin').datetimepicker({
+									format: 'YYYY-MM-DD'     
+								});
+
+				});
 	
 	
-		//Agregar codigo -------------
-	 $(document).on('click', '#agregar-codigo', function(){
-			$('#modal-add-codigo').modal({
+		//Agregar tarifa -------------
+	 $(document).on('click', '#agregar-tarifa', function(){
+			$('#modal-add-tarifa').modal({
       show: 'false',
     });
+			
+			
+			//Listamos las oficinas
+			 $.ajax({
+								url:  "/admin/selectoficinas",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select_oficina');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.oficinas){
+
+																			option += '<option value="'+p.oficinas[datos].id+'">'+p.oficinas[datos].nombre+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+			
+			
 		});
+		
 	
-	$(document).on('click', '#add-codigo', function(){
-			codigo = $('#nombre').val();
-		 descripcion = $('#descripcion').val();
 	
-		if($('#inp-check').prop("checked") == true){
-					activo = 1;
-		} else {
-				activo = 0;
-		}
+	
+	//Agregar tarifa detalle
+	$(document).on('click', '#ad-nueva-tarifa-detalle', function(){
+	
+		$('#modal-tarifa-detalle').modal({
+			show:'false',
+		});
+		
+		
+		
+					//Listamos los grupos
+			 $.ajax({
+								url:  "/admin/selectgrupos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-grupo');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.grupos){
+
+																			option += '<option value="'+p.grupos[datos].id+'">'+p.grupos[datos].descripcion_grupo+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+						//Listamos los codigos
+					 $.ajax({
+								url:  "/admin/selectcodigos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-codigo');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.codigos){
+
+																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+			//Listamos las coberturas
+					 $.ajax({
+								url:  "/admin/selectcoberturas",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-cobertura');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.coberturas){
+
+																			option += '<option value="'+p.coberturas[datos].id+'">'+p.coberturas[datos].cobertura+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		//Listamos los vehiculos
+					 $.ajax({
+								url:  "/admin/selectvehiculos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-vehiculo');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.vehiculos){
+
+																			option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		return false;
+		
+	});
+	
+	$('#select-tarifa-grupo').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-grupo').attr('value', id);
+	});
+	
+	$('#select-tarifa-codigo').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-codigo').attr('value', id);
+	});
+	
+	$('#select-tarifa-cobertura').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-cobertura').attr('value', id);
+	});
+	
+		$('#select-tarifa-vehiculo').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-vehiculo').attr('value', id);
+	});
+	
+	
+		$(document).on('click', '#add-tarifa-detalle', function(){
+			grupo = $('#inp-tarifa-grupo').attr('value');
+			codigo = $('#inp-tarifa-codigo').attr('value');
+			cobertura = $('#inp-tarifa-cobertura').attr('value');
+			vehiculo = $('#inp-tarifa-vehiculo').attr('value');
+			tarifa_por_dia = $('#tarifa-por-dia').val();
+			
+			//obtenemos los nombres
+			nombre_grupo = $('#select-tarifa-grupo option:selected').text();
+			nombre_codigo = $('#select-tarifa-codigo option:selected').text();
+			nombre_cobertura = $('#select-tarifa-cobertura option:selected').text();
+			nombre_vehiculo = $('#select-tarifa-vehiculo option:selected').text();
+
+			
+			body = $('#body-tarifa-detalle');
+			
+			nueva_fila = '<tr id="fila_'+grupo+'_'+codigo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'">'+
+												'<td class="td_grupo" value="'+grupo+'">'+nombre_grupo+'</td>'+
+												'<td class="td_codigo" value="'+codigo+'">'+nombre_codigo+'</td>'+
+												'<td class="td_cobertura" value="'+cobertura+'">'+nombre_cobertura+'</td>'+
+				        '<td class="td_vehiculo" value="'+vehiculo+'">'+nombre_vehiculo+'</td>'+
+												'<td class="td_tarifa_por_dia" value="'+tarifa_por_dia+'">'+accounting.formatMoney(tarifa_por_dia)+'</td>'+
+											'<td>'+
+											  '<button class="btn btn-sm btn-danger btn-sm eliminar-btn-detalle" value="'+grupo+'_'+codigo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'" title="Eliminar">'+
+																		'<span class="glyphicon glyphicon-remove"></span>'+
+														'</button>'+
+											'</td>'+
+									'</tr>';
+										
+									body.prepend(nueva_fila);
+			
+			
+			//Limpiamos
+			$('#select-tarifa-grupo').html('');
+			$('#select-tarifa-codigo').html('');
+			$('#select-tarifa-cobertura').html('');
+			$('#select-tarifa-vehiculo').html('');
+			$('#tarifa-por-dia').val('');
+
+	});
+	
+		$(document).on('click', '#no-add-tarifa-detalle', function(){
+			
+					$('#select-tarifa-grupo').html('');
+			  $('#select-tarifa-codigo').html('');
+			  $('#select-tarifa-cobertura').html('');
+			  $('#select-tarifa-vehiculo').html('');
+			  $('#tarifa-por-dia').val('');
+
+      $('.error-tarifa-grupo').removeClass('has-error has-feedback');
+	
+      $('.error-tarifa-codigo').removeClass('has-error has-feedback');
+	
+      $('.error-tarifa-cobertura').removeClass('has-error has-feedback');
+	
+      $('.error-tarifa-vehiculo').removeClass('has-error has-feedback');
+	
+      $('.error-tarifa-por-dia').removeClass('has-error has-feedback');
+						$('.icon-tarifa-por-dia').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	});
+	
+	
+	//quitar tarifa detalle
+		$(document).on('click', '.eliminar-btn-detalle', function(){
+			id = $(this).attr('value');
+			
+			$('#modal-confirm-delete-tarifa-detalle').modal({
+				show:'false',
+			});
+			
+			$('#confirm-delete-tarifa-detalle').attr('value', id);
+			
+			return false;
+	});
+	
+	$(document).on('click', '#confirm-delete-tarifa-detalle', function(){
+			id = $(this).attr('value');
+		 $('#fila_'+id).remove();
+	});
+	
+	
+	
+	$('#select_oficina').on('change',function(){
+		
+		id = $(this).val();
+		$('#tipo_oficina').attr('value', id);
+		
+	});
+		
+	
+	$(document).on('click', '#add-tarifa', function(){
+			id_oficina = $('#tipo_oficina').attr('value');
+		 fecha_inicio = $('#fecha_inicio').val();
+		 fecha_fin = $('#fecha_fin').val();
+		
+					if($('#inp-check').prop("checked") == true){
+								activo = 1;
+					} else {
+							activo = 0;
+					}
 		
 		tabla_a = $('#listar_');
 		
 		$.ajax({
-								url:  "/admin/agregarcodigo",
+								url:  "/admin/agregartarifa",
 								type: "POST",
-								data:{codigo: codigo, descripcion: descripcion, activo: activo},
-								success: function(p){
-										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
-											 '<td>'+p.descripcion+'</td>'+
-												'<td><span class="estatus_'+p.estatus+'"></span></td>'+
+								data:{id_oficina: id_oficina, fecha_inicio: fecha_inicio, fecha_fin: fecha_fin, activo: activo},
+								success: function(t){
+									
+									nueva_fila = '<tr id="fila_'+t.id+'">'+
+												'<td><span class="hidden">'+s.created_at+'</span>'+t.id+'</td>'+
+												'<td>'+t.nombre+'</td>'+
+												'<td>'+t.fecha_inicio+'</td>'+
+												'<td>'+t.fecha_fin+'</td>'+
+												'<td><span class="estatus_'+t.estatus+'"></span></td>'+
 												'<td>'+
-											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar código">'+
+											   '<button class="btn btn-sm btn-info editar-btn" value="'+t.id+'" title="Editar tarifa">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
 														'</button>'+
 											'</td>'+
 											'<td>'+
-											  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar código">'+
+											  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+t.id+'" title="Eliminar tarifa">'+
 																		'<span class="glyphicon glyphicon-remove"></span>'+
 														'</button>'+
 											'</td>'+
@@ -473,19 +1024,25 @@
 										
 									tabla_a.prepend(nueva_fila);
 									
+								
+										
+										alertas("success","Tarifa agregada correctamente.");
+										
+									registrartarifadetalle(t.id);
+									
 									$('.estatus_0').text('Inactivo');
 									$('.estatus_0').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
-										
-										alertas("success","Código "+p.descripcion+" agregado correctamente.");
-										
-										//Limpiamos los campos
-									$('#nombre').val('');
-									$('#descripcion').val('');
-									$('#inp-check').prop("checked", false)
-
 									
+									
+								//Limpiamos los campos	
+								$('#select_oficina').html('');
+						  $('#tipo_oficina').val('');
+						  $('#fecha_inicio').val('');
+						  $('#fecha_fin').val('');
+								$('#inp-check').prop("checked", false);
+						  
 									
 									
 								},
@@ -496,22 +1053,82 @@
 																
 					});
 		
-	});
-	
-		$(document).on('click', '#no-add-codigo', function(){
-			 $('#nombre').val('');
-			 $('#descripcion').val('');
-				$('#inp-check').prop("checked", false);
-				
-    $('.error-codigo').removeClass('has-error has-feedback');
-				$('.icon-codigo').removeClass('glyphicon glyphicon-remove form-control-feedback');
-
-				$('.error-descripcion').removeClass('has-error has-feedback');
-				$('.icon-descripcion').removeClass('glyphicon glyphicon-remove form-control-feedback');
+					
+		
 		
 	});
 	
-	//Eliminar codigo
+	
+	//registramos la tarifa detalle
+	function registrartarifadetalle(id){
+		
+		var DATA = [];
+		
+		$('.tabla_detalletarifa tbody tr').each(function(){
+							id_tarifa = id;
+							id_g  = $(this).find("td[class*='td_grupo']").attr('value');
+							id_c  = $(this).find("td[class*='td_codigo']").attr('value');
+			    id_cobertura  = $(this).find("td[class*='td_cobertura']").attr('value');
+			    id_v  = $(this).find("td[class*='td_vehiculo']").attr('value');
+			    tarifa_por_dia  = $(this).find("td[class*='td_tarifa_por_dia']").attr('value');
+
+							datos = {id_tarifa, id_g, id_c, id_cobertura, id_v, tarifa_por_dia};
+
+							DATA.push(datos);
+			
+  });
+		
+		
+		if(DATA == ''){
+			
+		} else {
+						
+			   aInfo = JSON.stringify(DATA);
+			
+						$.ajax({
+								url:  "/admin/agregartarifadetalle",
+								type: "POST",
+								data:{aInfo: aInfo},
+								success: function(d){
+									
+									//Limpiamos la tabla tarifa detalle
+									$('#body-tarifa-detalle').html('');
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		}
+		
+		
+		
+	}//end functiom
+	
+	
+	
+		$(document).on('click', '#no-add-tarifa', function(){
+			     $('#body-tarifa-detalle').html('');
+			     $('#select_oficina').html('');
+						  $('#tipo_oficina').val('');
+						  $('#fecha_inicio').val('');
+						  $('#fecha_fin').val('');
+								$('#inp-check').prop("checked", false);
+			
+      $('.error-oficina').removeClass('has-error has-feedback');
+	
+      $('.error-fecha_inicio').removeClass('has-error has-feedback');
+						$('.icon-fecha_inicio').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+      $('.error-fecha_fin').removeClass('has-error has-feedback');
+						$('.icon-fecha_fin').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+			
+			
+	});
+	
+	//Eliminar tarifa
 	$(document).on('click', '.eliminar-btn', function(){
 			   id = $(this).val();
 
@@ -519,25 +1136,19 @@
        show: 'false',
      });
 		
-				 $('#confirm-delete-codigo').attr('value', id);
+				 $('#confirm-delete-tarifa').attr('value', id);
 				
 	});
 	
-		$(document).on('click', '#confirm-delete-codigo', function(){
+		$(document).on('click', '#confirm-delete-tarifa', function(){
 			id = $(this).attr('value');
-
 			 $.ajax({
-								url:  "/admin/eliminarcodigo",
+								url:  "/admin/eliminartarifa",
 								type: "GET",
 								data:{id: id},
 								success: function(d){
-									if(d.p == 'Existe'){
-										 alertas("danger","El código "+d.codigo.codigo+" esta en uso.");
-									} else {
-										alertas("success","Código eliminado correctamente");
+										alertas("success","Tarifa eliminada correctamente");
 										 $('#fila_'+d).remove();
-									}
-									
 									
 								},
 			
@@ -548,26 +1159,47 @@
 					});
 	});
 	
-//Editar codigo
-	$(document).on('click', '.editar-btn', function(){
+	
+	
+			$(function () {
+								$('#fecha_inicio_edit').datetimepicker({
+									format: 'YYYY-MM-DD'   
+								});
+
+				});
+	
+		$(function () {
+								$('#fecha_fin_edit').datetimepicker({
+									format: 'YYYY-MM-DD'     
+								});
+
+				});
+	
+	//--Editar tarifa
+		$(document).on('click', '.editar-btn', function(){
 			  id = $(this).attr('value');
-		
+					
+		   $('#add-tarifa-edit').attr('value', id);
+			
+					$('#id_tarifa').attr('value', id);		
+			
 					$.ajax({
-								url:  "/admin/editarcodigo",
+								url:  "/admin/editartarifa",
 								type: "GET",
 								data:{id: id},
 								success: function(e){
-									$('#nombre_edit').val(e.codigo);
-									$('#descripcion_edit').val(e.descripcion);
-
+									$('#fecha_inicio_edit').val(e.fecha_inicio);
+									$('#fecha_fin_edit').val(e.fecha_fin);
+									
 									activo = e.estatus;
 									if(activo == 1){
-											$('#inp-check_edit').prop("checked", true);
-											$('#inp-check_edit').attr('value', '1');
+											$('#inp-check-edit').prop("checked", true);
+											$('#inp-check-edit').attr('value', '1');
 									} else {
-											$('#inp-check_edit').prop("checked", false);
-											$('#inp-check_edit').attr('value', '0');
+											$('#inp-check-edit').prop("checked", false);
+											$('#inp-check-edit').attr('value', '0');
 									}
+
 									
 								},
 			
@@ -577,59 +1209,646 @@
 																
 					});
 					
-					$('#modal-edit-codigo').modal({
+					$('#modal-edit-tarifa-detalle').modal({
        show: 'false',
      });
 		
-				 $('#confirm-act-codigo').attr('value', id);
+				 $('#add-sucursal_edit').attr('value', id);
+			
+			
+			
+			
+			//Listamos las oficinas
+			$.ajax({
+								url:  "/admin/selectoficinasedit",
+								type: "GET",
+				    data:{id: id},
+								success: function(e){
+								     	option = "";
+              s = $('#select_oficina_edit');
+									
+															option += '<option value="'+e.o_a[0].id+'">'+e.o_a[0].nombre+'</option>';
+              for(datos in e.oficinas){
+
+																			option += '<option value="'+e.oficinas[datos].id+'">'+e.oficinas[datos].nombre+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+			
+			
+			
+			
+			
+			//Listar los detalles de la tarifa
+			$.ajax({
+								url:  "/admin/listartarifadetalleedit",
+								type: "GET",
+					   data:{id: id},
+								success: function(t){
+									if(t.t_d == ''){
+											
+										} else {
+
+												body = $('#body-tarifa-detalle-edit');
+												fila = "";
+
+											for(datos in t.t_d){
+																							
+
+												fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
+													'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'">'+t.t_d[datos].descripcion_grupo+'</td>'+
+													'<td class="td_codigo_actual" value="'+t.t_d[datos].codigo+'">'+t.t_d[datos].codigo+'</td>'+
+													'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'">'+t.t_d[datos].cobertura+'</td>'+
+													'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'">'+t.t_d[datos].descripcion+'</td>'+
+													'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'">'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
+													'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+													'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+													'</tr>';
+
+
+											}//end for
+
+											body.append(fila);
+										}
+									
+									
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+					
 				
 	});
 	
-//Actualizar codigo
-$(document).on('click', '#inp-check_edit', function(){
+	
+	$(document).on('click', '#no-add-tarifa-edit', function(){
+		$('#select_oficina_edit').html('');
+		$('#body-tarifa-detalle-edit').html('');
+		
+  $('.error-oficina_edit').removeClass('has-error has-feedback');
+
+  $('.error-fecha_inicio_edit').removeClass('has-error has-feedback');
+  $('.icon-fecha_inicio_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	
+  $('.error-fecha_fin_edit').removeClass('has-error has-feedback');
+		$('.icon-fecha_fin_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+	});
+	
+	
+	//Eliminar los detalles ya agregados
+		$(document).on('click', '.quitar-d-a', function(){
+			id = $(this).attr('value');
+
+			$('#modal-confirm-delete-tarifa-detalle').modal({
+				show:'false',
+			});
+			
+			$('#confirm-delete-tarifa-detalle').attr('value', id);
+			$('#confirm-delete-tarifa-detalle').addClass('delete-p-act');
+		 
+	});
+	
+		$(document).on('click', '.delete-p-act', function(){
+			id = $(this).attr('value');
+			
+							 $.ajax({
+								url:  "/admin/elimartarifadetalle",
+								type: "GET",
+								data:{id: id},
+								success: function(p){
+										
+											$('#fila_edit_'+id).remove();
+											$('#confirm-delete-tarifa-detalle').removeClass('delete-p-act');
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+			
+		 
+	});
+	
+			$(document).on('click', '#no-quitar-tarifa-detalle', function(){
+				 $('#confirm-delete-tarifa-detalle').removeClass('delete-p-act');
+			});
+	
+	
+	
+
+	/******** Agregar nueva tarifa detalle al editar *******************************/
+	$(document).on('click', '#ad-nueva-tarifa-detalle-edit', function(){
+		
+		id_tarifa = $('#id_tarifa').attr('value');
+		$('#add-tarifa-detalle-edit').attr('data-id', id_tarifa);
+	
+		$('#modal-tarifa-detalle-edit').modal({
+			show:'false',
+		});
+		
+					//Listamos los grupos
+			 $.ajax({
+								url:  "/admin/selectgrupos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-grupo-edit');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.grupos){
+
+																			option += '<option value="'+p.grupos[datos].id+'">'+p.grupos[datos].descripcion_grupo+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+						//Listamos los codigos
+					 $.ajax({
+								url:  "/admin/selectcodigos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-codigo-edit');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.codigos){
+
+																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+			//Listamos las coberturas
+					 $.ajax({
+								url:  "/admin/selectcoberturas",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-cobertura-edit');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.coberturas){
+
+																			option += '<option value="'+p.coberturas[datos].id+'">'+p.coberturas[datos].cobertura+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		//Listamos los vehiculos
+					 $.ajax({
+								url:  "/admin/selectvehiculos",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#select-tarifa-vehiculo-edit');
+									
+															option += '<option value="0">-- Seleccione --</option>';
+              for(datos in p.vehiculos){
+
+																			option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		return false;
+		
+	});
+	
+	$('#select-tarifa-grupo-edit').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-grupo-edit').attr('value', id);
+	});
+	
+	$('#select-tarifa-codigo-edit').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-codigo-edit').attr('value', id);
+	});
+	
+	$('#select-tarifa-cobertura-edit').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-cobertura-edit').attr('value', id);
+	});
+	
+		$('#select-tarifa-vehiculo-edit').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-vehiculo-edit').attr('value', id);
+	});
+	
+	
+		$(document).on('click', '#add-tarifa-detalle-edit', function(){
+			id_tarifa = $(this).attr('data-id');
+			grupo = $('#inp-tarifa-grupo-edit').attr('value');
+			codigo = $('#inp-tarifa-codigo-edit').attr('value');
+			cobertura = $('#inp-tarifa-cobertura-edit').attr('value');
+			vehiculo = $('#inp-tarifa-vehiculo-edit').attr('value');
+			tarifa_por_dia = $('#tarifa-por-dia-edit').val();
+			
+
+			
+						$.ajax({
+								url:  "/admin/agregartarifadetalle",
+								type: "GET",
+					   data:{id_tarifa: id_tarifa, grupo: grupo, codigo: codigo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
+							success: function(d){
+
+											body_edit = $('#body-tarifa-detalle-edit');
+								   nueva_fila_edit = "";
+								
+												nueva_fila_edit += '<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
+                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'">'+d.descripcion_grupo+'</td>'+
+                '<td class="td_codigo_actual" value="'+d.codigo+'">'+d.codigo+'</td>'+
+																'<td class="td_cobertura_actual" value="'+d.cobertura+'">'+d.cobertura+'</td>'+
+																'<td class="td_vehiculo_actual" value="'+d.descripcion+'">'+d.descripcion+'</td>'+
+																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'">'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+                '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+													   '<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+											     '</tr>';
+												
+																body_edit.prepend(nueva_fila_edit);
+								
+								
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+			
+			
+			
+			//Limpiamos
+			$('#select-tarifa-grupo-edit').html('');
+			$('#select-tarifa-codigo-edit').html('');
+			$('#select-tarifa-cobertura-edit').html('');
+			$('#select-tarifa-vehiculo-edit').html('');
+			$('#tarifa-por-dia-edit').val('');
+
+	});
+	
+		$(document).on('click', '#no-add-tarifa-detalle-edit', function(){
+			
+					$('#select-tarifa-grupo-edit').html('');
+			  $('#select-tarifa-codigo-edit').html('');
+		   $('#select-tarifa-cobertura-edit').html('');
+			  $('#select-tarifa-vehiculo-edit').html('');
+			  $('#tarifa-por-dia-edit').val('');
+
+					$('.error-tarifa-grupo-edit').removeClass('has-error has-feedback');
+
+					$('.error-tarifa-codigo-edit').removeClass('has-error has-feedback');
+
+					$('.error-tarifa-cobertura-edit').removeClass('has-error has-feedback');
+
+					$('.error-tarifa-vehiculo-edit').removeClass('has-error has-feedback');
+
+					$('.error-tarifa-por-dia-edit').removeClass('has-error has-feedback');
+					$('.icon-tarifa-por-dia-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+	});
+	
+	
+	//quitar tarifa detalle
+		$(document).on('click', '.eliminar-btn-detalle-edit', function(){
+			id = $(this).attr('value');
+			
+			$('#modal-confirm-delete-tarifa-detalle').modal({
+				show:'false',
+			});
+			
+			$('#confirm-delete-tarifa-detalle').attr('value', id);
+			
+			return false;
+	});
+	
+	$(document).on('click', '#confirm-delete-tarifa-detalle', function(){
+			id = $(this).attr('value');
+		 $('#fila_nueva_'+id).remove();
+	});
+	
+	
+	
+	/**********************************************************************************************************************/
+	
+	/******** Editar tarifa detalle *******************************/
+	$(document).on('click', '.editar-d-a', function(){
+			
+		id = $(this).attr('value');
+		id_tarifa = $('#id_tarifa').attr('value');
+		
+		$('#add-tarifa-detalle-edit-detalle').attr('value', id);
+		$('#add-tarifa-detalle-edit-detalle').attr('data-id', id_tarifa);
+		
+		$('#modal-tarifa-detalle-edit-detalle').modal({
+			show:'false',
+		});
+		
+		
+		
+					//Listamos los grupos
+			 $.ajax({
+								url:  "/admin/selectgruposeditdetalle",
+								type: "GET",
+					   data:{id: id},
+							success: function(e){
+								     	option = "";
+              s = $('#select-tarifa-grupo-edit-detalle');
+									
+															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].descripcion_grupo+'</option>';
+              for(datos in e.grupos){
+
+																			option += '<option value="'+e.grupos[datos].id+'">'+e.grupos[datos].descripcion_grupo+'</option>';
+																}
+
+																s.append(option);
+								
+								      //Campo escondido ---
+														$('#inp-tarifa-grupo-edit-detalle').attr('value', e.x_a[0].id);
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+						//Listamos los codigos
+					 $.ajax({
+								url:  "/admin/selectcodigoseditdetalle",
+								type: "GET",
+					   data:{id: id},
+							success: function(e){
+								     	option = "";
+              s = $('#select-tarifa-codigo-edit-detalle');
+									
+															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].codigo+'</option>';
+              for(datos in e.codigos){
+
+																			option += '<option value="'+e.codigos[datos].id+'">'+e.codigos[datos].codigo+'</option>';
+																}
+
+																s.append(option);
+								
+															//Campo escondido ---
+														$('#inp-tarifa-codigo-edit-detalle').attr('value', e.x_a[0].id);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+			//Listamos las coberturas
+					  $.ajax({
+								url:  "/admin/selectcoberturaseditdetalle",
+								type: "GET",
+					   data:{id: id},
+							success: function(e){
+								     	option = "";
+              s = $('#select-tarifa-cobertura-edit-detalle');
+									
+															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].cobertura+'</option>';
+              for(datos in e.coberturas){
+
+																			option += '<option value="'+e.coberturas[datos].id+'">'+e.coberturas[datos].cobertura+'</option>';
+																}
+
+																s.append(option);
+								
+																//Campo escondido ---
+														$('#inp-tarifa-cobertura-edit-detalle').attr('value', e.x_a[0].id);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		//Listamos los vehiculos
+					 $.ajax({
+								url:  "/admin/selectvehiculoseditdetalle",
+								type: "GET",
+					   data:{id: id},
+							success: function(e){
+								     	option = "";
+              s = $('#select-tarifa-vehiculo-edit-detalle');
+									
+															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].descripcion+'</option>';
+              for(datos in e.vehiculos){
+
+																			option += '<option value="'+e.vehiculos[datos].id+'">'+e.vehiculos[datos].descripcion+'</option>';
+																}
+
+																s.append(option);
+								
+																//Campo escondido ---
+													 	$('#inp-tarifa-vehiculo-edit-detalle').attr('value', e.x_a[0].id);
+								
+								
+															//tarifa por dia
+															$('#tarifa-por-dia-edit-detalle').val(e.tarifa.tarifa_por_dia);
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+		
+		return false;
+		
+	});
+	
+	$('#select-tarifa-grupo-edit-detalle').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-grupo-edit-detalle').attr('value', id);
+	});
+	
+	$('#select-tarifa-codigo-edit-detalle').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-codigo-edit-detalle').attr('value', id);
+	});
+	
+	$('#select-tarifa-cobertura-edit-detalle').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-cobertura-edit-detalle').attr('value', id);
+	});
+	
+		$('#select-tarifa-vehiculo-edit-detalle').on('change',function(){
+		id = $(this).val();
+		$('#inp-tarifa-vehiculo-edit-detalle').attr('value', id);
+	});
+	
+	
+		$(document).on('click', '#add-tarifa-detalle-edit-detalle', function(){
+			id = $(this).attr('value');
+			id_tarifa = $(this).attr('data-id');
+			grupo = $('#inp-tarifa-grupo-edit-detalle').attr('value');
+			codigo = $('#inp-tarifa-codigo-edit-detalle').attr('value');
+			cobertura = $('#inp-tarifa-cobertura-edit-detalle').attr('value');
+			vehiculo = $('#inp-tarifa-vehiculo-edit-detalle').attr('value');
+			tarifa_por_dia = $('#tarifa-por-dia-edit-detalle').val();
+			
+			$.ajax({
+								url:  "/admin/actualizardetalle",
+								type: "GET",
+					   data:{id: id, id_tarifa: id_tarifa, grupo: grupo, codigo: codigo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
+							success: function(d){
+
+												$('#fila_edit_'+id).replaceWith('<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
+                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'">'+d.descripcion_grupo+'</td>'+
+                '<td class="td_codigo_actual" value="'+d.codigo+'">'+d.codigo+'</td>'+
+																'<td class="td_cobertura_actual" value="'+d.cobertura+'">'+d.cobertura+'</td>'+
+																'<td class="td_vehiculo_actual" value="'+d.descripcion+'">'+d.descripcion+'</td>'+
+																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'">'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+                '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+													   '<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+											     '</tr>');
+								
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+			
+			
+			
+			//Limpiamos
+			$('#select-tarifa-grupo-edit-detalle').html('');
+			$('#select-tarifa-codigo-edit-detalle').html('');
+			$('#select-tarifa-cobertura-edit-detalle').html('');
+			$('#select-tarifa-vehiculo-edit-detalle').html('');
+			$('#tarifa-por-dia-edit-detalle').val('');
+
+	});
+	
+		$(document).on('click', '#no-add-tarifa-detalle-edit-detalle', function(){
+			
+					$('#select-tarifa-grupo-edit-detalle').html('');
+			  $('#select-tarifa-codigo-edit-detalle').html('');
+		   $('#select-tarifa-cobertura-edit-detalle').html('');
+			  $('#select-tarifa-vehiculo-edit-detalle').html('');
+			  $('#tarifa-por-dia-edit-detalle').val('');
+
+					$('.error-tarifa-por-dia-edit-detalle').removeClass('has-error has-feedback');
+					$('.icon-tarifa-por-dia-edit-detalle').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+	});
+	
+	/**********************************************************************************************************************/
+	
+	
+	
+	//Actualizar tarifa--------
+	
+	$(document).on('click', '#inp-check-edit', function(){
 		if($(this).prop("checked") == true){
-				$('#inp-check_edit').attr('value', '1');
+				$('#inp-check-edit').attr('value', '1');
 		} else {
-				$('#inp-check_edit').attr('value', '0');
+				$('#inp-check-edit').attr('value', '0');
 		}
 });
 	
-	$(document).on('click', '#confirm-act-codigo', function(){
-			  id = $(this).attr('value');
-					nombre = $('#nombre_edit').val();
-					descripcion = $('#descripcion_edit').val();
-					estatus = $('#inp-check_edit').val();
+	$(document).on('click', '#add-tarifa-edit', function(){
 		
-					$.ajax({
-								url:  "/admin/actualizarcodigo",
+		 id = $(this).attr('value');
+			oficina = $('#select_oficina_edit').val();
+	 	fehca_inicio = $('#fecha_inicio_edit').val();
+		 fecha_fin = $('#fecha_fin_edit').val();
+		 estatus = $('#inp-check-edit').val();
+		
+		tabla_a = $('#listar_');
+		
+		$.ajax({
+								url:  "/admin/actualizartarifa",
 								type: "GET",
-								data:{id: id, nombre: nombre, descripcion: descripcion, estatus: estatus},
-								success: function(p){
-										
-									//Bolvemos a construir la fila
-        $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
-																'<td>'+p.descripcion+'</td>'+
-                '<td><span class="estatus_'+p.estatus+'"></span></td>'+
-               '<td>'+
-											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar grupo">'+
-																	'<span class="glyphicon glyphicon-edit"></span>'+
-														'</button>'+
-													'</td>'+
-													'<td>'+
-															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar grupo">'+
-																				'<span class="glyphicon glyphicon-remove"></span>'+
-																'</button>'+
-													'</td>'+
-											'</tr>');
-										
+								data:{id: id, oficina: oficina, fehca_inicio: fehca_inicio, fecha_fin: fecha_fin, estatus: estatus},
+								success: function(t){
 									
-										alertas("success","Código actualizado correctamente");
+									$('#fila_'+id).replaceWith('<tr id="fila_'+t.id+'">'+
+            '<td>'+t.id+'</td>'+
+												'<td>'+t.nombre+'</td>'+ 
+												'<td>'+t.fecha_inicio+'</td>'+
+												'<td>'+t.fecha_fin+'</td>'+
+												'<td><span class="estatus_'+t.estatus+'"></span></td>'+
+												'<td>'+
+											   '<button class="btn btn-sm btn-info editar-btn" value="'+t.id+'" title="Editar tarifa">'+
+																 '<span class="glyphicon glyphicon-edit"></span>'+
+														'</button>'+
+											'</td>'+
+											'<td>'+
+											  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+t.id+'" title="Eliminar tarifa">'+
+																					 '<span class="glyphicon glyphicon-remove"></span>'+
+													'</button>'+
+											'</td>'+
+									'</tr>');
+										
+										
+										alertas("success","Tarifa actualizada correctamente.");
 									
 									$('.estatus_0').text('Inactivo');
 									$('.estatus_0').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
+										
+									
+								$('#select_oficina_edit').html('');
+	 	     $('#fecha_inicio_edit').val('');
+		      $('#fecha_fin_edit').val('');
+									$('#body-tarifa-detalle-edit').html('');
+									
 									
 								},
 			
@@ -638,29 +1857,30 @@ $(document).on('click', '#inp-check_edit', function(){
 								}
 																
 					});
-					
-	});
-	
-
-	$(document).on('click', '#no-act-codigo', function(){
-		
-      $('.error-codigo-edit').removeClass('has-error has-feedback');
-						$('.icon-codigo-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
-
-      $('.error-descripcion-edit').removeClass('has-error has-feedback');
-						$('.icon-descripcion-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
-		
 	});
 	
 	
-		/*****************
-	------Validaciones para los codigos
+	
+	
+	$(document).on('click', '#no-add-tarifa-edit', function(){
+				$('#select_oficina_edit').html('');
+	 	 $('#fecha_inicio_edit').val('');
+		  $('#fecha_fin_edit').val('');
+				$('#body-tarifa-detalle-edit').html('');
+	});
+	
+	
+	
+	//Validaciones --------------------------------------------------------
+	
+	/*****************
+	------Validaciones al agregar tarifa
 	******************************************************************/
-	  $("#add-codigo").click(function () {
+	  $("#add-tarifa").click(function () {
 
-      if($("#nombre").val().length == 0){
-														$('.error-codigo').addClass('has-error has-feedback');
-							       $('.icon-codigo').addClass('glyphicon glyphicon-remove form-control-feedback');
+      if($("#select_oficina").val() == 0){
+														$('.error-oficina').addClass('has-error has-feedback');
+							       $('.icon-oficina').addClass('glyphicon glyphicon-remove form-control-feedback');
               return false;
 
       }  else {
@@ -668,11 +1888,26 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
-	  $("#add-codigo").click(function () {
+	
+	
+	  $("#add-tarifa").click(function () {
 
-      if($("#descripcion").val().length == 0){
-														$('.error-descripcion').addClass('has-error has-feedback');
-							       $('.icon-descripcion').addClass('glyphicon glyphicon-remove form-control-feedback');
+      if($("#fecha_inicio").val().length  == 0){
+              $('.error-fecha_inicio').addClass('has-error has-feedback');
+							       $('.icon-fecha_inicio').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+
+	
+	  $("#add-tarifa").click(function () {
+
+      if($("#fecha_fin").val().length  == 0){
+              $('.error-fecha_fin').addClass('has-error has-feedback');
+							       $('.icon-fecha_fin').addClass('glyphicon glyphicon-remove form-control-feedback');
               return false;
 
       }  else {
@@ -680,23 +1915,35 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
-	$("#nombre").focus(function () {
-      $('.error-codigo').removeClass('has-error has-feedback');
-						$('.icon-codigo').removeClass('glyphicon glyphicon-remove form-control-feedback');
-});
-	
-	$("#descripcion").focus(function () {
-      $('.error-descripcion').removeClass('has-error has-feedback');
-						$('.icon-descripcion').removeClass('glyphicon glyphicon-remove form-control-feedback');
-});
-	
-	
-//--Validaciones al editar codigo----------------
-	  $("#confirm-act-codigo").click(function () {
+	 
 
-      if($("#nombre_edit").val().length == 0){
-														$('.error-codigo-edit').addClass('has-error has-feedback');
-							       $('.icon-codigo-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+	
+	//cuanso se aga el foco en el input eliminamos lso errores
+	
+	$("#select_oficina").change(function () {
+      $('.error-oficina').removeClass('has-error has-feedback');
+});
+	
+	
+	
+	$("#fecha_inicio").focus(function () {
+      $('.error-fecha_inicio').removeClass('has-error has-feedback');
+						$('.icon-fecha_inicio').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$("#fecha_fin").focus(function () {
+      $('.error-fecha_fin').removeClass('has-error has-feedback');
+						$('.icon-fecha_fin').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+	/*****************
+	------Validaciones al agregar el detalle de la tarifa
+	******************************************************************/
+	  $("#add-tarifa-detalle").click(function () {
+
+      if($("#select-tarifa-grupo").val() == 0){
+														$('.error-tarifa-grupo').addClass('has-error has-feedback');
               return false;
 
       }  else {
@@ -704,11 +1951,24 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
-	  $("#confirm-act-codigo").click(function () {
+	
+	
+	  $("#add-tarifa-detalle").click(function () {
 
-      if($("#descripcion_edit").val().length == 0){
-														$('.error-descripcion-edit').addClass('has-error has-feedback');
-							       $('.icon-descripcion-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+      if($("#select-tarifa-codigo").val() == 0){
+														$('.error-tarifa-codigo').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+
+	
+	  $("#add-tarifa-detalle").click(function () {
+
+      if($("#select-tarifa-cobertura").val() == 0){
+														$('.error-tarifa-cobertura').addClass('has-error has-feedback');
               return false;
 
       }  else {
@@ -716,16 +1976,228 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
-	$("#nombre_edit").focus(function () {
-      $('.error-codigo-edit').removeClass('has-error has-feedback');
-						$('.icon-codigo-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	  $("#add-tarifa-detalle").click(function () {
+
+      if($("#select-tarifa-vehiculo").val() == 0){
+														$('.error-tarifa-vehiculo').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
 });
 	
-	$("#descripcion_edit").focus(function () {
-      $('.error-descripcion-edit').removeClass('has-error has-feedback');
-						$('.icon-descripcion-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+		  $("#add-tarifa-detalle").click(function () {
+
+      if($("#tarifa-por-dia").val().length  == 0){
+              $('.error-tarifa-por-dia').addClass('has-error has-feedback');
+							       $('.icon-tarifa-por-dia').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
 });
 	
+	
+	$("#select-tarifa-grupo").change(function () {
+      $('.error-tarifa-grupo').removeClass('has-error has-feedback');
+});
+	
+	$("#select-tarifa-codigo").change(function () {
+      $('.error-tarifa-codigo').removeClass('has-error has-feedback');
+});
+	
+	$("#select-tarifa-cobertura").change(function () {
+      $('.error-tarifa-cobertura').removeClass('has-error has-feedback');
+});
+	
+	$("#select-tarifa-vehiculo").change(function () {
+      $('.error-tarifa-vehiculo').removeClass('has-error has-feedback');
+});
+	
+	
+	$("#tarifa-por-dia").focus(function () {
+      $('.error-tarifa-por-dia').removeClass('has-error has-feedback');
+						$('.icon-tarifa-por-dia').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+		
+	
+	
+	/*****************
+	------Validaciones al editar tarifa
+	******************************************************************/
+	  $("#add-tarifa-edit").click(function () {
+
+      if($("#select_oficina_edit").val() == 0){
+														$('.error-oficina_edit').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	
+	
+	  $("#add-tarifa-edit").click(function () {
+
+      if($("#fecha_inicio_edit").val().length  == 0){
+              $('.error-fecha_inicio_edit').addClass('has-error has-feedback');
+							       $('.icon-fecha_inicio_edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+
+	
+	  $("#add-tarifa-edit").click(function () {
+
+      if($("#fecha_fin_edit").val().length  == 0){
+              $('.error-fecha_fin_edit').addClass('has-error has-feedback');
+							       $('.icon-fecha_fin_edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+
+	
+	$("#select_oficina_edit").change(function () {
+      $('.error-oficina_edit').removeClass('has-error has-feedback');
+});
+	
+	
+	
+	$("#fecha_inicio_edit").focus(function () {
+      $('.error-fecha_inicio_edit').removeClass('has-error has-feedback');
+						$('.icon-fecha_inicio_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$("#fecha_fin_edit").focus(function () {
+      $('.error-fecha_fin_edit').removeClass('has-error has-feedback');
+					 $('.icon-fecha_fin_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+
+/*****************
+	------Validaciones al agregar el detalle de la tarifa al editar
+	******************************************************************/
+	  $("#add-tarifa-detalle-edit").click(function () {
+
+      if($("#select-tarifa-grupo-edit").val() == 0){
+														$('.error-tarifa-grupo-edit').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	
+	
+	  $("#add-tarifa-detalle-edit").click(function () {
+
+      if($("#select-tarifa-codigo-edit").val() == 0){
+														$('.error-tarifa-codigo-edit').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+
+	
+	  $("#add-tarifa-detalle-edit").click(function () {
+
+      if($("#select-tarifa-cobertura-edit").val() == 0){
+														$('.error-tarifa-cobertura-edit').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	  $("#add-tarifa-detalle-edit").click(function () {
+
+      if($("#select-tarifa-vehiculo-edit").val() == 0){
+														$('.error-tarifa-vehiculo-edit').addClass('has-error has-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+
+		  $("#add-tarifa-detalle-edit").click(function () {
+
+      if($("#tarifa-por-dia-edit").val().length  == 0){
+              $('.error-tarifa-por-dia-edit').addClass('has-error has-feedback');
+							       $('.icon-tarifa-por-dia-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	
+	$("#select-tarifa-grupo-edit").change(function () {
+      $('.error-tarifa-grupo-edit').removeClass('has-error has-feedback');
+});
+	
+	$("#select-tarifa-codigo-edit").change(function () {
+      $('.error-tarifa-codigo-edit').removeClass('has-error has-feedback');
+});
+	
+	$("#select-tarifa-cobertura-edit").change(function () {
+      $('.error-tarifa-cobertura-edit').removeClass('has-error has-feedback');
+});
+	
+	$("#select-tarifa-vehiculo-edit").change(function () {
+      $('.error-tarifa-vehiculo-edit').removeClass('has-error has-feedback');
+});
+	
+	
+	$("#tarifa-por-dia-edit").focus(function () {
+      $('.error-tarifa-por-dia-edit').removeClass('has-error has-feedback');
+						$('.icon-tarifa-por-dia-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+/*****************
+	------Validaciones al agregar el detalle de la tarifa al editar el detalle
+	******************************************************************/
+
+	 $("#add-tarifa-detalle-edit-detalle").click(function () {
+
+      if($("#tarifa-por-dia-edit-detalle").val().length  == 0){
+              $('.error-tarifa-por-dia-edit-detalle').addClass('has-error has-feedback');
+							       $('.icon-tarifa-por-dia-edit-detalle').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+		
+	
+	$("#tarifa-por-dia-edit-detalle").focus(function () {
+      $('.error-tarifa-por-dia-edit-detalle').removeClass('has-error has-feedback');
+						$('.icon-tarifa-por-dia-edit-detalle').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+	
+
 	
 	
 	//Funciones para los alerts

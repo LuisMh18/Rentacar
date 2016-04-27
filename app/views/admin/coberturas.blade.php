@@ -1,7 +1,7 @@
 @extends('layout/plantilla')
 
 @section('title')
-<title>Admin | Plazas</title>
+<title>Admin | Coberturas</title>
 @show
 
 @section('scripts')
@@ -27,7 +27,7 @@
 			$('.flechita2').addClass('glyphicon glyphicon-menu-right');
 			$('.flechita3').addClass('glyphicon glyphicon-menu-right');
 		
-			$('.titular_seccion').text('Catálogo Plazas');
+			$('.titular_seccion').text('Catálogo Coberturas');
 		
 	});
 	
@@ -38,7 +38,7 @@
 
 <div class="seccion_tabla">
 <div class="agregar">
-	<button id="agregar-plaza" class="btn btn-primary" title="Agregar plaza">
+	<button id="agregar-cobertura" class="btn btn-primary" title="Agregar cobertura">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
@@ -46,7 +46,7 @@
 			<table id="listar_" class="tabla_catalogo">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Nombre</th>
+					<th>Cobertura</th>
 					<th>Estatus</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
@@ -60,28 +60,28 @@
 <div class="notifications top-right" data-html="true"></div>
     
 
-    <!--  Modal para agregar plazas  -->
-<div id="modal-add-plaza" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <!--  Modal para agregar cobertura  -->
+<div id="modal-add-cobertura" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
-               Agregar plaza
+               Agregar cobertura
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group error-plaza">
-																						<label for="nombre" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre" id="nombre" class="form-control" >
-																						<span class="icon-plaza"></span>
+																			<div class="form-group error-cobertura">
+																						<label for="cobertura" class="text-primary">Cobertura: </label>
+																				  <textarea type="text" name="cobertura" id="cobertura" class="form-control" ></textarea>
+																						<span class="icon-cobertura"></span>	
 																			</div>
 
-																		<label for="paterno" class="text-primary">Estatus: </label>
+																		<label for="estatus" class="text-primary">Estatus: </label>
 																		<div class="checkbox checkbox-activ check-w">
 																					 <span class="text-primary">Activo</span>
 																					<div class="txt-activ">
@@ -96,10 +96,10 @@
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-plaza" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-add-cobertura" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
-															<span id="add-plaza" class="btn btn-primary" data-dismiss="modal" >
+															<span id="add-cobertura" class="btn btn-primary" data-dismiss="modal" >
 																		Agregar
 															</span>
 													</div>
@@ -109,7 +109,7 @@
       </div>
     </div>
     
-        <!--  Modal para eliminar plaza  -->
+        <!--  Modal para eliminar cobertura  -->
 <div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -117,21 +117,21 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-trash"></span>
-               Eliminar plaza
+               Eliminar cobertura
             </h4>
           </div>
           <div class="modal-body body-modal">
 
-             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar esta plaza?</h3>
+             <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar esta cobertura?</h3>
                 
           </div>
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-plaza" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-add-cobertura" type="button" class="btn btn-danger" data-dismiss="modal">
 																	No
 															</button>
-															<span id="confirm-delete-plaza" class="btn btn-primary" data-dismiss="modal" >
+															<span id="confirm-delete-cobertura" class="btn btn-primary" data-dismiss="modal" >
 																		Si
 															</span>
 													</div>
@@ -141,25 +141,25 @@
       </div>
     </div>
     
-     <!--  Modal para editar plaza -->
-<div id="modal-edit-plaza" class="modal fade" data-keyboard="false" data-backdrop="static">
+     <!--  Modal para editar cobertura  -->
+<div id="modal-edit-cobertura" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-edit"></span>
-               Editar plaza
+               Editar cobertura
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group error-plaza-edit">
-																						<label for="nombre_edit" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
-																						<span class="icon-plaza-edit"></span>
+																			<div class="form-group error-cobertura-edit">
+																						<label for="cobertura_edit" class="text-primary">Cobertura: </label>
+																				<textarea type="text" name="cobertura_edit" id="cobertura_edit" class="form-control" ></textarea>
+																						<span class="icon-cobertura-edit"></span>	
 																			</div>
 
 																		<label for="paterno" class="text-primary">Estatus: </label>
@@ -177,10 +177,10 @@
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-act-plaza" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-act-cobertura" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
-															<span id="confirm-act-plaza" class="btn btn-primary" data-dismiss="modal" >
+															<span id="confirm-act-cobertura" class="btn btn-primary" data-dismiss="modal" >
 																		Actualizar
 															</span>
 													</div>
@@ -202,7 +202,7 @@
 <script>
 			$.ajax({
 							dataType: 'json',
-							url: "/admin/listaplazas",
+							url: "/admin/listacoberturas",
 							success: function (l) {
 							tabla_a = $('#listar_').DataTable({
 									"oLanguage": { 
@@ -250,12 +250,12 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre_plaza,
+																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].cobertura,
 																															'<span class="estatus_'+l[i].estatus+'"></span>',
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar plaza">'+
+																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar cobertura">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar plaza">'+
+																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar cobertura">'+
 																					            '<span class="glyphicon glyphicon-remove"></span>'+
 																					          '</button>',
 																													]);
@@ -307,15 +307,15 @@
 	
 	
 	
-		//Agregar plaza -------------
-	 $(document).on('click', '#agregar-plaza', function(){
-			$('#modal-add-plaza').modal({
+		//Agregar cobertura -------------
+	 $(document).on('click', '#agregar-cobertura', function(){
+			$('#modal-add-cobertura').modal({
       show: 'false',
     });
 		});
 	
-	$(document).on('click', '#add-plaza', function(){
-			nombre = $('#nombre').val();
+	$(document).on('click', '#add-cobertura', function(){
+			cobertura = $('#cobertura').val();
 	
 		if($('#inp-check').prop("checked") == true){
 					activo = 1;
@@ -326,21 +326,21 @@
 		tabla_a = $('#listar_');
 		
 		$.ajax({
-								url:  "/admin/agregarplaza",
+								url:  "/admin/agregarcobertura",
 								type: "POST",
-								data:{nombre: nombre, activo: activo},
+								data:{cobertura: cobertura, activo: activo},
 								success: function(p){
 									
 										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="hidden">'+p.created_at+'</span>'+p.nombre_plaza+'</td>'+
+												'<td><span class="hidden">'+p.created_at+'</span>'+p.cobertura+'</td>'+
 												'<td><span class="estatus_'+p.estatus+'"></span></td>'+
 												'<td>'+
-											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar plaza">'+
+											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar cobertura">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
 														'</button>'+
 											'</td>'+
 											'<td>'+
-											  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar plaza">'+
+											  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar cobertura">'+
 																		'<span class="glyphicon glyphicon-remove"></span>'+
 														'</button>'+
 											'</td>'+
@@ -353,11 +353,11 @@
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
 										
-										alertas("success","Plaza "+p.nombre_plaza+" agregada correctamente.");
+										alertas("success","Cobertura agregada correctamente.");
 										
 										//Limpiamos los campos
-									$('#nombre').val('');
-									$('#inp-check').prop("checked", false)
+									$('#cobertura').val('');
+									$('#inp-check').prop("checked", false);
 
 									
 									
@@ -372,14 +372,14 @@
 		
 	});
 	
-		$(document).on('click', '#no-add-plaza', function(){
-			 $('#nombre').val('');
+		$(document).on('click', '#no-add-cobertura', function(){
+			 $('#cobertura').val('');
 				$('#inp-check').prop("checked", false);
-			 $('.error-plaza').removeClass('has-error has-feedback');
-				$('.icon-plaza').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			 $('.error-cobertura').removeClass('has-error has-feedback');
+				$('.icon-cobertura').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
 	
-	//Eliminar plaza
+	//Eliminar cobertura
 	$(document).on('click', '.eliminar-btn', function(){
 			   id = $(this).val();
 
@@ -387,22 +387,22 @@
        show: 'false',
      });
 		
-				 $('#confirm-delete-plaza').attr('value', id);
+				 $('#confirm-delete-cobertura').attr('value', id);
 				
 	});
 	
-		$(document).on('click', '#confirm-delete-plaza', function(){
+		$(document).on('click', '#confirm-delete-cobertura', function(){
 			id = $(this).attr('value');
 
 			 $.ajax({
-								url:  "/admin/eliminarplaza",
+								url:  "/admin/eliminarcobertura",
 								type: "GET",
 								data:{id: id},
 								success: function(d){
 									if(d.p == 'Existe'){
-										 alertas("danger","La plaza "+d.plaza.nombre_plaza+" esta en uso.");
+										 alertas("danger","La cobertura esta en uso.");
 									} else {
-										alertas("success","Plaza eliminada correctamente");
+										alertas("success","Cobertura eliminada correctamente");
 										 $('#fila_'+d).remove();
 									}
 									
@@ -416,16 +416,16 @@
 					});
 	});
 	
-//Editar plaza
+//Editar cobertura
 	$(document).on('click', '.editar-btn', function(){
 			  id = $(this).attr('value');
 		
 					$.ajax({
-								url:  "/admin/editarplaza",
+								url:  "/admin/editarcobertura",
 								type: "GET",
 								data:{id: id},
 								success: function(e){
-									$('#nombre_edit').val(e.nombre_plaza);
+									$('#cobertura_edit').val(e.cobertura);
 
 									activo = e.estatus;
 									if(activo == 1){
@@ -444,15 +444,15 @@
 																
 					});
 					
-					$('#modal-edit-plaza').modal({
+					$('#modal-edit-cobertura').modal({
        show: 'false',
      });
 		
-				 $('#confirm-act-plaza').attr('value', id);
+				 $('#confirm-act-cobertura').attr('value', id);
 				
 	});
 	
-//Actualizar plaza
+//Actualizar cobertura
 $(document).on('click', '#inp-check_edit', function(){
 		if($(this).prop("checked") == true){
 				$('#inp-check_edit').attr('value', '1');
@@ -461,28 +461,28 @@ $(document).on('click', '#inp-check_edit', function(){
 		}
 });
 	
-	$(document).on('click', '#confirm-act-plaza', function(){
+	$(document).on('click', '#confirm-act-cobertura', function(){
 			  id = $(this).attr('value');
-					nombre = $('#nombre_edit').val();
+					cobertura = $('#cobertura_edit').val();
 					estatus = $('#inp-check_edit').val();
 		
 					$.ajax({
-								url:  "/admin/actualizarplaza",
+								url:  "/admin/actualizarcobertura",
 								type: "GET",
-								data:{id: id, nombre: nombre, estatus: estatus},
+								data:{id: id, cobertura: cobertura, estatus: estatus},
 								success: function(p){
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.nombre_plaza+'</td>'+
+                '<td><span class="hidden">'+p.created_at+'</span>'+p.cobertura+'</td>'+
                 '<td><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
-											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar plaza">'+
+											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar cobertura">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
 														'</button>'+
 													'</td>'+
 													'<td>'+
-															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar plaza">'+
+															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar cobertura">'+
 																				'<span class="glyphicon glyphicon-remove"></span>'+
 																'</button>'+
 													'</td>'+
@@ -508,10 +508,50 @@ $(document).on('click', '#inp-check_edit', function(){
 				
 	});
 	
-			$(document).on('click', '#no-act-plaza', function(){
-			 $('.error-plaza-edit').removeClass('has-error has-feedback');
-				$('.icon-plaza-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			$(document).on('click', '#no-act-cobertura', function(){
+			 $('.error-cobertura-edit').removeClass('has-error has-feedback');
+				$('.icon-cobertura-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
+	
+	
+	/*****************
+	------Validaciones para los grupos
+	******************************************************************/
+	  $("#add-cobertura").click(function () {
+
+      if($("#cobertura").val().length == 0){
+														$('.error-cobertura').addClass('has-error has-feedback');
+							       $('.icon-cobertura').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	$("#cobertura").focus(function () {
+      $('.error-cobertura').removeClass('has-error has-feedback');
+						$('.icon-cobertura').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	
+	//Validaciones al actualizar cobertura
+	  $("#confirm-act-cobertura").click(function () {
+
+      if($("#cobertura_edit").val().length == 0){
+														$('.error-cobertura-edit').addClass('has-error has-feedback');
+							       $('.icon-cobertura-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+	
+	$("#cobertura_edit").focus(function () {
+      $('.error-cobertura-edit').removeClass('has-error has-feedback');
+						$('.icon-cobertura-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
 	
 	
 	//Funciones para los alerts
@@ -521,47 +561,6 @@ function alertas(tipo,mensaje){
       type: tipo
     }).show();
   }
-	
-	
-	
-	/*****************
-	------Validaciones para las plazas
-	******************************************************************/
-	  $("#add-plaza").click(function () {
-
-      if($("#nombre").val().length == 0){
-														$('.error-plaza').addClass('has-error has-feedback');
-							       $('.icon-plaza').addClass('glyphicon glyphicon-remove form-control-feedback');
-              return false;
-
-      }  else {
-          return true;
-      }
-});
-	
-	$("#nombre").focus(function () {
-      $('.error-plaza').removeClass('has-error has-feedback');
-						$('.icon-plaza').removeClass('glyphicon glyphicon-remove form-control-feedback');
-});
-	
-	
-	//Validaciones al actualizar plaza
-	  $("#confirm-act-plaza").click(function () {
-
-      if($("#nombre_edit").val().length == 0){
-														$('.error-plaza-edit').addClass('has-error has-feedback');
-							       $('.icon-plaza-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
-              return false;
-
-      }  else {
-          return true;
-      }
-});
-	
-	$("#nombre_edit").focus(function () {
-      $('.error-plaza-edit').removeClass('has-error has-feedback');
-						$('.icon-plaza-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
-});
 	
 	
 	
