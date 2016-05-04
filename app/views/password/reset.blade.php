@@ -25,6 +25,34 @@
 				margin:0 auto;
 				padding-top:1em;
 			}
+			
+			.contenedor-principal{
+				width:90%;
+				margin:0 auto;
+					
+			}
+			
+			@media(min-width:620px){
+				.header{
+					padding-left:20%;
+				}
+				
+				 .contenedor-principal{
+						width:70%;
+
+					}
+			}
+			
+			@media(min-width:1000px){
+				.header{
+					padding-left:30%;
+				}
+				
+				 .contenedor-principal{
+						width:50%;
+
+					}
+			}
 
 
   </style>

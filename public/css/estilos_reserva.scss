@@ -93,21 +93,456 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 }
 
 .entrega{
-	background:red!important;
+	display: flex;
+	flex-direction: column;
+}
+
+.devolucion{
+	display: flex;
+	flex-direction: column;
 }
 
 .bloque1{
 	width:100%;
-	background:pink;
 	display: flex;
 	flex-direction: column;
-	.form-fecha{
-		width:220px;
-		background:green;
+
+	
+}
+
+
+
+	.tx-requerido{
+		display:flex;
+		align-items:center;
+		margin-bottom:.5em;
+		h3{
+			margin:0;
+			margin-right:.3em;
+			margin-bottom:.5em;
+			font-size:1em;
+			font-weight: bold;
+		}
+		span{
+			 color: #cc0101;
+    font-size: 16px;
+		}
+	}
+	
+
+
+
+.bloque2{
+	width:100%;
+	padding-left:.5em;
+	text-align:center;
+	h1{
+		color:#0099FF;
+		margin:0;
+		font-size:1em;
+	}
+	.hr{
+		margin:0;
+		border-bottom: 1px dotted #50514B;
+		width:50%;
+		margin:0 auto;
+		display:none;
+	}
+	
+	.hr-d{
+		margin:0;
+		border-bottom: 1px dotted #50514B;
+		width:50%;
+		margin:0 auto;
+		display:none;
+	}
+	
+	h4{
+		margin-top:.1em;
+		margin-bottom:.1em;
+		font-size:1em;
+		font-weight:bold;
+	}
+	
+	.datos-d{
+		display:flex;
+		flex-direction:column;
+		span{
+			font-size:.9em;
+		}
+	}
+	
+	.nombre_direcc, .nombre_cp, .nombre_cp-d, .nombre_direcc-d{
+		display:none;
 	}
 	
 }
 
-.dia_entrega{
-	background:blue;
+.nota2{
+	font-size:.9em;
+	margin-top:2em;
+}
+
+/*--- END articulo 1 y d entrega y devolucion*/
+
+
+/**
+---Tipo de utomovils
+************************************************/
+.tipo{
+  flex-direction:column;	
+}
+
+.form1{
+	width:100%;
+	border-bottom: solid 1px #CCC;
+	margin-bottom:.5em;
+}
+
+.tipo-carro{
+	display:flex;
+	margin-bottom:1em;
+	.radio{
+		width:100px;
+		margin:0;
+		padding:0;
+	}
+}
+
+.form2{
+	border-bottom: solid 1px #CCC;
+	margin-bottom:.5em;
+}
+
+.tipo-v{
+	display:flex;
+	margin-bottom:1em;
+	.radio{
+		width:100px;
+		margin:0;
+		padding:0;
+	}
+}
+
+.form3{
+	width:100%;
+	display:flex;
+	border-bottom:1px solid #CCC;
+	margin-top:.5em;
+	&:last-child{
+		border-bottom:0;
+	}
+	.c3{
+		width:50%;
+		background:white;
+		border-right: solid 1px #CCC;
+	}
+	.c4{
+		padding-left:.5em;
+		width:50%;
+		display:flex;
+		flex-direction:column;
+		span{
+			font-size:.9em;
+			font-weight:normal;
+			margin-bottom:.5em;
+		}
+	}
+}
+
+.radio-v{
+	font-weight:normal;
+	
+	display:flex;
+	input{
+		margin-left:.5em;
+	}
+}
+
+/**
+---Formulario del cliente
+************************************************/
+.form-ped{
+		margin-bottom:.5em;
+	box-shadow: 1px 1px 1px #eee;
+	width:100%;
+	border: solid 1px #CCC;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
+background: #fefefe; /* Old browsers */
+background: -moz-linear-gradient(top,  #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
+padding:.5em;
+	
+}
+
+	.dato1-p{
+		border-bottom: solid 1px #CCC;
+		width:100%;
+		display:flex;
+		flex-direction: column;
+		
+		.c_subdato1{
+			width:100%;
+			input{
+				width:100%;
+				margin-bottom:1em;
+			}
+		}
+		.c_subdato2{
+			width:100%;
+			input{
+				width:100%;
+				margin-bottom:1em;
+			}
+		}
+	}
+
+.dato-d{
+	margin-top:.5em;
+}
+
+.dato-d-p{
+	border-bottom:0;
+}
+
+#refrencia_d{
+	margin-bottom:.5em;
+	width:80%;
+}
+
+
+.c-img{
+	display:flex;
+}
+
+.div-img{
+	margin-left:.5em;
+}
+
+#email-c{
+	margin-bottom:0;
+}
+
+.txt-espere{
+	font-size:.7em;
+	margin-left:1em;
+	margin-bottom:.2em;
+}
+
+#img-gif{
+	display:none;
+}
+
+#txt-espere{
+	display:none;
+}
+
+#reservar, #reservar2{
+	display:none;
+}
+
+.reservar, #reservar, #reservar2{
+	margin-top:2em;
+	margin-bottom:2em;
+	border: solid 1px #CCC;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
+background: #fefefe; /* Old browsers */
+background: -moz-linear-gradient(top,  #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
+}
+
+
+
+//Ocultamos el bloque de la transmision y el formulario
+.transmision, .oculto, .form-ped{
+	display:none;
+}
+
+.txt-confirm-reserva{
+	 font-size:1.2em;
+}
+
+
+
+/*******
+ Estilos globales para los modales
+***********************************************/
+.header-modal{
+	background: #214878;
+	/* background: #58A2F6; */
+	color:white;
+	font-weight:normal;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.body-modal{
+	padding:1em 1.5em .5em 1.5em;
+}
+
+.form-modal{
+	width:100%;
+}
+
+.footer-modal{
+		display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+	-webkit-justify-content:space-around;
+      -ms-flex-pack:distribute;
+          justify-content:space-around;
+	button, span{
+		width:120px;
+	}
+
+}
+
+.check-w{
+	width:80px!important;
+}
+
+/*Texto de confirmacion de los modales*/
+.txt-delete-confirm{
+	font-size:1em;
+	font-weight: normal;
+}
+
+
+//Vista datos de la reserva del cliente----------------------------------------
+
+.table-d-xs{
+	   border: 1px solid #DDDDDD;
+				width: 60%;
+    margin: auto;
+    padding: .4em .3em .2em .3em;
+    background: #214878;
+}
+
+#body-det tr{
+    text-align:center;
+    font-size:.9em;
+    background:#fff;
+}
+
+
+
+.table-d-xs tbody tr td .rfc{
+						text-transform:uppercase;
+						color:black;
+						font-weight:normal;
+	}
+
+.section-reserva{
+	box-shadow:5px 5px 5px #fff!important;
+	margin-top:1em;
+}
+
+.table-de-ped{
+	width:80%!important;
+	margin-bottom:1em;
+}
+
+.t_datos-pedido{
+	margin:.5em 0 1em 0!important;
+}
+
+#imprimir{
+	margin-bottom:1em;
+}
+
+#regresar{
+	margin-bottom:2em;
+}
+
+.text-da{
+	font-size:1.2em;
+}
+
+.dato-p-1{
+	font-size:.9em;
+}
+
+.conf-pedido{
+	 font-size:1em;
+}
+
+
+@media(min-width:600px){
+	
+		
+.entrega{
+	display: flex;
+	flex-direction: row;
+}
+
+.devolucion{
+	display: flex;
+	flex-direction: row;
+}
+
+.bloque1{
+	width:100%;
+	display: flex;
+	flex-direction:column;
+
+	
+}
+
+	
+		.dato1-p{
+		border-bottom: solid 1px #CCC;
+		width:100%;
+		display:flex;
+		flex-direction: row;
+		
+		.c_subdato1{
+			width:50%;
+			input{
+				width:80%;
+				margin-bottom:1em;
+			}
+		}
+		.c_subdato2{
+			width:50%;
+			input{
+				width:80%;
+				margin-bottom:1em;
+			}
+		}
+	}
+
+	
+}
+
+
+
+
+@media(min-width:800px){
+	
+.section{
+	margin-top:.5em!important;
+ width:80%;
+	margin:0 auto;
+	background:white;
+}
+
+
+.section_contenidos{
+	width:100%;
+	margin:0 auto;
+	margin-top:5em;
+	h1{
+		    font-size: 22px;
+      font-weight: bold;
+						margin: 0;
+      padding-bottom: 8px;
+	 }
+	
+}
+	
 }

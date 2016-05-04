@@ -7,7 +7,7 @@
 	{{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
 	{{ HTML::style('css/bootstrap-select.min.css') }}
 	{{ HTML::style('lib/bootstrap-notify/bootstrap-notify.css') }}
-	{{ HTML::style('css/estilos.css') }}
+	{{ HTML::style('css/estilos_reserva.css') }}
 	{{ HTML::Script('js/jquery.js') }}
 	{{ HTML::Script('js/bootstrap.min.js') }}
 	{{ HTML::Script('js/moment.min.js') }}
@@ -17,7 +17,7 @@
 	{{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
 </head>
 <body>
-	<div class="container section">
+	<div class="container section section-reserva">
 	
 			 <!--Alertas-->
 <div class="notifications top-right" data-html="true"></div>

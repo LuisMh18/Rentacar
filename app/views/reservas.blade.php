@@ -7,8 +7,8 @@
 	{{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
 	{{ HTML::style('css/bootstrap-select.min.css') }}
 	{{ HTML::style('lib/bootstrap-notify/bootstrap-notify.css') }}
-	<!--{{ HTML::style('css/estilos_reserva.css') }}-->
-	{{ HTML::style('css/estilos.css') }}
+	{{ HTML::style('css/estilos_reserva.css') }}
+	<!--{{ HTML::style('css/estilos.css') }}-->
 	{{ HTML::Script('js/jquery.js') }}
 	{{ HTML::Script('js/bootstrap.min.js') }}
 	{{ HTML::Script('js/moment.min.js') }}
