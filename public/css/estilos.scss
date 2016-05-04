@@ -40,6 +40,8 @@ body{
     padding-bottom: 20px;
 	}
 	
+	
+	
 	.section_articulos{
 		width:100%;
 		display: -webkit-box;
@@ -56,6 +58,17 @@ body{
 
 .contenidos{
 	width:75%;
+}
+
+
+	//Gif cargando cuando se buscan los vehiculos------------------------
+.div-img-gif{
+	display:none;
+}
+
+.txt-cargando-vehiculos{
+	font-size:.9em;
+	margin-left:.5em;
 }
 
 
@@ -109,7 +122,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 .bloque2{
 	width:50%;
 	padding-left:.5em;
-	text-align:left;
+	text-align:center;
 	h1{
 		color:#0099FF;
 		margin:0;
@@ -118,14 +131,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	.hr{
 		margin:0;
 		border-bottom: 1px dotted #50514B;
-		width:160px;
+		width:50%;
+		margin:0 auto;
 		display:none;
 	}
 	
 	.hr-d{
 		margin:0;
 		border-bottom: 1px dotted #50514B;
-		width:160px;
+		width:50%;
+		margin:0 auto;
 		display:none;
 	}
 	
@@ -139,6 +154,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	.datos-d{
 		display:flex;
 		flex-direction:column;
+		span{
+			font-size:.9em;
+		}
 	}
 	
 	.nombre_direcc, .nombre_cp, .nombre_cp-d, .nombre_direcc-d{
@@ -196,6 +214,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 .form3{
 	width:100%;
 	display:flex;
+	border-bottom:1px solid #CCC;
+	margin-top:.5em;
+	&:last-child{
+		border-bottom:0;
+	}
 	.c3{
 		width:50%;
 		background:white;
@@ -211,6 +234,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 			font-weight:normal;
 			margin-bottom:.5em;
 		}
+	}
+}
+
+.radio-v{
+	font-weight:normal;
+	
+	display:flex;
+	input{
+		margin-left:.5em;
 	}
 }
 
@@ -268,7 +300,37 @@ padding:.5em;
 }
 
 
-#reservar{
+.c-img{
+	display:flex;
+}
+
+.div-img{
+	margin-left:.5em;
+}
+
+#email-c{
+	margin-bottom:0;
+}
+
+.txt-espere{
+	font-size:.7em;
+	margin-left:1em;
+	margin-bottom:.2em;
+}
+
+#img-gif{
+	display:none;
+}
+
+#txt-espere{
+	display:none;
+}
+
+#reservar, #reservar2{
+	display:none;
+}
+
+.reservar, #reservar, #reservar2{
 	margin-top:2em;
 	margin-bottom:2em;
 	border: solid 1px #CCC;
@@ -287,6 +349,105 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	display:none;
 }
 
+.txt-confirm-reserva{
+	 font-size:1.2em;
+}
+
+
+//Vista datos de la reserva del cliente----------------------------------------
+.table-d-xs{
+	   border: 1px solid #DDDDDD;
+				width: 60%;
+    margin: auto;
+    padding: .4em .3em .2em .3em;
+    background: #214878;
+}
+
+#body-det tr{
+    text-align:center;
+    font-size:.9em;
+    background:#fff;
+}
+
+
+
+.table-d-xs tbody tr td .rfc{
+						text-transform:uppercase;
+						color:black;
+						font-weight:normal;
+	}
+
+.section-reserva{
+	box-shadow:5px 5px 5px #fff!important;
+	margin-top:1em;
+}
+
+.table-de-ped{
+	width:80%!important;
+	margin-bottom:1em;
+}
+
+.t_datos-pedido{
+	margin:.5em 0 1em 0!important;
+}
+
+#imprimir{
+	margin-bottom:1em;
+}
+
+#regresar{
+	margin-bottom:2em;
+}
+
+.text-da{
+	font-size:1.2em;
+}
+
+.dato-p-1{
+	font-size:.9em;
+}
+
+
+/* Vista de las reservas del admin-----*/
+.detalle-cliente{
+	cursor:pointer;
+}
+
+/*modal detalle de la reserva*/
+.m-title{
+	font-size:.9em;
+	margin:0;
+}
+
+.body-modal-p{
+	padding:0;
+}
+
+.navegacion-p{
+	margin-bottom:0;
+	li{
+		font-size:.9em;
+	}
+}
+
+.table-pd tbody tr td{
+	font-size:.9em!important;
+}
+
+#table-d-c{
+	display:none;
+}
+
+.enlace-active{
+	color:blue;
+	text-decoration:underline;
+}
+
+#v_foto{
+	cursor:pointer;
+	color:blue;
+}
+
 /************
 --- Dashboard Admin------
 ******************************************************/
@@ -299,9 +460,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 
 
 .div_acordeon{
+	position:fixed;
+	left:-100%;
+}
+
+.div_acordeon-md{
+	display:none;
+}
+
+.div_acordeon, .div_acordeon-md{
 	background: #214878;
-	width:18%;
+	width:80%;
+	//min-width:210px;
 	height:100%;
+	z-index:99;
+	//display:none;
 	
 
 #acordeon {
@@ -431,12 +604,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 
 }
 
+
+
+
 .principal_dashboard{
 		background: rgb(247, 247, 247);
-	 height:100%;
-	 width:82%;
+	 //height:100%;----------------------------------
+	 width:100%;
+}
+	
+.menu_admin{
+	display:none;
+}
+
 	.header_dashboard{
-		 padding-right:40px;
 	 	height:8%;
 		 background:#fff;
 	 	box-shadow:0px 0px 10px  #D8D8D8;
@@ -451,15 +632,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 		.titular_seccion{
 			color: #2996cc;
 			line-height:50px;
-			width:35%;
+			width:70%;
 			margin:0;
+			font-size:1.1em;
+			background: rgb(247, 247, 247);
+			padding-left:.5em;
 		}
 		
 
 		
 	}
 
+.menu_admin2{
+	display:flex;
+	align-items: center;
+	margin-left:70px;
+	font-size:1.5em;
 }
+
+.c-header{
+	width:220px;
+	display:flex;
+	justify-content: space-between;
+}
+
+#mostrar-menu{
+	cursor:pointer;
+	&:hover{
+		color: #337ab7;
+	}
+}
+
+.menu-oculto{
+	width:40px;
+	font-size:2em;
+	display:flex;
+	align-items: center;
+}
+
 
 .section_dashboard{
 	width:100%;
@@ -467,42 +677,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 
 .contenido_dashboard{
 	width:100%;
-	height:100%;
+	//height:100%;------------------------------
 }
-
-.f_admin{
-	 width:82%;
-		padding-top:0;
-	 padding-bottom:.5em;
-	 position:absolute;
-	 bottom:0;
-	 text-align: center;
-		background:white;
-	small{
-		width:100%;
-		border-top:0;
-		color: #333;
-		font-size:.8em;
-	}
-}
-
 /*Totales dashboard----*/
 .seccion_1{
 	position:absolute;
 	top:10%;
-	width:82%;
+	width:100%;
 	padding:1em 1em 1em 2em;
-	display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+}
 
-	.t_cantidad{
+.dos_section{
+	width:100%;
+}
+
+.section-cuerpo-c{
+	margin-bottom:1em;
+	//width:60%!important;
+}
+
+.section-contenedor{
+	width:100%;
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding:1em;
+}
+
+.t_cantidad{
 		background:white;
-		width:300px;
+		width:250px;
 		text-align:center;
 		border-radius:5px 0px 5px 0px;
 		box-shadow:0px 0px 10px #D8D8D8;
+		margin-bottom:.5em;
 		h3{
 		 font-size:1.2em;
 			color: #2996cc;
@@ -511,18 +719,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 		}
 		.caja{
 			background:#2996cc;
-			padding:2em 0;
+			padding:1em 0;
 			margin-bottom:2em;
 			span{
 				color:#fff;
-				font-size:3em;
+				font-size:2em;
 			}
 		}
 	}
 	.t_totales{
-		margin-left:8%;
 		background:white;
-		width:300px;
+		width:250px;
 		text-align:center;
 		border-radius:5px 0px 5px 0px;
 		box-shadow:0px 0px 10px #D8D8D8;
@@ -534,19 +741,55 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 		}
 		.caja{
 			background:#4ab100;
-			padding:2em 0;
+			padding:1em 0;
 			margin-bottom:2em;
 			span{
 				color:#fff;
-				font-size:3em;
+				font-size:2em;
 			}
 		}
 	}
+
+/*********
+Footer----
+***********************/
+.f_admin{
+	 width:100%;
+		padding-top:0;
+	 padding-bottom:.5em;
+	 position:absolute;
+	 bottom:0;
+	 text-align: center;
+		background:white;
+	box-shadow:0px 0px 10px  #D8D8D8;
+	small{
+		width:100%;
+		border-top:0;
+		color: #333;
+		font-size:.8em;
+	}
 }
 
-/************
-Catalogo sucursales----------
-****************************************/
+
+/*--------------
+Estilos para las tablas
+**************************************/
+.seccion_sucursal-admin{
+	max-height:180px;
+	overflow-y: scroll;
+}
+
+.seccion_sucursal{
+	max-height:490px;
+	overflow-y: scroll;
+}
+
+
+	.cabecero{
+		display:none;
+	}
+
+
 .seccion_tabla{
 	box-shadow:0px 0px 10px #D8D8D8;
 		border-radius:5px;
@@ -564,8 +807,8 @@ Catalogo sucursales----------
           justify-content:flex-end;
 		button{
 			position:absolute;
-			top:0;
-			right:0;
+			top:-3;
+			right:-20;
 		 margin:.5em 2em .5em 0;
 			
 		}
@@ -599,10 +842,21 @@ Catalogo sucursales----------
 		font-size:.8em;
 		padding:.2em .5em;
 		border: 1px solid #ddd;
+		display:block;
 	}
+	
+		#body-tarifa-detalle tr td{
+		 display:block;
+	}
+	
+		#body-tarifa-detalle-edit tr td{
+		 display:block;
+	}
+	
 
 	
 }
+
 
 /*******
  Estilos globales para los modales
@@ -648,23 +902,6 @@ Catalogo sucursales----------
 }
 
 
-/*---- Modal agregar gerente------*/
-.datos1, .datos2{
-	 display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-	-webkit-box-pack:justify;
-  -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
-          justify-content:space-between;
-	
-	.form-group{
-		width:47%;
-	}
-	
-}
-
 /*modal para agregar plazas*/
 .checkbox-activ{
 	width:15%;
@@ -682,47 +919,51 @@ Catalogo sucursales----------
 	}
 }
 
-/*--- Modal para agregar sucursal-----*/
 
-.dialog-sucursal{
-	width:60%;
-	margin-top:2em;
-	
-}
-
-.datos1-s{
-	width:100%;
+.tipo-carro-a{
 	display:flex;
-	justify-content:space-between;
-	.form-group{
-		width:31%;
-		.agrupar{
-			width:100%;
-			display:flex;
-			select{
-				margin-right:5px;
-			}
+	margin-bottom:1em;
+	.radio{
+		width:100px;
+		margin:0;
+		padding:0;
+		margin-left: .2em;
+		label{
+			font-size:.8em;
 		}
 	}
 }
 
 
-.btn-add-n{
-	 height: 25px;
-  margin-top: 3px;
-	 font-size:10px;
+.foto-p{
+	color: #31708f;
+}
+
+.foto-p:hover{
+	color: #337ab7;
+	cursor:pointer;
+}
+
+.txt-foto-actual{
+	cursor:pointer;
+		&:hover{
+			color:blue;
+			}
 }
 
 
-/*Modal para agregar nuevas plazas en las oficinas*/
-.datos-plaza{
-		.agrupar{
-			width:100%;
-			display:flex;
-			select{
-				margin-right:5px;
-			}
-		}
+/*---- Modal agregar gerente------*/
+.datos1, .datos2{
+	 display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+	 flex-direction: column;
+	
+	.form-group{
+		width:100%;
+	}
+	
 }
 
 
@@ -740,6 +981,39 @@ Catalogo sucursales----------
 .hidden-error-p-actual{
 	display:none;
 }
+
+
+/*--- Modal para agregar sucursal-----*/
+
+.dialog-sucursal{
+	width:90%;
+	margin-top:2em;
+	
+}
+
+.datos1-s{
+	width:100%;
+	display:flex;
+	flex-direction: column;
+	.form-group{
+		width:100%;
+		.agrupar{
+			width:100%;
+			display:flex;
+			select{
+				margin-right:5px;
+			}
+		}
+	}
+}
+
+
+.btn-add-n{
+	 height: 25px;
+  margin-top: 3px;
+	 font-size:10px;
+}
+
 
 /*Tabla de los telefonos de las sucursales*/
 .tabla-telefonos{
@@ -769,17 +1043,19 @@ Catalogo sucursales----------
 	font-size:.8em;
 }
 
+
 /*Parte donde se van agregando los telefono al agregar sucursal*/
 .content-t{
 	display:flex;
+	flex-direction: column;
 }
 
 .form-textarea{
-	width:50%;
+	width:100%;
 }
 
 .contenedor-tel-add{
-	width:50%;
+	width:100%;
 	padding:0 1em;
 	max-height:120px;
 	overflow-y: scroll;
@@ -788,13 +1064,12 @@ Catalogo sucursales----------
 .content-add-t{
 	display:flex;
 	align-items: center;
+	justify-content: center;
 	margin-bottom:.2em;
 	margin-top:1em;
 	h3{
 		font-size:.9em;
 		margin:0;
-		margin-right:.5em;
-		margin-left:5em;
 	}
 	.btn-add-t, .btn-add-t-s{
 		height:20px;
@@ -857,14 +1132,6 @@ Catalogo sucursales----------
 		}
 	}
 
-/**********
- Overflow para la vista de las sucursales
-***********************************************/
-.seccion_sucursal{
-	max-height:480px;
-	overflow-y: scroll;
-}
-
 
 /*-- Tablita editar telefonos*/
 .table-tel-edit{
@@ -902,43 +1169,14 @@ Catalogo sucursales----------
 }
 
 
-/*-- Modal para ver la foto del producto*/
-// enlace
-.foto-p{
-	color: #31708f;
-}
-
-.foto-p:hover{
-	color: #337ab7;
-	cursor:pointer;
-}
-
-.body-modal-foto{
-}
-
-.content-foto{
-	width:90%;
-	margin:0 auto;
-}
-
-.footer-modal-foto{
-	display:flex;
-}
-
-.modal-content-foto{
-	width:60%;
-	margin:0 auto;
-}
-
-
 /****
  Modal para agregar tarifas------
 ******************************************/
 .datos1-tarifa{
 	display:flex;
-	justify-content:space-between;
+	flex-direction: column;
 	.form-control{
-		width:180px;
+		width:100%;
 	}
 }
 
@@ -950,8 +1188,7 @@ Catalogo sucursales----------
 	width:100%;
 }
 
-//Tablita tarifa detalle---
-
+/*--- Tablita tarifa detalle  */
 .datos1-tarifa-detalle{
 	display:flex;
 	flex-direction: column;
@@ -999,9 +1236,6 @@ Catalogo sucursales----------
 	
 }
 
-.td_cobertura, .td_cobertura_actual, .td_cobertura_nuevo{
-	max-width:180px;
-}
 
 #body-tarifa-detalle-edit tr td{
 	padding:.5em;
@@ -1015,6 +1249,7 @@ Catalogo sucursales----------
 .btn-act-t-d{
 	width:135px!important;
 }
+
 
 /*Texto de error en el campo file si no se agrega la imagen*/
 .error-add-image{
@@ -1033,3 +1268,407 @@ Catalogo sucursales----------
 			}
 }
 
+.error-vehiculo-tipo{
+	color: #a94442;
+}
+
+/*--Tamaño fijo de algunos th*/
+.w{
+	width:100px;
+}
+
+.w-g{
+	width:230px;
+}
+
+/*-- Modal para ver la foto del producto*/
+// enlace
+
+.content-foto{
+	width:90%;
+	margin:0 auto;
+}
+
+.footer-modal-foto{
+	display:flex;
+}
+
+.modal-content-foto{
+	width:60%;
+	margin:0 auto;
+}
+
+
+/****************
+Puntos de corte****************************************/
+@media(min-width:450px){
+	
+	.header_dashboard{
+		.titular_seccion{
+			width:50%;
+			margin-right:20%!important;
+
+		}	
+}
+
+.t_cantidad{
+		width:160px;
+		h3{
+		}
+		.caja{
+			span{
+				font-size:1.5em;
+			}
+		}
+	}
+	.t_totales{
+		margin-left:8%;
+		width:160px;
+		h3{
+		}
+		.caja{
+			span{
+				font-size:1.5em;
+			}
+		}
+	}
+	
+.seccion_sucursal-admin{
+	max-height:320px;
+}
+	
+.tipo-carro-a{
+	.radio{
+		label{
+			font-size:.9em;
+		}
+	}
+}
+	
+}//end 450px
+
+
+@media(min-width:500px){
+.div_acordeon{
+		width:50%;
+
+	}
+	
+	.t_cantidad{
+		width:190px;
+	}
+	.t_totales{
+		margin-left:8%;
+		width:190px;
+	}
+	
+	.tipo-carro-a{
+	.radio{
+		label{
+			font-size:1em;
+		}
+	}
+}
+	
+.datos1, .datos2{
+	 flex-direction: row;
+	-webkit-box-pack:justify;
+  -webkit-justify-content:space-between;
+      -ms-flex-pack:justify;
+          justify-content:space-between;
+	
+	.form-group{
+		width:47%;
+	}
+	
+}
+
+	
+	
+	
+}//end 500
+
+@media(min-width:600px){
+	 .header_dashboard{
+		.titular_seccion{
+			width:30%;
+			margin-right:40%!important;
+
+		}	
+}
+	
+.t_cantidad{
+		width:220px;
+	}
+	.t_totales{
+		margin-left:8%;
+		width:220px;
+	}
+	
+	//modal para agregar sucursal
+.datos1-s{
+	width:100%;
+	display:flex;
+	flex-direction: row;
+	justify-content:space-between;
+	.form-group{
+		width:31%;
+		.agrupar{
+			width:100%;
+			display:flex;
+			select{
+				margin-right:5px;
+			}
+		}
+	}
+}
+	
+	
+.content-t{
+	display:flex;
+	flex-direction: row;
+}
+
+.form-textarea{
+	width:50%;
+}
+
+.contenedor-tel-add{
+	width:50%;
+	padding:0 1em;
+	max-height:120px;
+	overflow-y: scroll;
+}
+	
+.datos1-tarifa{
+	display:flex;
+	flex-direction: row;
+	justify-content:space-between;
+	.form-control{
+		width:130px;
+	}
+}
+	
+
+}//end 600
+
+@media(min-width:620px){
+.div_acordeon{
+		width:40%;
+
+	}
+	
+}
+
+
+@media(min-width:700px){
+	 .header_dashboard{
+		.titular_seccion{
+			width:30%;
+			margin-right:50%!important;
+
+		}	
+}
+	
+.t_cantidad{
+		width:250px;
+		h3{
+		}
+		.caja{
+			span{
+				font-size:2em;
+			}
+		}
+	}
+	.t_totales{
+		margin-left:8%;
+		width:250px;
+		h3{
+		}
+		.caja{
+			span{
+				font-size:2em;
+			}
+		}
+	}
+	
+	.cabecero{
+		display:table-cell;
+	}
+	
+	.txt-escondido{
+		display:none;
+	}
+	
+	#listar_ tbody tr td{
+			display:table-cell;
+	}
+	
+		#table-x-y #body-tarifa-detalle tr td{
+			display:table-cell;
+	}
+	
+		#table-x #body-tarifa-detalle-edit tr td{
+			display:table-cell;
+	}
+	
+	.section-cuerpo-c{
+	 box-shadow:0px 0px 10px #D8D8D8;
+		border-radius:5px;
+	 width:90%;
+		
+	}
+	
+.seccion_sucursal-admin{
+	max-height:330px;
+}
+	
+.datos1-tarifa{
+	.form-control{
+		width:160px;
+	}
+}
+	
+.td_cobertura, .td_cobertura_actual, .td_cobertura_nuevo{
+	max-width:180px;
+}
+	
+
+}//end 700
+
+@media(min-width:800px){
+	.header_dashboard{
+		.titular_seccion{
+			width:30%;
+			margin-right:60%!important;
+
+		}	
+}
+	
+.section-cuerpo-c{
+	 width:80%;
+		
+	}
+	
+	.datos1-tarifa{
+	.form-control{
+		width:180px;
+	}
+}
+	
+}//end 800px
+
+
+@media(min-width:900px){
+	
+	.header_dashboard{
+		.titular_seccion{
+			width:30%;
+			padding-left:.5em;
+			margin-right:0!important;
+		}
+		
+		
+		
+	}
+
+.div_acordeon{
+	display: none;
+}
+	
+	
+	//Menu pantallas grandes----
+.div_acordeon-md{
+	display:block;
+	width:25%;
+}
+	
+	
+	.menu_admin2{
+		display:none;
+	}
+	
+	.menu_admin{
+		display:block;
+		width:300px;
+		padding-right:2em;
+	}
+	
+	.menu-oculto{
+		display:none;
+	}
+	
+	.seccion_1{
+		width:75%;
+	}
+	
+	/*------------*/
+
+	
+	.section-cuerpo-c{
+	 width:93%;
+		
+	}
+	
+	.f_admin{
+		width:75%;
+	}
+	
+	
+	.principal_dashboard{
+		width:75%;
+		overflow: hidden;
+	}
+	
+	
+	
+}
+	
+@media(min-width:1100px){
+	
+	.header_dashboard{
+		.titular_seccion{
+			width:25%;
+		}
+		
+	}
+	
+	
+	//Menu pantallas grandes----
+
+.div_acordeon-md{
+	width:20%;
+}
+	
+	
+	
+	.seccion_1{
+		width:80%;
+	}
+	
+	/*------------*/
+	
+	.section-cuerpo-c{
+	 width:70%;
+		
+	}
+	
+	.f_admin{
+		width:80%;
+	}
+	
+	
+	
+	.principal_dashboard{
+		width:80%;
+	}
+	
+	
+.dialog-sucursal{
+	width:60%;
+	
+}
+	
+	
+	
+}//end 1100

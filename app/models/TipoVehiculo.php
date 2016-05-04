@@ -6,6 +6,14 @@ class TipoVehiculo extends Eloquent{
 	public function tarifaDetalles(){
 		return $this->hasMany('TarifaDetalle');
 	}
+	
+		public function reservas(){
+		return $this->hasMany('Reserva');
+	}
+	
+	public function codigo(){
+		return $this->belongsTo('Codigo');
+	}
 
 
 	

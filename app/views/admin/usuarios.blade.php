@@ -36,20 +36,20 @@
 
 @section('content')
 
-<div class="seccion_tabla">
+<div class="seccion_tabla seccion_sucursal">
 <div class="agregar">
 	<button id="agregar-usuario" class="btn btn-primary" title="Agregar usuario">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
 	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Usuario</th>
-					<th>Email</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Usuario</th>
+					<th class="cabecero">Email</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -283,8 +283,8 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].usuario,
-																															l[i].email,
+																															'<span class="text-info txt-escondido">Usuario: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].usuario,
+																															'<span class="text-info txt-escondido">Email: </span>'+l[i].email,
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -374,8 +374,8 @@
 									} else {
 										
 												nueva_fila = '<tr id="fila_'+p.id+'">'+
-														'<td><span class="hidden">'+p.created_at+'</span>'+p.usuario+'</td>'+
-														'<td>'+p.email+'</td>'+
+														'<td><span class="text-info txt-escondido">Usuario: </span><span class="hidden">'+p.created_at+'</span>'+p.usuario+'</td>'+
+														'<td><span class="text-info txt-escondido">Email: </span>'+p.email+'</td>'+
 														'<td>'+
 																'<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar usuario">'+
 																			'<span class="glyphicon glyphicon-edit"></span>'+
@@ -593,8 +593,8 @@
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.usuario+'</td>'+
-																'<td>'+p.email+'</td>'+
+                '<td><span class="text-info txt-escondido">Usuario: </span><span class="hidden">'+p.created_at+'</span>'+p.usuario+'</td>'+
+																'<td><span class="text-info txt-escondido">Email: </span>'+p.email+'</td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar usuario">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+

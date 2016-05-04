@@ -15,6 +15,7 @@ Route::get('/', function() {
 	
 			$sucursal = DB::table('sucursal')
 													->select('id', 'nombre_sucursal')
+													->orderBy('nombre_sucursal', 'ASC')
 													->get();																						
 					
 	
@@ -34,6 +35,9 @@ Route::controller('admin', 'AdminController');
 
 Route::controller('password', 'RemindersController');
 
+Route::get('confirmar/datosdelpedido/{id}', 'AdminController@datosdelpedido');
+
+Route::get('confirmar/imprimir/{id}', 'AdminController@imprimir');
 
 Route::get('registrar', function(){
 	$usuario = new Usuario;

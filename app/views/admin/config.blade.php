@@ -61,16 +61,16 @@
 	</button>
 </div>
 	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Id</th>
-					<th>Oficna</th>
-					<th>Fecha inicio</th>
-					<th>Fecha fin</th>
-					<th>Estatus</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Id</th>
+					<th class="cabecero">Oficna</th>
+					<th class="cabecero">Fecha inicio</th>
+					<th class="cabecero">Fecha fin</th>
+					<th class="cabecero">Estatus</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -142,18 +142,18 @@
 																		<div class="seccion_tabla">
 																				
 																					<div class="tabla-sucursal">
-																							<table class="tabla_detalletarifa">
+																							<table id="table-x-y" class="tabla_detalletarifa table-striped">
 																							<div class="thead-detalle">
 																								<span class="txt-detalle">Detalle</span>
 																							</div>
 																							<thead class="thead-detallet">
 																								<tr>
-																									<th>Grupo</th>
-																									<th>Código</th>
-																									<th>Cobertura</th>
-																									<th>Vehículo</th>
-																									<th>Tarifa por día</th>
-																									<th>Eliminar</th>
+																									<th class="cabecero">Grupo</th>
+																									<th class="cabecero">Código</th>
+																									<th class="cabecero">Cobertura</th>
+																									<th class="cabecero">Vehículo</th>
+																									<th class="cabecero">Tarifa por día</th>
+																									<th class="cabecero">Eliminar</th>
 																								</tr>														
 																							</thead>
 																							<tbody id="body-tarifa-detalle"></tbody>
@@ -358,7 +358,7 @@
 																		<div class="seccion_tabla">
 																				
 																					<div class="tabla-sucursal">
-																							<table class="tabla_detalletarifa">
+																							<table id="table-x" class="tabla_detalletarifa table-striped">
 																							<div class="thead-detalle">
 																								<span class="txt-detalle">Detalle</span>
 																							</div>
@@ -366,13 +366,13 @@
 																							<input type="text" id="id_tarifa" value="" class="hidden">
 																							<thead class="thead-detallet">
 																								<tr>
-																									<th>Grupo</th>
-																									<th>Código</th>
-																									<th>Cobertura</th>
-																									<th>Vehículo</th>
-																									<th>Tarifa por día</th>
-																									<th>Editar</th>
-																									<th>Eliminar</th>
+																									<th class="cabecero">Grupo</th>
+																									<th class="cabecero">Código</th>
+																									<th class="cabecero">Cobertura</th>
+																									<th class="cabecero">Vehículo</th>
+																									<th class="cabecero">Tarifa por día</th>
+																									<th class="cabecero">Editar</th>
+																									<th class="cabecero">Eliminar</th>
 																								</tr>														
 																							</thead>
 																							<tbody id="body-tarifa-detalle-edit"></tbody>
@@ -651,11 +651,11 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															l[i].id,
-																															l[i].nombre,
-																															l[i].fecha_inicio,
-																															l[i].fecha_fin,
-																															'<span class="estatus_'+l[i].estatus+'"></span>',
+																															'<span class="text-info txt-escondido">Id: </span>'+l[i].id,
+																															'<span class="text-info txt-escondido">Oficina: </span>'+l[i].nombre,
+																															'<span class="text-info txt-escondido">Fecha inicio: </span>'+l[i].fecha_inicio,
+																															'<span class="text-info txt-escondido">Fecha fin: </span>'+l[i].fecha_fin,
+																															'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar tarifa">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -809,7 +809,7 @@
 															option += '<option value="0">-- Seleccione --</option>';
               for(datos in p.codigos){
 
-																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo+'</option>';
+																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo+' '+p.codigos[datos].descripcion_codigo+'</option>';
 																}
 
 																s.append(option);
@@ -856,8 +856,14 @@
 									
 															option += '<option value="0">-- Seleccione --</option>';
               for(datos in p.vehiculos){
+															
+																			if(p.vehiculos[datos].transmision == 1){
+																			    option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Automático</option>';
+																				
+																			} else {
+																				 option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Estándard</option>';
+																			}
 
-																			option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+'</option>';
 																}
 
 																s.append(option);
@@ -912,11 +918,11 @@
 			body = $('#body-tarifa-detalle');
 			
 			nueva_fila = '<tr id="fila_'+grupo+'_'+codigo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'">'+
-												'<td class="td_grupo" value="'+grupo+'">'+nombre_grupo+'</td>'+
-												'<td class="td_codigo" value="'+codigo+'">'+nombre_codigo+'</td>'+
-												'<td class="td_cobertura" value="'+cobertura+'">'+nombre_cobertura+'</td>'+
-				        '<td class="td_vehiculo" value="'+vehiculo+'">'+nombre_vehiculo+'</td>'+
-												'<td class="td_tarifa_por_dia" value="'+tarifa_por_dia+'">'+accounting.formatMoney(tarifa_por_dia)+'</td>'+
+												'<td class="td_grupo" value="'+grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+nombre_grupo+'</td>'+
+												'<td class="td_codigo" value="'+codigo+'"><span class="text-info txt-escondido">Código: </span>'+nombre_codigo+'</td>'+
+												'<td class="td_cobertura" value="'+cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+nombre_cobertura+'</td>'+
+				        '<td class="td_vehiculo" value="'+vehiculo+'"><span class="text-info txt-escondido">Vehículo: </span>'+nombre_vehiculo+'</td>'+
+												'<td class="td_tarifa_por_dia" value="'+tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(tarifa_por_dia)+'</td>'+
 											'<td>'+
 											  '<button class="btn btn-sm btn-danger btn-sm eliminar-btn-detalle" value="'+grupo+'_'+codigo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'" title="Eliminar">'+
 																		'<span class="glyphicon glyphicon-remove"></span>'+
@@ -1005,11 +1011,11 @@
 								success: function(t){
 									
 									nueva_fila = '<tr id="fila_'+t.id+'">'+
-												'<td><span class="hidden">'+s.created_at+'</span>'+t.id+'</td>'+
-												'<td>'+t.nombre+'</td>'+
-												'<td>'+t.fecha_inicio+'</td>'+
-												'<td>'+t.fecha_fin+'</td>'+
-												'<td><span class="estatus_'+t.estatus+'"></span></td>'+
+												'<td><span class="text-info txt-escondido">Id: </span><span class="hidden">'+s.created_at+'</span>'+t.id+'</td>'+
+												'<td><span class="text-info txt-escondido">Oficina: </span>'+t.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Fecha inicio: </span>'+t.fecha_inicio+'</td>'+
+												'<td><span class="text-info txt-escondido">Fecha fin: </span>'+t.fecha_fin+'</td>'+
+												'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+t.estatus+'"></span></td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+t.id+'" title="Editar tarifa">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -1264,11 +1270,11 @@
 																							
 
 												fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
-													'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'">'+t.t_d[datos].descripcion_grupo+'</td>'+
-													'<td class="td_codigo_actual" value="'+t.t_d[datos].codigo+'">'+t.t_d[datos].codigo+'</td>'+
-													'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'">'+t.t_d[datos].cobertura+'</td>'+
-													'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'">'+t.t_d[datos].descripcion+'</td>'+
-													'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'">'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
+													'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+t.t_d[datos].descripcion_grupo+'</td>'+
+													'<td class="td_codigo_actual" value="'+t.t_d[datos].codigo+'"><span class="text-info txt-escondido">Código: </span>'+t.t_d[datos].codigo+'</td>'+
+													'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+t.t_d[datos].cobertura+'</td>'+
+													'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+t.t_d[datos].descripcion+'</td>'+
+													'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
 													'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
 													'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
 													'</tr>';
@@ -1395,7 +1401,7 @@
 															option += '<option value="0">-- Seleccione --</option>';
               for(datos in p.codigos){
 
-																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo+'</option>';
+																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo+' '+p.codigos[datos].descripcion_codigo+'</option>';
 																}
 
 																s.append(option);
@@ -1442,8 +1448,14 @@
 									
 															option += '<option value="0">-- Seleccione --</option>';
               for(datos in p.vehiculos){
+															
+																		if(p.vehiculos[datos].transmision == 1){
+																			    option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Automático</option>';
+																				
+																			} else {
+																				 option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Estándard</option>';
+																			}
 
-																			option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+'</option>';
 																}
 
 																s.append(option);
@@ -1489,7 +1501,6 @@
 			vehiculo = $('#inp-tarifa-vehiculo-edit').attr('value');
 			tarifa_por_dia = $('#tarifa-por-dia-edit').val();
 			
-
 			
 						$.ajax({
 								url:  "/admin/agregartarifadetalle",
@@ -1501,11 +1512,11 @@
 								   nueva_fila_edit = "";
 								
 												nueva_fila_edit += '<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
-                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'">'+d.descripcion_grupo+'</td>'+
-                '<td class="td_codigo_actual" value="'+d.codigo+'">'+d.codigo+'</td>'+
-																'<td class="td_cobertura_actual" value="'+d.cobertura+'">'+d.cobertura+'</td>'+
-																'<td class="td_vehiculo_actual" value="'+d.descripcion+'">'+d.descripcion+'</td>'+
-																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'">'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
+                '<td class="td_codigo_actual" value="'+d.codigo+'"><span class="text-info txt-escondido">Código: </span>'+d.codigo+'</td>'+
+																'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
+																'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+'</td>'+
+																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
                 '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
 													   '<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
 											     '</tr>';
@@ -1627,10 +1638,10 @@
 								     	option = "";
               s = $('#select-tarifa-codigo-edit-detalle');
 									
-															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].codigo+'</option>';
+															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].codigo +' '+e.x_a[0].descripcion_codigo+'</option>';
               for(datos in e.codigos){
 
-																			option += '<option value="'+e.codigos[datos].id+'">'+e.codigos[datos].codigo+'</option>';
+																			option += '<option value="'+e.codigos[datos].id+'">'+e.codigos[datos].codigo+' '+e.codigos[datos].descripcion_codigo+'</option>';
 																}
 
 																s.append(option);
@@ -1682,11 +1693,23 @@
 							success: function(e){
 								     	option = "";
               s = $('#select-tarifa-vehiculo-edit-detalle');
-									
-															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].descripcion+'</option>';
+															
+															if(e.x_a[0].transmision == 1){
+															       option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].descripcion+' Automático</option>';
+																
+															} else {
+																 option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].descripcion+' Estándard</option>';
+															}
+								
               for(datos in e.vehiculos){
-
-																			option += '<option value="'+e.vehiculos[datos].id+'">'+e.vehiculos[datos].descripcion+'</option>';
+															
+																			if(e.vehiculos[datos].transmision == 1){
+																			    option += '<option value="'+e.vehiculos[datos].id+'">'+e.vehiculos[datos].descripcion+' Automático</option>';
+																				
+																			} else {
+																				 option += '<option value="'+e.vehiculos[datos].id+'">'+e.vehiculos[datos].descripcion+' Estándard</option>';
+																			}
+															
 																}
 
 																s.append(option);
@@ -1746,11 +1769,11 @@
 							success: function(d){
 
 												$('#fila_edit_'+id).replaceWith('<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
-                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'">'+d.descripcion_grupo+'</td>'+
-                '<td class="td_codigo_actual" value="'+d.codigo+'">'+d.codigo+'</td>'+
-																'<td class="td_cobertura_actual" value="'+d.cobertura+'">'+d.cobertura+'</td>'+
-																'<td class="td_vehiculo_actual" value="'+d.descripcion+'">'+d.descripcion+'</td>'+
-																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'">'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
+                '<td class="td_codigo_actual" value="'+d.codigo+'"><span class="text-info txt-escondido">Código: </span>'+d.codigo+'</td>'+
+																'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
+																'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+'</td>'+
+																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
                 '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
 													   '<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
 											     '</tr>');
@@ -1818,11 +1841,11 @@
 								success: function(t){
 									
 									$('#fila_'+id).replaceWith('<tr id="fila_'+t.id+'">'+
-            '<td>'+t.id+'</td>'+
-												'<td>'+t.nombre+'</td>'+ 
-												'<td>'+t.fecha_inicio+'</td>'+
-												'<td>'+t.fecha_fin+'</td>'+
-												'<td><span class="estatus_'+t.estatus+'"></span></td>'+
+            '<td><span class="text-info txt-escondido">Id: </span>'+t.id+'</td>'+
+												'<td><span class="text-info txt-escondido">Oficina: </span>'+t.nombre+'</td>'+ 
+												'<td><span class="text-info txt-escondido">Fecha inicio: </span>'+t.fecha_inicio+'</td>'+
+												'<td><span class="text-info txt-escondido">Fecha fin: </span>'+t.fecha_fin+'</td>'+
+												'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+t.estatus+'"></span></td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+t.id+'" title="Editar tarifa">'+
 																 '<span class="glyphicon glyphicon-edit"></span>'+

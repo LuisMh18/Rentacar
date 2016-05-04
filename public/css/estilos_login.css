@@ -1,0 +1,74 @@
+@charset "UTF-8";
+html {
+  height: 100%; }
+
+body {
+  font-family: Arial, Helvetica, 'Sans-serif';
+  font-size: 16px;
+  background: #FAFAFA;
+  height: 100%; }
+
+.container {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.contenedor-principal {
+  height: 300px; }
+
+.contenedor {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px black;
+  padding: 1em 2em;
+  width: 100%;
+  margin: 0 auto; }
+
+.inp-user {
+  margin-bottom: 1em; }
+
+.login-pass {
+  width: 100%;
+  font-size: .9em;
+  text-align: center;
+  cursor: pointer; }
+
+.btn-login {
+  text-align: right; }
+
+.alert-danger, .alert-success {
+  font-size: .8em; }
+
+/*Modal para restablecer la contrase├▒a------*/
+.title-rpass, .title-ingres {
+  font-size: .9em; }
+
+@media screen and (min-width: 450px) {
+  .contenedor-principal {
+    width: 400px; } }
+@media screen and (min-width: 500px) {
+  .modal-content {
+    width: 450px;
+    margin: 0 auto; } }
+@media screen and (min-width: 720px) {
+  .modal-content {
+    width: 550px;
+    margin: 0 auto; }
+
+  .title-rpass, .title-ingres {
+    font-size: 1em; }
+
+  .contenedor-principal {
+    width: 450px; } }
+
+/*# sourceMappingURL=estilos_login.css.map */

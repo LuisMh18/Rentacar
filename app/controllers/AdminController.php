@@ -31,6 +31,7 @@ if (Auth::attempt($data)) {
 
     } else {
 
+					Session::flash('messageDanger', 'Nombre de usuario o contraseña son incorrectos.');
      return Redirect::to('login');
 
     }
@@ -48,18 +49,11 @@ if (Auth::attempt($data)) {
  }
 	
 	
-	
- public function getReservas(){
-    if(Auth::check()){
-      return View::make('admin/reservas');
-    } else {
-        return Redirect::to('login');
-    }
- }
+
 	
 /*******
 Reservas------------
-******************************************/	
+********************************************************/	
 	public function getMostrarsucursales(){
 		$id = Input::get('id');
 		
@@ -68,6 +62,377 @@ Reservas------------
 	 	->first();
 	
  return Response::json($sucursal);
+}
+	
+
+
+	
+//Comparar fechas
+public function getCompararfechas(){	
+	$lugar_entrega = Input::get('lugar_entrega');
+	
+	//obtenemos la sucursal
+	$s = DB::table('sucursal')
+						->where('id', $lugar_entrega)
+						->pluck('nombre_sucursal');
+	
+	//Buscamos
+	$oficina = DB::table('oficina')
+								->where('nombre', 'like', '%'.$s.'%')
+								->get();
+	
+	if(count($oficina) == 0){
+		$x = 'No hay datos';
+		//si no existe el nombre buscamos por id
+		$s_id = DB::table('sucursal')
+						->where('id', $lugar_entrega)
+						->pluck('plaza_id');
+		
+		$p = DB::table('plaza')
+					->where('id', $s_id)
+					->pluck('id');
+		
+		$o = DB::table('oficina')
+						->where('plaza_id', $p)
+						->pluck('id');
+		
+		$f = DB::table('tarifa')
+							->where('oficina_id', $o)
+							->orderBy('fecha_inicio', 'asc')
+					  ->get();
+		
+	} else {
+		$x = 'Si hay datos';
+		
+		//1.- Obtenemos el id de la oficina
+		$id_o = DB::table('oficina')
+								->where('nombre', 'like', '%'.$s.'%')
+								->pluck('id');
+		
+		
+				$f = DB::table('tarifa')
+							->where('oficina_id', $id_o)
+							->orderBy('fecha_inicio', 'asc')
+					  ->get();
+			
+	}
+		
+	return Response::json(
+		       array(
+													'f' => $f,
+													'x' => $x,
+										   'oficina' => $oficina
+									));
+}
+	
+	
+	
+//Datos del vehiculo
+public function getDatosvehiculo(){	
+	$tipo = Input::get('tipo');
+	$transmision = Input::get('transmision');
+	$id_t = Input::get('id_t');
+
+	
+	
+			$vehiculo = DB::table('tipo_vehiculo')
+											->join('codigo', 'tipo_vehiculo.codigo_id', '=', 'codigo.id')
+											->where('tipo', $tipo)
+											->where('transmision', $transmision)
+											->where('tipo_vehiculo.estatus', 1)
+											->select('tipo_vehiculo.id', 'descripcion', 'foto')
+											->get(); 
+
+	
+	return Response::json(
+		       array(
+													'vehiculo' => $vehiculo
+									));
+	
+}
+	
+	
+	
+//Datos dela tarifa detalle
+public function getDatostarifadetalle(){	
+
+	$id_v = Input::get('id_v');
+	$id_t = Input::get('id_t');
+
+	
+	
+			$tarifa = DB::table('tarifa_detalle')
+											->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
+											->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
+											->where('tarifa_id', $id_t)
+											->where('tipo_vehiculo_id', $id_v)
+											->select('tipo_vehiculo.id', 'descripcion', 'foto', 'tarifa_por_dia', 'cobertura')
+											->get(); 
+	
+	
+	if(count($tarifa) == 0){
+		
+		
+	} else {
+		
+	return Response::json(
+		       array(
+													'tarifa' => $tarifa
+									));
+		
+	}
+	
+	
+	
+}
+	
+
+	
+	
+//comprobar si el cliente ya tiene reservas
+public function getComprobardatos(){	
+	$email = Input::get('email');
+
+			$cliente = DB::table('cliente')
+											->where('email', $email)
+											->first(); 
+	
+	return Response::json($cliente);
+	
+}
+	
+//Registrar reservas
+public function postRegistrareserva(){	
+	//Datos de entrega
+	$fecha_entrega = Input::get('fecha_entrega');
+	$hora_entrega = Input::get('hora_entrega');
+	$lugar_entrega = Input::get('lugar_entrega');
+	
+	//Datos de devolucion
+	$fecha_devolucion = Input::get('fecha_devolucion');
+	$hora_devolucion = Input::get('hora_devolucion');
+	$lugar_devolucion = Input::get('lugar_devolucion');
+	
+	//vehiculo
+	$vehiculo = Input::get('vehiculo');
+	
+	//tarifa
+	$tarifa = Input::get('tarifa');
+	
+		//dias
+	$dias = Input::get('dias');
+	
+	//transmision
+	$transmision = Input::get('transmision');
+	
+	//datos del cliente
+	$email = Input::get('email');
+	$nombre = Input::get('nombre');
+	$ap = Input::get('ap');
+	$tel = Input::get('tel');
+	$lic = Input::get('lic');
+	$coment = Input::get('coment');
+
+	//Registramos los datos del cliente
+	 $c = new Cliente;
+		$c->id = Input::get('id');
+		$c->nombre = $nombre;
+		$c->apellidos = $ap;
+		$c->email = $email;
+		$c->telefono = $tel;
+	 $c->num_licencia = $lic;
+		$c->comentarios = $coment;
+		$c->save();
+	
+		//lugar de entrega
+	 $s_e = DB::table('sucursal')	
+							->where('id', $lugar_entrega)
+							->pluck('nombre_sucursal');
+	
+	//lugar de devolucion
+	 $s_d = DB::table('sucursal')	
+							->where('id', $lugar_devolucion)
+						 ->pluck('nombre_sucursal');
+	
+	
+	//obtenemos los datos del vehiculo
+	$v_t = DB::table('tipo_vehiculo')
+							->where('id', $vehiculo)
+							->pluck('transmision');
+	
+	$v_desc = DB::table('tipo_vehiculo')
+							->where('id', $vehiculo)
+							->pluck('descripcion');
+	
+	$v_foto = DB::table('tipo_vehiculo')
+							->where('id', $vehiculo)
+							->pluck('foto');
+	
+	//registramos la reserva
+		$r = new Reserva;
+		$r->id = Input::get('id');
+		$r->cliente_id = $c['id'];
+		$r->num_reserva = date('Y').date('m').date("d").date("H").date("i").date("s");
+	 $r->lugar_entrega = $s_e;
+		$r->fecha_entrega = $fecha_entrega;
+	 $r->hora_entrega = $hora_entrega;
+		$r->lugar_devolucion = $s_d;
+		$r->fecha_devolucion = $fecha_devolucion;
+	 $r->hora_devolucion = $hora_devolucion;
+		$r->tarifa_por_dia = $tarifa;
+	 $r->dias = $dias;
+	 $r->total = $tarifa * $dias;
+	 $r->vehiculo = $v_desc;
+	 $r->transmision = $v_t;
+	 $r->foto= $v_foto;
+		$r->fecha = date('Y-m-d');
+		$r->save();		
+	
+	
+	
+	return Response::json($r['id']);
+	
+}
+	
+
+//Vista de confirmacion
+ public function datosdelpedido($id){
+		
+								//cliente
+						$id_cliente = DB::table('reserva')
+														->where('reserva.id', $id)
+														->pluck('cliente_id');
+		
+		
+					 $cliente = DB::table('cliente')
+														->where('id', $id_cliente)
+														->get();
+		
+		
+
+
+						$reserva = DB::table('reserva')
+														->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'tarifa_por_dia', 'dias', 'total', 'reserva.created_at', 'num_reserva', 'vehiculo', 'transmision')
+														->where('reserva.id', $id)
+														->get();
+		
+		
+      return View::make('confirmacion', compact('reserva', 'cliente', 'id'));
+		
+		
+					
+
+ }
+	
+	//Imprimir reserva
+ public function imprimir($id){
+					
+						$reserva = DB::table('reserva')
+														->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'tarifa_por_dia', 'dias', 'total', 'reserva.created_at', 'num_reserva', 'vehiculo', 'transmision')
+														->where('reserva.id', $id)
+														->get();
+		
+								//cliente
+						$id_cliente = DB::table('reserva')
+														->where('reserva.id', $id)
+														->pluck('cliente_id');
+		
+					 $cliente = DB::table('cliente')
+														->where('id', $id_cliente)
+														->get();
+		
+		
+					$pdf = View::make('pdfreserva', 
+											compact(
+															'reserva', 
+															'cliente'
+															));
+
+
+
+							return PDF::load($pdf, 'A4', 'portrait')->show();
+		
+		
+
+ }
+	
+	
+	//Vista de reservas del admin
+	 public function getReservas(){
+    if(Auth::check()){
+      return View::make('admin/reservas');
+    } else {
+        return Redirect::to('login');
+    }
+ }
+	
+	
+	//Listar reservas
+public function getListareservas(){
+	$reservas = DB::table('reserva')
+		 ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
+			->select('reserva.id', 'num_reserva', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'reserva.created_at')
+	 	->get();
+	
+	echo json_encode($reservas);
+}
+	
+//Listar reservas del dia unicamente para el dashboard
+	public function getListareservasdia(){
+	$date = date('Y-m-d');
+	
+	$reservas = DB::table('reserva')
+			->where('fecha', $date)
+		 ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
+			->select('reserva.id', 'num_reserva', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'reserva.created_at')
+	 	->get();
+	
+	echo json_encode($reservas);
+}
+	
+//Mostrar el numero de reservas del dia y el total
+	public function getMostrardeldia(){
+	$date = date('Y-m-d');
+	
+		$num_r = DB::table('reserva')
+		->where('fecha', $date)
+		->count();
+		
+		$total_r = DB::table('reserva')
+			->where('fecha', $date)
+			->sum('total');
+	
+	  return Response::json(
+				     array(
+										 'num_r' => $num_r,
+											'total_r' => $total_r
+									));
+}
+	
+	//Detalle de la reserva
+public function getDetallereserva(){
+			$id = Input::get('id');
+	
+			$reserva = DB::table('reserva')
+											->where('reserva.id', $id)
+											->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'tarifa_por_dia', 'dias', 'total', 'reserva.created_at', 'num_reserva', 'vehiculo', 'transmision', 'foto')
+											->get();
+	
+
+					//cliente
+			$id_cliente = DB::table('reserva')
+											->where('reserva.id', $id)
+											->pluck('cliente_id');
+
+			$cliente = DB::table('cliente')
+											->where('id', $id_cliente)
+											->get();
+
+			return Response::json(
+				     array(
+										 'reserva' => $reserva, 
+										 'cliente' => $cliente
+									));
 }
 	
 	
@@ -107,6 +472,7 @@ public function getSelectoficinas(){
 public function getSelectgrupos(){
 	$grupos = DB::table('grupo')
 			->select('id', 'descripcion_grupo')
+		 ->where('estatus', '1')
 	 	->get();
 	
 	return Response::json(array('grupos' => $grupos));
@@ -115,7 +481,8 @@ public function getSelectgrupos(){
 	//Listar codigos
 public function getSelectcodigos(){
 	$codigos = DB::table('codigo')
-			->select('id', 'codigo')
+			->select('id', 'codigo', 'descripcion_codigo')
+			->where('estatus', '1')
 	 	->get();
 	
 	return Response::json(array('codigos' => $codigos));
@@ -125,6 +492,7 @@ public function getSelectcodigos(){
 public function getSelectcoberturas(){
 	$coberturas = DB::table('cobertura')
 			->select('id', 'cobertura')
+		 ->where('estatus', '1')
 	 	->get();
 	
 	return Response::json(array('coberturas' => $coberturas));
@@ -133,7 +501,8 @@ public function getSelectcoberturas(){
 	//Listar los vehiculos
 public function getSelectvehiculos(){
 	$vehiculos = DB::table('tipo_vehiculo')
-			->select('id', 'descripcion')
+			->select('id', 'descripcion', 'transmision')
+		 ->where('estatus', '1')
 	 	->get();
 	
 	return Response::json(array('vehiculos' => $vehiculos));
@@ -383,12 +752,13 @@ public function getSelectcodigoseditdetalle(){
 						->pluck('codigo_id');
 	
 	$codigos = DB::table('codigo')
-			->select('id', 'codigo')
+			->select('id', 'codigo', 'descripcion_codigo')
 			->where('id', '!=', $x)
+			->where('estatus', '1')
 	 	->get();
 	
 	$x_a = DB::table('codigo')
-			->select('id', 'codigo')
+			->select('id', 'codigo', 'descripcion_codigo')
 			->where('id', '=', $x)
 	 	->get();
 	
@@ -408,6 +778,7 @@ public function getSelectcoberturaseditdetalle(){
 	$coberturas = DB::table('cobertura')
 			->select('id', 'cobertura')
 			->where('id', '!=', $x)
+		 ->where('estatus', '1')
 	 	->get();
 	
 	$x_a = DB::table('cobertura')
@@ -429,12 +800,13 @@ public function getSelectvehiculoseditdetalle(){
 						->pluck('tipo_vehiculo_id');
 	
 	$vehiculos = DB::table('tipo_vehiculo')
-			->select('id', 'descripcion')
+			->select('id', 'descripcion', 'transmision')
 			->where('id', '!=', $x)
+		 ->where('estatus', '1')
 	 	->get();
 	
 	$x_a = DB::table('tipo_vehiculo')
-			->select('id', 'descripcion')
+			->select('id', 'descripcion', 'transmision')
 			->where('id', '=', $x)
 	 	->get();
 	
@@ -478,13 +850,13 @@ public function getAgregartarifadetalle(){
 								->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'codigo', 'tipo_vehiculo.descripcion', 'tarifa_por_dia')
 								->where('tarifa_id', $id_tarifa)
 		      ->where('grupo_id', $grupo)
-		      ->where('codigo_id', $codigo)
+		      ->where('tarifa_detalle.codigo_id', $codigo)
 		      ->where('cobertura_id', $cobertura)
 		      ->where('tipo_vehiculo_id', $vehiculo)
 		      ->where('tarifa_por_dia', $tarifa_por_dia)
 								->first();
 	
-	return Response::json($t_n);
+	 return Response::json($t_n);
 	
 }
 	
@@ -588,6 +960,7 @@ public function getSelectgerentes(){
 public function getSelectplazas(){
 	$plazas = DB::table('plaza')
 			->select('id', 'nombre_plaza')
+			->where('estatus', '1')
 	 	->get();
 	
 	return Response::json(array('plazas' => $plazas));
@@ -865,7 +1238,8 @@ public function getSelecteditplazas(){
 	//Listamos las plazas
 	$plazas = DB::table('plaza')
 			->select('id', 'nombre_plaza')
-		->where('id', '!=', $p)
+		 ->where('id', '!=', $p)
+			->where('estatus', '1')
 	 	->get();
 	
 	//lISTAMOS la plaza actual
@@ -1591,16 +1965,19 @@ public function postAgregarcodigo(){
 	$codigo = Input::get('codigo');
 	$descripcion = Input::get('descripcion');
 	$activo = Input::get('activo');
+	$tipo = Input::get('tipo');
 	
 	 $n_c = new Codigo;
 		$n_c->codigo = $codigo;
-	 $n_c->descripcion = $descripcion;
+	 $n_c->descripcion_codigo = $descripcion;
+	 $n_c->tipo = $tipo;
 	 $n_c->estatus = $activo;
 	 $n_c->save();
 	
 		$codigo = DB::table('codigo')
 								->where('codigo', $codigo)
-								->where('descripcion', $descripcion)
+			     ->where('descripcion_codigo', $descripcion)
+			     ->where('tipo', $tipo)
 								->where('estatus', $activo)
 								->first();
 	
@@ -1613,13 +1990,17 @@ public function postAgregarcodigo(){
 public function getEliminarcodigo(){
 	$id = Input::get('id');
 	
-	//comprobamos que el codigo no este en uso
+	//comprobamos que el codigo no este en uso en las tarifas y en los vehiculos
 	$codigo = DB::table('tarifa_detalle')
+									->where('codigo_id', $id)
+									->get();
+	
+		$v = DB::table('tipo_vehiculo')
 									->where('codigo_id', $id)
 									->get();
 
 	
-	if(count($codigo) == 0){
+	if(count($codigo) == 0 and count($v) == 0){
 					//Eliminamos
 					$d_g = Codigo::find($id);
 					$d_g->delete();
@@ -1661,13 +2042,15 @@ public function getActualizarcodigo(){
 	$id = Input::get('id');
 	$nombre = Input::get('nombre');
 	$descripcion = Input::get('descripcion');
+	$tipo = Input::get('tipo');
 	$estatus = Input::get('estatus');
 	
 
 		//actualizamos
 		$new_c = Codigo::find($id);
 		$new_c->codigo = $nombre;
-	 $new_c->descripcion = $descripcion;
+	 $new_c->descripcion_codigo = $descripcion;
+	 $new_c->tipo = $tipo;
 		$new_c->estatus = $estatus;
 		$new_c->save();
 		
@@ -1813,9 +2196,11 @@ public function getVehiculos(){
 	//Listar vehiculos
 public function getListavehiculos(){
 	$vehiculos = DB::table('tipo_vehiculo')
-	 	->get();
+									->join('codigo', 'tipo_vehiculo.codigo_id', '=', 'codigo.id')
+									->select('tipo_vehiculo.id', 'descripcion','transmision', 'foto', 'tipo_vehiculo.estatus', 'tipo_vehiculo.created_at','codigo', 'descripcion_codigo')			
+	 	      ->get();
 	
-	echo json_encode($vehiculos);
+	    echo json_encode($vehiculos);
 }
 	
 	
@@ -1849,17 +2234,25 @@ public function postAgregarvehiculo(){
 	move_uploaded_file($archivo, $destino);
 	
 	$nombre = Input::get('nombre');
+	$tipo = Input::get('tipo_c');
+	$transmision = Input::get('transmision');
 	$activo = Input::get('inp-check');
 	
 	 $n_v = new TipoVehiculo;
-		$n_v->descripcion = $nombre;
+		$n_v->codigo_id = $tipo;
+	 $n_v->descripcion = $nombre;
+	 $n_v->transmision = $transmision;
 	 $n_v->foto = $_FILES['imagen']['name'];
 	 $n_v->estatus = $activo;
 	 $n_v->save();
 	
 		$vehiculo = DB::table('tipo_vehiculo')
-								->where('descripcion', $nombre)
-								->where('estatus', $activo)
+			     	->join('codigo', 'tipo_vehiculo.codigo_id', '=', 'codigo.id')
+									->select('tipo_vehiculo.id', 'descripcion','transmision', 'foto', 'tipo_vehiculo.estatus', 'tipo_vehiculo.created_at','codigo', 'descripcion_codigo')		
+								->where('codigo_id', $tipo)
+			     ->where('descripcion', $nombre)
+			     ->where('transmision', $transmision)
+								->where('tipo_vehiculo.estatus', $activo)
 								->first();
 	
 		return Response::json($vehiculo);
@@ -1913,6 +2306,31 @@ public function getEditarvehiculo(){
 	
 }
 	
+	//Listamos los codigos
+	public function getSelectcodigoseditdetallevehiculo(){
+	$id = Input::get('id');
+	
+	$x = DB::table('tipo_vehiculo')
+						->where('id', $id)
+						->pluck('codigo_id');
+	
+		$codigos = DB::table('codigo')
+			->select('id', 'codigo', 'descripcion_codigo')
+			->where('id', '!=', $x)
+			->where('estatus', '1')
+	 	->get();
+	
+	$x_a = DB::table('codigo')
+			->select('id', 'codigo', 'descripcion_codigo')
+			->where('id', '=', $x)
+	 	->get();
+	
+	return Response::json(array(
+		  'codigos' => $codigos,
+				'x_a' => $x_a
+	 ));
+}
+	
 	
 	//Actualizar vehiculo
 public function postActualizarvehiculo(){
@@ -1930,19 +2348,25 @@ public function postActualizarvehiculo(){
 	
 	$id = Input::get('id_vehiculo');
 	$nombre = Input::get('nombre_edit');
+	$tipo = Input::get('tipo_c_edit');
+	$transmision = Input::get('transmision-edit');
 	$estatus = Input::get('inp-check_edit');
 		
 
 		//actualizamos
 		$new_v = TipoVehiculo::find($id);
-		$new_v->descripcion = $nombre;
+		$new_v->codigo_id = $tipo;
+	 $new_v->descripcion = $nombre;
+	 $new_v->transmision = $transmision;
 	 $new_v->foto = $_FILES['imagen-edit']['name'];
 		$new_v->estatus = $estatus;
 		$new_v->save();
 		
 		$n_v = DB::table('tipo_vehiculo')
-				->where('id', $id)
-			->first();
+			 ->join('codigo', 'tipo_vehiculo.codigo_id', '=', 'codigo.id')
+									->select('tipo_vehiculo.id', 'descripcion','transmision', 'foto', 'tipo_vehiculo.estatus', 'tipo_vehiculo.created_at','codigo', 'descripcion_codigo')	
+				->where('tipo_vehiculo.id', $id)
+			 ->first();
 		
 		return Response::json($n_v);
 		

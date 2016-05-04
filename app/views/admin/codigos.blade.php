@@ -36,21 +36,22 @@
 
 @section('content')
 
-<div class="seccion_tabla">
+<div class="seccion_tabla seccion_sucursal">
 <div class="agregar">
 	<button id="agregar-codigo" class="btn btn-primary" title="Agregar código">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
 	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Código</th>
-					<th>Descripción</th>
-					<th>Estatus</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Código</th>
+					<th class="cabecero">Descripción</th>
+					<th class="cabecero">Tipo</th>
+					<th class="cabecero">Estatus</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -87,6 +88,34 @@
 																						<input type="text" name="descripcion" id="descripcion" class="form-control" >
 																						<span class="icon-descripcion"></span>
 																			</div>
+																			
+																		<label for="tipo" class="text-primary error-tipo-vehiculo">Tipo: </label>
+																		<div class="tipo-carro-a">
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_chico" name="opcion_v" id="" value="4">
+																						Chico
+																				</label>
+																		</div>
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_mediano" name="opcion_v" id="" value="1">
+																						Mediano
+																				</label>
+																		</div>
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_grande" name="opcion_v" id="" value="2">
+																						Grande
+																				</label>
+																		</div>
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_camioneta" name="opcion_v" id="" value="3">
+																						Camioneta
+																				</label>
+																		</div>
+																	</div>
 
 																		<label for="estatus" class="text-primary">Estatus: </label>
 																		<div class="checkbox checkbox-activ check-w">
@@ -174,6 +203,34 @@
 																						<input type="text" name="descripcion_edit" id="descripcion_edit" class="form-control" >
 																						<span class="icon-descripcion-edit"></span>
 																			</div>
+																			
+																			<label for="tipo" class="text-primary error-tipo-vehiculo">Tipo: </label>
+																		<div class="tipo-carro-a">
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_chico_edit" name="opcion_v_edit" id="" value="0">
+																						Chico
+																				</label>
+																		</div>
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_mediano_edit" name="opcion_v_edit" id="" value="1">
+																						Mediano
+																				</label>
+																		</div>
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_grande_edit" name="opcion_v_edit" id="" value="2">
+																						Grande
+																				</label>
+																		</div>
+																		<div class="radio">
+																				<label>
+																						<input type="radio" class="tipo_camioneta_edit" name="opcion_v_edit" id="" value="3">
+																						Camioneta
+																				</label>
+																		</div>
+																	</div>
 
 																		<label for="estatus" class="text-primary">Estatus: </label>
 																		<div class="checkbox checkbox-activ check-w">
@@ -258,14 +315,14 @@
 
 			}); //End data
 
-
 											tabla_a.fnClearTable();
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo,
-																															l[i].descripcion,
-																															'<span class="estatus_'+l[i].estatus+'"></span>',
+																															'<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo,
+																															'<span class="text-info txt-escondido">Descripción: </span>'+l[i].descripcion_codigo,
+																					          '<span class="text-info txt-escondido">Tipo: </span><span class="tipo_'+l[i].tipo+'"></span>',
+																															'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -282,6 +339,11 @@
 																	$('.estatus_0').addClass('text-danger');
 																	$('.estatus_1').text('Activo');
 																	$('.estatus_1').addClass('text-success');
+								
+															 	$('.tipo_0').text('Chico');
+																	$('.tipo_1').text('Mediano');
+																	$('.tipo_2').text('Grande');
+																	$('.tipo_3').text('Camioneta');
 
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
@@ -301,6 +363,11 @@
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
+				
+				  $('.tipo_0').text('Chico');
+						$('.tipo_1').text('Mediano');
+						$('.tipo_2').text('Grande');
+						$('.tipo_3').text('Camioneta');
 			});        
 
 
@@ -309,6 +376,11 @@
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
+				
+						$('.tipo_0').text('Chico');
+						$('.tipo_1').text('Mediano');
+						$('.tipo_2').text('Grande');
+						$('.tipo_3').text('Camioneta');
 
 			});
 
@@ -317,6 +389,11 @@
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
+				
+						$('.tipo_0').text('Chico');
+						$('.tipo_1').text('Mediano');
+						$('.tipo_2').text('Grande');
+						$('.tipo_3').text('Camioneta');
 			});
 	
 	
@@ -331,6 +408,8 @@
 	$(document).on('click', '#add-codigo', function(){
 			codigo = $('#nombre').val();
 		 descripcion = $('#descripcion').val();
+		
+		 tipo =  $('input:radio[name=opcion_v]:checked').val();
 	
 		if($('#inp-check').prop("checked") == true){
 					activo = 1;
@@ -343,12 +422,13 @@
 		$.ajax({
 								url:  "/admin/agregarcodigo",
 								type: "POST",
-								data:{codigo: codigo, descripcion: descripcion, activo: activo},
+								data:{codigo: codigo, descripcion: descripcion, tipo: tipo, activo: activo},
 								success: function(p){
 										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
-											 '<td>'+p.descripcion+'</td>'+
-												'<td><span class="estatus_'+p.estatus+'"></span></td>'+
+												'<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
+											 '<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
+												'<td><span class="text-info txt-escondido">Tipo: </span><span class="tipo_'+p.tipo+'"></span></td>'+
+											 '<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar código">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -367,14 +447,20 @@
 									$('.estatus_0').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
+									
+									$('.tipo_0').text('Chico');
+									$('.tipo_1').text('Mediano');
+									$('.tipo_2').text('Grande');
+									$('.tipo_3').text('Camioneta');
 										
-										alertas("success","Código "+p.descripcion+" agregado correctamente.");
+										alertas("success","Código "+p.descripcion_codigo+" agregado correctamente.");
 										
 										//Limpiamos los campos
 									$('#nombre').val('');
 									$('#descripcion').val('');
 									$('#inp-check').prop("checked", false)
-
+									$('.tipo_chico').attr('value', '4');
+									 $('input:radio[name=opcion_v]:checked').prop('checked', false);
 									
 									
 									
@@ -388,6 +474,33 @@
 		
 	});
 	
+	
+			$(document).on('click', '.tipo_chico', function(){
+
+			 $(this).attr('value', '0');	
+			
+		});
+		
+		$(document).on('click', '.tipo_mediano', function(){
+
+			$('.tipo_chico').attr('value', '0');	
+					
+	 	});
+		
+		$(document).on('click', '.tipo_grande', function(){
+			
+			 $('.tipo_chico').attr('value', '0');	
+					
+	 	});
+		
+		$(document).on('click', '.tipo_camioneta', function(){
+			
+			$('.tipo_chico').attr('value', '0');	
+			
+	 	});
+	
+	
+	
 		$(document).on('click', '#no-add-codigo', function(){
 			 $('#nombre').val('');
 			 $('#descripcion').val('');
@@ -398,6 +511,10 @@
 
 				$('.error-descripcion').removeClass('has-error has-feedback');
 				$('.icon-descripcion').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			
+				$('.tipo_chico').attr('value', '4');
+			 $('input:radio[name=opcion_v]:checked').prop('checked', false);
+			 $('.error-tipo-vehiculo').removeClass('error-vehiculo-tipo');
 		
 	});
 	
@@ -448,7 +565,19 @@
 								data:{id: id},
 								success: function(e){
 									$('#nombre_edit').val(e.codigo);
-									$('#descripcion_edit').val(e.descripcion);
+									$('#descripcion_edit').val(e.descripcion_codigo);
+									
+									tipo = e.tipo;
+									
+									if(tipo == 0){
+											$('.tipo_chico_edit').prop('checked', true);
+									} else if(tipo == 1) {
+											$('.tipo_mediano_edit').prop('checked', true);
+									}  else if(tipo == 2) {
+											$('.tipo_grande_edit').prop('checked', true);
+									}  else if(tipo == 3) {
+											$('.tipo_camioneta_edit').prop('checked', true);
+									}
 
 									activo = e.estatus;
 									if(activo == 1){
@@ -489,18 +618,20 @@ $(document).on('click', '#inp-check_edit', function(){
 					nombre = $('#nombre_edit').val();
 					descripcion = $('#descripcion_edit').val();
 					estatus = $('#inp-check_edit').val();
-		
+		   tipo =  $('input:radio[name=opcion_v_edit]:checked').val();
+
 					$.ajax({
 								url:  "/admin/actualizarcodigo",
 								type: "GET",
-								data:{id: id, nombre: nombre, descripcion: descripcion, estatus: estatus},
+								data:{id: id, nombre: nombre, descripcion: descripcion, estatus: estatus, tipo: tipo},
 								success: function(p){
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
-																'<td>'+p.descripcion+'</td>'+
-                '<td><span class="estatus_'+p.estatus+'"></span></td>'+
+                '<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
+																'<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
+                '<td><span class="text-info txt-escondido">Tipo: </span><span class="tipo_'+p.tipo+'"></span></td>'+
+																'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar grupo">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -520,6 +651,11 @@ $(document).on('click', '#inp-check_edit', function(){
 									$('.estatus_0').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
+									
+									$('.tipo_0').text('Chico');
+									$('.tipo_1').text('Mediano');
+									$('.tipo_2').text('Grande');
+									$('.tipo_3').text('Camioneta');
 									
 								},
 			
@@ -570,6 +706,20 @@ $(document).on('click', '#inp-check_edit', function(){
       }
 });
 	
+	
+			$("#add-codigo").click(function () {
+				if($(".tipo_chico").val() == 4){
+													$('.error-tipo-vehiculo').addClass('error-vehiculo-tipo');
+														return false;
+
+								}  else {
+												return true;
+								}
+		});
+	
+	
+	
+	
 	$("#nombre").focus(function () {
       $('.error-codigo').removeClass('has-error has-feedback');
 						$('.icon-codigo').removeClass('glyphicon glyphicon-remove form-control-feedback');
@@ -578,6 +728,22 @@ $(document).on('click', '#inp-check_edit', function(){
 	$("#descripcion").focus(function () {
       $('.error-descripcion').removeClass('has-error has-feedback');
 						$('.icon-descripcion').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$(".tipo_chico").click(function () {
+      $('.error-tipo-vehiculo').removeClass('error-vehiculo-tipo');
+});
+	
+	$(".tipo_mediano").click(function () {
+      $('.error-tipo-vehiculo').removeClass('error-vehiculo-tipo');
+});
+	
+	$(".tipo_grande").click(function () {
+      $('.error-tipo-vehiculo').removeClass('error-vehiculo-tipo');
+});
+	
+	$(".tipo_camioneta").click(function () {
+      $('.error-tipo-vehiculo').removeClass('error-vehiculo-tipo');
 });
 	
 	

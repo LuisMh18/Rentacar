@@ -4,40 +4,27 @@
   <meta charset="UTF-8">
   <title>Admin</title>
   {{ HTML::style('css/bootstrap.min.css') }}
-  {{ HTML::Script('js/jquery.min.js') }}
+  {{ HTML::Script('js/jquery.js') }}
   {{ HTML::Script('js/bootstrap.min.js') }}
 
   <style>
-    html{
-      height:100%;
-    }
 
-    body{
-      font-family: Arial, Helvetica, 'Sans-serif';
-      font-size:16px;
-      height:100%;
-    }
-
-    .container{
-
-    }
-
-    .header{
-      padding:.5em 2em;
-      border-bottom:2px solid #F2F2F2;
-      background:#FAFAFA;
-      text-align:center;
-    }
-
-    .txt-dash{
-      color:#BDBDBD;
-    }
-
-    .form{
-      width:50%;
-      padding-top:7em;
-      margin:0 auto;
-    }
+			.header{
+				border-bottom: 2px solid #F2F2F2;
+    background: #FAFAFA;
+				margin-bottom:1em;
+			}
+			
+			.header h1{
+				color: #31708f;
+				font-size:2em;
+			}
+			
+			.alerts{
+				width:300px;
+				margin:0 auto;
+				padding-top:1em;
+			}
 
 
   </style>
@@ -48,28 +35,28 @@
   <div class="col-xs-12 header">
     <h1 class="txt-dash">Restablecer contraseña.</h1>
   </div>
-  <div class="container">
+      <div class="alerts">
+								@if(Session::has('messageOK'))
+											<div class="alert alert-success fade in">
+											<button class="close" data-dismiss="alert" type="button">
+															<span class="glyphicon glyphicon-remove"></span>
+											</button>
+													{{ Session::get('messageOK') }}
+											</div>
+									@endif
+
+								@if(Session::has('messageDanger'))
+											<div class="alert alert-danger fade in">
+											<button class="close" data-dismiss="alert" type="button">
+															<span class="glyphicon glyphicon-remove"></span>
+											</button>
+													{{ Session::get('messageDanger') }}
+											</div>
+									@endif
+     </div>
+  <div class="container contenedor-principal">
     <div class="row">
 
-      <div class="alerts">
-       @if(Session::has('messageOK'))
-          <div class="alert alert-success fade in">
-          <button class="close" data-dismiss="alert" type="button">
-              <span class="glyphicon glyphicon-remove" ></span>
-          </button>
-            {{ Session::get('messageOK') }}
-          </div>
-        @endif
-
-       @if(Session::has('messageDanger'))
-          <div class="alert alert-danger fade in">
-          <button class="close" data-dismiss="alert" type="button">
-              <span class="glyphicon glyphicon-remove"></span>
-          </button>
-            {{ Session::get('messageDanger') }}
-          </div>
-        @endif
-     </div>
 
             <div class="form">
                {{ Form::open() }}

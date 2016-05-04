@@ -36,22 +36,22 @@
 
 @section('content')
 
-<div class="seccion_tabla">
+<div class="seccion_tabla seccion_sucursal">
 <div class="agregar">
 	<button id="agregar-gerente" class="btn btn-primary" title="Agregar gerente">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
 	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Nombre</th>
-					<th>Apellido Paterno</th>
-					<th>Apellido Materno</th>
-					<th>Email</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Nombre</th>
+					<th class="cabecero">Apellido Paterno</th>
+					<th class="cabecero">Apellido Materno</th>
+					<th class="cabecero">Email</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -205,7 +205,7 @@
           <div class="modal-footer">
 													
 											 		<div class="footer-modal">
-																<button id="no-add-gerente" type="button" class="btn btn-danger" data-dismiss="modal">
+																<button id="no-act-gerente" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
 															</button>
 															<span id="confirm-act-gerente" class="btn btn-primary" data-dismiss="modal" >
@@ -280,10 +280,10 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
-																															l[i].paterno,
-																															'<span class="ma_'+l[i].materno+'">'+l[i].materno+'</span>',
-																															l[i].email,
+																															'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
+																															'<span class="text-info txt-escondido">Paterno: </span>'+l[i].paterno,
+																															'<span class="text-info txt-escondido">Materno: </span><span class="ma_'+l[i].materno+'">'+l[i].materno+'</span>',
+																															'<span class="text-info txt-escondido">Email: </span>'+l[i].email,
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar gerente">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -353,10 +353,10 @@
 									} else {
 										
 										nueva_fila = '<tr id="fila_'+g.id+'">'+
-												'<td><span class="hidden">'+g.created_at+'</span>'+g.nombre+'</td>'+
-												'<td>'+g.paterno+'</td>'+
-												'<td><span class="materno ma_'+g.materno+'">'+g.materno+'</td>'+
-												'<td>'+g.email+'</td>'+
+												'<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+g.created_at+'</span>'+g.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Paterno: </span>'+g.paterno+'</td>'+
+												'<td><span class="text-info txt-escondido">Materno: </span><span class="materno ma_'+g.materno+'">'+g.materno+'</td>'+
+												'<td><span class="text-info txt-escondido">Email: </span>'+g.email+'</td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+g.id+'" title="Editar gerente">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -403,6 +403,17 @@
 			 $('#paterno').val('');
 		  $('#materno').val('');
 		  $('#email').val('');
+			
+    $('.error-nombre').removeClass('has-error has-feedback');
+				$('.icon-nombre').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+    $('.error-paterno').removeClass('has-error has-feedback');
+				$('.icon-paterno').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	
+    $('.error-email').removeClass('has-error has-feedback');
+				$('.icon-email').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			
+			
 	});
 	
 	//Eliminar gerente
@@ -493,10 +504,10 @@
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+g.id+'">'+
-                '<td><span class="hidden">'+g.created_at+'</span>'+g.nombre+'</td>'+
-                '<td>'+g.paterno+'</td>'+
-                '<td><span class="materno ma_'+g.materno+'">'+g.materno+'</td>'+
-                '<td>'+g.email+'</td>'+
+                '<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+g.created_at+'</span>'+g.nombre+'</td>'+
+                '<td><span class="text-info txt-escondido">Paterno: </span>'+g.paterno+'</td>'+
+                '<td><span class="text-info txt-escondido">Materno: </span><span class="materno ma_'+g.materno+'">'+g.materno+'</td>'+
+                '<td><span class="text-info txt-escondido">Email: </span>'+g.email+'</td>'+
                 '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+g.id+'" title="Editar gerente">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -528,6 +539,21 @@
 		
 				
 	});
+	
+		$(document).on('click', '#no-act-gerente', function(){
+				$('.error-nombre-edit').removeClass('has-error has-feedback');
+				$('.icon-nombre-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+				$('.error-paterno-edit').removeClass('has-error has-feedback');
+				$('.icon-paterno-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+				$('.error-email-edit').removeClass('has-error has-feedback');
+				$('.icon-email-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+			
+		});
+	
+	
+
 	
 	
 	/*****************

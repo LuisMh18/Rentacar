@@ -42,14 +42,14 @@
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
-	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+	<div class="tabla-sucursal seccion_sucursal">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Nombre</th>
-					<th>Estatus</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Nombre</th>
+					<th class="cabecero">Estatus</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -250,8 +250,8 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
-																															'<span class="estatus_'+l[i].estatus+'"></span>',
+																															'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
+																															'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar teléfono">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -331,8 +331,8 @@
 								data:{nombre: nombre, activo: activo},
 								success: function(p){
 										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
-												'<td><span class="estatus_'+p.estatus+'"></span></td>'+
+												'<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar teléfono">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -473,8 +473,8 @@ $(document).on('click', '#inp-check_edit', function(){
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
-                '<td><span class="estatus_'+p.estatus+'"></span></td>'+
+                '<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
+                '<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar teléfono">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+

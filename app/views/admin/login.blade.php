@@ -2,69 +2,41 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
 	<title>Login</title>
 	{{ HTML::style('css/bootstrap.min.css') }}
+	{{ HTML::style('css/estilos_login.css') }}
 	{{ HTML::Script('js/jquery.js') }}
 	{{ HTML::Script('js/bootstrap.min.js') }}
-
-	<style>
-		html{
-			height:100%;
-		}
-
-		body{
-			font-family: Arial, Helvetica, 'Sans-serif';
-			font-size:16px;
-			background:#FAFAFA;
-			height:100%;
-		}
-
-		.container{
-			height:100%;
-			display -webkit-box;
-			display -moz-box;
-			display -ms-flexbox;
-			display -webkit-flex;
-			display flex;
-			position:relative;
-		}
-
-		.contenedor{
-			position:relative;
-			top:150px;
-			background:white;
-			border-radius:5px;
-			box-shadow:0px 0px 1px black;
-			padding:1em 2em;
-			width:40%;
-			margin:0 auto;
-		}
-
-		.inp-user{
-			margin-bottom:1em;
-		}
-
-		.login-pass{
-			width:100%;
-			font-size:.9em;
-			text-align: center;
-			cursor:pointer;
-		}
-		
-		.btn-login{
-			text-align:right;
-		}
-
-
-	</style>
 	
 </head>
 <body>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-12 contenedor-principal">
+   @if(Session::has('messageOK'))
+      <div class="alert alert-success fade in">
+      <button class="close" data-dismiss="alert" type="button">
+          <span class="glyphicon glyphicon-remove"></span>
+      </button>
+        {{ Session::get('messageOK') }}
+      </div>
+    @endif
+
+   @if(Session::has('messageDanger'))
+      <div class="alert alert-danger fade in">
+      <button class="close" data-dismiss="alert" type="button">
+          <span class="glyphicon glyphicon-remove"></span>
+      </button>
+        {{ Session::get('messageDanger') }}
+      </div>
+    @endif
 				<div class="contenedor">
+				
+				
+				
+				
 				{{ Form::open(['url' => 'login', 'autocomplete' => 'off', 'class' => 'form-signin', 'role' => 'form']) }}
 
 					<h2 class="text-center">Login</h2>

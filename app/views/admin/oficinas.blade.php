@@ -36,21 +36,21 @@
 
 @section('content')
 
-<div class="seccion_tabla">
+<div class="seccion_tabla seccion_sucursal">
 <div class="agregar">
 	<button id="agregar-oficina" class="btn btn-primary" title="Agregar oficina">
 		<span class="glyphicon glyphicon-plus"></span>
 	</button>
 </div>
 	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Nombre</th>
-					<th>Plaza</th>
-					<th>Clave</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Nombre</th>
+					<th class="cabecero">Plaza</th>
+					<th class="cabecero">Clave</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -264,9 +264,9 @@
 														     id_plaza = l[i].plaza_id;
 														
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
-																															'<span id="plaza_'+l[i].plaza_id+'"></span>'+l[i].nombre_plaza,
-																															l[i].clave,
+																															'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
+																															'<span class="text-info txt-escondido">Plaza: </span><span id="plaza_'+l[i].plaza_id+'"></span>'+l[i].nombre_plaza,
+																															'<span class="text-info txt-escondido">Clave: </span>'+l[i].clave,
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar oficina">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -342,9 +342,9 @@
 								success: function(p){
 
 									nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
-												'<td>'+p.nombre_plaza+'</td>'+
-												'<td>'+p.clave+'</td>'+
+												'<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Plaza: </span>'+p.nombre_plaza+'</td>'+
+												'<td><span class="text-info txt-escondido">Clave: </span>'+p.clave+'</td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar oficina">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -500,9 +500,9 @@
 																		
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
-                '<td><span id="plaza_'+p.plaza_id+'"></span>'+p.nombre_plaza+'</td>'+
-																'<td>'+p.clave+'</td>'+
+                '<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
+                '<td><span class="text-info txt-escondido">Plaza: </span><span id="plaza_'+p.plaza_id+'"></span>'+p.nombre_plaza+'</td>'+
+																'<td><span class="text-info txt-escondido">Clave: </span>'+p.clave+'</td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar oficina">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+

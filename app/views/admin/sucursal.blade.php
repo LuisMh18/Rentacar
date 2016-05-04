@@ -58,18 +58,16 @@
 	</button>
 </div>
 	<div class="tabla-sucursal">
-			<table id="listar_" class="tabla_catalogo">
+			<table id="listar_" class="tabla_catalogo table-striped">
 			<thead class="thead-tabla">
 				<tr>
-					<th>Sucursal</th>
-					<th>Gerente</th>
-					<th>Plaza</th>
-					<th>Dirección 1</th>
-					<th>Colonia</th>
-					<th>Estado</th>
-					<th>Municipio</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th class="cabecero">Sucursal</th>
+					<th class="cabecero">Gerente</th>
+					<th class="cabecero">Plaza</th>
+					<th class="cabecero">Dirección 1</th>
+					<th class="cabecero">Colonia</th>
+					<th class="cabecero">Editar</th>
+					<th class="cabecero">Eliminar</th>
 				</tr>
 			</thead>
 		</table>
@@ -159,7 +157,7 @@
 																			</div>
 																			
 																			<div class="form-group error-municipio">
-																						<label for="municipio" class="text-primary">Municipio / delegación: </label>
+																						<label for="municipio" class="text-primary">Municipio: </label>
 																						<input type="text" name="municipio" id="municipio" class="form-control" >
 																						<span class="icon-municipio"></span>
 																			</div>
@@ -360,7 +358,7 @@
 																			</div>
 																			
 																			<div class="form-group error-municipio-edit">
-																						<label for="municipio_edit" class="text-primary">Municipio / delegación: </label>
+																						<label for="municipio_edit" class="text-primary">Municipio: </label>
 																						<input type="text" name="municipio_edit" id="municipio_edit" class="form-control" >
 																						<span class="icon-municipio-edit"></span>
 																			</div>
@@ -821,13 +819,11 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre_sucursal,
-																															l[i].nombre,
-																															l[i].nombre_plaza,
-																															l[i].direccion1,
-																															l[i].colonia,
-																															l[i].estado,
-																															l[i].municipio_delegacion,
+																															'<span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre_sucursal,
+																															'<span class="text-info txt-escondido">Gerente: </span>'+l[i].nombre,
+																															'<span class="text-info txt-escondido">Plaza: </span>'+l[i].nombre_plaza,
+																															'<span class="text-info txt-escondido">Dirección 1: </span>'+l[i].direccion1,
+																															'<span class="text-info txt-escondido">Colonia: </span>'+l[i].colonia,
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar sucursal">'+
 																					            '<span class="glyphicon glyphicon-edit"></span>'+
 																					          '</button>',
@@ -1040,13 +1036,11 @@
 								success: function(s){
 									
 										nueva_fila = '<tr id="fila_'+s.id+'">'+
-												'<td><span class="hidden">'+s.created_at+'</span>'+s.nombre_sucursal+'</td>'+
-												'<td>'+s.nombre+'</td>'+
-												'<td>'+s.nombre_plaza+'</td>'+
-												'<td>'+s.direccion1+'</td>'+
-												'<td>'+s.colonia+'</td>'+
-												'<td>'+s.estado+'</td>'+
-												'<td>'+s.municipio_delegacion+'</td>'+
+												'<td><span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+s.created_at+'</span>'+s.nombre_sucursal+'</td>'+
+												'<td><span class="text-info txt-escondido">Gerente: </span>'+s.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Plaza: </span>'+s.nombre_plaza+'</td>'+
+												'<td><span class="text-info txt-escondido">Dirección 1: </span>'+s.direccion1+'</td>'+
+												'<td><span class="text-info txt-escondido">Colonia: </span>'+s.colonia+'</td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+s.id+'" title="Editar sucursal">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
@@ -1680,13 +1674,11 @@
 								success: function(s){
 									
 									$('#fila_'+id).replaceWith('<tr id="fila_'+s.id+'">'+
-               '<td><span class="hidden">'+s.created_at+'</span>'+s.nombre_sucursal+'</td>'+
-												'<td>'+s.nombre+'</td>'+
-												'<td>'+s.nombre_plaza+'</td>'+
-												'<td>'+s.direccion1+'</td>'+
-												'<td>'+s.colonia+'</td>'+
-												'<td>'+s.estado+'</td>'+
-												'<td>'+s.municipio_delegacion+'</td>'+
+               '<td><span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+s.created_at+'</span>'+s.nombre_sucursal+'</td>'+
+												'<td><span class="text-info txt-escondido">Gerente: </span>'+s.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Plaza: </span>'+s.nombre_plaza+'</td>'+
+												'<td><span class="text-info txt-escondido">Dirección 1: </span>'+s.direccion1+'</td>'+
+												'<td><span class="text-info txt-escondido">Colonia: </span>'+s.colonia+'</td>'+
 												'<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+s.id+'" title="Editar sucursal">'+
 																	'<span class="glyphicon glyphicon-edit"></span>'+
