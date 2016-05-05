@@ -682,43 +682,46 @@
 		fecha_devolucion = $('#datetimepicker4').val();
 	 lugar_devolucion = $('#select-sucursal-devolucion option:selected').attr('value');
 		
-		if(lugar_entrega == 0){
-			alertas("danger","Selecciona el lugar de entrega");
-		} else {
-				$('.div-img-gif').show();
-				$.ajax({
-						url:  "/admin/compararfechas",
-						type: "GET",
-						data:{lugar_entrega: lugar_entrega},
-						success: function(comparar){								
-							for(datos in comparar.f){
+			
+					if(lugar_entrega == 0){
+						alertas("danger","Selecciona el lugar de entrega");
+					} else {
+							$('.div-img-gif').show();
+							$.ajax({
+									url:  "/admin/compararfechas",
+									type: "GET",
+									data:{lugar_entrega: lugar_entrega},
+									success: function(comparar){								
+										for(datos in comparar.f){
 
-															if(comparar.f[datos].fecha_fin < fecha_devolucion){
+																		if(comparar.f[datos].fecha_fin < fecha_devolucion){
 
-																} else if(comparar.f[datos].fecha_fin >= fecha_devolucion) {
+																			} else if(comparar.f[datos].fecha_fin >= fecha_devolucion) {
 
-																	id_t = comparar.f[datos].id;
-																	//En la primera que sea mayor cortamos el ciclo
-																	//y llamamos a la funcion para mostrar los daos del vehiculo
-																	mostrardatos(tipo_v, transmision_v, id_t);
+																				id_t = comparar.f[datos].id;
+																				//En la primera que sea mayor cortamos el ciclo
+																				//y llamamos a la funcion para mostrar los daos del vehiculo
+																				mostrardatos(tipo_v, transmision_v, id_t);
 
-																	break; 
-																}
-
-
-
-
-														}
+																				break; 
+																			}
 
 
-						},
 
-						error: function(){
-							alert('failure');
-						}
 
-			});
-		} //end else
+																	}
+
+
+									},
+
+									error: function(){
+										alert('failure');
+									}
+
+						});
+					} //end else
+		
+		
 			
 			
 			
@@ -1142,9 +1145,18 @@ $(document).on('click', '#reservar', function(){
 		
 	} else {
 		
+		 fecha_entrega = $('#datetimepicker2').val();
+		 fecha_devolucion = $('#datetimepicker4').val();
+		
+		if(fecha_entrega >= fecha_devolucion){
+			alertas('danger', 'La fecha de devolución no puede ser anterior o igual a la fecha de entrega.');
+		} else {
+		
 	 	$('#modal-confirm-reserva').modal({
 				show:'false',
 			});
+			
+		}
 
 	}
 	
@@ -1190,6 +1202,7 @@ console.log(dateB.diff(dateB, 'days'));
 	 coment = $('#coment-c').val();
 	
 		
+	
 						$.ajax({
 								url:  "/admin/registrareserva",
 								type: "POST",
