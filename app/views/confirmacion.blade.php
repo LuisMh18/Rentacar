@@ -4,21 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Detalle reserva</title>
 	{{ HTML::style('css/bootstrap.min.css') }}
-	{{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
-	{{ HTML::style('css/bootstrap-select.min.css') }}
-	{{ HTML::style('lib/bootstrap-notify/bootstrap-notify.css') }}
 	{{ HTML::style('css/estilos_reserva.css') }}
 	{{ HTML::Script('js/jquery.js') }}
 	{{ HTML::Script('js/bootstrap.min.js') }}
-	{{ HTML::Script('js/moment.min.js') }}
-	{{ HTML::Script('js/bootstrap-datetimepicker.min.js') }}
-	{{ HTML::Script('js/bootstrap-select.min.js') }}
-	{{ HTML::Script('js/i18n/defaults-es_CL.min.js') }}
-	{{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
+
 </head>
 <body>
 	<div class="container section section-reserva">
-	
 			 <!--Alertas-->
 <div class="notifications top-right" data-html="true"></div>
 		<div class="row">
@@ -29,8 +21,8 @@
 				<h4 class="text-da text-center"><span class="text-info">N° reserva: </span><span class="dato-p-1">{{ $r->num_reserva }}</span></h4>
 			@endforeach
 				<section class="section_cliente">
-				
-				
+
+
 						  <h4 class="text-info text-center">Datos del cliente</h4>
           <table class="table table-d-xs">
             <thead>
@@ -49,7 +41,7 @@
 													@endforeach
             </tbody>
           </table>
-          
+
 	<div class="seccion_tabla section-reserva">
 
 	<div class="tabla-sucursal">
@@ -74,26 +66,54 @@
 			@endforeach
 			</tbody>
 	</table>
-		
+
 	<a href="{{ URL::to('confirmar/imprimir',$id) }}" id="imprimir" target="_blank" class="btn btn-default">Imprimir en pdf</a>
-	
+
 	<div>
-			<a id="regresar" href="{{ URL::to('/') }}" class="btn btn-info">
+			<a id="regresar" class="btn btn-info">
 					<span class="glyphicon glyphicon-chevron-left"></span>
 								Regresar
 			</a>
  </div>
-	
+
 	</div>
 </div>
 
-
+				<input type="text" name="name" value="{{ $id }}" id="id_sesion" class="hidden">
 				</section>
 			</div>
 		</div>
-	</div>	
-	
-  
-	
+	</div>
+
+
+	<script>
+
+	$(document).on('click', '#regresar', function(){
+						id = $('#id_sesion').val();
+
+							$.ajax({
+									url:  "/confirmar/eliminarsesion",
+									type: "GET",
+									data:{id: id},
+									success: function(e){
+
+		                 window.location.href = '/';
+
+
+									},
+
+									error: function(){
+										alert('failure');
+									}
+
+						});
+
+
+
+	});
+
+	</script>
+
+
 </body>
 </html>

@@ -12,7 +12,7 @@
  {{ HTML::Script('js/jquery.js') }}
  {{ HTML::script('js/bootstrap.min.js') }}
  {{ HTML::Script('js/moment.min.js') }}
-	{{ HTML::Script('js/bootstrap-datetimepicker.min.js') }}
+ {{ HTML::Script('js/bootstrap-datetimepicker.min.js') }}
  {{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
  {{ HTML::script('js/accounting.min.js') }}
  <style>
@@ -97,73 +97,72 @@
 
             <form class="form-modal" action="">
 															
-																<div class="datos1-tarifa">
-																		
-																		<div class="form-group error-oficina">
-																			<label for="select_oficina" class="text-primary">Oficina: </label>
-																							<select class="form-control" id="select_oficina"></select>
-																	 </div>
-																	 
-																	 <!--  Campo oculto   -->
-																	 <input type="text" id="tipo_oficina" value="" class="hidden">
-																		
-																			<div class="form-group error-fecha_inicio">
-																						<label for="fecha_inicio" class="text-primary">Fecha inicio: </label>
-																						<input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" >
-																						<span class="icon-fecha_inicio"></span>
-																			</div>
-																			
-																		<div class="form-group error-fecha_fin">
-																						<label for="fecha_fin" class="text-primary">Fecha fin: </label>
-																						<input type="text" name="fecha_fin" id="fecha_fin" class="form-control" >
-																						<span class="icon-fecha_fin"></span>
-																			</div>
-																							
-																	<div class="estaus_tarifa">			
-																			<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
-																					 <span class="text-primary">Activo</span>
-																					<div class="txt-activ">
-																					  <input id="inp-check" type="checkbox" value="">
-																					</div>
-																		</div>
-																</div>
-																											
-																	
-													</div>
+				<div class="datos1-tarifa">
+						
+						<div class="form-group error-oficina">
+							<label for="select_oficina" class="text-primary">Oficina: </label>
+											<select class="form-control" id="select_oficina"></select>
+					 </div>
+					 
+					 <!--  Campo oculto   -->
+					 <input type="text" id="tipo_oficina" value="" class="hidden">
+						
+							<div class="form-group error-fecha_inicio">
+										<label for="fecha_inicio" class="text-primary">Fecha inicio: </label>
+										<input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" >
+										<span class="icon-fecha_inicio"></span>
+							</div>
+							
+						<div class="form-group error-fecha_fin">
+										<label for="fecha_fin" class="text-primary">Fecha fin: </label>
+										<input type="text" name="fecha_fin" id="fecha_fin" class="form-control" >
+										<span class="icon-fecha_fin"></span>
+							</div>
+											
+					<div class="estaus_tarifa">			
+							<label for="estatus" class="text-primary">Estatus: </label>
+						<div class="checkbox checkbox-activ">
+									 <span class="text-primary">Activo</span>
+									<div class="txt-activ">
+									  <input id="inp-check" type="checkbox" value="">
+									</div>
+						</div>
+				    </div>
 															
-																		<div class="content-add-t-d">
-																					<button id="ad-nueva-tarifa-detalle" class="btn btn-primary" title="Agregar detalle">
-																									<span class="glyphicon glyphicon-plus"></span>
-																					</button>
-																		</div>
-													<div class="datos1-tarifa-detalle">
-																		
-																		<div class="seccion_tabla">
-																				
-																					<div class="tabla-sucursal">
-																							<table id="table-x-y" class="tabla_detalletarifa table-striped">
-																							<div class="thead-detalle">
-																								<span class="txt-detalle">Detalle</span>
-																							</div>
-																							<thead class="thead-detallet">
-																								<tr>
-																									<th class="cabecero">Grupo</th>
-																									<th class="cabecero">Código</th>
-																									<th class="cabecero">Cobertura</th>
-																									<th class="cabecero">Vehículo</th>
-																									<th class="cabecero">Tarifa por día</th>
-																									<th class="cabecero">Eliminar</th>
-																								</tr>														
-																							</thead>
-																							<tbody id="body-tarifa-detalle"></tbody>
-																						</table>
-																					</div>
+					
+	           </div>
+															
+				<div class="content-add-t-d">
+							<button id="ad-nueva-tarifa-detalle" class="btn btn-primary" title="Agregar detalle">
+											<span class="glyphicon glyphicon-plus"></span>
+							</button>
+				</div>
+				<div class="datos1-tarifa-detalle">
+									
+					<div class="seccion_tabla">
+							
+								<div class="tabla-sucursal">
+										<table id="table-x-y" class="tabla_detalletarifa table-striped">
+										<div class="thead-detalle">
+											<span class="txt-detalle">Detalle</span>
+										</div>
+										<thead class="thead-detallet">
+											<tr>
+												<th class="cabecero">Grupo</th>
+												<th class="cabecero">Cobertura</th>
+												<th class="cabecero">Vehículo</th>
+												<th class="cabecero">Tarifa por día</th>
+												<th class="cabecero">Eliminar</th>
+											</tr>														
+										</thead>
+										<tbody id="body-tarifa-detalle"></tbody>
+									</table>
+								</div>
 
-																				</div>
+							</div>
 
-																	
-													</div>
+								
+				</div>
 															
 																						 
             </form>
@@ -171,14 +170,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-tarifa" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-tarifa" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
+	 		<div class="footer-modal">
+						<button id="no-add-tarifa" type="button" class="btn btn-danger" data-dismiss="modal">
+							Cancelar
+					</button>
+					<span id="add-tarifa" class="btn btn-primary" data-dismiss="modal" >
+								Agregar
+					</span>
+			</div>
              
           </div>
         </div>
@@ -202,62 +201,58 @@
 
             <form class="form-modal" action="">
 															
-																<div class="datos1 error-tarifa-grupo">
-																			<div class="form-group">
-																						<label for="select-tarifa-grupo" class="text-primary">Grupo: </label>
-																						<select class="form-control" id="select-tarifa-grupo"></select>
-																			</div>
+				<div class="datos1 error-tarifa-grupo">
+					<div class="form-group">
+						<label for="select-tarifa-grupo" class="text-primary">Grupo: </label>
+						<select class="form-control" id="select-tarifa-grupo"></select>
+					</div>
 
-																		<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-grupo" class="hidden">
+					<!-- Campo escondido -->
+					<input type="text" id="inp-tarifa-grupo" class="hidden">
 
-																		<div class="form-group error-tarifa-codigo">
-																						<label for="select-tarifa-codigo" class="text-primary">Código: </label>
-																						<select class="form-control" id="select-tarifa-codigo"></select>
-																		</div>
-																		<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-codigo" class="hidden">
-																		
-																</div>
+
+					<div class="form-group error-tarifa-vehiculo">
+						<label for="select-tarifa-vehiculo" class="text-primary">Vehículo: </label>
+						<select class="form-control" id="select-tarifa-vehiculo"></select>
+					</div>
+					<!-- Campo escondido -->
+					<input type="text" id="inp-tarifa-codigo" class="hidden">
+						
+				</div>
 																
-														<div class="datos2">
-																	<div class="form-group error-tarifa-cobertura">
-																					<label for="select-tarifa-cobertura" class="text-primary">Cobertura: </label>
-																					<select class="form-control" id="select-tarifa-cobertura"></select>
-																	</div>
-																	<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-cobertura" class="hidden">
+				<div class="datos2">
+						<!-- Campo escondido -->
+							<input type="text" id="inp-tarifa-cobertura" class="hidden">
 
-																	<div class="form-group error-tarifa-vehiculo">
-																					<label for="select-tarifa-vehiculo" class="text-primary">Vehículo: </label>
-																					<select class="form-control" id="select-tarifa-vehiculo"></select>
-																	</div>
-																	<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-vehiculo" class="hidden">
-													 </div>
+				<div class="form-group error-tarifa-por-dia">
+					<label for="tarifa-por-dia" class="text-primary">Tarifa por día: </label>
+					<input type="number" class="form-control" id="tarifa-por-dia">
+					<span class="icon-tarifa-por-dia"></span>
+				</div>
+				
+					<div class="form-group error-tarifa-cobertura">
+									<label for="select-tarifa-cobertura" class="text-primary">Cobertura: </label>
+									<select class="form-control" id="select-tarifa-cobertura"></select>
+					</div>
+				<!-- Campo escondido -->
+					<input type="text" id="inp-tarifa-vehiculo" class="hidden">
+			  </div>
 													 
-													 <div class="datos2">
-																	<div class="form-group error-tarifa-por-dia">
-																					<label for="tarifa-por-dia" class="text-primary">Tarifa por día: </label>
-																					<input type="number" class="form-control" id="tarifa-por-dia">
-																					<span class="icon-tarifa-por-dia"></span>
-																	</div>
-													 </div>
 													 
             </form>
                 
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-tarifa-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-tarifa-detalle" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
-             
+	 		<div class="footer-modal">
+				<button id="no-add-tarifa-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
+						Cancelar
+				</button>
+				<span id="add-tarifa-detalle" class="btn btn-primary" data-dismiss="modal" >
+							Agregar
+				</span>
+			</div>
+
           </div>
         </div>
       </div>
@@ -282,14 +277,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-tarifa" type="button" class="btn btn-danger" data-dismiss="modal">
-																	No
-															</button>
-															<span id="confirm-delete-tarifa" class="btn btn-primary" data-dismiss="modal" >
-																		Si
-															</span>
-													</div>
+	 		<div class="footer-modal">
+						<button id="no-add-tarifa" type="button" class="btn btn-danger" data-dismiss="modal">
+							No
+					</button>
+					<span id="confirm-delete-tarifa" class="btn btn-primary" data-dismiss="modal" >
+								Si
+					</span>
+			</div>
              
           </div>
         </div>
@@ -313,76 +308,75 @@
 
             <form class="form-modal" action="">
 															
-																<div class="datos1-tarifa">
-																		
-																		<div class="form-group error-oficina_edit">
-																			<label for="select_oficina_edit" class="text-primary">Oficina: </label>
-																							<select class="form-control" id="select_oficina_edit"></select>
-																	 </div>
-																	 
-																	 <!--  Campo oculto   -->
-																	 <input type="text" id="tipo_oficina_edit" value="" class="hidden">
-																		
-																			<div class="form-group error-fecha_inicio_edit">
-																						<label for="fecha_inicio_edit" class="text-primary">Fecha inicio: </label>
-																						<input type="text" name="fecha_inicio_edit" id="fecha_inicio_edit" class="form-control" >
-																						<span class="icon-fecha_inicio_edit"></span>
-																			</div>
-																			
-																		<div class="form-group error-fecha_fin_edit">
-																						<label for="fecha_fin_edit" class="text-primary">Fecha fin: </label>
-																						<input type="text" name="fecha_fin_edit" id="fecha_fin_edit" class="form-control" >
-																						<span class="icon-fecha_fin_edit"></span>
-																			</div>
-																							
-																	<div class="estaus_tarifa">			
-																			<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ">
-																					 <span class="text-primary">Activo</span>
-																					<div class="txt-activ">
-																					  <input id="inp-check-edit" type="checkbox" value="">
-																					</div>
-																		</div>
-																</div>
-																											
-																	
-													</div>
+					<div class="datos1-tarifa">
+							
+							<div class="form-group error-oficina_edit">
+								<label for="select_oficina_edit" class="text-primary">Oficina: </label>
+												<select class="form-control" id="select_oficina_edit"></select>
+						 </div>
+						 
+						 <!--  Campo oculto   -->
+						 <input type="text" id="tipo_oficina_edit" value="" class="hidden">
+							
+								<div class="form-group error-fecha_inicio_edit">
+											<label for="fecha_inicio_edit" class="text-primary">Fecha inicio: </label>
+											<input type="text" name="fecha_inicio_edit" id="fecha_inicio_edit" class="form-control" >
+											<span class="icon-fecha_inicio_edit"></span>
+								</div>
+								
+							<div class="form-group error-fecha_fin_edit">
+											<label for="fecha_fin_edit" class="text-primary">Fecha fin: </label>
+											<input type="text" name="fecha_fin_edit" id="fecha_fin_edit" class="form-control" >
+											<span class="icon-fecha_fin_edit"></span>
+								</div>
+												
+						<div class="estaus_tarifa">			
+								<label for="estatus" class="text-primary">Estatus: </label>
+							<div class="checkbox checkbox-activ">
+										 <span class="text-primary">Activo</span>
+										<div class="txt-activ">
+										  <input id="inp-check-edit" type="checkbox" value="">
+										</div>
+							</div>
+					</div>
+																
+						
+		          </div>
 															
-																		<div class="content-add-t-d">
-																					<button id="ad-nueva-tarifa-detalle-edit" class="btn btn-primary" title="Agregar detalle">
-																									<span class="glyphicon glyphicon-plus"></span>
-																					</button>
-																		</div>
-													<div class="datos1-tarifa-detalle">
-																		
-																		<div class="seccion_tabla">
-																				
-																					<div class="tabla-sucursal">
-																							<table id="table-x" class="tabla_detalletarifa table-striped">
-																							<div class="thead-detalle">
-																								<span class="txt-detalle">Detalle</span>
-																							</div>
-																							<!-- Campo escondido -->
-																							<input type="text" id="id_tarifa" value="" class="hidden">
-																							<thead class="thead-detallet">
-																								<tr>
-																									<th class="cabecero">Grupo</th>
-																									<th class="cabecero">Código</th>
-																									<th class="cabecero">Cobertura</th>
-																									<th class="cabecero">Vehículo</th>
-																									<th class="cabecero">Tarifa por día</th>
-																									<th class="cabecero">Editar</th>
-																									<th class="cabecero">Eliminar</th>
-																								</tr>														
-																							</thead>
-																							<tbody id="body-tarifa-detalle-edit"></tbody>
-																						</table>
-																					</div>
+					<div class="content-add-t-d">
+								<button id="ad-nueva-tarifa-detalle-edit" class="btn btn-primary" title="Agregar detalle">
+												<span class="glyphicon glyphicon-plus"></span>
+								</button>
+					</div>
+					<div class="datos1-tarifa-detalle">
+										
+					<div class="seccion_tabla">
+							
+								<div class="tabla-sucursal">
+										<table id="table-x" class="tabla_detalletarifa table-striped">
+										<div class="thead-detalle">
+											<span class="txt-detalle">Detalle</span>
+										</div>
+										<!-- Campo escondido -->
+										<input type="text" id="id_tarifa" value="" class="hidden">
+										<thead class="thead-detallet">
+											<tr>
+												<th class="cabecero">Grupo</th>
+												<th class="cabecero">Código</th>
+												<th class="cabecero">Vehículo</th>
+												<th class="cabecero">Tarifa por día</th>
+												<th class="cabecero">Editar</th>
+												<th class="cabecero">Eliminar</th>
+											</tr>														
+										</thead>
+										<tbody id="body-tarifa-detalle-edit"></tbody>
+									</table>
+								</div>
 
-																				</div>
+							</div>
 
-																	
-													</div>
+									
+					</div>
 															
 																						 
             </form>
@@ -390,14 +384,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-tarifa-edit" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-tarifa-edit" class="btn btn-primary btn-act-t-d" data-dismiss="modal" >
-																		Actualizar tarifa
-															</span>
-													</div>
+		 		<div class="footer-modal">
+							<button id="no-add-tarifa-edit" type="button" class="btn btn-danger" data-dismiss="modal">
+								Cancelar
+						</button>
+						<span id="add-tarifa-edit" class="btn btn-primary btn-act-t-d" data-dismiss="modal" >
+									Actualizar tarifa
+						</span>
+				</div>
              
           </div>
         </div>
@@ -423,14 +417,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-quitar-tarifa-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
-																	No
-															</button>
-															<span id="confirm-delete-tarifa-detalle" class="btn btn-primary" data-dismiss="modal" >
-																		Si
-															</span>
-													</div>
+		 		<div class="footer-modal">
+							<button id="no-quitar-tarifa-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
+								No
+						</button>
+						<span id="confirm-delete-tarifa-detalle" class="btn btn-primary" data-dismiss="modal" >
+									Si
+						</span>
+				</div>
              
           </div>
         </div>
@@ -453,61 +447,56 @@
 
             <form class="form-modal" action="">
 															
-																<div class="datos1 error-tarifa-grupo-edit">
-																			<div class="form-group">
-																						<label for="select-tarifa-grupo-edit" class="text-primary">Grupo: </label>
-																						<select class="form-control" id="select-tarifa-grupo-edit"></select>
-																			</div>
+				<div class="datos1 error-tarifa-grupo-edit">
+							<div class="form-group">
+										<label for="select-tarifa-grupo-edit" class="text-primary">Grupo: </label>
+										<select class="form-control" id="select-tarifa-grupo-edit"></select>
+							</div>
 
-																		<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-grupo-edit" class="hidden">
+						<!-- Campo escondido -->
+						<input type="text" id="inp-tarifa-grupo-edit" class="hidden">
 
-																		<div class="form-group error-tarifa-codigo-edit">
-																						<label for="select-tarifa-codigo-edit" class="text-primary">Código: </label>
-																						<select class="form-control" id="select-tarifa-codigo-edit"></select>
-																		</div>
-																		<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-codigo-edit" class="hidden">
-																		
-																</div>
+						<div class="form-group error-tarifa-vehiculo-edit">
+										<label for="select-tarifa-vehiculo-edit" class="text-primary">Vehículo: </label>
+										<select class="form-control" id="select-tarifa-vehiculo-edit"></select>
+						</div>
+						<!-- Campo escondido -->
+						<input type="text" id="inp-tarifa-codigo-edit" class="hidden">
+						
+				</div>
 																
-														<div class="datos2">
-																	<div class="form-group error-tarifa-cobertura-edit">
-																					<label for="select-tarifa-cobertura-edit" class="text-primary">Cobertura: </label>
-																					<select class="form-control" id="select-tarifa-cobertura-edit"></select>
-																	</div>
-																	<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-cobertura-edit" class="hidden">
+				<div class="datos2">
+							<div class="form-group error-tarifa-por-dia-edit">
+											<label for="tarifa-por-dia-edit" class="text-primary">Tarifa por día: </label>
+											<input type="number" class="form-control" id="tarifa-por-dia-edit">
+											<span class="icon-tarifa-por-dia-edit"></span>
+							</div>
 
-																	<div class="form-group error-tarifa-vehiculo-edit">
-																					<label for="select-tarifa-vehiculo-edit" class="text-primary">Vehículo: </label>
-																					<select class="form-control" id="select-tarifa-vehiculo-edit"></select>
-																	</div>
-																	<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-vehiculo-edit" class="hidden">
-													 </div>
+							<div class="form-group error-tarifa-cobertura-edit">
+											<label for="select-tarifa-cobertura-edit" class="text-primary">Cobertura: </label>
+											<select class="form-control" id="select-tarifa-cobertura-edit"></select>
+							</div>
+							<!-- Campo escondido -->
+								<input type="text" id="inp-tarifa-cobertura-edit" class="hidden">
+
+							<!-- Campo escondido -->
+								<input type="text" id="inp-tarifa-vehiculo-edit" class="hidden">
+			 </div>
 													 
-													 <div class="datos2">
-																	<div class="form-group error-tarifa-por-dia-edit">
-																					<label for="tarifa-por-dia-edit" class="text-primary">Tarifa por día: </label>
-																					<input type="number" class="form-control" id="tarifa-por-dia-edit">
-																					<span class="icon-tarifa-por-dia-edit"></span>
-																	</div>
-													 </div>
 													 
             </form>
                 
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-tarifa-detalle-edit" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-tarifa-detalle-edit" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
+	 		<div class="footer-modal">
+						<button id="no-add-tarifa-detalle-edit" type="button" class="btn btn-danger" data-dismiss="modal">
+							Cancelar
+					</button>
+					<span id="add-tarifa-detalle-edit" class="btn btn-primary" data-dismiss="modal" >
+								Agregar
+					</span>
+			</div>
              
           </div>
         </div>
@@ -530,61 +519,54 @@
 
             <form class="form-modal" action="">
 															
-																<div class="datos1 error-tarifa-grupo-edit-detalle">
-																			<div class="form-group">
-																						<label for="select-tarifa-grupo-edit-detalle" class="text-primary">Grupo: </label>
-																						<select class="form-control" id="select-tarifa-grupo-edit-detalle"></select>
-																			</div>
+				<div class="datos1 error-tarifa-grupo-edit-detalle">
+							<div class="form-group">
+										<label for="select-tarifa-grupo-edit-detalle" class="text-primary">Grupo: </label>
+										<select class="form-control" id="select-tarifa-grupo-edit-detalle"></select>
+							</div>
 
-																		<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-grupo-edit-detalle" class="hidden">
+							<div class="form-group error-tarifa-vehiculo-edit-detalle">
+											<label for="select-tarifa-vehiculo-edit-detalle" class="text-primary">Vehículo: </label>
+											<select class="form-control" id="select-tarifa-vehiculo-edit-detalle"></select>
+							</div>
+						<!-- Campo escondido -->
+						<input type="text" id="inp-tarifa-grupo-edit-detalle" class="hidden">
 
-																		<div class="form-group error-tarifa-codigo-edit-detalle">
-																						<label for="select-tarifa-codigo-edit-detalle" class="text-primary">Código: </label>
-																						<select class="form-control" id="select-tarifa-codigo-edit-detalle"></select>
-																		</div>
-																		<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-codigo-edit-detalle" class="hidden">
-																		
-																</div>
+						<!-- Campo escondido -->
+						<input type="text" id="inp-tarifa-codigo-edit-detalle" class="hidden">
+						
+				</div>
 																
-														<div class="datos2">
-																	<div class="form-group error-tarifa-cobertura-edit-detalle">
-																					<label for="select-tarifa-cobertura-edit-detalle" class="text-primary">Cobertura: </label>
-																					<select class="form-control" id="select-tarifa-cobertura-edit-detalle"></select>
-																	</div>
-																	<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-cobertura-edit-detalle" class="hidden">
+				<div class="datos2">
+							<div class="form-group error-tarifa-cobertura-edit-detalle">
+											<label for="select-tarifa-cobertura-edit-detalle" class="text-primary">Cobertura: </label>
+											<select class="form-control" id="select-tarifa-cobertura-edit-detalle"></select>
+							</div>
+							<!-- Campo escondido -->
+								<input type="text" id="inp-tarifa-cobertura-edit-detalle" class="hidden">
 
-																	<div class="form-group error-tarifa-vehiculo-edit-detalle">
-																					<label for="select-tarifa-vehiculo-edit-detalle" class="text-primary">Vehículo: </label>
-																					<select class="form-control" id="select-tarifa-vehiculo-edit-detalle"></select>
-																	</div>
-																	<!-- Campo escondido -->
-																		<input type="text" id="inp-tarifa-vehiculo-edit-detalle" class="hidden">
-													 </div>
-													 
-													 <div class="datos2">
-																	<div class="form-group error-tarifa-por-dia-edit-detalle">
-																					<label for="tarifa-por-dia-edit-detalle" class="text-primary">Tarifa por día: </label>
-																					<input type="number" class="form-control" id="tarifa-por-dia-edit-detalle">
-																					<span class="icon-tarifa-por-dia-edit-detalle"></span>
-																	</div>
-													 </div>
+							<!-- Campo escondido -->
+								<input type="text" id="inp-tarifa-vehiculo-edit-detalle" class="hidden">
+							<div class="form-group error-tarifa-por-dia-edit-detalle">
+								<label for="tarifa-por-dia-edit-detalle" class="text-primary">Tarifa por día: </label>
+								<input type="number" class="form-control" id="tarifa-por-dia-edit-detalle">
+								<span class="icon-tarifa-por-dia-edit-detalle"></span>
+							</div>
+			 </div>
 													 
             </form>
                 
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-tarifa-detalle-edit-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-tarifa-detalle-edit-detalle" class="btn btn-primary btn-act-t-d" data-dismiss="modal" >
-																	Actualizar detalle
-															</span>
-													</div>
+	 		<div class="footer-modal">
+						<button id="no-add-tarifa-detalle-edit-detalle" type="button" class="btn btn-danger" data-dismiss="modal">
+							Cancelar
+					</button>
+					<span id="add-tarifa-detalle-edit-detalle" class="btn btn-primary btn-act-t-d" data-dismiss="modal" >
+							Actualizar detalle
+					</span>
+			</div>
              
           </div>
         </div>
@@ -650,19 +632,19 @@
 											tabla_a.fnClearTable();
 
 													for(var i = 0; i < l.length; i++) {
-																				tabla_a.fnAddData([
-																															'<span class="text-info txt-escondido">Id: </span>'+l[i].id,
-																															'<span class="text-info txt-escondido">Oficina: </span>'+l[i].nombre,
-																															'<span class="text-info txt-escondido">Fecha inicio: </span>'+l[i].fecha_inicio,
-																															'<span class="text-info txt-escondido">Fecha fin: </span>'+l[i].fecha_fin,
-																															'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar tarifa">'+
-																					            '<span class="glyphicon glyphicon-edit"></span>'+
-																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar tarifa">'+
-																					            '<span class="glyphicon glyphicon-remove"></span>'+
-																					          '</button>',
-																													]);
+																		tabla_a.fnAddData([
+																'<span class="text-info txt-escondido">Id: </span>'+l[i].id,
+																'<span class="text-info txt-escondido">Oficina: </span>'+l[i].nombre,
+																'<span class="text-info txt-escondido">Fecha inicio: </span>'+l[i].fecha_inicio,
+																'<span class="text-info txt-escondido">Fecha fin: </span>'+l[i].fecha_fin,
+																'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
+																'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar tarifa">'+
+														            '<span class="glyphicon glyphicon-edit"></span>'+
+														          '</button>',
+																'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar tarifa">'+
+											                      '<span class="glyphicon glyphicon-remove"></span>'+
+											                    '</button>',
+																			]);
 
 
 																					} //End for
@@ -885,10 +867,6 @@
 		$('#inp-tarifa-grupo').attr('value', id);
 	});
 	
-	$('#select-tarifa-codigo').on('change',function(){
-		id = $(this).val();
-		$('#inp-tarifa-codigo').attr('value', id);
-	});
 	
 	$('#select-tarifa-cobertura').on('change',function(){
 		id = $(this).val();
@@ -903,28 +881,25 @@
 	
 		$(document).on('click', '#add-tarifa-detalle', function(){
 			grupo = $('#inp-tarifa-grupo').attr('value');
-			codigo = $('#inp-tarifa-codigo').attr('value');
 			cobertura = $('#inp-tarifa-cobertura').attr('value');
 			vehiculo = $('#inp-tarifa-vehiculo').attr('value');
 			tarifa_por_dia = $('#tarifa-por-dia').val();
 			
 			//obtenemos los nombres
 			nombre_grupo = $('#select-tarifa-grupo option:selected').text();
-			nombre_codigo = $('#select-tarifa-codigo option:selected').text();
 			nombre_cobertura = $('#select-tarifa-cobertura option:selected').text();
 			nombre_vehiculo = $('#select-tarifa-vehiculo option:selected').text();
 
 			
 			body = $('#body-tarifa-detalle');
 			
-			nueva_fila = '<tr id="fila_'+grupo+'_'+codigo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'">'+
+			nueva_fila = '<tr id="fila_'+grupo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'">'+
 												'<td class="td_grupo" value="'+grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+nombre_grupo+'</td>'+
-												'<td class="td_codigo" value="'+codigo+'"><span class="text-info txt-escondido">Código: </span>'+nombre_codigo+'</td>'+
 												'<td class="td_cobertura" value="'+cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+nombre_cobertura+'</td>'+
 				        '<td class="td_vehiculo" value="'+vehiculo+'"><span class="text-info txt-escondido">Vehículo: </span>'+nombre_vehiculo+'</td>'+
 												'<td class="td_tarifa_por_dia" value="'+tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(tarifa_por_dia)+'</td>'+
 											'<td>'+
-											  '<button class="btn btn-sm btn-danger btn-sm eliminar-btn-detalle" value="'+grupo+'_'+codigo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'" title="Eliminar">'+
+											  '<button class="btn btn-sm btn-danger btn-sm eliminar-btn-detalle" value="'+grupo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'" title="Eliminar">'+
 																		'<span class="glyphicon glyphicon-remove"></span>'+
 														'</button>'+
 											'</td>'+
@@ -935,7 +910,6 @@
 			
 			//Limpiamos
 			$('#select-tarifa-grupo').html('');
-			$('#select-tarifa-codigo').html('');
 			$('#select-tarifa-cobertura').html('');
 			$('#select-tarifa-vehiculo').html('');
 			$('#tarifa-por-dia').val('');
@@ -944,22 +918,20 @@
 	
 		$(document).on('click', '#no-add-tarifa-detalle', function(){
 			
-					$('#select-tarifa-grupo').html('');
-			  $('#select-tarifa-codigo').html('');
+			  $('#select-tarifa-grupo').html('');
 			  $('#select-tarifa-cobertura').html('');
 			  $('#select-tarifa-vehiculo').html('');
 			  $('#tarifa-por-dia').val('');
 
       $('.error-tarifa-grupo').removeClass('has-error has-feedback');
 	
-      $('.error-tarifa-codigo').removeClass('has-error has-feedback');
 	
       $('.error-tarifa-cobertura').removeClass('has-error has-feedback');
 	
       $('.error-tarifa-vehiculo').removeClass('has-error has-feedback');
 	
       $('.error-tarifa-por-dia').removeClass('has-error has-feedback');
-						$('.icon-tarifa-por-dia').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	  $('.icon-tarifa-por-dia').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
 	
 	
@@ -1073,12 +1045,11 @@
 		$('.tabla_detalletarifa tbody tr').each(function(){
 							id_tarifa = id;
 							id_g  = $(this).find("td[class*='td_grupo']").attr('value');
-							id_c  = $(this).find("td[class*='td_codigo']").attr('value');
 			    id_cobertura  = $(this).find("td[class*='td_cobertura']").attr('value');
 			    id_v  = $(this).find("td[class*='td_vehiculo']").attr('value');
 			    tarifa_por_dia  = $(this).find("td[class*='td_tarifa_por_dia']").attr('value');
 
-							datos = {id_tarifa, id_g, id_c, id_cobertura, id_v, tarifa_por_dia};
+							datos = {id_tarifa, id_g, id_cobertura, id_v, tarifa_por_dia};
 
 							DATA.push(datos);
 			
@@ -1253,47 +1224,46 @@
 			
 			
 			
-			//Listar los detalles de la tarifa
-			$.ajax({
-								url:  "/admin/listartarifadetalleedit",
-								type: "GET",
-					   data:{id: id},
-								success: function(t){
-									if(t.t_d == ''){
-											
-										} else {
-
-												body = $('#body-tarifa-detalle-edit');
-												fila = "";
-
-											for(datos in t.t_d){
-																							
-
-												fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
-													'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+t.t_d[datos].descripcion_grupo+'</td>'+
-													'<td class="td_codigo_actual" value="'+t.t_d[datos].codigo+'"><span class="text-info txt-escondido">Código: </span>'+t.t_d[datos].codigo+'</td>'+
-													'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+t.t_d[datos].cobertura+'</td>'+
-													'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+t.t_d[datos].descripcion+'</td>'+
-													'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
-													'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
-													'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
-													'</tr>';
-
-
-											}//end for
-
-											body.append(fila);
-										}
+	//Listar los detalles de la tarifa
+	$.ajax({
+				url:  "/admin/listartarifadetalleedit",
+				type: "GET",
+			   data:{id: id},
+						success: function(t){
+							if(t.t_d == ''){
 									
-									
+								} else {
 
-								},
-			
-								error: function(){
-									alert('failure');
-								}
-																
-					});
+									body = $('#body-tarifa-detalle-edit');
+									fila = "";
+
+								for(datos in t.t_d){
+																				
+
+									fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
+										'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+t.t_d[datos].descripcion_grupo+'</td>'+
+										'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+t.t_d[datos].cobertura+'</td>'+
+										'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+t.t_d[datos].descripcion+'</td>'+
+										'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
+										'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+										'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+										'</tr>';
+
+
+								}//end for
+
+								body.append(fila);
+							}
+							
+							
+
+						},
+	
+						error: function(){
+							alert('failure');
+						}
+														
+			});
 					
 				
 	});
@@ -1496,7 +1466,6 @@
 		$(document).on('click', '#add-tarifa-detalle-edit', function(){
 			id_tarifa = $(this).attr('data-id');
 			grupo = $('#inp-tarifa-grupo-edit').attr('value');
-			codigo = $('#inp-tarifa-codigo-edit').attr('value');
 			cobertura = $('#inp-tarifa-cobertura-edit').attr('value');
 			vehiculo = $('#inp-tarifa-vehiculo-edit').attr('value');
 			tarifa_por_dia = $('#tarifa-por-dia-edit').val();
@@ -1505,7 +1474,7 @@
 						$.ajax({
 								url:  "/admin/agregartarifadetalle",
 								type: "GET",
-					   data:{id_tarifa: id_tarifa, grupo: grupo, codigo: codigo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
+					   data:{id_tarifa: id_tarifa, grupo: grupo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
 							success: function(d){
 
 											body_edit = $('#body-tarifa-detalle-edit');
@@ -1513,7 +1482,6 @@
 								
 												nueva_fila_edit += '<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
                 '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
-                '<td class="td_codigo_actual" value="'+d.codigo+'"><span class="text-info txt-escondido">Código: </span>'+d.codigo+'</td>'+
 																'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
 																'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+'</td>'+
 																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
@@ -1536,7 +1504,6 @@
 			
 			//Limpiamos
 			$('#select-tarifa-grupo-edit').html('');
-			$('#select-tarifa-codigo-edit').html('');
 			$('#select-tarifa-cobertura-edit').html('');
 			$('#select-tarifa-vehiculo-edit').html('');
 			$('#tarifa-por-dia-edit').val('');
@@ -1546,14 +1513,11 @@
 		$(document).on('click', '#no-add-tarifa-detalle-edit', function(){
 			
 					$('#select-tarifa-grupo-edit').html('');
-			  $('#select-tarifa-codigo-edit').html('');
 		   $('#select-tarifa-cobertura-edit').html('');
 			  $('#select-tarifa-vehiculo-edit').html('');
 			  $('#tarifa-por-dia-edit').val('');
 
 					$('.error-tarifa-grupo-edit').removeClass('has-error has-feedback');
-
-					$('.error-tarifa-codigo-edit').removeClass('has-error has-feedback');
 
 					$('.error-tarifa-cobertura-edit').removeClass('has-error has-feedback');
 
@@ -1629,33 +1593,7 @@
 																
 					});
 		
-						//Listamos los codigos
-					 $.ajax({
-								url:  "/admin/selectcodigoseditdetalle",
-								type: "GET",
-					   data:{id: id},
-							success: function(e){
-								     	option = "";
-              s = $('#select-tarifa-codigo-edit-detalle');
-									
-															option += '<option value="'+e.x_a[0].id+'">'+e.x_a[0].codigo +' '+e.x_a[0].descripcion_codigo+'</option>';
-              for(datos in e.codigos){
 
-																			option += '<option value="'+e.codigos[datos].id+'">'+e.codigos[datos].codigo+' '+e.codigos[datos].descripcion_codigo+'</option>';
-																}
-
-																s.append(option);
-								
-															//Campo escondido ---
-														$('#inp-tarifa-codigo-edit-detalle').attr('value', e.x_a[0].id);
-
-								},
-			
-								error: function(){
-									alert('failure');
-								}
-																
-					});
 		
 			//Listamos las coberturas
 					  $.ajax({
@@ -1757,7 +1695,6 @@
 			id = $(this).attr('value');
 			id_tarifa = $(this).attr('data-id');
 			grupo = $('#inp-tarifa-grupo-edit-detalle').attr('value');
-			codigo = $('#inp-tarifa-codigo-edit-detalle').attr('value');
 			cobertura = $('#inp-tarifa-cobertura-edit-detalle').attr('value');
 			vehiculo = $('#inp-tarifa-vehiculo-edit-detalle').attr('value');
 			tarifa_por_dia = $('#tarifa-por-dia-edit-detalle').val();
@@ -1765,12 +1702,11 @@
 			$.ajax({
 								url:  "/admin/actualizardetalle",
 								type: "GET",
-					   data:{id: id, id_tarifa: id_tarifa, grupo: grupo, codigo: codigo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
+					   data:{id: id, id_tarifa: id_tarifa, grupo: grupo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
 							success: function(d){
 
 												$('#fila_edit_'+id).replaceWith('<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
                 '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
-                '<td class="td_codigo_actual" value="'+d.codigo+'"><span class="text-info txt-escondido">Código: </span>'+d.codigo+'</td>'+
 																'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
 																'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+'</td>'+
 																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
@@ -1790,7 +1726,6 @@
 			
 			//Limpiamos
 			$('#select-tarifa-grupo-edit-detalle').html('');
-			$('#select-tarifa-codigo-edit-detalle').html('');
 			$('#select-tarifa-cobertura-edit-detalle').html('');
 			$('#select-tarifa-vehiculo-edit-detalle').html('');
 			$('#tarifa-por-dia-edit-detalle').val('');
@@ -1800,7 +1735,6 @@
 		$(document).on('click', '#no-add-tarifa-detalle-edit-detalle', function(){
 			
 					$('#select-tarifa-grupo-edit-detalle').html('');
-			  $('#select-tarifa-codigo-edit-detalle').html('');
 		   $('#select-tarifa-cobertura-edit-detalle').html('');
 			  $('#select-tarifa-vehiculo-edit-detalle').html('');
 			  $('#tarifa-por-dia-edit-detalle').val('');

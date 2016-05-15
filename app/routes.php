@@ -12,13 +12,13 @@
 */
 
 Route::get('/', function() {
-	
+
 			$sucursal = DB::table('sucursal')
 													->select('id', 'nombre_sucursal')
 													->orderBy('nombre_sucursal', 'ASC')
-													->get();																						
-					
-	
+													->get();
+
+
 	return View::make('reservas', 	compact(
 																							  'sucursal'
 																							));
@@ -26,7 +26,7 @@ Route::get('/', function() {
 
 
 Route::get('login', 'AdminController@getIndex');
-Route::post('login', 'AdminController@postLogin'); 
+Route::post('login', 'AdminController@postLogin');
 Route::get('logout', 'AdminController@logOut');
 
 //Admin
@@ -37,13 +37,6 @@ Route::controller('password', 'RemindersController');
 
 Route::get('confirmar/datosdelpedido/{id}', 'AdminController@datosdelpedido');
 
+Route::get('confirmar/eliminarsesion', 'AdminController@eliminarsesion');
+
 Route::get('confirmar/imprimir/{id}', 'AdminController@imprimir');
-
-Route::get('registrar', function(){
-	$usuario = new Usuario;
-	$usuario->usuario = 'Yeins99';
-	$usuario->password = Hash::make('12345678');
-	$usuario->email = 'y_yeins@live.com';
-	$usuario->save();
-});
-

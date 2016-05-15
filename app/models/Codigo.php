@@ -6,15 +6,11 @@ class Codigo extends Eloquent{
 	public function tarifaDetalles(){
 		return $this->hasMany('TarifaDetalle');
 	}
-	
+
 	public function tipoVehiculos(){
 		return $this->hasMany('TipoVehiculo');
 	}
 
 
-	
+
 }
-
-	
-
-		

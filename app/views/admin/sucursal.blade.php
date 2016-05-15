@@ -94,134 +94,134 @@
 
             <form class="form-modal" action="">
 															
-																<div class="datos1-s">
-																		
-																			<div class="form-group error-sucursal">
-																						<label for="sucursal" class="text-primary">Sucursal: </label>
-																						<input type="text" name="sucursal" id="sucursal" class="form-control" >
-																						<span class="icon-sucursal"></span>
-																			</div>
+				<div class="datos1-s">
+						
+							<div class="form-group error-sucursal">
+								<label for="sucursal" class="text-primary">Sucursal: </label>
+								<input type="text" name="sucursal" id="sucursal" class="form-control" >
+								<span class="icon-sucursal"></span>
+							</div>
 
 
-																		<div class="form-group error-gerente">
-																			<label for="seccionedit" class="text-primary">Gerente: </label>
-																			<div class="agrupar">
-																							<select class="form-control" id="select_gerente">
-																						</select>
-																						<button id="ad-nuevo-g" class="btn-add-n btn btn-primary btn-xs" title="Agregar nuevo gerente">
-																							<span class="glyphicon glyphicon-plus"></span>
-																						</button>
-																			 </div>
-																	</div>
-																	
-																	<div class="form-group error-plaza">
-																			<label for="seccionedit" class="text-primary">Plaza: </label>
-																			 <div class="agrupar">
-																							<select class="form-control" id="select_plaza">
-																						</select>
-																						<button id="ad-nueva-p" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva plaza">
-																							<span class="glyphicon glyphicon-plus"></span>
-																						</button>
-																			 </div>
-																	</div>
-																	
-													</div>
+				<div class="form-group error-gerente">
+					<label for="seccionedit" class="text-primary">Gerente: </label>
+					<div class="agrupar">
+							<select class="form-control" id="select_gerente">
+						</select>
+						<button id="ad-nuevo-g" class="btn-add-n btn btn-primary btn-xs" title="Agregar nuevo gerente">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					 </div>
+					</div>
+					
+					<div class="form-group error-plaza">
+							<label for="seccionedit" class="text-primary">Plaza: </label>
+							 <div class="agrupar">
+											<select class="form-control" id="select_plaza">
+										</select>
+										<button id="ad-nueva-p" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva plaza">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+							 </div>
+					</div>
+					
+	</div>
 															
-													<div class="datos1-s">
-																		
-																			<div class="form-group error-direccion1">
-																						<label for="direccion1" class="text-primary">Dirección 1: </label>
-																						<input type="text" name="direccion1" id="direccion1" class="form-control" >
-																						<span class="icon-direccion1"></span>
-																			</div>
-																			
-																			<div class="form-group">
-																						<label for="direccion2" class="text-primary">Dirección 2: </label>
-																						<input type="text" name="direccion2" id="direccion2" class="form-control" >
-																			</div>
-																			
-																			<div class="form-group error-colonia">
-																						<label for="colonia" class="text-primary">Colonia: </label>
-																						<input type="text" name="colonia" id="colonia" class="form-control" >
-																						<span class="icon-colonia"></span>
-																			</div>
-																	
-													</div>
+	<div class="datos1-s">
+		
+			<div class="form-group error-direccion1">
+						<label for="direccion1" class="text-primary">Dirección 1: </label>
+						<input type="text" name="direccion1" id="direccion1" class="form-control" >
+						<span class="icon-direccion1"></span>
+			</div>
+			
+			<div class="form-group">
+						<label for="direccion2" class="text-primary">Dirección 2: </label>
+						<input type="text" name="direccion2" id="direccion2" class="form-control" >
+			</div>
+			
+			<div class="form-group error-colonia">
+						<label for="colonia" class="text-primary">Colonia: </label>
+						<input type="text" name="colonia" id="colonia" class="form-control" >
+						<span class="icon-colonia"></span>
+			</div>
+
+	</div>
 															
-														<div class="datos1-s">
-																		
-																			<div class="form-group error-estado">
-																						<label for="estado" class="text-primary">Estado: </label>
-																						<input type="text" name="estado" id="estado" class="form-control" >
-																						<span class="icon-estado"></span>
-																			</div>
-																			
-																			<div class="form-group error-municipio">
-																						<label for="municipio" class="text-primary">Municipio: </label>
-																						<input type="text" name="municipio" id="municipio" class="form-control" >
-																						<span class="icon-municipio"></span>
-																			</div>
-																			
-																			<div class="form-group error-cp">
-																						<label for="cp" class="text-primary">CP: </label>
-																						<input type="text" name="cp" id="cp" class="form-control" >
-																						<span class="icon-cp"></span>
-																			</div>
-																	
-													</div>
+	<div class="datos1-s">
+					
+		<div class="form-group error-estado">
+					<label for="estado" class="text-primary">Estado: </label>
+					<input type="text" name="estado" id="estado" class="form-control" >
+					<span class="icon-estado"></span>
+		</div>
+		
+		<div class="form-group error-municipio">
+					<label for="municipio" class="text-primary">Municipio: </label>
+					<input type="text" name="municipio" id="municipio" class="form-control" >
+					<span class="icon-municipio"></span>
+		</div>
+		
+		<div class="form-group error-cp">
+					<label for="cp" class="text-primary">CP: </label>
+					<input type="text" name="cp" id="cp" class="form-control" >
+					<span class="icon-cp"></span>
+		</div>
+				
+</div>
 															
-															<div class="content-t">
-															
-																<div class="form-group form-textarea">
-																			<label for="referencia" class="text-primary">Referencias: </label>
-																			<textarea id="referencia" class="form-control" rows="4"></textarea>
-																</div>
-																
-																<div class="contenedor-tel-add">
-																		<div class="content-add-t">
-																					<h3 class="add-tel-txt">Agregar teléfono:</h3>
-																					<button id="ad-nuevo-t" class="btn-add-t btn btn-primary btn-xs" title="Agregar teléfono">
-																									<span class="glyphicon glyphicon-plus"></span>
-																					</button>
-																		</div>
-																	
-																		<div class="content-datos c-d">
-																				
-																				<table class="table table-tel">
-																						<thead>
-																							<tr>
-																								<th>
-																									<span class="text-info">Tipo:</span>
-																								</th>
-																								<th>
-																									<span class="text-info">Numero:</span>
-																								</th>
-																								<th>
-																									<span class="text-info">Quitar:</span>
-																								</th>
-																							</tr>
-																						</thead>
-																						<tbody id="c-d-telefonos">
-																						</tbody>
-																				</table>
-																		
-																		</div><!--END CONTENT DATOS-->
-																</div>
-															</div>
+	<div class="content-t">
+
+		<div class="form-group form-textarea">
+					<label for="referencia" class="text-primary">Referencias: </label>
+					<textarea id="referencia" class="form-control" rows="4"></textarea>
+		</div>
+		
+		<div class="contenedor-tel-add">
+				<div class="content-add-t">
+							<h3 class="add-tel-txt">Agregar teléfono:</h3>
+							<button id="ad-nuevo-t" class="btn-add-t btn btn-primary btn-xs" title="Agregar teléfono">
+											<span class="glyphicon glyphicon-plus"></span>
+							</button>
+				</div>
+			
+				<div class="content-datos c-d">
+						
+						<table class="table table-tel">
+								<thead>
+									<tr>
+										<th>
+											<span class="text-info">Tipo:</span>
+										</th>
+										<th>
+											<span class="text-info">Numero:</span>
+										</th>
+										<th>
+											<span class="text-info">Quitar:</span>
+										</th>
+									</tr>
+								</thead>
+								<tbody id="c-d-telefonos">
+								</tbody>
+						</table>
+				
+				</div><!--END CONTENT DATOS-->
+		</div>
+	</div>
 													 
             </form>
                 
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-sucursal" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-sucursal" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
+	 		<div class="footer-modal">
+						<button id="no-add-sucursal" type="button" class="btn btn-danger" data-dismiss="modal">
+							Cancelar
+					</button>
+					<span id="add-sucursal" class="btn btn-primary" data-dismiss="modal" >
+								Agregar
+					</span>
+			</div>
              
           </div>
         </div>
