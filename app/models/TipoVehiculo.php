@@ -2,6 +2,10 @@
 
 class TipoVehiculo extends Eloquent{
     protected $table = "tipo_vehiculo";
+
+  public function tipoVehiculosPlazas(){
+		return $this->hasMany('TipoVehiculoPlaza');
+	}
 	
 	public function tarifaDetalles(){
 		return $this->hasMany('TarifaDetalle');

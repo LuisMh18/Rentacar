@@ -18,6 +18,38 @@
 	{{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
 	{{ HTML::script('js/accounting.min.js') }}
 </head>
+	
+	<script>
+
+		$(document).on('click', '.gly-menu', function(){
+				$('li').fadeToggle(200);
+		});
+
+	</script>
+
+	<style>
+		.img-ve:hover{
+			box-shadow:0px 0px 20px #E6E6E6;
+			cursor:pointer;
+		}
+
+		.radio-v{
+			cursor:pointer;
+		}
+
+		.txt-sin-datos{
+			background:#D9534F;
+			color:#fff;
+			padding:.3em .5em;
+			border-radius:3px;
+			width:200px;
+			border:1px solid #ebccd1;
+			display:none;
+		}
+
+	</style>
+
+
 <body>
 	<div class="container section">
 
@@ -27,8 +59,29 @@
 
 		<div class="row">
 			<div class="section_contenidos">
+				<div class="logo-cabecera">
+				 <div>
+		      <img class="imagen-grande" src="/img/a1.png" alt="Logo">	
+				 </div>
+				 <div>
+		      <img class="imagen-grande" src="/img/a2.png" alt="Teléfono">	
+				 </div>
+				</div>
+				<div class="menu-cabecera">
+				  <div class="menu-icon">
+				  	<span class="txt-menu">Menú</span>
+				    <span class="glyphicon glyphicon-th-list gly-menu"></span>
+				  </div>
+					<li><a href="#">Inicio</a></li>
+					<li><a href="#">Acerca de nosotros</a></li>
+					<li><a href="#">Nuestra flotilla</a></li>
+					<li><a href="#">Facturación</a></li>
+					<li><a href="#">Sucursales</a></li>
+					<li><a href="#">Reservaciones</a></li>
+				</div>
 				<h1>Reservaciones</h1>
 				<p class="nota1">Llena los datos para hacer la reservación.</p>
+			<div class="contenedor-section-aside">
 				<section class="section_articulos">
 					<div class="contenidos">
 
@@ -166,65 +219,14 @@
 										<span>*</span>
 									</div>
 
-								<div class="tipo-carro">
-										<div class="radio">
-												<label>
-														<input type="radio" class="tipo_chico" name="opcion_chico" id="" value="4">
-														Chico
-												</label>
-										</div>
-										<div class="radio">
-												<label>
-														<input type="radio" class="tipo_mediano" name="opcion_mediano" id="" value="1">
-														Mediano
-												</label>
-										</div>
-										<div class="radio">
-												<label>
-														<input type="radio" class="tipo_grande" name="opcion_grande" id="" value="2">
-														Grande
-												</label>
-										</div>
-										<div class="radio">
-												<label>
-														<input type="radio" class="tipo_camioneta" name="opcion_camioneta" id="" value="3">
-														Camioneta
-												</label>
-										</div>
-									</div>
+								<div class="tipo-carro"></div>
 
 							</div>
-
-							<div class="form2 transmision">
-								<div class="ctra">
-										<div class="tx-requerido">
-											<h3>Transmisión</h3>
-											<span>*</span>
-										</div>
-
-									<div class="tipo-v">
-											<div class="radio">
-													<label>
-															<input type="radio" name="opcion_automatico" class="opcion_automatico" value="0">
-															Automático
-													</label>
-											</div>
-											<div class="radio">
-													<label>
-															<input type="radio" name="opcion_estandar" class="opcion_estandar" value="2">
-															Estándard
-													</label>
-											</div>
-										</div>
-
-								</div>
-								<div class="c4">
-								</div>
-						</div>
 
 							<div class="div-img-gif">
 								<img src="/img/Cargandocc.gif" alt="Cargando" width="50px"> <span class="txt-cargando-vehiculos">Espere un momento por favor..</span>
 							</div>
+								<span class="txt-sin-datos">No hay resultados..</span>
 						 <div class="oculto"></div><!-- Div para mostrar la informacion de los vehiculos -->
 
 						</article>
@@ -288,12 +290,36 @@
 						</article>
 
 						<button class="btn reservar">Reservar Ahora</button>
-						<button class="btn" id="reservar2">Reservar Ahora</button>
 						<button class="btn" id="reservar">Reservar Ahora</button>
 
 					</div>
 
 				</section>
+
+				<aside class="aside-imagen">
+				  <div class="aside-c">
+				  	<a href="#">
+						 <img src="/img/escribenos_email.png" alt="Imagen 1">	
+					  </a>
+					  <a href="#">
+						 <img src="/img/coduce_contacto.png" alt="Imagen 2">
+					  </a>
+				  </div>
+				</aside>
+			</div>
+						<!-- Campo escondido con el id del codigo del vehiculo -->
+						<input type="text" class="hidden" name="idcodigo" id="idcodigo">
+				<footer>
+					<small>
+						EMOTIONS RENT A CAR - renta de autos en toluca - renta de autos df - renta de autos en monterrey - renta de autos en aguascalientes
+					</small>
+					<strong>
+						<a href="#">
+							Aviso de privasidad
+						</a>
+					</strong>
+				</footer>
+
 			</div>
 		</div>
 	</div>
@@ -376,27 +402,25 @@
 
 			$("#datetimepicker1").on("dp.change", function (e) {
 				 tipo = $('#tipo').val();
-				 transmision = $('#tipo_transmision').attr('value');
+				 codigo = $('#idcodigo').attr('value');
 
-					if(transmision == undefined){
-						console.log('No se ah seleccionado el vehiculo');
+					if(codigo == undefined){
+
 					} else {
-						console.log('Ya se selecciono');
 						$('.oculto').html('');
-						compararfechas(tipo, transmision);
+						compararfechas(codigo);
 					}
 			});
 
 			$("#datetimepicker3").on("dp.change", function (e) {
 				 tipo = $('#tipo').val();
-				 transmision = $('#tipo_transmision').attr('value');
+				 codigo = $('#idcodigo').attr('value');
 
-					if(transmision == undefined){
-						console.log('No se ah seleccionado el vehiculo, calendario dos');
+					if(codigo == undefined){
+
 					} else {
-						console.log('Ya se selecciono, calendario dos');
 						$('.oculto').html('');
-						compararfechas(tipo, transmision);
+						compararfechas(codigo);
 					}
 			});
 
@@ -405,7 +429,8 @@
 		//Para la hora
 		$(function () {
 					$('#datetimepicker_hora1').datetimepicker({
-								format: 'LT'
+								format: 'LT',
+								minDate: moment()
 
 				});
 
@@ -419,7 +444,8 @@
 
 				$(function () {
 					$('#datetimepicker_hora3').datetimepicker({
-								format: 'LT'
+								format: 'LT',
+								minDate: moment()
 
 				});
 
@@ -482,15 +508,13 @@
 					}//end else
 
 
-					$comprobar = $('.opcion_automatico').attr('value');
+					codigo = $('#idcodigo').attr('value');
 
-					if($comprobar == 0){
+					if(codigo == undefined){
 
 					} else {
-							$('.oculto').html('');
-						   tipo = $('#tipo').val();
-					       transmision = $('#tipo_transmision').attr('value');
-					       compararfechas(tipo, transmision);
+						$('.oculto').html('');
+						compararfechas(codigo);
 					}
 
 
@@ -549,162 +573,53 @@
 
 				});
 
+		/*   - MOstrar los codigos - */
+							$.ajax({
+								url:  "/admin/mostrarcodigosdelvehiculo",
+								type: "GET",
+								success: function(t){
+
+							  	div = $('.tipo-carro');
+									contenido = "";
+
+									for(datos in t.codigos){
+
+										contenido += '<div class="radio">'+
+										  							'<label>'+
+										  									'<input type="radio" class="tipo_'+t.codigos[datos].id+'" name="codigo" id="'+t.codigos[datos].id+'" value="'+t.codigos[datos].id+'">'+ t.codigos[datos].descripcion_codigo +
+										  							'</label>'+
+                                 '</div>';
 
 
-		$(document).on('click', '.tipo_chico', function(){
-			 $('.transmision').slideDown(400);
-				$(this).attr('id', 'tipo');
-			 $(this).attr('value', '0');
+											}//end for
 
-				 tipo = $(this).attr('value');
-				 transmision = $('#tipo_transmision').attr('value');
+											div.append(contenido);
 
-					if(transmision == undefined){
+							    },
 
-					} else {
-						$('.oculto').html('');
-						compararfechas(tipo, transmision);
-					}
+			 					error: function(){
+									alert('failure');
+								}
 
-				$('.tipo_mediano').attr('id', '');
-			 $('.tipo_mediano').removeAttr('checked');
-			 $('.tipo_grande').attr('id', '');
-			 $('.tipo_grande').removeAttr('checked');
-			 $('.tipo_camioneta').attr('id', '');
-			 $('.tipo_camioneta').removeAttr('checked');
-
-				$(".reservar").hide();
-				$('#reservar2').show();
+					});
 
 
-		});
 
-		$(document).on('click', '.tipo_mediano', function(){
-			 $('.transmision').slideDown(400);
-				$(this).attr('id', 'tipo');
-
-					tipo = $(this).attr('value');
-				 transmision = $('#tipo_transmision').attr('value');
-
-					if(transmision == undefined){
-
-					} else {
-						$('.oculto').html('');
-						compararfechas(tipo, transmision);
-					}
-
-					$('.tipo_chico').attr('value', '0');
-					$('.tipo_chico').attr('id', '');
-			  $('.tipo_chico').removeAttr('checked');
-			  $('.tipo_grande').attr('id', '');
-			  $('.tipo_grande').removeAttr('checked');
-			  $('.tipo_camioneta').attr('id', '');
-			  $('.tipo_camioneta').removeAttr('checked');
-
-					$(".reservar").hide();
-			 	$('#reservar2').show();
-
-	 	});
-
-		$(document).on('click', '.tipo_grande', function(){
-			 $('.transmision').slideDown(400);
-				$(this).attr('id', 'tipo');
-
-			 	tipo = $(this).attr('value');
-				 transmision = $('#tipo_transmision').attr('value');
-
-					if(transmision == undefined){
-
-					} else {
-						$('.oculto').html('');
-						compararfechas(tipo, transmision);
-					}
-
-					$('.tipo_chico').attr('value', '0');
-					$('.tipo_chico').attr('id', '');
-			  $('.tipo_chico').removeAttr('checked');
-			  $('.tipo_mediano').attr('id', '');
-			  $('.tipo_mediano').removeAttr('checked');
-			  $('.tipo_camioneta').attr('id', '');
-			  $('.tipo_camioneta').removeAttr('checked');
-
-			  $(".reservar").hide();
-				 $('#reservar2').show();
-
-	 	});
-
-		$(document).on('click', '.tipo_camioneta', function(){
-			 $('.transmision').slideDown(400);
-				$(this).attr('id', 'tipo');
-
-					tipo = $(this).attr('value');
-				 transmision = $('#tipo_transmision').attr('value');
-
-					if(transmision == undefined){
-
-					} else {
-						$('.oculto').html('');
-						compararfechas(tipo, transmision);
-					}
-
-					$('.tipo_chico').attr('value', '0');
-				 $('.tipo_chico').attr('id', '');
-			  $('.tipo_chico').removeAttr('checked');
-			  $('.tipo_mediano').attr('id', '');
-			  $('.tipo_mediano').removeAttr('checked');
-			  $('.tipo_grande').attr('id', '');
-			  $('.tipo_grande').removeAttr('checked');
-
-					$(".reservar").hide();
-			 	$('#reservar2').show();
+		$(document).on('click', 'input:radio[name=codigo]', function(){
+			 codigo = $(this).attr('value');
+			 $(".reservar").hide();
+			 $('#idcodigo').attr('value', codigo);
+			 compararfechas(codigo);
 
 	 	});
 
 
 
+	function compararfechas(codigo){
 
-		//-Seleccionar el tipo de transmision--------------------
-			$(document).on('click', '.opcion_automatico', function(){
-				$('.opcion_estandar').attr('id', '');
-				$(this).attr('id', 'tipo_transmision');
-				$(this).attr('value', '1');
-			 $('.oculto').slideDown(400);
-				$('.opcion_estandar').removeAttr('checked');
-				tipo = $('#tipo').val();
-				transmision = $(this).val();
+		$('.oculto').html('');
 
-				//funcion para mostrar los datos del vehiculo
-				$('.oculto').html('');
-				compararfechas(tipo, transmision);
-
-				$("#reservar2").hide();
-				$('#reservar2').attr('id','');
-				$('#reservar').show();
-
-		});
-
-		$(document).on('click', '.opcion_estandar', function(){
-				$('.opcion_automatico').attr('id', '');
-				$(this).attr('id', 'tipo_transmision');
-			 $('.opcion_automatico').attr('value', '1');
-			 $('.oculto').slideDown(400);
-			 $('.opcion_automatico').removeAttr('checked');
-				$('.oculto').html('');
-			 tipo = $('#tipo').val();
-				transmision = $(this).val();
-			 compararfechas(tipo, transmision);
-
-			 $("#reservar2").hide();
-			 $('#reservar2').attr('id','');
-				$('#reservar').show();
-		});
-
-
-	function compararfechas(tipo, transmision){
-
-
-		tipo_v = tipo;
-		transmision_v = transmision;
+		tipo_v = codigo;
 
 		fecha_entrega = $('#datetimepicker2').val();
 	 lugar_entrega = $('#select-sucursal-entrega option:selected').attr('value');
@@ -717,7 +632,6 @@
 					if(lugar_entrega == 0){
 						alertas("danger","Selecciona el lugar de entrega");
 					} else {
-
 						fecha_entrega = $('#datetimepicker2').val();
 						fecha_devolucion = $('#datetimepicker4').val();
 
@@ -727,29 +641,38 @@
 
 
 							$('.div-img-gif').show();
+							$('.txt-sin-datos').hide();
 							$.ajax({
 									url:  "/admin/compararfechas",
 									type: "GET",
 									data:{lugar_entrega: lugar_entrega},
 									success: function(comparar){
-										for(datos in comparar.f){
 
-													if(comparar.f[datos].fecha_fin < fecha_devolucion){
+											if(comparar.f == ''){
+												$('.txt-sin-datos').show();
+											  $('.div-img-gif').hide();
+											  $('.form-ped').hide();
+											} else {
 
-														} else if(comparar.f[datos].fecha_fin >= fecha_devolucion) {
+												for(datos in comparar.f){
 
-															id_t = comparar.f[datos].id;
-															//En la primera que sea mayor cortamos el ciclo
-															//y llamamos a la funcion para mostrar los daos del vehiculo
-															mostrardatos(tipo_v, transmision_v, id_t);
+															if(comparar.f[datos].fecha_fin <= fecha_entrega){
 
-															break;
+																} else if(comparar.f[datos].fecha_fin >= fecha_entrega) {
+
+																	id_t = comparar.f[datos].id;
+																	//En la primera que sea mayor cortamos el ciclo
+																	//y llamamos a la funcion para mostrar los daos del vehiculo
+																	mostrardatos(tipo_v, id_t, comparar.plaza_id);
+
+																	break;
+																}
+
+
+
+
 														}
-
-
-
-
-												}
+											}
 
 
 									},
@@ -769,24 +692,31 @@
 
 	}
 
-			function mostrardatos(tipo, transmision, id_t){
+
+			function mostrardatos(codigo, id_t, plaza_id){
 
 					$.ajax({
 								url:  "/admin/datosvehiculo",
 								type: "GET",
-								data:{tipo: tipo, transmision: transmision, id_t: id_t},
+								data:{codigo: codigo, id_t: id_t, plaza_id: plaza_id},
 								success: function(v){
 
-										for(datos in v.vehiculo){
+										if(v.vehiculo == ''){
+											$('.txt-sin-datos').show();
+											$('.div-img-gif').hide();
+											$('.form-ped').hide();
+										} else {
+
+												for(datos in v.vehiculo){
+
+														id_v = v.vehiculo[datos].id;
+														//En la primera que sea mayor cortamos el ciclo
+														//y llamamos a la funcion para mostrar los daos del vehiculo
+													  mostrardatostarifa(id_t, id_v);
+											}
+										}
 
 
-												id_v = v.vehiculo[datos].id;
-												//En la primera que sea mayor cortamos el ciclo
-												//y llamamos a la funcion para mostrar los daos del vehiculo
-											 mostrardatostarifa(id_t, id_v);
-
-
-									}
 
 
 
@@ -796,9 +726,15 @@
 									alert('failure');
 								}
 
-					});
+					}); 
 
 			}
+
+		//selecionar vehiculo por medio de la foto
+		$(document).on('click', '.img-ve', function(){
+			valor = $(this).attr('value');
+			$(".inp_r_"+valor).prop("checked", true);
+		});
 
 		function mostrardatostarifa(id_t, id_v){
 
@@ -816,40 +752,139 @@
 								type: "GET",
 								data:{id_t: id_t, id_v: id_v },
 								success: function(t){
-								div = $('.oculto');
-									contenido = "";
 
-									$('.div-img-gif').hide();
+									if(t.t == 0){
 
-									for(datos in t.tarifa){
+										  //$('.txt-sin-datos').text('No hay resultados..');
+											$('.div-img-gif').hide();
+											//$('.form-ped').hide();
 
-										contenido += '<div class="form3 tipo-transmision">'+
-															'<div class="c3">'+
-																	'<img width="200px" src="img/vehiculos/'+t.tarifa[datos].foto+'" alt="Imagen del vehiculo">'+
-															'</div>'+
-															'<div class="c4">'+
-																	'<span class="text-info">'+t.tarifa[datos].descripcion+'</span>'+
-																	'<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia)+' x día</span>'+
-													                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
-													                '<span>N° de días seleccionados: '+dias+'</span>'+
-													                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
-													                '<span>'+t.tarifa[datos].cobertura+'</span>'+
-																	'<div>'+
-																		'<label class="radio-v text-info">Seleccionar este vehículo:'+
-																				'<input type="radio" name="tipo_vehiculo" id="" value="'+t.tarifa[datos].id+'" data-id="'+t.tarifa[datos].tarifa_por_dia+'">'+
-																		'</label>'+
-																	'</div>'+
-															'</div>'+
-                                                       '</div>';
+									} else {
+
+								$('.txt-sin-datos').hide();
+
+		           			 $('#reservar2').hide();
+		           			 $('#reservar').show();
+
+					            $('.oculto').show(200);
+										  div = $('.oculto');
+											contenido = "";
+
+											$('.div-img-gif').hide();
+
+											for(datos in t.tarifa){
+
+												if(t.tarifa[datos].foto == ''){
+
+													if(t.tarifa[datos].transmision == 1){
+
+														contenido += '<div class="form3 tipo-transmision">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																					'<img width="200px" src="img/Imagen_no_disponible.PNG" alt="Imagen no disponible">'+
+																			'</div>'+
+																			'<div class="c4">'+
+																					'<span class="text-info">'+t.tarifa[datos].descripcion+'</span>'+
+																					'<span class="text-primary">Transmisión: Automático</span>'+
+																					'<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia)+' x día</span>'+
+																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
+																	                '<span>N° de días seleccionados: '+dias+'</span>'+
+																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
+																					'<div>'+
+																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
+																								'<input type="radio" name="tipo_vehiculo" class="inpradio inp_r_'+t.tarifa[datos].id+'" id="" value="'+t.tarifa[datos].id+'" data-id="'+t.tarifa[datos].tarifa_por_dia+'">'+
+																						'</label>'+
+																					'</div>'+
+																			'</div>'+k
+				                                                         '</div>';
+
+													} else {
+
+														contenido += '<div class="form3 tipo-transmision">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																					'<img width="200px" src="img/Imagen_no_disponible.PNG" alt="Imagen no disponible">'+
+																			'</div>'+
+																			'<div class="c4">'+
+																					'<span class="text-info">'+t.tarifa[datos].descripcion+'</span>'+
+																					'<span class="text-primary">Transmisión: Estándard</span>'+
+																					'<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia)+' x día</span>'+
+																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
+																	                '<span>N° de días seleccionados: '+dias+'</span>'+
+																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
+																					'<div>'+
+																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
+																								'<input type="radio" name="tipo_vehiculo" class="inpradio inp_r_'+t.tarifa[datos].id+'" id="" value="'+t.tarifa[datos].id+'" data-id="'+t.tarifa[datos].tarifa_por_dia+'">'+
+																						'</label>'+
+																					'</div>'+
+																			'</div>'+
+				                            '</div>';
+														
+													}
+
+												} else {
+
+													if(t.tarifa[datos].transmision == 1){
+
+														contenido += '<div class="form3 tipo-transmision">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																					'<img width="200px" src="img/vehiculos/'+t.tarifa[datos].foto+'" alt="Imagen del vehiculo">'+
+																			'</div>'+
+																			'<div class="c4">'+
+																					'<span class="text-info">'+t.tarifa[datos].descripcion+'</span>'+
+																					'<span class="text-primary">Transmisión: Automático</span>'+
+																					'<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia)+' x día</span>'+
+																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
+																	                '<span>N° de días seleccionados: '+dias+'</span>'+
+																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
+																					'<div>'+
+																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
+																								'<input type="radio" name="tipo_vehiculo" class="inpradio inp_r_'+t.tarifa[datos].id+'" id="" value="'+t.tarifa[datos].id+'" data-id="'+t.tarifa[datos].tarifa_por_dia+'">'+
+																						'</label>'+
+																					'</div>'+
+																			'</div>'+
+				                            '</div>';
+
+													} else {
+
+														contenido += '<div class="form3 tipo-transmision">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																					'<img width="200px" src="img/vehiculos/'+t.tarifa[datos].foto+'" alt="Imagen del vehiculo">'+
+																			'</div>'+
+																			'<div class="c4">'+
+																					'<span class="text-info">'+t.tarifa[datos].descripcion+'</span>'+
+																					'<span class="text-primary">Transmisión: Estándard</span>'+
+																					'<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia)+' x día</span>'+
+																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
+																	                '<span>N° de días seleccionados: '+dias+'</span>'+
+																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
+																					'<div>'+
+																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
+																								'<input type="radio" name="tipo_vehiculo" class="inpradio inp_r_'+t.tarifa[datos].id+'" id="" value="'+t.tarifa[datos].id+'" data-id="'+t.tarifa[datos].tarifa_por_dia+'">'+
+																						'</label>'+
+																					'</div>'+
+																			'</div>'+
+				                            '</div>';
+
+				                            	
+														
+													}
+
+												}
 
 
-											}//end for
 
-											div.append(contenido);
 
-										$('.form-ped').slideDown(400);
+													}//end for
 
-			 					 //$('.transmision').slideDown(400);
+													div.append(contenido);
+
+												$('.form-ped').slideDown(400);
+									}
+									
+
 
 							    },
 
@@ -891,7 +926,6 @@
 										  $('#ap-c').val(d.apellidos);
 												$('#tel-c').val(d.telefono);
 										  $('#lic-c').val(d.num_licencia);
-										  $('#coment-c').val(d.comentarios);
 
 
 										      $('.error-email').removeClass('has-error has-feedback');
@@ -927,6 +961,7 @@
 
 
 		});
+
 
 
 
@@ -995,6 +1030,12 @@
 								}
 		});
 
+		$(".reservar").click(function () {
+
+						    alertas("danger","Selecciona la el codigo del vehiculo");
+
+    });
+
 
 
 	$("#datetimepicker_hora2").focus(function () {
@@ -1014,60 +1055,8 @@
 });
 
 
-			 $("#reservar2").click(function () {
 
-						    alertas("danger","Selecciona la transmisión");
-
-    });
-
-			  $("#reservar2").click(function () {
-
-      if($("#datetimepicker_hora2").val().length == 0){
-														$('.error-hora-entrega').addClass('has-error has-feedback');
-						        alertas("danger","Selecciona la hora de entrega");
-              return false;
-
-      } else {
-          return true;
-      }
-});
-
-	  $("#reservar2").click(function () {
-
-      if($("#select-sucursal-entrega").val() == 0){
-														$('.error-lugar-entrega').addClass('has-error has-feedback');
-														alertas("danger","Selecciona el lugar de entrega");
-              return false;
-
-      }  else {
-          return true;
-      }
-});
-
-	 $("#reservar2").click(function () {
-				if($("#datetimepicker_hora4").val().length == 0){
-													$('.error-hora-devolucion').addClass('has-error has-feedback');
-		           alertas("danger","Selecciona la hora de devolución");
-														return false;
-
-								}  else {
-												return true;
-								}
-		});
-
-					$("#reservar2").click(function () {
-
-      if($("#select-sucursal-devolucion").val() == 0){
-														$('.error-lugar-devolucion').addClass('has-error has-feedback');
-														alertas("danger","Selecciona el lugar de devolución");
-              return false;
-
-      }  else {
-          return true;
-      }
-});
-
-
+/***** Boton 2 ---------------------------------------------------------------------------------------------------------------------------------------*/
 		//---------------------------------------------------------------------
 
 

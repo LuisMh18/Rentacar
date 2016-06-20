@@ -272,6 +272,8 @@
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
 
+															llamarpaginaciondatatable();
+
 
 
 							},//End success
@@ -282,7 +284,8 @@
 			});
 	
 	
-			$(document).on('click','.fancy > li, a',function(){	
+			$(document).on('click','.cargarpaginacion',function(){	
+				    $('.fancy a').addClass('cargarpaginacion');
 						$('.estatus_0').text('Inactivo');
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
@@ -489,7 +492,7 @@ $(document).on('click', '#inp-check_edit', function(){
 											'</tr>');
 										
 									
-										alertas("success","Plaza actualizada correctamente");
+										alertas("success","Cobertura actualizada correctamente");
 									
 									$('.estatus_0').text('Inactivo');
 									$('.estatus_0').addClass('text-danger');
@@ -561,6 +564,11 @@ function alertas(tipo,mensaje){
       type: tipo
     }).show();
   }
+
+
+ function llamarpaginaciondatatable(){
+  $('.fancy a').addClass('cargarpaginacion');
+}
 	
 	
 	

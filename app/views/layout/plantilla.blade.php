@@ -92,16 +92,16 @@
 												   	</span>
             </h3>
             <ul class="sucursal_v">
-                <li><a href="{{ URL::to('/admin/sucursal') }}">Sucursales</a></li>
-                <li><a href="{{ URL::to('/admin/telefonos') }}">Teléfonos</a></li>
-                <li><a href="{{ URL::to('/admin/gerentes') }}">Gerentes</a></li>
-                <li><a href="{{ URL::to('/admin/plazas') }}">Plazas</a></li>
-                <li><a href="{{ URL::to('/admin/oficinas') }}">Oficinas</a></li>
-                <li><a href="{{ URL::to('/admin/grupos') }}">Grupos</a></li>
                 <li><a href="{{ URL::to('/admin/coberturas') }}">Coberturas</a></li>
                 <li><a href="{{ URL::to('/admin/codigos') }}">Códigos</a></li>
-                <li><a href="{{ URL::to('/admin/vehiculos') }}">Vehículos</a></li>
+                <li><a href="{{ URL::to('/admin/gerentes') }}">Gerentes</a></li>
+                <li><a href="{{ URL::to('/admin/grupos') }}">Grupos</a></li>
+                <li><a href="{{ URL::to('/admin/oficinas') }}">Oficinas</a></li>
+                <li><a href="{{ URL::to('/admin/plazas') }}">Plazas</a></li>
+                <li><a href="{{ URL::to('/admin/sucursal') }}">Sucursales</a></li>
+                <li><a href="{{ URL::to('/admin/telefonos') }}">Teléfonos</a></li>
                 <li><a href="{{ URL::to('/admin/usuarios') }}">Usuarios</a></li>
+                <li><a href="{{ URL::to('/admin/vehiculos') }}">Vehículos</a></li>
             </ul>
         </li>
         <li class="Configuración">

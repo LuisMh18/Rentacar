@@ -62,6 +62,7 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
   background: #fefefe;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* Chrome10-25,Safari5.1-6 */
@@ -69,9 +70,6 @@ body {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 );
   /* IE6-9 */
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding: .5em; }
 
@@ -81,14 +79,8 @@ body {
     width: 220px; }
 
 .tx-requerido {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: .5em; }
   .tx-requerido h3 {
     margin: 0;
@@ -126,15 +118,8 @@ body {
     font-size: 1em;
     font-weight: bold; }
   .bloque2 .datos-d {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column; }
+    flex-direction: column; }
     .bloque2 .datos-d span {
       font-size: .9em; }
   .bloque2 .nombre_direcc, .bloque2 .nombre_cp, .bloque2 .nombre_cp-d, .bloque2 .nombre_direcc-d {
@@ -149,11 +134,7 @@ body {
 ---Tipo de utomovils
 ************************************************/
 .tipo {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .form1 {
   width: 100%;
@@ -161,9 +142,6 @@ body {
   margin-bottom: .5em; }
 
 .tipo-carro {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em; }
   .tipo-carro .radio {
@@ -176,9 +154,6 @@ body {
   margin-bottom: .5em; }
 
 .tipo-v {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em; }
   .tipo-v .radio {
@@ -188,9 +163,6 @@ body {
 
 .form3 {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   border-bottom: 1px solid #CCC;
   margin-top: .5em; }
@@ -203,15 +175,8 @@ body {
   .form3 .c4 {
     padding-left: .5em;
     width: 50%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column; }
+    flex-direction: column; }
     .form3 .c4 span {
       font-size: .9em;
       font-weight: normal;
@@ -219,9 +184,6 @@ body {
 
 .radio-v {
   font-weight: normal;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex; }
   .radio-v input {
     margin-left: .5em; }
@@ -237,6 +199,7 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
   background: #fefefe;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* Chrome10-25,Safari5.1-6 */
@@ -249,9 +212,6 @@ body {
 .dato1-p {
   border-bottom: solid 1px #CCC;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex; }
   .dato1-p .c_subdato1 {
     width: 50%; }
@@ -275,9 +235,6 @@ body {
   width: 80%; }
 
 .c-img {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex; }
 
 .div-img {
@@ -307,12 +264,13 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
   background: #fefefe;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 )
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 );
   /* IE6-9 */ }
 
 .transmision, .oculto, .form-ped {
@@ -412,7 +370,7 @@ body {
   background: #214878;
   width: 80%;
   height: 100%;
-  z-index: 99
+  z-index: 99;
   /*estilos de menu principal*/
   /*efecto luminoso en el texto de los cabeceros*/
   /*spam para los iconos*/
@@ -427,9 +385,6 @@ body {
     padding: 0px;
     margin: 0px; }
   .div_acordeon .c-icon-g, .div_acordeon-md .c-icon-g {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex; }
     .div_acordeon .c-icon-g span:first-child, .div_acordeon-md .c-icon-g span:first-child {
       line-height: 30px; }
@@ -467,8 +422,7 @@ body {
       color: #fff !important; }
   .div_acordeon #acordeon h3:hover, .div_acordeon-md #acordeon h3:hover {
     background: #1a3f6d !important;
-    -webkit-transition: all 0.55s;
-            transition: all 0.55s;
+    transition: all 0.55s;
     border-bottom: 1px solid #82ade3;
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.7); }
   .div_acordeon #acordeon h3 span, .div_acordeon-md #acordeon h3 span {
@@ -483,13 +437,11 @@ body {
     line-height: 27px;
     display: block;
     padding: 2px 15px;
-    -webkit-transition: all 0.15s;
-            transition: all 0.15s;
+    transition: all 0.15s;
     border-bottom: 1px solid #044493; }
   .div_acordeon #acordeon ul ul li a:hover, .div_acordeon-md #acordeon ul ul li a:hover {
     background: #214878;
-    -webkit-transition: all 0.55s;
-            transition: all 0.55s; }
+    transition: all 0.55s; }
   .div_acordeon #acordeon ul ul, .div_acordeon-md #acordeon ul ul {
     display: none; }
   .div_acordeon #acordeon li.active ul, .div_acordeon-md #acordeon li.active ul {
@@ -539,27 +491,15 @@ body {
     padding-left: .5em; }
 
 .menu_admin2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-left: 70px;
   font-size: 1.5em; }
 
 .c-header {
   width: 220px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between; }
+  justify-content: space-between; }
 
 #mostrar-menu {
   cursor: pointer; }
@@ -569,14 +509,8 @@ body {
 .menu-oculto {
   width: 40px;
   font-size: 2em;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center; }
+  align-items: center; }
 
 .section_dashboard {
   width: 100%; }
@@ -599,17 +533,9 @@ body {
 
 .section-contenedor {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 1em; }
 
 .t_cantidad {
@@ -778,9 +704,6 @@ Estilos para las tablas
     font-size: 1.2em; }
 
 .tipo-carro-a {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em; }
   .tipo-carro-a .radio {
@@ -809,11 +732,7 @@ Estilos para las tablas
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .datos1 .form-group, .datos2 .form-group {
     width: 100%; }
 
@@ -835,22 +754,12 @@ Estilos para las tablas
 
 .datos1-s {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .datos1-s .form-group {
     width: 100%; }
     .datos1-s .form-group .agrupar {
       width: 100%;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex; }
       .datos1-s .form-group .agrupar select {
         margin-right: 5px; }
@@ -865,35 +774,16 @@ Estilos para las tablas
   width: 35%; }
 
 .contenedor-tel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around; }
+  justify-content: space-around; }
 
 .nombre-tel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .numero-tel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .txt-info-n, .txt-sucursal {
   font-size: .9em; }
@@ -903,15 +793,8 @@ Estilos para las tablas
 
 /*Parte donde se van agregando los telefono al agregar sucursal*/
 .content-t {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .form-textarea {
   width: 100%; }
@@ -923,18 +806,9 @@ Estilos para las tablas
   overflow-y: scroll; }
 
 .content-add-t {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin-bottom: .2em;
   margin-top: 1em; }
   .content-add-t h3 {
@@ -944,13 +818,8 @@ Estilos para las tablas
     height: 20px; }
 
 .content-datos {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around; }
+  justify-content: space-around; }
 
 .content-datos-edit {
   display: none; }
@@ -979,28 +848,14 @@ Estilos para las tablas
   padding-left: 1.2em; }
 
 .n-tel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .n-tel span {
     font-size: .9em; }
 
 .num-tel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .num-tel span {
     font-size: .9em; }
 
@@ -1036,15 +891,8 @@ Estilos para las tablas
  Modal para agregar tarifas------
 ******************************************/
 .datos1-tarifa {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .datos1-tarifa .form-control {
     width: 100%; }
 
@@ -1056,28 +904,15 @@ Estilos para las tablas
 
 /*--- Tablita tarifa detalle  */
 .datos1-tarifa-detalle {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   overflow-y: scroll;
   max-height: 220px;
   padding-right: .5em; }
 
 .content-add-t-d {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   margin-bottom: .5em; }
 
 .tabla_detalletarifa {
@@ -1146,14 +981,19 @@ Estilos para las tablas
   margin: 0 auto; }
 
 .footer-modal-foto {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex; }
 
 .modal-content-foto {
   width: 60%;
   margin: 0 auto; }
+
+.exportar-ex {
+  width: 100%;
+  margin-bottom: .5em;
+  display: flex;
+  justify-content: flex-end; }
+  .exportar-ex .btn-exp {
+    margin-right: 1.5em; }
 
 /****************
 Puntos de corte****************************************/
@@ -1193,11 +1033,7 @@ Puntos de corte****************************************/
     font-size: 1em; }
 
   .datos1, .datos2 {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -1218,40 +1054,20 @@ Puntos de corte****************************************/
 
   .datos1-s {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
+    flex-direction: row;
+    justify-content: space-between; }
     .datos1-s .form-group {
       width: 31%; }
       .datos1-s .form-group .agrupar {
         width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex; }
         .datos1-s .form-group .agrupar select {
           margin-right: 5px; }
 
   .content-t {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row; }
+    flex-direction: row; }
 
   .form-textarea {
     width: 50%; }
@@ -1263,19 +1079,9 @@ Puntos de corte****************************************/
     overflow-y: scroll; }
 
   .datos1-tarifa {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
+    flex-direction: row;
+    justify-content: space-between; }
     .datos1-tarifa .form-control {
       width: 130px; } }
 @media (min-width: 620px) {

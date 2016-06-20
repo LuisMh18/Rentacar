@@ -17,18 +17,16 @@
 <script>
 
 	$(document).ready(function(){
-		
+
   	$('.t-admin').addClass('dahs_active');
 		 $('.titular_seccion').text('Reservas del día');
-		
+
 	});
-	
+
 </script>
 
-
- 
 @section('content')
- 	
+
  <div class="dos_section">
 	 <div class="seccion_tabla section-cuerpo-c">
 			<div class="tabla-sucursal section-contenedor">
@@ -47,6 +45,10 @@
 				</div>
 			</div>
 
+	    <div class="exportar-ex">
+	      <a href="{{ URL::to('admin/exportarlasreservasdeldia') }}" class="btn btn-success btn-sm btn-exp">Exportar a Excel</a>
+	    </div>
+
 		<div class="seccion_tabla seccion_sucursal-admin">
 			<div class="tabla-sucursal">
 					<table id="listar_" class="tabla_catalogo table-striped">
@@ -64,11 +66,11 @@
 			</div>
 		</div>
 </div>
-    
+
  <!--Alertas-->
 <div class="notifications top-right" data-html="true"></div>
-       
-       
+
+
 
     <!--  Modal para ver detalle de la reserva -->
 <div id="modal-detalle-reserva" class="modal fade" data-keyboard="false" data-backdrop="static">
@@ -84,12 +86,12 @@
             </h4>
           </div>
           <div class="modal-body body-modal-p">
-															
+
 												<ol class="breadcrumb navegacion-p">
 													<li><a class="enlace-active" id="det-r" href="#">Detalle de la reserva</a></li>
 													<li><a id="det-c" href="#">Detalle del cliente</a></li>
 												</ol>
-               
+
             		<table id="table-d-r" class="table table-pd">
 															<tbody id="body-det">
 																	<tr>
@@ -106,7 +108,7 @@
 																	</tr>
 															</tbody>
 													</table>
-               
+
              <table id="table-d-c" class="table table-pd">
 														<tbody id="body-det">
 																<tr>
@@ -117,23 +119,23 @@
 																</tr>
 														</tbody>
           </table>
-                
+
           </div>
           <div class="modal-footer" style="text-align:left">
-					
+
 																		<button id="cerrar-reserva" type="button" class="btn btn-danger" data-dismiss="modal">
 																			<span class="glyphicon glyphicon-chevron-left"></span>
 																			Cerrar
 																	</button>
-             
+
           </div>
         </div>
       </div>
     </div>
-    
-        
 
-    
+
+
+
           <!--  Modal para eliminar reserva  -->
 <div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
@@ -148,24 +150,24 @@
           <div class="modal-body body-modal">
 
              <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar esta reserva?</h3>
-                
+
           </div>
           <div class="modal-footer">
-													
-											 		<div class="footer-modal">
-																<button type="button" class="btn btn-danger" data-dismiss="modal">
-																	No
-															</button>
-															<span id="confirm-delete-reserva" class="btn btn-primary" data-dismiss="modal" >
-																		Si
-															</span>
-													</div>
-             
+
+						 		<div class="footer-modal">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">
+												No
+										</button>
+										<span id="confirm-delete-reserva" class="btn btn-primary" data-dismiss="modal" >
+													Si
+										</span>
+								</div>
+
           </div>
         </div>
       </div>
     </div>
-    
+
      <!--  Modal para ver la foto del vehiculo -->
 <div id="modal-foto-vehiculo" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
@@ -180,22 +182,23 @@
           <div class="modal-body body-modal-foto">
 
             <div class="content-foto" action="">
-															
-																			
-																		<img src="" id="foto-v" alt="Foto del vehiculo" width="100%">
-													 
+
+								<img src="" id="foto-v" alt="Foto del vehiculo" width="100%">
+								<h4 class=" h-foto-v text-info text-center">No hay foto</h4>
+                <img src="/img/cargando2.gif" id="foto-cd" alt="Cargando" width="100%">
+
             </div>
-                
+
           </div>
           <div class="modal-footer">
-													
-											 		<div class="footer-modal-foto">
-																<button type="button" class="btn btn-danger" data-dismiss="modal">
-																	<span class="glyphicon glyphicon-chevron-left"></span>
-																	Salir
-															</button>
-													</div>
-             
+
+								 		<div class="footer-modal-foto">
+													<button type="button" class="btn btn-danger" data-dismiss="modal">
+														<span class="glyphicon glyphicon-chevron-left"></span>
+														Salir
+												</button>
+										</div>
+
           </div>
         </div>
       </div>
@@ -206,7 +209,7 @@
 @stop
 
 
-@section('mis_scripts')	
+@section('mis_scripts')
 {{ HTML::script('js/DataTables-1.9.4/media/js/jquery.dataTables.min.js') }}
 {{ HTML::script('js/DataTables-1.9.4/media/js/jquery.dataTables.bootstrap.js') }}
 
@@ -217,38 +220,40 @@
 							url: "/admin/listareservasdia",
 							success: function (l) {
 							tabla_a = $('#listar_').DataTable({
-									"oLanguage": { 
-													"oPaginate": { 
-													"sPrevious": "Anterior", 
-													"sNext": "Siguiente", 
-													"sLast": "Ultima", 
-													"sFirst": "Primera" 
-													}, 
+									"oLanguage": {
+													"oPaginate": {
+													"sPrevious": "Anterior",
+													"sNext": "Siguiente",
+													"sLast": "Ultima",
+													"sFirst": "Primera"
+													},
 
-									"sLengthMenu": 'Mostrar <select>'+ 
-									'<option value="10">10</option>'+ 
-									'<option value="20">20</option>'+ 
-									'<option value="30">30</option>'+ 
-									'<option value="40">40</option>'+ 
-									'<option value="50">50</option>'+ 
-									'<option value="-1">Todos</option>'+ 
-									'</select> registros', 
+									"sLengthMenu": 'Mostrar <select>'+
+									'<option value="10">10</option>'+
+									'<option value="20">20</option>'+
+									'<option value="30">30</option>'+
+									'<option value="40">40</option>'+
+									'<option value="50">50</option>'+
+									'<option value="-1">Todos</option>'+
+									'</select> registros',
 
-									"sInfo": "Mostrando del _START_ a _END_ (Total: _TOTAL_ resultados)", 
-									"sInfoFiltered": " - filtrados de _MAX_ registros", 
-									"sInfoEmpty": "No hay resultados de búsqueda", 
-									"sZeroRecords": "No hay registros a mostrar", 
-									"sProcessing": "Espere, por favor...", 
-									"sSearch": "Buscar:", 
+									"sInfo": "Mostrando del _START_ a _END_ (Total: _TOTAL_ resultados)",
+									"sInfoFiltered": " - filtrados de _MAX_ registros",
+									"sInfoEmpty": "No hay resultados de búsqueda",
+									"sZeroRecords": "No hay registros a mostrar",
+									"sProcessing": "Espere, por favor...",
+									"sSearch": "Buscar:",
 
 						}, //end o
 
-							"aaSorting": [[ 0, "desc" ]], 
-								
+							"aaSorting": [[ 0, "desc" ]],
+
 								fnCreatedRow : function (nRow, aData, iDataIndex) {
 												$(nRow).attr('id', "fila_"+l[i].id);
 
 							},
+
+							'iDisplayLength': 100,
 
 							"sPaginationType": "simple_numbers",
 								"sPaginationType": "bootstrap",
@@ -261,17 +266,17 @@
 											tabla_a.fnClearTable();
 
 													for(var i = 0; i < l.length; i++) {
-																				tabla_a.fnAddData([
-																															'<span class="text-info txt-escondido">N° de reserva: </span><span class="hidden">'+l[i].created_at+'</span><span value="'+l[i].id+'" class="text-primary detalle-cliente" title="Ver detalle">'+l[i].num_reserva+'</a>',
-																															'<span class="text-info txt-escondido">Cliente: </span>'+l[i].nombre+' '+l[i].apellidos,
-																					          '<span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(l[i].tarifa_por_dia)+'</span>',
-																															'<span class="text-info txt-escondido">Días: </span>'+l[i].dias,
-																															'<span class="text-info txt-escondido">Total: </span><span class="text-success">'+accounting.formatMoney(l[i].total)+'</span>',
-																															'<span class="text-info txt-escondido">Fecha de registro: </span>'+l[i].created_at,
-																													]);
+																			tabla_a.fnAddData([
+																				'<span class="text-info txt-escondido">N° de reserva: </span><span class="hidden">'+l[i].created_at+'</span><span value="'+l[i].id+'" class="text-primary detalle-cliente" title="Ver detalle">'+l[i].num_reserva+'</a>',
+																				'<span class="text-info txt-escondido">Cliente: </span>'+l[i].nombre+' '+l[i].apellidos,
+										          '<span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(l[i].tarifa_por_dia)+'</span>',
+																				'<span class="text-info txt-escondido">Días: </span>'+l[i].dias,
+																				'<span class="text-info txt-escondido">Total: </span><span class="text-success">'+accounting.formatMoney(l[i].total)+'</span>',
+																				'<span class="text-info txt-escondido">Fecha de registro: </span>'+l[i].created_at,
+																		]);
 
 
-																					} //End for
+														} //End for
 
 
 															$('.dataTables_paginate .prev a').text('Anterior');
@@ -285,51 +290,50 @@
 											alert("failure");
 							} //end error
 			});
-	
-		
-	
+
+
+
 						$.ajax({
 								url:  "/admin/mostrardeldia",
 								type: "GET",
 								success: function(d){
-									
-										console.log(d.total_r);
+
 										$('#num_r').text('# '+d.num_r);
 										$('#total_r').text(accounting.formatMoney(d.total_r));
-									
+
 								},
-			
+
 								error: function(){
 									alert('failure');
 								}
-																
+
 					});
 
-	
-	
-	
+
+
+
 		//Detalle de la reserva -------------
 	 $(document).on('click', '.detalle-cliente', function(){
 			id = $(this).attr('value');
-			
+
 						 $.ajax({
 								url:  "/admin/detallereserva",
 								type: "GET",
 								data:{id: id},
 								success: function(d){
-									
+
 									$('#title-numero').text('# '+d.reserva[0].num_reserva);
 									$('#title-fecha').text('Fecha: '+d.reserva[0].created_at);
-									
+
 									$('#p_v').text(d.reserva[0].vehiculo);
 									$('#v_foto').attr('value', d.reserva[0].foto);
-									
+
 									if(d.reserva[0].transmision == 1){
 										 $('#p_t').text('Automático');
 									} else {
 										  $('#p_t').text('Estándard');
 									}
-									
+
 									$('#p_t_d').text(accounting.formatMoney(d.reserva[0].tarifa_por_dia));
 									$('#p_d').text(d.reserva[0].dias);
 									$('#p_to').text(accounting.formatMoney(d.reserva[0].total));
@@ -339,34 +343,34 @@
 									$('#p_l_d').text(d.reserva[0].lugar_devolucion);
 									$('#p_f_d').text(d.reserva[0].fecha_devolucion);
 									$('#p_h_d').text(d.reserva[0].hora_devolucion);
-									
+
 									$('#p_n').text(d.cliente[0].nombre);
 									$('#p_ap').text(d.cliente[0].apellidos);
 									$('#p_em').text(d.cliente[0].email);
 									$('#p_tel').text(d.cliente[0].telefono);
 									$('#p_num_l').text(d.cliente[0].num_licencia);
 									$('#p_comentarios').text(d.cliente[0].comentarios);
-									
+
 								},
-			
+
 								error: function(){
 									alert('failure');
 								}
-																
+
 					});
-			
-			
+
+
 			$('#modal-detalle-reserva').modal({
       show: 'false',
     });
-			
+
 		});
-	
+
 		 $(document).on('click', '#cerrar-reserva', function(){
 						 $('#title-numero').text('');
 							$('#title-fecha').text('');
-				   $('#p_v').text('');
-				   $('#p_t').text('');
+				     $('#p_v').text('');
+				      $('#p_t').text('');
 							$('#p_t_d').text('');
 							$('#p_d').text('');
 							$('#p_to').text('');
@@ -376,90 +380,62 @@
 							$('#p_l_d').text('');
 							$('#p_f_d').text('');
 							$('#p_h_d').text('');
-				
+
 							$('#p_n').text('');
 							$('#p_ap').text('');
 							$('#p_em').text('');
 							$('#p_tel').text('');
 							$('#p_num_l').text('');
 							$('#p_comentarios').text('');
-							
+
 							$('#det-r').addClass('enlace-active');
 							$('#table-d-r').show();
 							$('#det-c').removeClass('enlace-active');
-				   $('#table-d-c').hide();
+				      $('#table-d-c').hide();
+
+				     $('.h-foto-v').hide();
+             $('#foto-cd').show();
+             $('#foto-v').hide();
 		});
-	
-	
+
+
 	 $(document).on('click', '#det-c', function(){
 			$(this).addClass('enlace-active');
 			$('#det-r').removeClass('enlace-active');
 			$('#table-d-r').hide();
 			$('#table-d-c').show();
 		});
-	
+
 		$(document).on('click', '#det-r', function(){
 			$(this).addClass('enlace-active');
 			$('#det-c').removeClass('enlace-active');
 			$('#table-d-r').show();
 			$('#table-d-c').hide();
 		});
-	
-	
+
+
+		$('.h-foto-v').hide();
+	  $('#foto-v').hide();
 		//Foto del vehiculo ----------------------------------------------
 			$(document).on('click', '#v_foto', function(){
-						id = $(this).attr('value');					
-							
-						$('#foto-v').prop('src', '/img/vehiculos/'+id);									
-				
+						id = $(this).attr('value');
+
+						if(id == ''){
+							 $('#foto-cd').hide();
+               $('.h-foto-v').show();
+               $('#foto-v').hide();
+						} else {
+							$('#foto-cd').hide();
+              $('#foto-v').show();
+						  $('#foto-v').prop('src', '/img/vehiculos/'+id);
+						}
+
 						$('#modal-foto-vehiculo').modal({
 							show: 'false',
 						});
 			});
-	
 
-	
-	//Eliminar reserva
-	/*$(document).on('click', '.eliminar-btn', function(){
-			   id = $(this).val();
 
-					$('#modal-confirm-delete').modal({
-       show: 'false',
-     });
-		
-				 $('#confirm-delete-reserva').attr('value', id);
-				
-	});
-	
-		$(document).on('click', '#confirm-delete-reserva', function(){
-			id = $(this).attr('value');
-
-			 $.ajax({
-								url:  "/admin/eliminarvehiculo",
-								type: "GET",
-								data:{id: id},
-								success: function(d){
-
-										alertas("success","Reserva eliminada correctamente");
-									
-									 $('#fila_'+d).remove();
-
-									
-									
-									
-								},
-			
-								error: function(){
-									alert('failure');
-								}
-																
-					});
-	});*/
-		
-	
 </script>
- 	
-@stop
- 	
- 
 
+@stop

@@ -272,6 +272,8 @@
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
 
+															llamarpaginaciondatatable();
+
 
 
 							},//End success
@@ -282,7 +284,8 @@
 			});
 	
 	
-			$(document).on('click','.fancy > li, a',function(){	
+			$(document).on('click','.cargarpaginacion',function(){	
+						$('.fancy a').addClass('cargarpaginacion');
 						$('.estatus_0').text('Inactivo');
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
@@ -565,6 +568,10 @@ function alertas(tipo,mensaje){
 	
 	
 	
+function llamarpaginaciondatatable(){
+  $('.fancy a').addClass('cargarpaginacion');
+}
+
 </script>
 
 @stop

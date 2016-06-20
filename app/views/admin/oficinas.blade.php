@@ -264,7 +264,7 @@
 														     id_plaza = l[i].plaza_id;
 														
 																				tabla_a.fnAddData([
-																															'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
+																															'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre_oficina,
 																															'<span class="text-info txt-escondido">Plaza: </span><span id="plaza_'+l[i].plaza_id+'"></span>'+l[i].nombre_plaza,
 																															'<span class="text-info txt-escondido">Clave: </span>'+l[i].clave,
 																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar oficina">'+
@@ -342,7 +342,7 @@
 								success: function(p){
 
 									nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre_oficina+'</td>'+
 												'<td><span class="text-info txt-escondido">Plaza: </span>'+p.nombre_plaza+'</td>'+
 												'<td><span class="text-info txt-escondido">Clave: </span>'+p.clave+'</td>'+
 												'<td>'+
@@ -360,7 +360,7 @@
 									tabla_a.prepend(nueva_fila);
 									
 										
-										alertas("success","Oficina "+p.nombre+" agregada correctamente.");
+										alertas("success","Oficina "+p.nombre_oficina+" agregada correctamente.");
 										
 										//Limpiamos los campos
 									$('#nombre').val('');
@@ -440,8 +440,8 @@
 								type: "GET",
 								data:{id: id},
 								success: function(e){
-									$('#nombre-edit').val(e.nombre);
-									$('#clave-edit').val(e.nombre);
+									$('#nombre-edit').val(e.nombre_oficina);
+									$('#clave-edit').val(e.clave);
 									$('#select_plaza_edit');
 								},
 			
@@ -500,7 +500,7 @@
 																		
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
+                '<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre_oficina+'</td>'+
                 '<td><span class="text-info txt-escondido">Plaza: </span><span id="plaza_'+p.plaza_id+'"></span>'+p.nombre_plaza+'</td>'+
 																'<td><span class="text-info txt-escondido">Clave: </span>'+p.clave+'</td>'+
                '<td>'+

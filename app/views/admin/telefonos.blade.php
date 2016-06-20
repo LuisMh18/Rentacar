@@ -16,21 +16,21 @@
 <script>
 
 	$(document).ready(function(){
-		
+
   	$('.t-catalogos').addClass('dahs_active');
-		
+
 			$('.sucursal_v').slideDown();
-		
+
 			$('.flechita1').addClass('glyphicon glyphicon-menu-down');
 			$('.flechita2').removeClass('glyphicon glyphicon-menu-down');
 			$('.flechita3').removeClass('glyphicon glyphicon-menu-down');
 			$('.flechita2').addClass('glyphicon glyphicon-menu-right');
 			$('.flechita3').addClass('glyphicon glyphicon-menu-right');
-		
+
 			$('.titular_seccion').text('Catálogo Teléfonos');
-		
+
 	});
-	
+
 </script>
 
 
@@ -55,10 +55,10 @@
 		</table>
 	</div>
 </div>
-    
+
  <!--Alertas-->
 <div class="notifications top-right" data-html="true"></div>
-    
+
 
     <!--  Modal para agregar teléfono  -->
 <div id="modal-add-telefono" class="modal fade" data-keyboard="false" data-backdrop="static">
@@ -74,41 +74,41 @@
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
-															
-																			<div class="form-group error-nombre">
-																						<label for="nombre" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre" id="nombre" class="form-control" >
-																						<span class="icon-nombre"></span>
-																			</div>
 
-																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ check-w">
-																					 <span class="text-primary">Activo</span>
-																					<div class="txt-activ">
-																					  <input id="inp-check" type="checkbox" value="">
-																					</div>
-																		</div>
+									<div class="form-group error-nombre">
+												<label for="nombre" class="text-primary">Nombre: </label>
+												<input type="text" name="nombre" id="nombre" class="form-control" >
+												<span class="icon-nombre"></span>
+									</div>
 
-													 
+								<label for="estatus" class="text-primary">Estatus: </label>
+								<div class="checkbox checkbox-activ check-w">
+											 <span class="text-primary">Activo</span>
+											<div class="txt-activ">
+											  <input id="inp-check" type="checkbox" value="">
+											</div>
+								</div>
+
+
             </form>
-                
+
           </div>
           <div class="modal-footer">
-													
-											 		<div class="footer-modal">
-																<button id="no-add-telefono" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-telefono" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
-             
+
+						 		<div class="footer-modal">
+											<button id="no-add-telefono" type="button" class="btn btn-danger" data-dismiss="modal">
+												Cancelar
+										</button>
+										<span id="add-telefono" class="btn btn-primary" data-dismiss="modal" >
+													Agregar
+										</span>
+								</div>
+
           </div>
         </div>
       </div>
     </div>
-    
+
         <!--  Modal para eliminar teléfono  -->
 <div id="modal-confirm-delete" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
@@ -123,10 +123,10 @@
           <div class="modal-body body-modal">
 
              <h3 class="txt-delete-confirm text-danger text-center">¿Estás seguro que deseas eliminar este teléfono?</h3>
-                
+
           </div>
           <div class="modal-footer">
-													
+
 											 		<div class="footer-modal">
 																<button id="no-add-telefono" type="button" class="btn btn-danger" data-dismiss="modal">
 																	No
@@ -135,12 +135,12 @@
 																		Si
 															</span>
 													</div>
-             
+
           </div>
         </div>
       </div>
     </div>
-    
+
      <!--  Modal para editar telefono  -->
 <div id="modal-edit-telefono" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
@@ -155,7 +155,7 @@
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
-															
+
 																			<div class="form-group error-nombre-edit">
 																						<label for="nombre_edit" class="text-primary">Nombre: </label>
 																						<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
@@ -170,12 +170,12 @@
 																					</div>
 																		</div>
 
-													 
+
             </form>
-                
+
           </div>
           <div class="modal-footer">
-													
+
 											 		<div class="footer-modal">
 																<button id="no-act-telefono" type="button" class="btn btn-danger" data-dismiss="modal">
 																	Cancelar
@@ -184,7 +184,7 @@
 																		Actualizar
 															</span>
 													</div>
-             
+
           </div>
         </div>
       </div>
@@ -195,7 +195,7 @@
 @stop
 
 
-@section('mis_scripts')	
+@section('mis_scripts')
 {{ HTML::script('js/DataTables-1.9.4/media/js/jquery.dataTables.min.js') }}
 {{ HTML::script('js/DataTables-1.9.4/media/js/jquery.dataTables.bootstrap.js') }}
 
@@ -205,34 +205,34 @@
 							url: "/admin/listatelefonos",
 							success: function (l) {
 							tabla_a = $('#listar_').DataTable({
-									"oLanguage": { 
-													"oPaginate": { 
-													"sPrevious": "Anterior", 
-													"sNext": "Siguiente", 
-													"sLast": "Ultima", 
-													"sFirst": "Primera" 
-													}, 
+									"oLanguage": {
+													"oPaginate": {
+													"sPrevious": "Anterior",
+													"sNext": "Siguiente",
+													"sLast": "Ultima",
+													"sFirst": "Primera"
+													},
 
-									"sLengthMenu": 'Mostrar <select>'+ 
-									'<option value="10">10</option>'+ 
-									'<option value="20">20</option>'+ 
-									'<option value="30">30</option>'+ 
-									'<option value="40">40</option>'+ 
-									'<option value="50">50</option>'+ 
-									'<option value="-1">Todos</option>'+ 
-									'</select> registros', 
+									"sLengthMenu": 'Mostrar <select>'+
+									'<option value="10">10</option>'+
+									'<option value="20">20</option>'+
+									'<option value="30">30</option>'+
+									'<option value="40">40</option>'+
+									'<option value="50">50</option>'+
+									'<option value="-1">Todos</option>'+
+									'</select> registros',
 
-									"sInfo": "Mostrando del _START_ a _END_ (Total: _TOTAL_ resultados)", 
-									"sInfoFiltered": " - filtrados de _MAX_ registros", 
-									"sInfoEmpty": "No hay resultados de búsqueda", 
-									"sZeroRecords": "No hay registros a mostrar", 
-									"sProcessing": "Espere, por favor...", 
-									"sSearch": "Buscar:", 
+									"sInfo": "Mostrando del _START_ a _END_ (Total: _TOTAL_ resultados)",
+									"sInfoFiltered": " - filtrados de _MAX_ registros",
+									"sInfoEmpty": "No hay resultados de búsqueda",
+									"sZeroRecords": "No hay registros a mostrar",
+									"sProcessing": "Espere, por favor...",
+									"sSearch": "Buscar:",
 
 						}, //end o
 
-							"aaSorting": [[ 0, "desc" ]], 
-								
+							"aaSorting": [[ 0, "desc" ]],
+
 								fnCreatedRow : function (nRow, aData, iDataIndex) {
 												$(nRow).attr('id', "fila_"+l[i].id);
 
@@ -250,20 +250,20 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
-																															'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar teléfono">'+
-																					            '<span class="glyphicon glyphicon-edit"></span>'+
-																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar teléfono">'+
-																					            '<span class="glyphicon glyphicon-remove"></span>'+
-																					          '</button>',
-																													]);
+																						'<span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre,
+																						'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
+																						'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar teléfono">'+
+														                '<span class="glyphicon glyphicon-edit"></span>'+
+														                '</button>',
+																						'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar teléfono">'+
+														                '<span class="glyphicon glyphicon-remove"></span>'+
+														                '</button>',
+																						]);
 
 
 																					} //End for
-								
-								
+
+
 															  $('.estatus_0').text('Inactivo');
 																	$('.estatus_0').addClass('text-danger');
 																	$('.estatus_1').text('Activo');
@@ -271,6 +271,8 @@
 
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
+
+															llamarpaginaciondatatable();
 
 
 
@@ -280,14 +282,15 @@
 											alert("failure");
 							} //end error
 			});
-	
-	
-			$(document).on('click','.fancy > li, a',function(){	
+
+
+			$(document).on('click','.cargarpaginacion',function(){
+						$('.fancy a').addClass('cargarpaginacion');
 						$('.estatus_0').text('Inactivo');
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
-			});        
+			});
 
 
 			$(document).on('keyup', '#list_p__filter', function(){
@@ -304,27 +307,27 @@
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
 			});
-	
-	
-	
+
+
+
 		//Agregar teléfono -------------
 	 $(document).on('click', '#agregar-telefono', function(){
 			$('#modal-add-telefono').modal({
       show: 'false',
     });
 		});
-	
+
 	$(document).on('click', '#add-telefono', function(){
 			nombre = $('#nombre').val();
-	
+
 		if($('#inp-check').prop("checked") == true){
 					activo = 1;
 		} else {
 				activo = 0;
 		}
-		
-		tabla_a = $('#listar_');6
-		
+
+		tabla_a = $('#listar_');
+
 		$.ajax({
 								url:  "/admin/agregartelefono",
 								type: "POST",
@@ -344,40 +347,40 @@
 														'</button>'+
 											'</td>'+
 									'</tr>';
-										
+
 									tabla_a.prepend(nueva_fila);
-									
+
 									$('.estatus_0').text('Inactivo');
 									$('.estatus_0').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
-										
+
 										alertas("success","Teléfono "+p.nombre+" agregado correctamente.");
-										
+
 										//Limpiamos los campos
 									$('#nombre').val('');
 									$('#inp-check').prop("checked", false)
 
-									
-									
-									
+
+
+
 								},
-			
+
 								error: function(){
 									alert('failure');
 								}
-																
+
 					});
-		
+
 	});
-	
+
 		$(document).on('click', '#no-add-telefono', function(){
 			 $('#nombre').val('');
 				$('#inp-check').prop("checked", false);
 			 $('.error-nombre').removeClass('has-error has-feedback');
 				$('.icon-nombre').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
-	
+
 	//Eliminar teléfono
 	$(document).on('click', '.eliminar-btn', function(){
 			   id = $(this).val();
@@ -385,11 +388,11 @@
 					$('#modal-confirm-delete').modal({
        show: 'false',
      });
-		
+
 				 $('#confirm-delete-telefono').attr('value', id);
-				
+
 	});
-	
+
 		$(document).on('click', '#confirm-delete-telefono', function(){
 			id = $(this).attr('value');
 
@@ -404,21 +407,21 @@
 										alertas("success","Teléfono eliminado correctamente");
 										 $('#fila_'+d).remove();
 									}
-									
-									
+
+
 								},
-			
+
 								error: function(){
 									alert('failure');
 								}
-																
+
 					});
 	});
-	
+
 //Editar teléfono
 	$(document).on('click', '.editar-btn', function(){
 			  id = $(this).attr('value');
-		
+
 					$.ajax({
 								url:  "/admin/editartelefono",
 								type: "GET",
@@ -434,23 +437,23 @@
 											$('#inp-check_edit').prop("checked", false);
 											$('#inp-check_edit').attr('value', '0');
 									}
-									
+
 								},
-			
+
 								error: function(){
 									alert('failure');
 								}
-																
+
 					});
-					
+
 					$('#modal-edit-telefono').modal({
        show: 'false',
      });
-		
+
 				 $('#confirm-act-telefono').attr('value', id);
-				
+
 	});
-	
+
 //Actualizar teléfono
 $(document).on('click', '#inp-check_edit', function(){
 		if($(this).prop("checked") == true){
@@ -459,18 +462,18 @@ $(document).on('click', '#inp-check_edit', function(){
 				$('#inp-check_edit').attr('value', '0');
 		}
 });
-	
+
 	$(document).on('click', '#confirm-act-telefono', function(){
 			  id = $(this).attr('value');
 					nombre = $('#nombre_edit').val();
 					estatus = $('#inp-check_edit').val();
-		
+
 					$.ajax({
 								url:  "/admin/actualizartelefono",
 								type: "GET",
 								data:{id: id, nombre: nombre, estatus: estatus},
 								success: function(p){
-										
+
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
                 '<td><span class="text-info txt-escondido">Nombre: </span><span class="hidden">'+p.created_at+'</span>'+p.nombre+'</td>'+
@@ -486,34 +489,34 @@ $(document).on('click', '#inp-check_edit', function(){
 																'</button>'+
 													'</td>'+
 											'</tr>');
-										
-									
+
+
 										alertas("success","Teléfono actualizado correctamente");
-									
+
 									$('.estatus_0').text('Inactivo');
 									$('.estatus_0').addClass('text-danger');
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
-									
+
 								},
-			
+
 								error: function(){
 									alert('failure');
 								}
-																
+
 					});
-					
-		
-				
+
+
+
 	});
-	
+
 	$(document).on('click', '#no-act-telefono', function(){
 	    	$('.error-nombre-edit').removeClass('has-error has-feedback');
 						$('.icon-nombre-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
-	
-	
-	
+
+
+
 	/*****************
 	------Validaciones para los telefonos
 	******************************************************************/
@@ -528,13 +531,13 @@ $(document).on('click', '#inp-check_edit', function(){
           return true;
       }
 });
-	
+
 	$("#nombre").focus(function () {
       $('.error-nombre').removeClass('has-error has-feedback');
 						$('.icon-nombre').removeClass('glyphicon glyphicon-remove form-control-feedback');
 });
-	
-	
+
+
 	//Validaciones al actualizar grupo
 	  $("#confirm-act-telefono").click(function () {
 
@@ -547,14 +550,14 @@ $(document).on('click', '#inp-check_edit', function(){
           return true;
       }
 });
-	
+
 	$("#nombre_edit").focus(function () {
       $('.error-nombre-edit').removeClass('has-error has-feedback');
 						$('.icon-nombre-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
 });
-	
-	
-	
+
+
+
 	//Funciones para los alerts
 function alertas(tipo,mensaje){
     $('.top-right').notify({
@@ -562,9 +565,12 @@ function alertas(tipo,mensaje){
       type: tipo
     }).show();
   }
-	
-	
-	
+
+function llamarpaginaciondatatable(){
+  $('.fancy a').addClass('cargarpaginacion');
+}
+
+
 </script>
 
 @stop

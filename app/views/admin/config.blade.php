@@ -84,7 +84,7 @@
 
     <!--  Modal para agregar tarifa -->
 <div id="modal-add-tarifa" class="modal fade" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog dialog-sucursal">
+      <div class="modal-dialog dialog-sucursal modal-tarifa">
         <div class="modal-content">
           <div class="modal-header header-modal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
@@ -152,6 +152,7 @@
 												<th class="cabecero">Cobertura</th>
 												<th class="cabecero">Vehículo</th>
 												<th class="cabecero">Tarifa por día</th>
+                                                <th class="cabecero">Estatus</th>
 												<th class="cabecero">Eliminar</th>
 											</tr>														
 										</thead>
@@ -237,6 +238,14 @@
 				<!-- Campo escondido -->
 					<input type="text" id="inp-tarifa-vehiculo" class="hidden">
 			  </div>
+
+        <label for="estatus" class="text-primary">Estatus: </label>
+        <div class="checkbox checkbox-activ check-w">
+               <span class="text-primary">Activo</span>
+              <div class="txt-activ">
+                <input id="inp-check-t" type="checkbox" value="">
+              </div>
+        </div>
 													 
 													 
             </form>
@@ -295,7 +304,7 @@
     
       <!--  Modal para editar tarifa -->
 <div id="modal-edit-tarifa-detalle" class="modal fade" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog dialog-sucursal">
+      <div class="modal-dialog dialog-sucursal modal-tarifa">
         <div class="modal-content">
           <div class="modal-header header-modal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
@@ -365,6 +374,7 @@
 												<th class="cabecero">Código</th>
 												<th class="cabecero">Vehículo</th>
 												<th class="cabecero">Tarifa por día</th>
+                                                <th class="cabecero">Estatus</th>
 												<th class="cabecero">Editar</th>
 												<th class="cabecero">Eliminar</th>
 											</tr>														
@@ -482,6 +492,16 @@
 							<!-- Campo escondido -->
 								<input type="text" id="inp-tarifa-vehiculo-edit" class="hidden">
 			 </div>
+
+        <div class="estaus_tarifa">     
+              <label for="estatus" class="text-primary">Estatus: </label>
+            <div class="checkbox checkbox-activ">
+                   <span class="text-primary">Activo</span>
+                  <div class="txt-activ">
+                    <input id="inp-check-t-e" type="checkbox" value="">
+                  </div>
+            </div>
+      </div>
 													 
 													 
             </form>
@@ -552,9 +572,19 @@
 								<input type="number" class="form-control" id="tarifa-por-dia-edit-detalle">
 								<span class="icon-tarifa-por-dia-edit-detalle"></span>
 							</div>
-			 </div>
+			  </div>
+
+          <div class="estaus_tarifa">     
+                  <label for="estatus" class="text-primary">Estatus: </label>
+                <div class="checkbox checkbox-activ">
+                       <span class="text-primary">Activo</span>
+                      <div class="txt-activ">
+                        <input id="inp-check-t-edit" type="checkbox" value="">
+                      </div>
+                </div>
+          </div>
 													 
-            </form>
+      </form>
                 
           </div>
           <div class="modal-footer">
@@ -615,12 +645,15 @@
 
 						}, //end o
 
-							"aaSorting": [[ 0, "desc" ]], 
-								
-								fnCreatedRow : function (nRow, aData, iDataIndex) {
-												$(nRow).attr('id', "fila_"+l[i].id);
+                
+                fnCreatedRow : function (nRow, aData, iDataIndex) {
+                        $(nRow).attr('id', "fila_"+l[i].id);
 
-							},
+              },
+
+              'iDisplayLength': 100,
+
+							"aaSorting": [[ 0, "desc" ]], 
 
 							"sPaginationType": "simple_numbers",
 								"sPaginationType": "bootstrap",
@@ -634,7 +667,7 @@
 													for(var i = 0; i < l.length; i++) {
 																		tabla_a.fnAddData([
 																'<span class="text-info txt-escondido">Id: </span>'+l[i].id,
-																'<span class="text-info txt-escondido">Oficina: </span>'+l[i].nombre,
+																'<span class="text-info txt-escondido">Oficina: </span>'+l[i].nombre_oficina,
 																'<span class="text-info txt-escondido">Fecha inicio: </span>'+l[i].fecha_inicio,
 																'<span class="text-info txt-escondido">Fecha fin: </span>'+l[i].fecha_fin,
 																'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
@@ -660,6 +693,10 @@
 															$('.dataTables_paginate .prev a').text('Anterior');
 															$('.dataTables_paginate .next a').text('Siguiente');
 
+                              llamarpaginaciondatatable();
+
+
+
 
 
 							},//End success
@@ -670,12 +707,13 @@
 			});
 	
 	
-				$(document).on('click','.fancy > li, a',function(){	
+				$(document).on('click','.cargarpaginacion',function(){	
+            $('.fancy a').addClass('cargarpaginacion');
 						$('.estatus_0').text('Inactivo');
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
-			});        
+			  });        
 
 
 			$(document).on('keyup', '#list_p__filter', function(){
@@ -725,13 +763,13 @@
 								     	option = "";
               s = $('#select_oficina');
 									
-															option += '<option value="0">-- Seleccione --</option>';
-              for(datos in p.oficinas){
+														option += '<option value="0">-- Seleccione --</option>';
+		  for(datos in p.oficinas){
 
-																			option += '<option value="'+p.oficinas[datos].id+'">'+p.oficinas[datos].nombre+'</option>';
-																}
+																		option += '<option value="'+p.oficinas[datos].id+'">'+p.oficinas[datos].nombre_oficina+'</option>';
+															}
 
-																s.append(option);
+															s.append(option);
 
 								},
 			
@@ -834,21 +872,21 @@
 								type: "GET",
 								success: function(p){
 								     	option = "";
-              s = $('#select-tarifa-vehiculo');
+                                         s = $('#select-tarifa-vehiculo');
 									
-															option += '<option value="0">-- Seleccione --</option>';
-              for(datos in p.vehiculos){
+											option += '<option value="0">-- Seleccione --</option>';
+                                            for(datos in p.vehiculos){
 															
-																			if(p.vehiculos[datos].transmision == 1){
-																			    option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Automático</option>';
-																				
-																			} else {
-																				 option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Estándard</option>';
-																			}
+														if(p.vehiculos[datos].transmision == 1){
+														    option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Automático</option>';
+															
+														} else {
+															 option += '<option value="'+p.vehiculos[datos].id+'">'+p.vehiculos[datos].descripcion+' Estándard</option>';
+														}
 
-																}
+													}
 
-																s.append(option);
+												s.append(option);
 
 								},
 			
@@ -873,39 +911,54 @@
 		$('#inp-tarifa-cobertura').attr('value', id);
 	});
 	
-		$('#select-tarifa-vehiculo').on('change',function(){
+	$('#select-tarifa-vehiculo').on('change',function(){
 		id = $(this).val();
 		$('#inp-tarifa-vehiculo').attr('value', id);
 	});
+
 	
 	
-		$(document).on('click', '#add-tarifa-detalle', function(){
-			grupo = $('#inp-tarifa-grupo').attr('value');
-			cobertura = $('#inp-tarifa-cobertura').attr('value');
-			vehiculo = $('#inp-tarifa-vehiculo').attr('value');
-			tarifa_por_dia = $('#tarifa-por-dia').val();
-			
-			//obtenemos los nombres
-			nombre_grupo = $('#select-tarifa-grupo option:selected').text();
-			nombre_cobertura = $('#select-tarifa-cobertura option:selected').text();
-			nombre_vehiculo = $('#select-tarifa-vehiculo option:selected').text();
+  $(document).on('click', '#add-tarifa-detalle', function(){
+
+      if($('#inp-check-t').prop("checked") == true){
+            activo = 1;
+            activo_n = 'Activo';
+
+      } else {
+          activo = 0;
+          activo_n = 'Inactivo';
+
+      }
+
+
+      grupo = $('#inp-tarifa-grupo').attr('value');
+      cobertura = $('#inp-tarifa-cobertura').attr('value');
+      vehiculo = $('#inp-tarifa-vehiculo').attr('value');
+      tarifa_por_dia = $('#tarifa-por-dia').val();
+      
+      //obtenemos los nombres
+      nombre_grupo = $('#select-tarifa-grupo option:selected').text();
+      nombre_cobertura = $('#select-tarifa-cobertura option:selected').text();
+      nombre_vehiculo = $('#select-tarifa-vehiculo option:selected').text();
+
 
 			
 			body = $('#body-tarifa-detalle');
 			
 			nueva_fila = '<tr id="fila_'+grupo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'">'+
-												'<td class="td_grupo" value="'+grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+nombre_grupo+'</td>'+
-												'<td class="td_cobertura" value="'+cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+nombre_cobertura+'</td>'+
-				        '<td class="td_vehiculo" value="'+vehiculo+'"><span class="text-info txt-escondido">Vehículo: </span>'+nombre_vehiculo+'</td>'+
-												'<td class="td_tarifa_por_dia" value="'+tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(tarifa_por_dia)+'</td>'+
-											'<td>'+
-											  '<button class="btn btn-sm btn-danger btn-sm eliminar-btn-detalle" value="'+grupo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'" title="Eliminar">'+
-																		'<span class="glyphicon glyphicon-remove"></span>'+
-														'</button>'+
-											'</td>'+
-									'</tr>';
+							'<td class="td_grupo" value="'+grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+nombre_grupo+'</td>'+
+							'<td class="td_cobertura" value="'+cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+nombre_cobertura+'</td>'+
+				            '<td class="td_vehiculo" value="'+vehiculo+'"><span class="text-info txt-escondido">Vehículo: </span>'+nombre_vehiculo+'</td>'+
+							'<td class="td_tarifa_por_dia" value="'+tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(tarifa_por_dia)+'</td>'+
+                            '<td class="td_vehiculo_estatus" value="'+activo+'"><span class="text-info txt-escondido">Estats: </span>'+activo_n+'</td>'+
+							'<td>'+
+								'<button class="btn btn-sm btn-danger btn-sm eliminar-btn-detalle" value="'+grupo+'_'+cobertura+'_'+vehiculo+'_'+grupo+'_'+tarifa_por_dia+'" title="Eliminar">'+
+										'<span class="glyphicon glyphicon-remove"></span>'+
+								'</button>'+
+							'</td>'+
+						 '</tr>';
 										
-									body.prepend(nueva_fila);
+						body.prepend(nueva_fila);
 			
 			
 			//Limpiamos
@@ -913,6 +966,7 @@
 			$('#select-tarifa-cobertura').html('');
 			$('#select-tarifa-vehiculo').html('');
 			$('#tarifa-por-dia').val('');
+            $('#inp-check-t').prop("checked", false);
 
 	});
 	
@@ -932,6 +986,7 @@
 	
       $('.error-tarifa-por-dia').removeClass('has-error has-feedback');
 	  $('.icon-tarifa-por-dia').removeClass('glyphicon glyphicon-remove form-control-feedback');
+    $('#inp-check-t').prop("checked", false);
 	});
 	
 	
@@ -964,7 +1019,7 @@
 		
 	
 	$(document).on('click', '#add-tarifa', function(){
-			id_oficina = $('#tipo_oficina').attr('value');
+		 id_oficina = $('#tipo_oficina').attr('value');
 		 fecha_inicio = $('#fecha_inicio').val();
 		 fecha_fin = $('#fecha_fin').val();
 		
@@ -984,7 +1039,7 @@
 									
 									nueva_fila = '<tr id="fila_'+t.id+'">'+
 												'<td><span class="text-info txt-escondido">Id: </span><span class="hidden">'+s.created_at+'</span>'+t.id+'</td>'+
-												'<td><span class="text-info txt-escondido">Oficina: </span>'+t.nombre+'</td>'+
+												'<td><span class="text-info txt-escondido">Oficina: </span>'+t.nombre_oficina+'</td>'+
 												'<td><span class="text-info txt-escondido">Fecha inicio: </span>'+t.fecha_inicio+'</td>'+
 												'<td><span class="text-info txt-escondido">Fecha fin: </span>'+t.fecha_fin+'</td>'+
 												'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+t.estatus+'"></span></td>'+
@@ -1016,9 +1071,9 @@
 									
 								//Limpiamos los campos	
 								$('#select_oficina').html('');
-						  $('#tipo_oficina').val('');
-						  $('#fecha_inicio').val('');
-						  $('#fecha_fin').val('');
+						        $('#tipo_oficina').val('');
+						        $('#fecha_inicio').val('');
+						        $('#fecha_fin').val('');
 								$('#inp-check').prop("checked", false);
 						  
 									
@@ -1043,13 +1098,14 @@
 		var DATA = [];
 		
 		$('.tabla_detalletarifa tbody tr').each(function(){
-							id_tarifa = id;
-							id_g  = $(this).find("td[class*='td_grupo']").attr('value');
+					id_tarifa = id;
+					id_g  = $(this).find("td[class*='td_grupo']").attr('value');
 			    id_cobertura  = $(this).find("td[class*='td_cobertura']").attr('value');
 			    id_v  = $(this).find("td[class*='td_vehiculo']").attr('value');
 			    tarifa_por_dia  = $(this).find("td[class*='td_tarifa_por_dia']").attr('value');
+          estatus  = $(this).find("td[class*='td_vehiculo_estatus']").attr('value');
 
-							datos = {id_tarifa, id_g, id_cobertura, id_v, tarifa_por_dia};
+							datos = {id_tarifa, id_g, id_cobertura, id_v, tarifa_por_dia, estatus};
 
 							DATA.push(datos);
 			
@@ -1186,31 +1242,30 @@
 																
 					});
 					
-					$('#modal-edit-tarifa-detalle').modal({
-       show: 'false',
-     });
+    		 $('#modal-edit-tarifa-detalle').modal({
+           show: 'false',
+         });
 		
 				 $('#add-sucursal_edit').attr('value', id);
 			
 			
-			
-			
+				
 			//Listamos las oficinas
 			$.ajax({
-								url:  "/admin/selectoficinasedit",
-								type: "GET",
+						url:  "/admin/selectoficinasedit",
+						type: "GET",
 				    data:{id: id},
-								success: function(e){
-								     	option = "";
-              s = $('#select_oficina_edit');
+						success: function(e){
+						option = "";
+            s = $('#select_oficina_edit');
 									
-															option += '<option value="'+e.o_a[0].id+'">'+e.o_a[0].nombre+'</option>';
+							option += '<option value="'+e.o_a[0].id+'">'+e.o_a[0].nombre_oficina+'</option>';
               for(datos in e.oficinas){
 
-																			option += '<option value="'+e.oficinas[datos].id+'">'+e.oficinas[datos].nombre+'</option>';
-																}
+													option += '<option value="'+e.oficinas[datos].id+'">'+e.oficinas[datos].nombre_oficina+'</option>';
+									 }
 
-																s.append(option);
+													s.append(option);
 
 								},
 			
@@ -1239,20 +1294,42 @@
 
 								for(datos in t.t_d){
 																				
+									if(t.t_d[datos].transmision == 1){
 
-									fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
-										'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+t.t_d[datos].descripcion_grupo+'</td>'+
-										'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+t.t_d[datos].cobertura+'</td>'+
-										'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+t.t_d[datos].descripcion+'</td>'+
-										'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
-										'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
-										'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
-										'</tr>';
+										fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
+											'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+t.t_d[datos].descripcion_grupo+'</td>'+
+											'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+t.t_d[datos].cobertura+'</td>'+
+											'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+t.t_d[datos].descripcion + ' Automático</td>'+
+											'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
+	                                        '<td><span class="text-info txt-escondido">Estatus: </span> <span class="td_estatus estatus_'+t.t_d[datos].estatus+'" value="'+t.t_d[datos].estatus+'"></span></td>'+
+											'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+											'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+											'</tr>';
+
+									} else {
+
+										fila += '<tr class="tr_actual" id="fila_edit_'+t.t_d[datos].id+'">'+
+											'<td class="td_grupo_actual" value="'+t.t_d[datos].descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+t.t_d[datos].descripcion_grupo+'</td>'+
+											'<td class="td_cobertura_actual" value="'+t.t_d[datos].cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+t.t_d[datos].cobertura+'</td>'+
+											'<td class="td_vehiculo_actual" value="'+t.t_d[datos].descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+t.t_d[datos].descripcion + ' Estándard</td>'+
+											'<td class="td_tarifa_por_dia_actual" value="'+t.t_d[datos].tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(t.t_d[datos].tarifa_por_dia)+'</td>'+
+	                                        '<td><span class="text-info txt-escondido">Estatus: </span> <span class="td_estatus estatus_'+t.t_d[datos].estatus+'" value="'+t.t_d[datos].estatus+'"></span></td>'+
+											'<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+											'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+t.t_d[datos].id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+											'</tr>';
+										
+									}
 
 
 								}//end for
 
 								body.append(fila);
+
+                $('.estatus_0').text('Inactivo');
+                $('.estatus_0').addClass('text-warning');
+                $('.estatus_1').text('Activo');
+                $('.estatus_1').addClass('text-primary');;
+
 							}
 							
 							
@@ -1469,44 +1546,73 @@
 			cobertura = $('#inp-tarifa-cobertura-edit').attr('value');
 			vehiculo = $('#inp-tarifa-vehiculo-edit').attr('value');
 			tarifa_por_dia = $('#tarifa-por-dia-edit').val();
+
+      if($('#inp-check-t-e').prop("checked") == true){
+            activo = 1;
+
+      } else {
+          activo = 0;
+
+      }
 			
 			
 						$.ajax({
 								url:  "/admin/agregartarifadetalle",
 								type: "GET",
-					   data:{id_tarifa: id_tarifa, grupo: grupo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
-							success: function(d){
+					            data:{id_tarifa: id_tarifa, grupo: grupo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia, activo: activo},
+							    success: function(d){
+								body_edit = $('#body-tarifa-detalle-edit');
+								nueva_fila_edit = "";
+								if(d.transmision == 1){
 
-											body_edit = $('#body-tarifa-detalle-edit');
-								   nueva_fila_edit = "";
-								
-												nueva_fila_edit += '<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
-                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
-																'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
-																'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+'</td>'+
-																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
-                '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
-													   '<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
-											     '</tr>';
-												
-																body_edit.prepend(nueva_fila_edit);
-								
-								
-								},
-			
-								error: function(){
-									alert('failure');
+									nueva_fila_edit += '<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
+	                                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
+									'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
+									'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+' Automático</td>'+
+									'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+	                                '<td><span class="text-info txt-escondido">Estatus: </span> <span class="td_estatus estatus_'+d.estatus+' " value="'+d.estatus+'"></span></td>'+
+	                                '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+									'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+									'</tr>';
+
+								} else {
+
+									nueva_fila_edit += '<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
+	                                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
+									'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
+									'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+' Estándard</td>'+
+									'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+	                                '<td><span class="text-info txt-escondido">Estatus: </span> <span class="td_estatus estatus_'+d.estatus+' " value="'+d.estatus+'"></span></td>'+
+	                                '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+									'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+									'</tr>';
+
 								}
-																
-					});
-			
-			
+												
+								body_edit.prepend(nueva_fila_edit);
+
+                
+                  $('.estatus_0').text('Inactivo');
+                  $('.estatus_0').addClass('text-warning');
+                  $('.estatus_1').text('Activo');
+                  $('.estatus_1').addClass('text-primary');
+                  
+                },
+      
+                error: function(){
+                  alert('failure');
+                }
+                                
+          });
+      
+      
 			
 			//Limpiamos
 			$('#select-tarifa-grupo-edit').html('');
 			$('#select-tarifa-cobertura-edit').html('');
 			$('#select-tarifa-vehiculo-edit').html('');
 			$('#tarifa-por-dia-edit').val('');
+      $('#inp-check-t-e').prop("checked", false);
 
 	});
 	
@@ -1525,6 +1631,8 @@
 
 					$('.error-tarifa-por-dia-edit').removeClass('has-error has-feedback');
 					$('.icon-tarifa-por-dia-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+
+        $('#inp-check-t-e').prop("checked", false);
 
 	});
 	
@@ -1656,8 +1764,17 @@
 													 	$('#inp-tarifa-vehiculo-edit-detalle').attr('value', e.x_a[0].id);
 								
 								
-															//tarifa por dia
-															$('#tarifa-por-dia-edit-detalle').val(e.tarifa.tarifa_por_dia);
+														//tarifa por dia
+														$('#tarifa-por-dia-edit-detalle').val(e.tarifa.tarifa_por_dia);
+
+                            //estatus
+                            if(e.tarifa.estatus == 1){
+                                $('#inp-check-t-edit').prop("checked", true);
+                                $('#inp-check-t-edit').attr('value', '1');
+                            } else {
+                               $('#inp-check-t-edit').prop("checked", false);
+                               $('#inp-check-t-edit').attr('value', '0');
+                            }
 								},
 			
 								error: function(){
@@ -1698,27 +1815,54 @@
 			cobertura = $('#inp-tarifa-cobertura-edit-detalle').attr('value');
 			vehiculo = $('#inp-tarifa-vehiculo-edit-detalle').attr('value');
 			tarifa_por_dia = $('#tarifa-por-dia-edit-detalle').val();
-			
-			$.ajax({
-								url:  "/admin/actualizardetalle",
-								type: "GET",
-					   data:{id: id, id_tarifa: id_tarifa, grupo: grupo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia},
-							success: function(d){
 
-												$('#fila_edit_'+id).replaceWith('<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
-                '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
-																'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
-																'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+'</td>'+
-																'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
-                '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
-													   '<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
-											     '</tr>');
-								
-								},
+      if($('#inp-check-t-edit').prop("checked") == true){
+            activo = 1;
+      } else {
+          activo = 0;
+      }
 			
-								error: function(){
-									alert('failure');
-								}
+			    $.ajax({
+					url:  "/admin/actualizardetalle",
+					type: "GET",
+		            data:{id: id, id_tarifa: id_tarifa, grupo: grupo, cobertura: cobertura, vehiculo: vehiculo, tarifa_por_dia: tarifa_por_dia, activo: activo},
+					    success: function(d){
+					    if(d.transmision == 1){
+
+						$('#fila_edit_'+id).replaceWith('<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
+                        '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
+						'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
+						'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+' Automático</td>'+
+						'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+                        '<td><span class="text-info txt-escondido">Estatus: </span> <span class="td_estatus estatus_'+d.estatus+' " value="'+d.estatus+'"></span></td>'+
+                        '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+						'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+						'</tr>');
+
+					    } else {
+
+					    $('#fila_edit_'+id).replaceWith('<tr class="tr_actual" id="fila_edit_'+d.id+'">'+
+                        '<td class="td_grupo_actual" value="'+d.descripcion_grupo+'"><span class="text-info txt-escondido">Grupo: </span>'+d.descripcion_grupo+'</td>'+
+						'<td class="td_cobertura_actual" value="'+d.cobertura+'"><span class="text-info txt-escondido">Cobertura: </span>'+d.cobertura+'</td>'+
+						'<td class="td_vehiculo_actual" value="'+d.descripcion+'"><span class="text-info txt-escondido">Vehículo: </span>'+d.descripcion+' Estándard</td>'+
+						'<td class="td_tarifa_por_dia_actual" value="'+d.tarifa_por_dia+'"><span class="text-info txt-escondido">Tarifa por día: </span>'+accounting.formatMoney(d.tarifa_por_dia)+'</td>'+
+                        '<td><span class="text-info txt-escondido">Estatus: </span> <span class="td_estatus estatus_'+d.estatus+' " value="'+d.estatus+'"></span></td>'+
+                        '<td><span class="editar-d-a btn btn-sm btn-info" title="Editar" value="'+d.id+'"><span class="glyphicon glyphicon-edit"></span></span></td>'+
+						'<td><span class="quitar-d-a btn btn-sm btn-danger" title="Eliminar" value="'+d.id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+						'</tr>');
+
+					    }
+
+                     $('.estatus_0').text('Inactivo');
+                     $('.estatus_0').addClass('text-warning');
+                     $('.estatus_1').text('Activo');
+                     $('.estatus_1').addClass('text-primary');
+						
+						},
+	
+						error: function(){
+							alert('failure');
+						}
 																
 					});
 			
@@ -1760,11 +1904,11 @@
 	
 	$(document).on('click', '#add-tarifa-edit', function(){
 		
-		 id = $(this).attr('value');
-			oficina = $('#select_oficina_edit').val();
+		id = $(this).attr('value');
+		oficina = $('#select_oficina_edit').val();
 	 	fehca_inicio = $('#fecha_inicio_edit').val();
-		 fecha_fin = $('#fecha_fin_edit').val();
-		 estatus = $('#inp-check-edit').val();
+		fecha_fin = $('#fecha_fin_edit').val();
+		estatus = $('#inp-check-edit').val();
 		
 		tabla_a = $('#listar_');
 		
@@ -1776,7 +1920,7 @@
 									
 									$('#fila_'+id).replaceWith('<tr id="fila_'+t.id+'">'+
             '<td><span class="text-info txt-escondido">Id: </span>'+t.id+'</td>'+
-												'<td><span class="text-info txt-escondido">Oficina: </span>'+t.nombre+'</td>'+ 
+												'<td><span class="text-info txt-escondido">Oficina: </span>'+t.nombre_oficina+'</td>'+ 
 												'<td><span class="text-info txt-escondido">Fecha inicio: </span>'+t.fecha_inicio+'</td>'+
 												'<td><span class="text-info txt-escondido">Fecha fin: </span>'+t.fecha_fin+'</td>'+
 												'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+t.estatus+'"></span></td>'+
@@ -2164,6 +2308,11 @@ function alertas(tipo,mensaje){
       type: tipo
     }).show();
   }
+
+
+function llamarpaginaciondatatable(){
+  $('.fancy a').addClass('cargarpaginacion');
+}
 	
 	
 	

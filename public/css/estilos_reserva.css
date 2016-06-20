@@ -14,6 +14,7 @@ body {
 .section {
   margin-top: 0.5em !important;
   width: 100%;
+  background: pink;
   margin: 0 auto;
   background: white; }
 
@@ -63,6 +64,7 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
   background: #fefefe;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* Chrome10-25,Safari5.1-6 */
@@ -70,55 +72,25 @@ body {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 );
   /* IE6-9 */
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding: .5em; }
 
 .entrega {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .devolucion {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .bloque1 {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .tx-requerido {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: .5em; }
   .tx-requerido h3 {
     margin: 0;
@@ -156,15 +128,8 @@ body {
     font-size: 1em;
     font-weight: bold; }
   .bloque2 .datos-d {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column; }
+    flex-direction: column; }
     .bloque2 .datos-d span {
       font-size: .9em; }
   .bloque2 .nombre_direcc, .bloque2 .nombre_cp, .bloque2 .nombre_cp-d, .bloque2 .nombre_direcc-d {
@@ -179,11 +144,7 @@ body {
 ---Tipo de utomovils
 ************************************************/
 .tipo {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
 
 .form1 {
   width: 100%;
@@ -191,14 +152,13 @@ body {
   margin-bottom: .5em; }
 
 .tipo-carro {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1em; }
   .tipo-carro .radio {
-    width: 100px;
+    width: 130px;
     margin: 0;
+    margin-bottom: .5em;
     padding: 0; }
 
 .form2 {
@@ -206,9 +166,6 @@ body {
   margin-bottom: .5em; }
 
 .tipo-v {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em; }
   .tipo-v .radio {
@@ -218,9 +175,6 @@ body {
 
 .form3 {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   border-bottom: 1px solid #CCC;
   margin-top: .5em; }
@@ -233,15 +187,8 @@ body {
   .form3 .c4 {
     padding-left: .5em;
     width: 50%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column; }
+    flex-direction: column; }
     .form3 .c4 span {
       font-size: .9em;
       font-weight: normal;
@@ -249,9 +196,6 @@ body {
 
 .radio-v {
   font-weight: normal;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex; }
   .radio-v input {
     margin-left: .5em; }
@@ -267,6 +211,7 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
   background: #fefefe;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* Chrome10-25,Safari5.1-6 */
@@ -279,15 +224,8 @@ body {
 .dato1-p {
   border-bottom: solid 1px #CCC;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  flex-direction: column; }
   .dato1-p .c_subdato1 {
     width: 100%; }
     .dato1-p .c_subdato1 input {
@@ -310,9 +248,6 @@ body {
   width: 80%; }
 
 .c-img {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex; }
 
 .div-img {
@@ -342,12 +277,13 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,fbfbfb+44,f9f9f9+100 */
   background: #fefefe;
   /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 )
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 );
   /* IE6-9 */ }
 
 .transmision, .oculto, .form-ped {
@@ -436,51 +372,23 @@ body {
 
 @media (min-width: 600px) {
   .entrega {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row; }
+    flex-direction: row; }
 
   .devolucion {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row; }
+    flex-direction: row; }
 
   .bloque1 {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column; }
+    flex-direction: column; }
 
   .dato1-p {
     border-bottom: solid 1px #CCC;
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row; }
+    flex-direction: row; }
     .dato1-p .c_subdato1 {
       width: 50%; }
       .dato1-p .c_subdato1 input {
@@ -491,21 +399,166 @@ body {
       .dato1-p .c_subdato2 input {
         width: 80%;
         margin-bottom: 1em; } }
+.contenedor-section-aside {
+  display: flex;
+  width: 98%;
+  margin: 0 auto; }
+
+.aside-imagen {
+  display: none; }
+
+footer {
+  padding-top: 1.5em;
+  border-top: 1px solid #ebecec;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
+  footer small {
+    color: #919289;
+    margin-bottom: .5em; }
+  footer a {
+    color: black; }
+    footer a:hover {
+      text-decoration: none; }
+
+.logo-cabecera {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 3px;
+  margin-bottom: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.menu-cabecera {
+  background: #333399;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 45px;
+  border-radius: 5px;
+  margin-bottom: 58px; }
+  .menu-cabecera .menu-icon {
+    width: 100%;
+    padding: 0 1em; }
+    .menu-cabecera .menu-icon .txt-menu {
+      color: #fff;
+      font-size: 2.5em; }
+    .menu-cabecera .menu-icon .glyphicon {
+      margin-top: .1em;
+      color: #fff;
+      font-size: 2.5em;
+      cursor: pointer;
+      float: right; }
+  .menu-cabecera li {
+    display: none;
+    list-style: none;
+    background: #333399;
+    z-index: 99; }
+    .menu-cabecera li:hover {
+      background: #2D2D85; }
+    .menu-cabecera li:last-child a {
+      color: #0099ff; }
+    .menu-cabecera li a {
+      color: #fff;
+      font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      padding: .5em 0 .5em 1em; }
+      .menu-cabecera li a:hover {
+        text-decoration: none;
+        color: #0099ff; }
+
+@media (min-width: 580px) {
+  .logo-cabecera {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; } }
 @media (min-width: 800px) {
   .section {
     margin-top: 0.5em !important;
-    width: 80%;
+    width: 78%;
     margin: 0 auto;
     background: white; }
 
   .section_contenidos {
     width: 100%;
-    margin: 0 auto;
-    margin-top: 5em; }
+    margin: 0 auto; }
     .section_contenidos h1 {
       font-size: 22px;
       font-weight: bold;
+      padding-left: .5em;
       margin: 0;
-      padding-bottom: 8px; } }
+      padding-bottom: 8px; }
+    .section_contenidos .nota1 {
+      padding-left: .8em; } }
+@media (min-width: 960px) {
+  .menu-cabecera {
+    background: #333399;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 63px 0 63px;
+    border-bottom: 3px solid #4ECCE7;
+    border-radius: 5px;
+    margin-bottom: 58px; }
+    .menu-cabecera .menu-icon {
+      display: none; }
+    .menu-cabecera li {
+      display: block;
+      list-style: none;
+      border-right: 1px solid white;
+      text-align: center;
+      padding-right: 29px; }
+      .menu-cabecera li:last-child {
+        border-right: 0;
+        padding-right: 0; }
+      .menu-cabecera li:hover {
+        background: none; }
+      .menu-cabecera li:last-child a {
+        color: #0099ff; }
+      .menu-cabecera li a {
+        color: #fff;
+        font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        padding: 0; }
+        .menu-cabecera li a:hover {
+          text-decoration: none;
+          color: #0099ff; } }
+@media (min-width: 1050px) {
+  .menu-cabecera li a {
+    font-size: 12px; }
+
+  .aside-imagen {
+    display: block;
+    padding: 0 1em 0 2em; }
+
+  .aside-c {
+    display: flex;
+    flex-direction: column; }
+    .aside-c a:first-child {
+      margin-bottom: 2em; }
+    .aside-c a:last-child {
+      margin-bottom: 4em; } }
+@media (min-width: 1100px) {
+  footer {
+    flex-direction: row;
+    justify-content: space-between; }
+    footer small {
+      color: #919289;
+      margin-bottom: 0; } }
+@media (min-width: 1200px) {
+  .menu-cabecera li a {
+    font-size: 13px; } }
+@media (min-width: 1250px) {
+  .menu-cabecera li a {
+    font-size: 15px; } }
 
 /*# sourceMappingURL=estilos_reserva.css.map */

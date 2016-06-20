@@ -63,7 +63,7 @@
 				<tr>
 					<th class="cabecero">Sucursal</th>
 					<th class="cabecero">Gerente</th>
-					<th class="cabecero">Plaza</th>
+					<th class="cabecero">Oficina</th>
 					<th class="cabecero">Dirección 1</th>
 					<th class="cabecero">Colonia</th>
 					<th class="cabecero">Editar</th>
@@ -115,11 +115,11 @@
 					</div>
 					
 					<div class="form-group error-plaza">
-							<label for="seccionedit" class="text-primary">Plaza: </label>
+							<label for="seccionedit" class="text-primary">Oficina: </label>
 							 <div class="agrupar">
 											<select class="form-control" id="select_plaza">
 										</select>
-										<button id="ad-nueva-p" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva plaza">
+										<button id="ad-nueva-p" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva oficina">
 											<span class="glyphicon glyphicon-plus"></span>
 										</button>
 							 </div>
@@ -316,11 +316,11 @@
 																	</div>
 																	
 																	<div class="form-group error-plaza-edit">
-																			<label for="seccionedit" class="text-primary">Plaza: </label>
+																			<label for="seccionedit" class="text-primary">Oficina: </label>
 																			 <div class="agrupar">
 																							<select class="form-control" id="select_plaza_edit">
 																						</select>
-																						<button id="ad-nueva-p-edit" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva plaza">
+																						<button id="ad-nueva-p-edit" class="btn-add-n btn btn-primary btn-xs" title="Agregar nueva oficina">
 																							<span class="glyphicon glyphicon-plus"></span>
 																						</button>
 																			 </div>
@@ -546,7 +546,7 @@
       </div>
     </div>
     
-        <!--  Modal para agregar plazas  -->
+        <!--  Modal para agregar oficina  -->
 <div id="modal-add-plaza" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -554,18 +554,30 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
-               Agregar plaza
+               Agregar oficina
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group error-nombre_plaza">
-																						<label for="nombre_plaza" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre_plaza" id="nombre_plaza" class="form-control" >
-																						<span class="icon-nombre_plaza"></span>
-																			</div>
+						<div class="form-group error-nombre_oficina">
+									<label for="nombre_oficina" class="text-primary">Nombre: </label>
+									<input type="text" name="nombre_oficina" id="nombre_oficina" class="form-control" >
+									<span class="icon-nombre_oficina"></span>
+						</div>
+
+						<div class="form-group error-nombre_plaza">
+									<label for="nombre_plaza" class="text-primary">Plaza: </label>
+									<select name="nombre_plaza" id="nombre_plaza" class="form-control"></select>
+						</div>
+
+
+						<div class="form-group error-nombre_clave">
+									<label for="nombre_clave" class="text-primary">Clave: </label>
+									<input type="text" name="nombre_clave" id="nombre_clave" class="form-control" >
+									<span class="icon-nombre_clave"></span>
+						</div>
 
 													 
             </form>
@@ -719,26 +731,38 @@
     </div>
     
     
-           <!--  Modal para agregar plaza a la hora de editar sucursal  -->
-<div id="modal-add-plaza-edit" class="modal fade" data-keyboard="false" data-backdrop="static">
+           <!--  Modal para agregar oficina a la hora de editar sucursal  -->
+   <div id="modal-add-plaza-edit" class="modal fade" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header header-modal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             <h4 class="modal-title text-center">
               <span class="glyphicon glyphicon-plus"></span>
-               Agregar plaza
+               Agregar oficina
             </h4>
           </div>
           <div class="modal-body body-modal">
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group error-plaza-edit">
-																						<label for="nombre_plaza_edit" class="text-primary">Nombre: </label>
-																						<input type="text" name="nombre_plaza_edit" id="nombre_plaza_edit" class="form-control" >
-																						<span class="icon-plaza-edit"></span>
-																			</div>
+						<div class="form-group error-nombre_oficina_edit">
+									<label for="nombre_oficina_edit" class="text-primary">Nombre: </label>
+									<input type="text" name="nombre_oficina_edit" id="nombre_oficina_edit" class="form-control" >
+									<span class="icon-nombre_oficina_edit"></span>
+						</div>
+
+						<div class="form-group error-nombre_plaza_edit">
+									<label for="nombre_plaza_edit" class="text-primary">Plaza: </label>
+									<select name="nombre_plaza_edit" id="nombre_plaza_edit" class="form-control"></select>
+						</div>
+
+
+						<div class="form-group error-nombre_clave_edit">
+									<label for="nombre_clave_edit" class="text-primary">Clave: </label>
+									<input type="text" name="nombre_clave_edit" id="nombre_clave_edit" class="form-control" >
+									<span class="icon-nombre_clave_edit"></span>
+						</div>
 
 													 
             </form>
@@ -746,14 +770,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-plaza-edit" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-plaza-edit" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
+							<div class="footer-modal">
+										<button id="no-add-plaza-edit" type="button" class="btn btn-danger" data-dismiss="modal">
+											Cancelar
+									</button>
+									<span id="add-plaza-edit" class="btn btn-primary" data-dismiss="modal" >
+												Agregar
+									</span>
+							</div>
              
           </div>
         </div>
@@ -819,18 +843,18 @@
 
 													for(var i = 0; i < l.length; i++) {
 																				tabla_a.fnAddData([
-																															'<span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre_sucursal,
-																															'<span class="text-info txt-escondido">Gerente: </span>'+l[i].nombre,
-																															'<span class="text-info txt-escondido">Plaza: </span>'+l[i].nombre_plaza,
-																															'<span class="text-info txt-escondido">Dirección 1: </span>'+l[i].direccion1,
-																															'<span class="text-info txt-escondido">Colonia: </span>'+l[i].colonia,
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar sucursal">'+
-																					            '<span class="glyphicon glyphicon-edit"></span>'+
-																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar sucursal">'+
-																					            '<span class="glyphicon glyphicon-remove"></span>'+
-																					          '</button>',
-																													]);
+																							'<span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].nombre_sucursal,
+																							'<span class="text-info txt-escondido">Gerente: </span>'+l[i].nombre,
+																							'<span class="text-info txt-escondido">Plaza: </span>'+l[i].nombre_oficina,
+																							'<span class="text-info txt-escondido">Dirección 1: </span>'+l[i].direccion1,
+																							'<span class="text-info txt-escondido">Colonia: </span>'+l[i].colonia,
+																							'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar sucursal">'+
+													            '<span class="glyphicon glyphicon-edit"></span>'+
+													          '</button>',
+																							'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar sucursal">'+
+													            '<span class="glyphicon glyphicon-remove"></span>'+
+													          '</button>',
+																					]);
 
 
 																					} //End for
@@ -882,9 +906,9 @@
 																
 					});
 			
-			//Listamos las plazas
+			//Listamos las oficinas
 			 $.ajax({
-								url:  "/admin/selectplazas",
+								url:  "/admin/selectnuevaoficina",
 								type: "GET",
 								success: function(p){
 								     	option = "";
@@ -893,7 +917,7 @@
 																		option += '<option value="0">-- Seleccione --</option>';
               for(datos in p.plazas){
 
-																			option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_plaza+'</option>';
+																			option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_oficina+'</option>';
 																}
 
 																s.append(option);
@@ -966,10 +990,10 @@
 		
 		//Agregamos los telefonos
 		$('#c-d-telefonos').append('<tr id="telefono_'+id+'">'+
-																													  '<td value="'+id+'">'+tipo+'</td>'+
-																													  '<td class="numero" value="'+numero+'">'+numero+'</td>'+
-																													  '<td><span class="quitar btn btn-xs btn-danger" value="'+id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
-																													'</tr>');
+														  '<td value="'+id+'">'+tipo+'</td>'+
+														  '<td class="numero" value="'+numero+'">'+numero+'</td>'+
+														  '<td><span class="quitar btn btn-xs btn-danger" value="'+id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+														'</tr>');
 		
 		
 		//Limpiamos los campos
@@ -1034,11 +1058,11 @@
 								type: "POST",
 								data:{sucursal: sucursal, select_gerente: select_gerente, select_plaza: select_plaza, direccion1: direccion1, direccion2: direccion2, colonia: colonia, estado: estado, municipio: municipio, cp: cp, referencia: referencia},
 								success: function(s){
-									
+									console.log(s);
 										nueva_fila = '<tr id="fila_'+s.id+'">'+
 												'<td><span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+s.created_at+'</span>'+s.nombre_sucursal+'</td>'+
 												'<td><span class="text-info txt-escondido">Gerente: </span>'+s.nombre+'</td>'+
-												'<td><span class="text-info txt-escondido">Plaza: </span>'+s.nombre_plaza+'</td>'+
+												'<td><span class="text-info txt-escondido">Oficina: </span>'+s.nombre_oficina+'</td>'+
 												'<td><span class="text-info txt-escondido">Dirección 1: </span>'+s.direccion1+'</td>'+
 												'<td><span class="text-info txt-escondido">Colonia: </span>'+s.colonia+'</td>'+
 												'<td>'+
@@ -1280,40 +1304,65 @@
 	});
 	
 	
-	//Agregar nueva plaza
+	//Agregar nueva oficina
 		 $(document).on('click', '#ad-nueva-p', function(){
 			$('#modal-add-plaza').modal({
       show: 'false',
     });
+
+						//Listamos las plazas
+			 $.ajax({
+								url:  "/admin/selectplazas",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#nombre_plaza');
+              for(datos in p.plazas){
+
+																			option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_plaza+'</option>';
+																}
+
+																s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+
 				return false;
 		});
 	
 	$(document).on('click', '#add-plaza', function(){
-			nombre = $('#nombre_plaza').val();
-			activo = 1;
+		 nombre = $('#nombre_oficina').val();
+		 plaza  = $('#nombre_plaza option:selected').val();
+		 clave = $('#nombre_clave').val();
 
 		
 		tabla_a = $('#listar_');
 		
 		$.ajax({
-								url:  "/admin/agregarplaza",
+								url:  "/admin/agregarnuevaoficinasucursal",
 								type: "POST",
-								data:{nombre: nombre, activo: activo},
+								data:{nombre: nombre, plaza: plaza, clave: clave},
 								success: function(p){
 									
 									option = "";
-         s = $('#select_plaza');
+                  s = $('#select_plaza');
 
-										option += '<option value="'+p.id+'" selected>'+p.nombre_plaza+'</option>';
+										option += '<option value="'+p.id+'" selected>'+p.nombre_oficina+'</option>';
 
 										s.append(option);
 									
 										
-										alertas("success","Plaza "+p.nombre_plaza+" agregada correctamente.");
+										alertas("success","Oficina "+p.nombre_oficina+" agregada correctamente.");
 										
 										//Limpiamos los campos
-									$('#nombre_plaza').val('');
-									$('#inp-check').prop("checked", false)
+									$('#nombre_oficina').val('');
+									$('#nombre_plaza').html('');
+									$('#nombre_clave').val('');
 
 									
 									
@@ -1329,8 +1378,15 @@
 	});
 	
 		$(document).on('click', '#no-add-plaza', function(){
-			 $('#nombre_plaza').val('');
-				$('#inp-check').prop("checked", false)
+				$('#nombre_oficina').val('');
+				$('#nombre_plaza').html('');
+				$('#nombre_clave').val('');
+ 
+        $('.error-nombre_oficina').removeClass('has-error has-feedback');
+		    $('.icon-nombre_oficina').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	
+        $('.error-nombre_clave').removeClass('has-error has-feedback');
+			  $('.icon-nombre_clave').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
 	
 	
@@ -1469,7 +1525,7 @@
 					
 
 			
-			//Listamos las plazas
+			//Listamos las oficinas
 			 $.ajax({
 								url:  "/admin/selecteditplazas",
 								type: "GET",
@@ -1477,10 +1533,10 @@
 								success: function(p){
 								     	option = "";
               s = $('#select_plaza_edit');
-														option += '<option value="'+p.p_a[0].id+'">'+p.p_a[0].nombre_plaza+'</option>';
+														option += '<option value="'+p.p_a[0].id+'">'+p.p_a[0].nombre_oficina+'</option>';
               for(datos in p.plazas){
 
-																			option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_plaza+'</option>';
+																			option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_oficina+'</option>';
 																}
 
 																s.append(option);
@@ -1561,10 +1617,10 @@
 		
 		//Agregamos los telefonos
 		$('#c-d-telefonos-edit').append('<tr class="tr" id="telefonoedit_'+id+'">'+
-																													  '<td class="text-info n_val" value="'+id+'">'+tipo+'</td>'+
-																													  '<td class=" text-info n_numero" value="'+numero+'">'+numero+'</td>'+
-																													  '<td><span class="quitar btn btn-xs btn-danger" value="'+id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
-																													'</tr>');
+																		  '<td class="text-info n_val" value="'+id+'">'+tipo+'</td>'+
+																		  '<td class=" text-info n_numero" value="'+numero+'">'+numero+'</td>'+
+																		  '<td><span class="quitar btn btn-xs btn-danger" value="'+id+'"><span class="glyphicon glyphicon-remove"></span></span></td>'+
+																		'</tr>');
 		
 		
 		//Limpiamos los campos
@@ -1654,8 +1710,8 @@
 	//Actualizar sucursal--------
 	$(document).on('click', '#add-sucursal_edit', function(){
 		 id = $(this).attr('value');
-			sucursal = $('#sucursal_edit').val();
-	 	select_gerente = $('#select_gerente_edit').val();
+		 sucursal = $('#sucursal_edit').val();
+	 	 select_gerente = $('#select_gerente_edit').val();
 		 select_plaza = $('#select_plaza_edit').val();
 		 direccion1 = $('#direccion1_edit').val();
 		 direccion2 = $('#direccion2_edit').val();
@@ -1676,7 +1732,7 @@
 									$('#fila_'+id).replaceWith('<tr id="fila_'+s.id+'">'+
                '<td><span class="text-info txt-escondido">Sucursal: </span><span class="hidden">'+s.created_at+'</span>'+s.nombre_sucursal+'</td>'+
 												'<td><span class="text-info txt-escondido">Gerente: </span>'+s.nombre+'</td>'+
-												'<td><span class="text-info txt-escondido">Plaza: </span>'+s.nombre_plaza+'</td>'+
+												'<td><span class="text-info txt-escondido">Oficina: </span>'+s.nombre_oficina+'</td>'+
 												'<td><span class="text-info txt-escondido">Dirección 1: </span>'+s.direccion1+'</td>'+
 												'<td><span class="text-info txt-escondido">Colonia: </span>'+s.colonia+'</td>'+
 												'<td>'+
@@ -1885,34 +1941,60 @@
 			$('#modal-add-plaza-edit').modal({
       show: 'false',
     });
+
+				//Listamos las plazas
+			 $.ajax({
+								url:  "/admin/selectplazas",
+								type: "GET",
+								success: function(p){
+								     	option = "";
+              s = $('#nombre_plaza_edit');
+              for(datos in p.plazas){
+
+										option += '<option value="'+p.plazas[datos].id+'">'+p.plazas[datos].nombre_plaza+'</option>';
+							}
+
+							s.append(option);
+
+								},
+			
+								error: function(){
+									alert('failure');
+								}
+																
+					});
+
 				return false;
 		});
 	
 	$(document).on('click', '#add-plaza-edit', function(){
-			nombre = $('#nombre_plaza_edit').val();
-			activo = 1;
+			 nombre = $('#nombre_oficina_edit').val();
+		   plaza  = $('#nombre_plaza_edit option:selected').val();
+		   clave = $('#nombre_clave_edit').val();
 
 		
 		tabla_a = $('#listar_');
 		
 		$.ajax({
-								url:  "/admin/agregarplaza",
+								url:  "/admin/agregarnuevaoficinasucursal",
 								type: "POST",
-								data:{nombre: nombre, activo: activo},
+								data:{nombre: nombre, plaza: plaza, clave: clave},
 								success: function(p){
 									
 									option = "";
-         s = $('#select_plaza_edit');
+                  s = $('#select_plaza_edit');
 
-										option += '<option value="'+p.id+'" selected>'+p.nombre_plaza+'</option>';
+										option += '<option value="'+p.id+'" selected>'+p.nombre_oficina+'</option>';
 
 										s.append(option);
 									
 										
-										alertas("success","Plaza "+p.nombre_plaza+" agregada correctamente.");
+										alertas("success","Oficina "+p.nombre_oficina+" agregada correctamente.");
 										
 										//Limpiamos los campos
-									$('#nombre_plaza_edit').val('');
+									$('#nombre_oficina_edit').val('');
+									$('#nombre_plaza_edit').html('');
+									$('#nombre_clave_edit').val('');
 
 									
 									
@@ -1928,7 +2010,15 @@
 	});
 	
 		$(document).on('click', '#no-add-plaza-edit', function(){
-			 $('#nombre_plaza_edit').val('');
+			$('#nombre_oficina_edit').val('');
+			$('#nombre_plaza_edit').html('');
+			$('#nombre_clave_edit').val('');
+
+      $('.error-nombre_oficina_edit').removeClass('has-error has-feedback');
+		  $('.icon-nombre_oficina_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	
+      $('.error-nombre_clave_edit').removeClass('has-error has-feedback');
+			$('.icon-nombre_clave_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
 	});
 	
 	
@@ -2133,13 +2223,13 @@
 });
 	
 	/*****************
-	------Validaciones al agregar un nueva plaza
+	------Validaciones al agregar un nueva oficina
 	******************************************************************/
 	  $("#add-plaza").click(function () {
 
-      if($("#nombre_plaza").val().length == 0){
-														$('.error-nombre_plaza').addClass('has-error has-feedback');
-							       $('.icon-nombre_plaza').addClass('glyphicon glyphicon-remove form-control-feedback');
+      if($("#nombre_oficina").val().length == 0){
+							$('.error-nombre_oficina').addClass('has-error has-feedback');
+							 $('.icon-nombre_oficina').addClass('glyphicon glyphicon-remove form-control-feedback');
               return false;
 
       }  else {
@@ -2147,9 +2237,26 @@
       }
 });
 	
-	$("#nombre_plaza").focus(function () {
-      $('.error-nombre_plaza').removeClass('has-error has-feedback');
-						$('.icon-nombre_plaza').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	  $("#add-plaza").click(function () {
+
+      if($("#nombre_clave").val().length == 0){
+							$('.error-nombre_clave').addClass('has-error has-feedback');
+							$('.icon-nombre_clave').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+
+	$("#nombre_oficina").focus(function () {
+      $('.error-nombre_oficina').removeClass('has-error has-feedback');
+		  $('.icon-nombre_oficina').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
+	
+	$("#nombre_clave").focus(function () {
+      $('.error-nombre_clave').removeClass('has-error has-feedback');
+			$('.icon-nombre_clave').removeClass('glyphicon glyphicon-remove form-control-feedback');
 });
 	
 	
@@ -2319,13 +2426,13 @@
 });
 	
 	/*****************
-	------Validaciones al agregar un nueva plaza al editar sucursal
+	------Validaciones al agregar un nueva oficina al editar sucursal
 	******************************************************************/
 	  $("#add-plaza-edit").click(function () {
 
-      if($("#nombre_plaza_edit").val().length == 0){
-														$('.error-plaza-edit').addClass('has-error has-feedback');
-							       $('.icon-plaza-edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+      if($("#nombre_oficina_edit").val().length == 0){
+							$('.error-nombre_oficina_edit').addClass('has-error has-feedback');
+							 $('.icon-nombre_oficina_edit').addClass('glyphicon glyphicon-remove form-control-feedback');
               return false;
 
       }  else {
@@ -2333,11 +2440,27 @@
       }
 });
 	
-	$("#nombre_plaza_edit").focus(function () {
-      $('.error-plaza-edit').removeClass('has-error has-feedback');
-						$('.icon-plaza-edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+	  $("#add-plaza-edit").click(function () {
+
+      if($("#nombre_clave_edit").val().length == 0){
+							$('.error-nombre_clave_edit').addClass('has-error has-feedback');
+							$('.icon-nombre_clave_edit').addClass('glyphicon glyphicon-remove form-control-feedback');
+              return false;
+
+      }  else {
+          return true;
+      }
+});
+
+	$("#nombre_oficina_edit").focus(function () {
+      $('.error-nombre_oficina_edit').removeClass('has-error has-feedback');
+		  $('.icon-nombre_oficina_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
 });
 	
+	$("#nombre_clave_edit").focus(function () {
+      $('.error-nombre_clave_edit').removeClass('has-error has-feedback');
+			$('.icon-nombre_clave_edit').removeClass('glyphicon glyphicon-remove form-control-feedback');
+});
 
 	
 	

@@ -82,7 +82,7 @@
 		<div class="row">
 			<div class="section_contenidos">
 	<h1 class="text-conf-pedido">Emotions Rent a Car</h1>
-		<img src="img/newlogo_emotions60.png" alt="Logo">
+		<img src="img/a1.png" alt="Logo">
 			@foreach($reserva as $r)
 			<div class="divh4">
 				 <h4 class="text-da text-da-pd"><span class="text-p">Fecha: </span><span class="dato-p-1">{{ $r->created_at }}</span></h4>
@@ -107,7 +107,7 @@
               <tr>
                 <td>Teléfono: {{ $c->telefono }} <span>• </span>N° de Licencia: {{ $c->num_licencia }} <span>• </span>Comentarios: {{ $c->comentarios }}</td>
               </tr>
-													@endforeach
+						@endforeach
             </tbody>
           </table>
           

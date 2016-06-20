@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'rentacar',
 			'username'  => 'root',
-			'password'  => 'admin:userdb99',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

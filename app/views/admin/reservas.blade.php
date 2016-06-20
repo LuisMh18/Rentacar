@@ -37,6 +37,10 @@
 
 @section('content')
 
+<div class="exportar-ex">
+	      <a href="{{ URL::to('admin/exportartodaslasreservas') }}" class="btn btn-success btn-sm btn-exp">Exportar a Excel</a>
+</div>
+
 <div class="seccion_tabla seccion_sucursal">
 	<div class="tabla-sucursal">
 			<table id="listar_" class="tabla_catalogo table-striped">
@@ -232,12 +236,15 @@
 
 						}, //end o
 
-							"aaSorting": [[ 0, "desc" ]], 
 								
 								fnCreatedRow : function (nRow, aData, iDataIndex) {
 												$(nRow).attr('id', "fila_"+l[i].id);
 
 							},
+
+							'iDisplayLength': 100,
+							
+							"aaSorting": [[ 0, "desc" ]], 
 
 							"sPaginationType": "simple_numbers",
 								"sPaginationType": "bootstrap",

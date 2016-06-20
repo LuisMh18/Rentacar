@@ -48,7 +48,6 @@
 				<tr>
 					<th class="cabecero">Código</th>
 					<th class="cabecero">Descripción</th>
-					<th class="cabecero">Tipo</th>
 					<th class="cabecero">Estatus</th>
 					<th class="cabecero">Editar</th>
 					<th class="cabecero">Eliminar</th>
@@ -77,53 +76,26 @@
 
             <form class="form-modal" action="">
 															
-																			<div class="form-group error-codigo">
-																						<label for="nombre" class="text-primary">Código: </label>
-																						<input type="text" name="nombre" id="nombre" class="form-control" >
-																						<span class="icon-codigo"></span>
-																			</div>
-																			
-																			<div class="form-group error-descripcion">
-																						<label for="descripcion" class="text-primary">Descripción: </label>
-																						<input type="text" name="descripcion" id="descripcion" class="form-control" >
-																						<span class="icon-descripcion"></span>
-																			</div>
-																			
-																		<label for="tipo" class="text-primary error-tipo-vehiculo">Tipo: </label>
-																		<div class="tipo-carro-a">
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_chico" name="opcion_v" id="" value="4">
-																						Chico
-																				</label>
-																		</div>
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_mediano" name="opcion_v" id="" value="1">
-																						Mediano
-																				</label>
-																		</div>
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_grande" name="opcion_v" id="" value="2">
-																						Grande
-																				</label>
-																		</div>
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_camioneta" name="opcion_v" id="" value="3">
-																						Camioneta
-																				</label>
-																		</div>
-																	</div>
+								<div class="form-group error-codigo">
+											<label for="nombre" class="text-primary">Código: </label>
+											<input type="text" name="nombre" id="nombre" class="form-control" >
+											<span class="icon-codigo"></span>
+								</div>
+								
+								<div class="form-group error-descripcion">
+											<label for="descripcion" class="text-primary">Descripción: </label>
+											<input type="text" name="descripcion" id="descripcion" class="form-control" >
+											<span class="icon-descripcion"></span>
+								</div>
+								
 
-																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ check-w">
-																					 <span class="text-primary">Activo</span>
-																					<div class="txt-activ">
-																					  <input id="inp-check" type="checkbox" value="">
-																					</div>
-																		</div>
+							<label for="estatus" class="text-primary">Estatus: </label>
+							<div class="checkbox checkbox-activ check-w">
+										 <span class="text-primary">Activo</span>
+										<div class="txt-activ">
+										  <input id="inp-check" type="checkbox" value="">
+										</div>
+							</div>
 
 													 
             </form>
@@ -131,14 +103,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="add-codigo" class="btn btn-primary" data-dismiss="modal" >
-																		Agregar
-															</span>
-													</div>
+						 		<div class="footer-modal">
+											<button id="no-add-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
+												Cancelar
+										</button>
+										<span id="add-codigo" class="btn btn-primary" data-dismiss="modal" >
+													Agregar
+										</span>
+								</div>
              
           </div>
         </div>
@@ -163,14 +135,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-add-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
-																	No
-															</button>
-															<span id="confirm-delete-codigo" class="btn btn-primary" data-dismiss="modal" >
-																		Si
-															</span>
-													</div>
+						 		<div class="footer-modal">
+											<button id="no-add-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
+												No
+										</button>
+										<span id="confirm-delete-codigo" class="btn btn-primary" data-dismiss="modal" >
+													Si
+										</span>
+								</div>
              
           </div>
         </div>
@@ -192,53 +164,26 @@
 
             <form class="form-modal" action="">
 															
-																	<div class="form-group error-codigo-edit">
-																						<label for="nombre_edit" class="text-primary">Código: </label>
-																						<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
-																						<span class="icon-codigo-edit"></span>
-																			</div>
-																			
-																			<div class="form-group error-descripcion-edit">
-																						<label for="descripcion_edit" class="text-primary">Descripción: </label>
-																						<input type="text" name="descripcion_edit" id="descripcion_edit" class="form-control" >
-																						<span class="icon-descripcion-edit"></span>
-																			</div>
-																			
-																			<label for="tipo" class="text-primary error-tipo-vehiculo">Tipo: </label>
-																		<div class="tipo-carro-a">
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_chico_edit" name="opcion_v_edit" id="" value="0">
-																						Chico
-																				</label>
-																		</div>
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_mediano_edit" name="opcion_v_edit" id="" value="1">
-																						Mediano
-																				</label>
-																		</div>
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_grande_edit" name="opcion_v_edit" id="" value="2">
-																						Grande
-																				</label>
-																		</div>
-																		<div class="radio">
-																				<label>
-																						<input type="radio" class="tipo_camioneta_edit" name="opcion_v_edit" id="" value="3">
-																						Camioneta
-																				</label>
-																		</div>
-																	</div>
+							<div class="form-group error-codigo-edit">
+												<label for="nombre_edit" class="text-primary">Código: </label>
+												<input type="text" name="nombre_edit" id="nombre_edit" class="form-control" >
+												<span class="icon-codigo-edit"></span>
+									</div>
+									
+									<div class="form-group error-descripcion-edit">
+												<label for="descripcion_edit" class="text-primary">Descripción: </label>
+												<input type="text" name="descripcion_edit" id="descripcion_edit" class="form-control" >
+												<span class="icon-descripcion-edit"></span>
+									</div>
+									
 
-																		<label for="estatus" class="text-primary">Estatus: </label>
-																		<div class="checkbox checkbox-activ check-w">
-																					 <span class="text-primary">Activo</span>
-																					<div class="txt-activ">
-																					  <input id="inp-check_edit" type="checkbox" value="">
-																					</div>
-																		</div>
+								<label for="estatus" class="text-primary">Estatus: </label>
+								<div class="checkbox checkbox-activ check-w">
+											 <span class="text-primary">Activo</span>
+											<div class="txt-activ">
+											  <input id="inp-check_edit" type="checkbox" value="">
+											</div>
+								</div>
 
 													 
             </form>
@@ -246,14 +191,14 @@
           </div>
           <div class="modal-footer">
 													
-											 		<div class="footer-modal">
-																<button id="no-act-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
-																	Cancelar
-															</button>
-															<span id="confirm-act-codigo" class="btn btn-primary" data-dismiss="modal" >
-																		Actualizar
-															</span>
-													</div>
+					 		<div class="footer-modal">
+										<button id="no-act-codigo" type="button" class="btn btn-danger" data-dismiss="modal">
+											Cancelar
+									</button>
+									<span id="confirm-act-codigo" class="btn btn-primary" data-dismiss="modal" >
+												Actualizar
+									</span>
+							</div>
              
           </div>
         </div>
@@ -270,7 +215,7 @@
 {{ HTML::script('js/DataTables-1.9.4/media/js/jquery.dataTables.bootstrap.js') }}
 
 <script>
-			$.ajax({
+			   $.ajax({
 							dataType: 'json',
 							url: "/admin/listacodigos",
 							success: function (l) {
@@ -301,12 +246,16 @@
 
 						}, //end o
 
-							"aaSorting": [[ 0, "desc" ]], 
 								
 								fnCreatedRow : function (nRow, aData, iDataIndex) {
 												$(nRow).attr('id', "fila_"+l[i].id);
 
 							},
+
+							'iDisplayLength': 100,
+
+							"aaSorting": [[ 0, "desc" ]], 
+
 
 							"sPaginationType": "simple_numbers",
 								"sPaginationType": "bootstrap",
@@ -315,38 +264,35 @@
 
 			}); //End data
 
-											tabla_a.fnClearTable();
+									tabla_a.fnClearTable();
 
-													for(var i = 0; i < l.length; i++) {
-																				tabla_a.fnAddData([
-																															'<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo,
-																															'<span class="text-info txt-escondido">Descripción: </span>'+l[i].descripcion_codigo,
-																					          '<span class="text-info txt-escondido">Tipo: </span><span class="tipo_'+l[i].tipo+'"></span>',
-																															'<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
-																															'<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
-																					            '<span class="glyphicon glyphicon-edit"></span>'+
-																					          '</button>',
-																															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar código">'+
-																					            '<span class="glyphicon glyphicon-remove"></span>'+
-																					          '</button>',
-																													]);
+											for(var i = 0; i < l.length; i++) {
+																		tabla_a.fnAddData([
+																							 '<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo,
+																							 '<span class="text-info txt-escondido">Descripción: </span>'+l[i].descripcion_codigo,
+																							 '<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
+																							 '<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
+																			         '<span class="glyphicon glyphicon-edit"></span>'+
+																			         '</button>',
+																							 '<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar código">'+
+																			         '<span class="glyphicon glyphicon-remove"></span>'+
+																			         '</button>',
+																							]);
 
 
-																					} //End for
+																			} //End for
 								
 								
-															  $('.estatus_0').text('Inactivo');
-																	$('.estatus_0').addClass('text-danger');
-																	$('.estatus_1').text('Activo');
-																	$('.estatus_1').addClass('text-success');
+													$('.estatus_0').text('Inactivo');
+													$('.estatus_0').addClass('text-danger');
+													$('.estatus_1').text('Activo');
+													$('.estatus_1').addClass('text-success');
 								
-															 	$('.tipo_0').text('Chico');
-																	$('.tipo_1').text('Mediano');
-																	$('.tipo_2').text('Grande');
-																	$('.tipo_3').text('Camioneta');
 
-															$('.dataTables_paginate .prev a').text('Anterior');
-															$('.dataTables_paginate .next a').text('Siguiente');
+													$('.dataTables_paginate .prev a').text('Anterior');
+													$('.dataTables_paginate .next a').text('Siguiente');
+
+													llamarpaginaciondatatable();
 
 
 
@@ -358,16 +304,13 @@
 			});
 	
 	
-			$(document).on('click','.fancy > li, a',function(){	
+			$(document).on('click','.cargarpaginacion',function(){	
+				    $('.fancy a').addClass('cargarpaginacion');
 						$('.estatus_0').text('Inactivo');
 						$('.estatus_0').addClass('text-danger');
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
 				
-				  $('.tipo_0').text('Chico');
-						$('.tipo_1').text('Mediano');
-						$('.tipo_2').text('Grande');
-						$('.tipo_3').text('Camioneta');
 			});        
 
 
@@ -377,11 +320,6 @@
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
 				
-						$('.tipo_0').text('Chico');
-						$('.tipo_1').text('Mediano');
-						$('.tipo_2').text('Grande');
-						$('.tipo_3').text('Camioneta');
-
 			});
 
 			$(document).on('click', '#list_p__length', function(){
@@ -390,10 +328,6 @@
 						$('.estatus_1').text('Activo');
 						$('.estatus_1').addClass('text-success');
 				
-						$('.tipo_0').text('Chico');
-						$('.tipo_1').text('Mediano');
-						$('.tipo_2').text('Grande');
-						$('.tipo_3').text('Camioneta');
 			});
 	
 	
@@ -420,26 +354,25 @@
 		tabla_a = $('#listar_');
 		
 		$.ajax({
-								url:  "/admin/agregarcodigo",
-								type: "POST",
-								data:{codigo: codigo, descripcion: descripcion, tipo: tipo, activo: activo},
-								success: function(p){
-										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
-											 '<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
-												'<td><span class="text-info txt-escondido">Tipo: </span><span class="tipo_'+p.tipo+'"></span></td>'+
-											 '<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
-												'<td>'+
-											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar código">'+
-																	'<span class="glyphicon glyphicon-edit"></span>'+
-														'</button>'+
-											'</td>'+
-											'<td>'+
-											  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar código">'+
-																		'<span class="glyphicon glyphicon-remove"></span>'+
-														'</button>'+
-											'</td>'+
-									'</tr>';
+					url:  "/admin/agregarcodigo",
+					type: "POST",
+					data:{codigo: codigo, descripcion: descripcion, activo: activo},
+					success: function(p){
+							nueva_fila = '<tr id="fila_'+p.id+'">'+
+									'<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
+								 '<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
+								 '<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
+									'<td>'+
+								   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar código">'+
+														'<span class="glyphicon glyphicon-edit"></span>'+
+											'</button>'+
+								'</td>'+
+								'<td>'+
+								  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar código">'+
+															'<span class="glyphicon glyphicon-remove"></span>'+
+											'</button>'+
+								'</td>'+
+						'</tr>';
 										
 									tabla_a.prepend(nueva_fila);
 									
@@ -448,10 +381,6 @@
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
 									
-									$('.tipo_0').text('Chico');
-									$('.tipo_1').text('Mediano');
-									$('.tipo_2').text('Grande');
-									$('.tipo_3').text('Camioneta');
 										
 										alertas("success","Código "+p.descripcion_codigo+" agregado correctamente.");
 										
@@ -506,7 +435,7 @@
 			 $('#descripcion').val('');
 				$('#inp-check').prop("checked", false);
 				
-    $('.error-codigo').removeClass('has-error has-feedback');
+        $('.error-codigo').removeClass('has-error has-feedback');
 				$('.icon-codigo').removeClass('glyphicon glyphicon-remove form-control-feedback');
 
 				$('.error-descripcion').removeClass('has-error has-feedback');
@@ -522,7 +451,7 @@
 	$(document).on('click', '.eliminar-btn', function(){
 			   id = $(this).val();
 
-					$('#modal-confirm-delete').modal({
+			$('#modal-confirm-delete').modal({
        show: 'false',
      });
 		
@@ -567,17 +496,6 @@
 									$('#nombre_edit').val(e.codigo);
 									$('#descripcion_edit').val(e.descripcion_codigo);
 									
-									tipo = e.tipo;
-									
-									if(tipo == 0){
-											$('.tipo_chico_edit').prop('checked', true);
-									} else if(tipo == 1) {
-											$('.tipo_mediano_edit').prop('checked', true);
-									}  else if(tipo == 2) {
-											$('.tipo_grande_edit').prop('checked', true);
-									}  else if(tipo == 3) {
-											$('.tipo_camioneta_edit').prop('checked', true);
-									}
 
 									activo = e.estatus;
 									if(activo == 1){
@@ -614,23 +532,21 @@ $(document).on('click', '#inp-check_edit', function(){
 });
 	
 	$(document).on('click', '#confirm-act-codigo', function(){
-			  id = $(this).attr('value');
+			    id = $(this).attr('value');
 					nombre = $('#nombre_edit').val();
 					descripcion = $('#descripcion_edit').val();
 					estatus = $('#inp-check_edit').val();
-		   tipo =  $('input:radio[name=opcion_v_edit]:checked').val();
 
 					$.ajax({
 								url:  "/admin/actualizarcodigo",
 								type: "GET",
-								data:{id: id, nombre: nombre, descripcion: descripcion, estatus: estatus, tipo: tipo},
+								data:{id: id, nombre: nombre, descripcion: descripcion, estatus: estatus},
 								success: function(p){
 										
 									//Bolvemos a construir la fila
         $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
                 '<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
 																'<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
-                '<td><span class="text-info txt-escondido">Tipo: </span><span class="tipo_'+p.tipo+'"></span></td>'+
 																'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
 											   '<button class="btn btn-sm btn-info editar-btn" value="'+p.id+'" title="Editar grupo">'+
@@ -652,10 +568,6 @@ $(document).on('click', '#inp-check_edit', function(){
 									$('.estatus_1').text('Activo');
 									$('.estatus_1').addClass('text-success');
 									
-									$('.tipo_0').text('Chico');
-									$('.tipo_1').text('Mediano');
-									$('.tipo_2').text('Grande');
-									$('.tipo_3').text('Camioneta');
 									
 								},
 			
@@ -792,7 +704,9 @@ function alertas(tipo,mensaje){
     }).show();
   }
 	
-	
+function llamarpaginaciondatatable(){
+  $('.fancy a').addClass('cargarpaginacion');
+}
 	
 </script>
 
