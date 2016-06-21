@@ -61,10 +61,10 @@
 			<div class="section_contenidos">
 				<div class="logo-cabecera">
 				 <div>
-		      <img class="imagen-grande" src="/img/a1.png" alt="Logo">	
+		           <img class="imagen-grande" src="/img/a1.png" alt="Logo">	
 				 </div>
-				 <div>
-		      <img class="imagen-grande" src="/img/a2.png" alt="Teléfono">	
+				 <div class="imagen-tel">
+		           <img class="imagen-grande" src="/img/a2.png" alt="Teléfono">	
 				 </div>
 				</div>
 				<div class="menu-cabecera">
@@ -79,7 +79,7 @@
 					<li><a href="#">Sucursales</a></li>
 					<li><a href="#">Reservaciones</a></li>
 				</div>
-				<h1>Reservaciones</h1>
+				<h1 class="h1-r">Reservaciones</h1>
 				<p class="nota1">Llena los datos para hacer la reservación.</p>
 			<div class="contenedor-section-aside">
 				<section class="section_articulos">
@@ -315,7 +315,7 @@
 					</small>
 					<strong>
 						<a href="#">
-							Aviso de privasidad
+							Aviso de privacidad
 						</a>
 					</strong>
 				</footer>
