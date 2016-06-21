@@ -7,6 +7,9 @@
 html {
   height: 100%; }
 
+a {
+  font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
+
 body {
   height: 100%;
   background: #F7F7F7; }
@@ -530,7 +533,8 @@ footer {
       list-style: none;
       border-right: 1px solid white;
       text-align: center;
-      padding-right: 29px; }
+      padding-right: 29px;
+      font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
       .menu-cabecera li:last-child {
         border-right: 0;
         padding-right: 0; }
@@ -548,10 +552,12 @@ footer {
           text-decoration: none;
           color: #0099ff; } }
 @media (min-width: 1050px) {
-  .menu-cabecera li a {
-    font-size: 12px;
-    font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    font-weight: 400; }
+  .menu-cabecera li {
+    font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
+    .menu-cabecera li a {
+      font-size: 12px;
+      font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+      font-weight: 400; }
 
   .aside-imagen {
     display: block;
@@ -565,21 +571,30 @@ footer {
     .aside-c a:last-child {
       margin-bottom: 4em; } }
 @media (min-width: 1100px) {
+  strong {
+    margin-right: 2em; }
+
   footer {
     flex-direction: row;
     justify-content: space-between; }
     footer small {
       color: #919289;
-      margin-bottom: 0; } }
+      margin-bottom: 0;
+      font-size: 11px;
+      margin-left: 2em; } }
 @media (min-width: 1200px) {
-  .menu-cabecera li a {
-    font-size: 13px;
-    font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    font-weight: 400; } }
+  .menu-cabecera li {
+    font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
+    .menu-cabecera li a {
+      font-size: 13px;
+      font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+      font-weight: 400; } }
 @media (min-width: 1250px) {
-  .menu-cabecera li a {
-    font-size: 15px;
-    font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    font-weight: 400; } }
+  .menu-cabecera li {
+    font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
+    .menu-cabecera li a {
+      font-size: 15px;
+      font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+      font-weight: 400; } }
 
 /*# sourceMappingURL=estilos_reserva.css.map */
