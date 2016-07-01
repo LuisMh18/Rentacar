@@ -101,11 +101,42 @@
 																			<td><span class="text-info">Tarifa por día:</span> <span id="p_t_d"></span> <span class="text-primary"> • </span><span class="text-info">Días:</span> <span id="p_d"></span><span class="text-primary"> • </span> <span class="text-info">Total:</span> <span id="p_to"></span> </td>
 																	</tr>
 																	<tr>
-																			<td><span class="text-info">Lugar de entrega:</span> <span id="p_l_e"></span><span class="text-primary"> • </span><span class="text-info">Fecha de entrega:</span> <span id="p_f_e"></span><span class="text-primary"> • </span><span class="text-info">Hora de entrega:</span> <span id="p_h_e"></span></td>
+																			<td>
+                                        <span class="text-info">Lugar de entrega:</span> <span id="p_l_e"></span>
+                                        <span class="text-info">Direccion 1:</span> <span id="p_d1"></span>
+                                        <span class="text-info td2">Dirección 2:</span> <span id="p_d2"></span>
+                                        <span class="text-info">Colonia:</span> <span id="p_col"></span>
+                                        <span class="text-info">Estado:</span> <span id="p_es"></span>
+                                        <span class="text-info">Municipio:</span> <span id="p_mun"></span>
+                                        <span class="text-info">CP:</span> <span id="p_cp"></span>
+                                        <span class="text-info tref">Referencias:</span> <span id="p_tref"></span>
+                                        <span class="text-info ttel">Teléfono:</span> <span id="p_t1"></span> <span id="p_t2"></span> <span id="p_t3"></span><span id="p_t4"></span>
+                                     </td>
 																	</tr>
+                                  <tr>
+                                    <td>
+                                      <span class="text-info">Fecha de entrega:</span> <span id="p_f_e"></span>
+                                      <span class="text-info">Hora de entrega:</span> <span id="p_h_e"></span></td>
+                                    </td>
+                                  </tr>
 																	<tr>
-																			<td><span class="text-info">Lugar de devolucion:</span> <span id="p_l_d"></span><span class="text-primary"> • </span><span class="text-info">Fecha de devolucion:</span> <span id="p_f_d"></span><span class="text-primary"> • </span><span class="text-info">Hora de devolucion:</span> <span id="p_h_d"></span></td>
+																			<td><span class="text-info">Lugar de devolucion:</span> <span id="p_l_d"></span>
+                                        <span class="text-info">Direccion 1:</span> <span id="p_de1"></span>
+                                        <span class="text-info tde2">Dirección 2:</span> <span id="p_de2"></span>
+                                        <span class="text-info">Colonia:</span> <span id="p_dcol"></span>
+                                        <span class="text-info">Estado:</span> <span id="p_des"></span>
+                                        <span class="text-info">Municipio:</span> <span id="p_dmun"></span>
+                                        <span class="text-info">CP:</span> <span id="p_dcp"></span>
+                                        <span class="text-info tdref">Referencias:</span> <span id="p_dtref"></span>
+                                        <span class="text-info tdtel">Teléfono:</span> <span id="p_dt1"></span> <span id="p_dt2"></span> <span id="p_dt3"></span><span id="p_dt4"></span>
+                                      </td>
 																	</tr>
+                                  <tr>
+                                    <td>
+                                      <span class="text-info">Fecha de devolucion:</span> <span id="p_f_d"></span>
+                                      <span class="text-info">Hora de devolucion:</span> <span id="p_h_d"></span></td>
+                                    </td>
+                                  </tr>
 															</tbody>
 													</table>
 
@@ -311,7 +342,6 @@
 
 
 
-
 		//Detalle de la reserva -------------
 	 $(document).on('click', '.detalle-cliente', function(){
 			id = $(this).attr('value');
@@ -337,11 +367,60 @@
 									$('#p_t_d').text(accounting.formatMoney(d.reserva[0].tarifa_por_dia));
 									$('#p_d').text(d.reserva[0].dias);
 									$('#p_to').text(accounting.formatMoney(d.reserva[0].total));
-									$('#p_l_e').text(d.reserva[0].lugar_entrega);
-									$('#p_f_e').text(d.reserva[0].fecha_entrega);
+									$('#p_l_e').text(d.reserva[0].lugar_entrega+" • ");
+                  $('#p_d1').text(d.reserva[0].direccion1_e+" • ");
+                  if(d.reserva[0].direccion2_e == ''){
+                    $('.td2').hide();
+                    $('#p_d2').text('');
+                  } else {
+                    $('.td2').show();
+                    $('#p_d2').text(d.reserva[0].direccion2_e+" • ");
+                  }
+
+                  $('#p_col').text(d.reserva[0].colonia_e+" • ");
+                  $('#p_es').text(d.reserva[0].estado_e+" • ");
+                  $('#p_mun').text(d.reserva[0].municipio_e+" • ");
+                  $('#p_cp').text(d.reserva[0].cp_e+" • ");
+                  if(d.reserva[0].referencias_e == ''){
+                    $('.tref').hide();
+                    $('#p_tref').text('');
+                  } else {
+                      $('.tref').show();
+                      $('#p_tref').text(d.reserva[0].referencias_e+" • ");
+                  }
+                  $('#p_t1').text(d.reserva[0].telefono1_e);
+                  $('#p_t2').text(d.reserva[0].telefono2_e);
+                  $('#p_t3').text(d.reserva[0].telefono3_e);
+                  $('#p_t4').text(d.reserva[0].telefono4_e);
+
+									$('#p_f_e').text(d.reserva[0].fecha_entrega+" • ");
 									$('#p_h_e').text(d.reserva[0].hora_entrega);
-									$('#p_l_d').text(d.reserva[0].lugar_devolucion);
-									$('#p_f_d').text(d.reserva[0].fecha_devolucion);
+									$('#p_l_d').text(d.reserva[0].lugar_devolucion+" • ");
+                  $('#p_de1').text(d.reserva[0].direccion1_d+" • ");
+                  if(d.reserva[0].direccion2_d == ''){
+                    $('.tde2').hide();
+                    $('#p_de2').text('');
+                  } else {
+                    $('.tde2').show();
+                    $('#p_de2').text(d.reserva[0].direccion2_d+" • ");
+                  }
+
+                  $('#p_dcol').text(d.reserva[0].colonia_d+" • ");
+                  $('#p_des').text(d.reserva[0].estado_d+" • ");
+                  $('#p_dmun').text(d.reserva[0].municipio_d+" • ");
+                  $('#p_dcp').text(d.reserva[0].cp_d+" • ");
+                  if(d.reserva[0].referencias_d == ''){
+                    $('.tdref').hide();
+                    $('#p_dtref').text('');
+                  } else {
+                      $('.tdref').show();
+                      $('#p_dtref').text(d.reserva[0].referencias_d+" • ");
+                  }
+                  $('#p_dt1').text(d.reserva[0].telefono1_d);
+                  $('#p_dt2').text(d.reserva[0].telefono2_d);
+                  $('#p_dt3').text(d.reserva[0].telefono3_d);
+                  $('#p_dt4').text(d.reserva[0].telefono4_d)
+									$('#p_f_d').text(d.reserva[0].fecha_devolucion+" • ");
 									$('#p_h_d').text(d.reserva[0].hora_devolucion);
 
 									$('#p_n').text(d.cliente[0].nombre);
@@ -367,6 +446,7 @@
 		});
 
 		 $(document).on('click', '#cerrar-reserva', function(){
+
 						 $('#title-numero').text('');
 							$('#title-fecha').text('');
 				     $('#p_v').text('');

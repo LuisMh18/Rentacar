@@ -11,39 +11,85 @@
 </head>
 
 <style>
+
+  #dt-r{
+    text-align:center;
+    color:#31708f;
+    font-size: 18px;
+    margin-bottom:5px;
+  }
+
+  #da-cli{
+    text-align: center;
+    color:#31708f;
+    font-size: 18px;
+    margin-bottom:5px;
+  }
+
 	.nota1{
 		padding-bottom:0!important;
 		font-size:16px!important;
+    text-align: center;
+    margin:0!important;
 	}
+
+  .table-d-xs{
+  	   border: 1px solid #DDDDDD;
+  				width: 60%;
+      margin: auto;
+      padding: .4em .3em .2em .3em;
+      background: #214878;
+  }
+
+  #body-det tr{
+      text-align:center;
+      font-size:.9em;
+      background:#fff;
+  }
+
+
+
+  .table-d-xs tbody tr td .rfc{
+  						text-transform:uppercase;
+  						color:black;
+  						font-weight:normal;
+  	}
+
+  .section-reserva{
+  	box-shadow:5px 5px 5px #fff!important;
+  	margin-top:1em;
+  }
+
+  .table-de-ped{
+  	width:80%!important;
+  	margin-bottom:1em;
+  }
+
+  .t_datos-pedido{
+  	margin:.5em 0 1em 0!important;
+  }
+
+  #detalle-r{
+
+    margin-top:0;
+    text-align:center;
+  }
+
+  .txt-azul{
+    color:#31708f;
+  }
+
+  }
 </style>
 <body>
 	<div class="container section">
 
-			 <!--Alertas-->
-<div class="notifications top-right" data-html="true"></div>
-<div class="notifications bottom-right" data-html="true"></div>
-
 		<div class="row">
 			<div class="section_contenidos">
 				<div class="logo-cabecera">
-				 <div>
-		      <img class="imagen-grande" src="/img/a1.png" alt="Logo">
+				 <div class="div-logo-img">
+		      <img class="imagen-grande" src="<?php echo $message->embed('img/newlogo_emotions60_cabecera.png') ?>" alt="Logo">
 				 </div>
-				 <div>
-		      <img class="imagen-grande" src="/img/a2.png" alt="Teléfono">
-				 </div>
-				</div>
-				<div class="menu-cabecera">
-				  <div class="menu-icon">
-				  	<span class="txt-menu">Menú</span>
-				    <span class="glyphicon glyphicon-th-list gly-menu"></span>
-				  </div>
-					<li><a class="enlace" href="#">Inicio</a></li>
-					<li><a class="enlace" href="#">Acerca de nosotros</a></li>
-					<li><a class="enlace" href="#">Nuestra flotilla</a></li>
-					<li><a class="enlace" href="#">Facturación</a></li>
-					<li><a class="enlace" href="#">Sucursales</a></li>
-					<li><a class="enlace" href="#">Reservaciones</a></li>
 				</div>
 			<div class="contenedor-section-aside">
 				<section class="section_articulos">
@@ -53,13 +99,13 @@
 
 				<section class="section_cliente">
 
-				<h1 class="text-center">Detalle de la reserva</h1>
+				<h1 class="text-center" id="detalle-r">Detalle de la reserva</h1>
 				@foreach($reserva as $r)
-					<p class="nota1 text-center"><span class="text-info">Fecha: </span><span class="dato-p-1">{{ $r->created_at }}</span></p>
-					<p class="nota1 text-center"><span class="text-info">N° reserva: </span><span class="dato-p-1">{{ $r->num_reserva }}</span></p>
+					<p class="nota1 text-center"><span class="text-info txt-azul">Fecha: </span><span class="dato-p-1">{{ $r->created_at }}</span></p>
+					<p class="nota1 text-center"><span class="text-info txt-azul">N° reserva: </span><span class="dato-p-1">{{ $r->num_reserva }}</span></p>
 				@endforeach
 
-						  <h4 class="text-info text-center">Datos del cliente</h4>
+						  <h4 class="text-info text-center" id="da-cli">Datos del cliente</h4>
           <table class="table table-d-xs">
             <thead>
               <tr>
@@ -81,7 +127,7 @@
 	<div class="seccion_tabla section-reserva">
 
 	<div class="tabla-sucursal">
-	<h4 class="text-info text-center">Datos de la reserva</h4>
+	<h4 class="text-info text-center" id="dt-r">Datos de la reserva</h4>
 		<table class="table table-d-xs table-de-ped">
 			<thead>
 					<tr>
@@ -112,103 +158,20 @@
 			</tbody>
 	</table>
 
-	<a href="{{ URL::to('confirmar/imprimir',$id) }}" id="imprimir" target="_blank" class="btn btn-default">Imprimir en pdf</a>
-
-	<div>
-			<a class="btn btn-info regresar_inicio">
-					<span class="glyphicon glyphicon-chevron-left"></span>
-								Regresar
-			</a>
- </div>
 
 	</div>
 </div>
 
-				<input type="text" name="name" value="{{ $id }}" id="id_sesion" class="hidden">
 				</section>
 
 
 					</div>
 				</section>
-
-				<aside class="aside-imagen">
-				  <div class="aside-c">
-				  	<a href="#">
-						 <img src="/img/escribenos_email.png" alt="Imagen 1">
-					  </a>
-					  <a href="#">
-						 <img src="/img/coduce_contacto.png" alt="Imagen 2">
-					  </a>
-				  </div>
-				</aside>
 			</div>
-						<!-- Campo escondido con el id del codigo del vehiculo -->
-						<input type="text" class="hidden" name="idcodigo" id="idcodigo">
-				<footer>
-					<small>
-						EMOTIONS RENT A CAR - renta de autos en toluca - renta de autos df - renta de autos en monterrey - renta de autos en aguascalientes
-					</small>
-					<strong>
-						<a href="#">
-							Aviso de privasidad
-						</a>
-					</strong>
-				</footer>
 
 			</div>
 		</div>
 	</div>
-
-
-	<script>
-
-	$(document).on('click', '.regresar_inicio', function(){
-						id = $('#id_sesion').val();
-
-							$.ajax({
-									url:  "/confirmar/eliminarsesion",
-									type: "GET",
-									data:{id: id},
-									success: function(e){
-
-		                 window.location.href = '/';
-
-
-									},
-
-									error: function(){
-										alert('failure');
-									}
-
-						});
-
-
-
-	});
-
-	/*	$(document).on('click', '.enlace', function(){
-						id = $('#id_sesion').val();
-
-							$.ajax({
-									url:  "/confirmar/eliminarsesion",
-									type: "GET",
-									data:{id: id},
-									success: function(e){
-
-									},
-
-									error: function(){
-										alert('failure');
-									}
-
-						});
-
-
-
-	}); */
-
-	</script>
-
 
 </body>
 </html>

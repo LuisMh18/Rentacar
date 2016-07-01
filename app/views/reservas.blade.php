@@ -18,7 +18,7 @@
 	{{ HTML::script('lib/bootstrap-notify/bootstrap-notify.js') }}
 	{{ HTML::script('js/accounting.min.js') }}
 </head>
-	
+
 	<script>
 
 		$(document).on('click', '.gly-menu', function(){
@@ -61,10 +61,10 @@
 			<div class="section_contenidos">
 				<div class="logo-cabecera">
 				 <div>
-		           <img class="imagen-grande" src="/img/a1.png" alt="Logo">	
+		           <img class="imagen-grande" src="/img/a1.png" alt="Logo">
 				 </div>
 				 <div class="imagen-tel">
-		           <img class="imagen-grande" src="/img/a2.png" alt="Teléfono">	
+		           <img class="imagen-grande" src="/img/a2.png" alt="Teléfono">
 				 </div>
 				</div>
 				<div class="menu-cabecera">
@@ -144,6 +144,8 @@
 								  	<span class="nombre_cp">C.P.<span id="cp"></span></span>
 								 	</div>
 								 	<span id="referencia"></span>
+									<span id="m_d_tl"></span>
+									<div class="m_d_telefonos"></div>
 								 </div>
 							</div>
 						</article>
@@ -208,6 +210,8 @@
 								  	<span class="nombre_cp-d">C.P.<span id="cp-d"></span></span>
 								 	</div>
 								 	<span id="referencia-d"></span>
+									<span id="m_d_tl_d"></span>
+									<div class="m_d_telefonos_d"></div>
 								 </div>
 							</div>
 						</article>
@@ -288,6 +292,9 @@
 							</div><!--END FORM 2-->
 
 						</article>
+						<div class="legenda">
+							Nota: La entrega en una oficina diferente tiene un costo adicional. El costo será determinado al momento de recoger el auto.
+						</div>
 
 						<button class="btn reservar">Reservar Ahora</button>
 						<button class="btn" id="reservar">Reservar Ahora</button>
@@ -299,7 +306,7 @@
 				<aside class="aside-imagen">
 				  <div class="aside-c">
 				  	<a href="#">
-						 <img src="/img/escribenos_email.png" alt="Imagen 1">	
+						 <img src="/img/escribenos_email.png" alt="Imagen 1">
 					  </a>
 					  <a href="#">
 						 <img src="/img/coduce_contacto.png" alt="Imagen 2">
@@ -460,6 +467,17 @@
 
 				$(document).on('change', '#select-sucursal-entrega', function(){
 					id = $(this).val();
+					$('.m_d_telefonos').html('');
+					opcion2 =	$('#select-sucursal-devolucion option:selected').attr('value');
+					if(opcion2 == 0){
+
+					} else {
+						if(opcion2 == id){
+								$('.legenda').hide();
+						} else {
+							$('.legenda').show();
+						}
+					}
 
 					if(id == 0){
 
@@ -474,6 +492,8 @@
 						$('#m_d').text('');
 						$('#cp').text('');
 						$('#referencia').text('');
+						$('#m_d_tl').text('');
+						$('.m_d_telefonos').html('');
 
 					} else {
 
@@ -482,18 +502,38 @@
 								type: "GET",
 					   data:{id: id},
 								success: function(s){
-
 									$('.nombre_cp').show();
 									$('.nombre_direcc').show();
 									$('.hr').show();
-									$('#nombre_su').text(s.nombre_sucursal);
-									$('#direccion1').text(s.direccion1);
-									$('#direccion2').text(s.direccion2);
-									$('#colonia').text(s.colonia);
-									$('#estado').text(s.estado);
-									$('#m_d').text(s.municipio_delegacion);
-									$('#cp').text(s.cp);
-									$('#referencia').text(s.referencia);
+									$('#nombre_su').text(s.sucursal.nombre_sucursal);
+									$('#direccion1').text(s.sucursal.direccion1);
+									$('#direccion2').text(s.sucursal.direccion2);
+									$('#colonia').text(s.sucursal.colonia);
+									$('#estado').text(s.sucursal.estado);
+									$('#m_d').text(s.sucursal.municipio_delegacion);
+									$('#cp').text(s.sucursal.cp);
+									$('#referencia').text(s.sucursal.referencia);
+
+									div = $('.m_d_telefonos');
+									contenido = "";
+									if(s.tel_s_cantidad == 1){
+										$('#m_d_tl').text('Teléfono:');
+									} else {
+										$('#m_d_tl').text('Teléfonos:');
+									}
+
+									for(datos in s.tel_sucursal){
+
+										contenido += '<div>'+
+																				'<span class="nom_tel'+datos+'">'+s.tel_sucursal[datos].nombre+': </span>'+
+																				'<span class="nu_te'+datos+'">'+s.tel_sucursal[datos].numero+'</span>'+
+																		'</div>'+
+																 '</div>';
+
+
+											}//end for
+
+											div.append(contenido);
 
 
 								},
@@ -523,6 +563,18 @@
 
 		$(document).on('change', '#select-sucursal-devolucion', function(){
 					id = $(this).val();
+					$('.m_d_telefonos_d').html('');
+
+					opcion1 =	$('#select-sucursal-entrega option:selected').attr('value');
+					if(opcion1 == 0){
+
+					} else {
+						if(opcion1 == id){
+								$('.legenda').hide();
+						} else {
+							$('.legenda').show();
+						}
+					}
 
 					if(id == 0){
 
@@ -537,6 +589,8 @@
 						$('#m_d-d').text('');
 						$('#cp-d').text('');
 						$('#referencia-d').text('');
+						$('#m_d_tl_d').text('');
+						$('.m_d_telefonos_d').html('');
 
 					} else {
 
@@ -545,18 +599,38 @@
 								type: "GET",
 					   data:{id: id},
 								success: function(s){
-
 									$('.nombre_cp-d').show();
 									$('.nombre_direcc-d').show();
 									$('.hr-d').show();
-									$('#nombre_su-d').text(s.nombre_sucursal);
-									$('#direccion1-d').text(s.direccion1);
-									$('#direccion2-d').text(s.direccion2);
-									$('#colonia-d').text(s.colonia);
-									$('#estado-d').text(s.estado);
-									$('#m_d-d').text(s.municipio_delegacion);
-									$('#cp-d').text(s.cp);
-									$('#referencia-d').text(s.referencia);
+									$('#nombre_su-d').text(s.sucursal.nombre_sucursal);
+									$('#direccion1-d').text(s.sucursal.direccion1);
+									$('#direccion2-d').text(s.sucursal.direccion2);
+									$('#colonia-d').text(s.sucursal.colonia);
+									$('#estado-d').text(s.sucursal.estado);
+									$('#m_d-d').text(s.sucursal.municipio_delegacion);
+									$('#cp-d').text(s.sucursal.cp);
+									$('#referencia-d').text(s.sucursal.referencia);
+
+									div = $('.m_d_telefonos_d');
+									contenido = "";
+									if(s.tel_s_cantidad == 1){
+										$('#m_d_tl_d').text('Teléfono:');
+									} else {
+										$('#m_d_tl_d').text('Teléfonos:');
+									}
+
+									for(datos in s.tel_sucursal){
+
+										contenido += '<div>'+
+																				'<span class="nom_tel_d'+datos+'">'+s.tel_sucursal[datos].nombre+': </span>'+
+																				'<span class="nu_te_d'+datos+'">'+s.tel_sucursal[datos].numero+'</span>'+
+																		'</div>'+
+																 '</div>';
+
+
+											}//end for
+
+											div.append(contenido);
 
 
 								},
@@ -726,7 +800,7 @@
 									alert('failure');
 								}
 
-					}); 
+					});
 
 			}
 
@@ -819,7 +893,7 @@
 																					'</div>'+
 																			'</div>'+
 				                            '</div>';
-														
+
 													}
 
 												} else {
@@ -868,8 +942,8 @@
 																			'</div>'+
 				                            '</div>';
 
-				                            	
-														
+
+
 													}
 
 												}
@@ -883,7 +957,7 @@
 
 												$('.form-ped').slideDown(400);
 									}
-									
+
 
 
 							    },
@@ -1226,11 +1300,47 @@ $(document).on('click', '#confirm-regist-reserva', function(){
 	 fecha_entrega = $('#datetimepicker2').val();
 		hora_entrega = $('#datetimepicker_hora2').val();
 	 lugar_entrega = $('#select-sucursal-entrega option:selected').attr('value');
+	 direccion1 = $('#direccion1').text();
+	 direccion2 = $('#direccion2').text();
+	 colonia = $('#colonia').text();
+	 estado = $('#estado').text();
+	 municipio = $('#m_d').text();
+	 cp = $('#cp').text();
+	 referencia = $('#referencia').text();
+
+	 //telefonos sucursal entrega
+	 tel_e_1 = $('.nom_tel0').text();
+	 tel_e_2 = $('.nom_tel1').text();
+	 tel_e_3 = $('.nom_tel2').text();
+	 tel_e_4 = $('.nom_tel3').text();
+
+	 num_e_1 = $('.nu_te0').text();
+	 num_e_2 = $('.nu_te1').text();
+	 num_e_3 = $('.nu_te2').text();
+	 num_e_4 = $('.nu_te3').text();
 
 	//Datos de devolucion
 		fecha_devolucion = $('#datetimepicker4').val();
 		hora_devolucion = $('#datetimepicker_hora4').val();
-	 lugar_devolucion = $('#select-sucursal-devolucion option:selected').attr('value');
+	  lugar_devolucion = $('#select-sucursal-devolucion option:selected').attr('value');
+	  direccion1_d = $('#direccion1-d').text();
+	  direccion2_d = $('#direccion2-d').text();
+	  colonia_d = $('#colonia-d').text();
+	  estado_d = $('#estado-d').text();
+ 	 municipio_d = $('#m_d-d').text();
+ 	 cp_d = $('#cp-d').text();
+	  referencia_d = $('#referencia-d').text();
+
+		//telefonos sucursal devolucion
+		tel_d_1 = $('.nom_tel_d0').text();
+		tel_d_2 = $('.nom_tel_d1').text();
+		tel_d_3 = $('.nom_tel_d2').text();
+		tel_d_4 = $('.nom_tel_d3').text();
+
+		num_d_1 = $('.nu_te_d0').text();
+		num_d_2 = $('.nu_te_d1').text();
+		num_d_3 = $('.nu_te_d2').text();
+		num_d_4 = $('.nu_te_d3').text();
 
 		//tipo de auto
 		vehiculo = $('input:radio[name=tipo_vehiculo]:checked').val();
@@ -1239,6 +1349,10 @@ $(document).on('click', '#confirm-regist-reserva', function(){
 
 		//tarifa por dia
 	 tarifa =  $('input:radio[name=tipo_vehiculo]:checked').attr('data-id');
+
+	 id_sucursal_entrega = $('#select-sucursal-entrega option:selected').attr('value');
+
+	 id_sucursal_devolucion = $('#select-sucursal-devolucion option:selected').attr('value');
 
 	 //Dias, diferencia entre las dos d¿fechas
 	var dateB = moment(fecha_entrega);
@@ -1261,7 +1375,53 @@ console.log(dateB.diff(dateB, 'days'));
 						$.ajax({
 								url:  "/admin/registrareserva",
 								type: "POST",
-								data:{fecha_entrega: fecha_entrega, hora_entrega: hora_entrega, lugar_entrega: lugar_entrega, fecha_devolucion: fecha_devolucion, hora_devolucion: hora_devolucion, lugar_devolucion: lugar_devolucion, vehiculo: vehiculo, transmision: transmision, tarifa: tarifa, dias: dias, email: email, nombre: nombre, ap: ap, tel: tel, lic: lic, coment: coment},
+								data:{
+									fecha_entrega: fecha_entrega,
+									hora_entrega: hora_entrega,
+									lugar_entrega: lugar_entrega,
+									direccion1: direccion1,
+									direccion2: direccion2,
+									colonia: colonia,
+									estado: estado,
+									municipio: municipio,
+									cp: cp,
+									referencia: referencia,
+									tel_e_1: tel_e_1,
+									tel_e_2: tel_e_2,
+									tel_e_3: tel_e_3,
+									tel_e_4: tel_e_4,
+									num_e_1: num_e_1,
+									num_e_2: num_e_2,
+									num_e_3: num_e_3,
+									num_e_4: num_e_4,
+									direccion1_d: direccion1_d,
+									direccion2_d: direccion2_d,
+									colonia_d: colonia_d,
+									estado_d: estado_d,
+									municipio_d: municipio_d,
+									cp_d: cp_d,
+									referencia_d: referencia_d,
+									tel_d_1: tel_d_1,
+									tel_d_2: tel_d_2,
+									tel_d_3: tel_d_3,
+									tel_d_4: tel_d_4,
+									num_d_1: num_d_1,
+									num_d_2: num_d_2,
+									num_d_3: num_d_3,
+									num_d_4: num_d_4,
+									fecha_devolucion: fecha_devolucion,
+									hora_devolucion: hora_devolucion,
+									lugar_devolucion: lugar_devolucion,
+									vehiculo: vehiculo,
+									transmision: transmision,
+									tarifa: tarifa,
+									dias: dias,
+									email: email,
+									nombre: nombre,
+									ap: ap,
+									tel: tel,
+									lic: lic,
+									coment: coment },
 								success: function(e){
 										id = e;
 

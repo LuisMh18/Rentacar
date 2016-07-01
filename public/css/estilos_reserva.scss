@@ -1,3 +1,5 @@
+$color-leg: rgb(217, 83, 79);
+
 /*Estilos globales*/
 *{
 	margin:0;
@@ -44,16 +46,16 @@ strong a:hover{
        padding-bottom: 8px;
 
 	 }
-	
+
 .nota1{
 	  	font-size: 12px;
     color: #666;
     margin: 0;
     padding-bottom: 20px;
 	}
-	
-	
-	
+
+
+
 	.section_articulos{
 		width:100%;
 		display: -webkit-box;
@@ -65,7 +67,7 @@ strong a:hover{
       -ms-flex-pack:justify;
           justify-content:space-between;
 	}
-	
+
 }
 
 .contenidos{
@@ -97,10 +99,10 @@ background: -moz-linear-gradient(top,  #fefefe 0%, #fbfbfb 44%, #f9f9f9 100%); /
 background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
-	
+
 	display:flex;
 	padding:.5em;
-	
+
 }
 
 .entrega{
@@ -118,7 +120,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	display: flex;
 	flex-direction: column;
 
-	
+
 }
 
 
@@ -139,7 +141,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
     font-size: 16px;
 		}
 	}
-	
+
 
 
 
@@ -159,7 +161,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 		margin:0 auto;
 		display:none;
 	}
-	
+
 	.hr-d{
 		margin:0;
 		border-bottom: 1px dotted #50514B;
@@ -167,14 +169,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 		margin:0 auto;
 		display:none;
 	}
-	
+
 	h4{
 		margin-top:.1em;
 		margin-bottom:.1em;
 		font-size:1em;
 		font-weight:bold;
 	}
-	
+
 	.datos-d{
 		display:flex;
 		flex-direction:column;
@@ -182,16 +184,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 			font-size:.9em;
 		}
 	}
-	
+
 	.nombre_direcc, .nombre_cp, .nombre_cp-d, .nombre_direcc-d{
 		display:none;
 	}
-	
+
 }
 
 .nota2{
 	font-size:.9em;
 	margin-top:2em;
+}
+
+.legenda{
+	color:$color-leg;
+	font-size:.9em;
+	display:none;
 }
 
 /*--- END articulo 1 y d entrega y devolucion*/
@@ -201,7 +209,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 ---Tipo de utomovils
 ************************************************/
 .tipo{
-  flex-direction:column;	
+  flex-direction:column;
 }
 
 .form1{
@@ -265,7 +273,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 
 .radio-v{
 	font-weight:normal;
-	
+
 	display:flex;
 	input{
 		margin-left:.5em;
@@ -288,7 +296,7 @@ background: -webkit-linear-gradient(top,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); 
 background: linear-gradient(to bottom,  #fefefe 0%,#fbfbfb 44%,#f9f9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
 padding:.5em;
-	
+
 }
 
 	.dato1-p{
@@ -296,7 +304,7 @@ padding:.5em;
 		width:100%;
 		display:flex;
 		flex-direction: column;
-		
+
 		.c_subdato1{
 			width:100%;
 			input{
@@ -487,8 +495,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 
 
 @media(min-width:600px){
-	
-		
+
+
 .entrega{
 	display: flex;
 	flex-direction: row;
@@ -504,16 +512,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	display: flex;
 	flex-direction:column;
 
-	
+
 }
 
-	
+
 	.dato1-p{
 		border-bottom: solid 1px #CCC;
 		width:100%;
 		display:flex;
 		flex-direction: row;
-		
+
 		.c_subdato1{
 			width:50%;
 			input{
@@ -530,7 +538,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 		}
 	}
 
-	
+
 }
 
 .contenedor-section-aside{
@@ -619,7 +627,7 @@ footer{
         font-size: 15px;
         font-weight: 400;
         padding:.5em 0 .5em 1em;
-        &:hover{ 
+        &:hover{
         	text-decoration:none;
         	color: #0099ff;
         }
@@ -644,7 +652,7 @@ footer{
 }
 
 @media(min-width:800px){
-	
+
 .section{
 	margin-top:.5em!important;
     width:76%;
@@ -674,13 +682,13 @@ footer{
 	    padding-bottom: 20px;
 	 }
 
-	
+
 }
 
 .contenedor-section-aside{
 	margin-left:18px;
 }
-	
+
 }
 
 
@@ -747,7 +755,7 @@ footer{
 	 	li{
 			font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 	 		a{
-	 			
+
         //font-size: 15px;
         font-size:12px;
         font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
@@ -804,7 +812,7 @@ strong{
 	 	li{
 			font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 	 		a{
-	 			
+
         font-size: 13px;
         font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
         font-weight: 400;
@@ -821,7 +829,7 @@ strong{
 	 	li{
 			font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 	 		a{
-	 			
+
         font-size: 15px;
         font-family: 'Open Sans', "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
         font-weight: 400;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2016 a las 23:03:23
+-- Tiempo de generación: 01-07-2016 a las 21:46:28
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -19,11 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `rentacar`
 --
-
--- --------------------------------------------------------
-
 CREATE DATABASE rentacar;
 USE rentacar;
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `cliente`
@@ -41,6 +39,9 @@ CREATE TABLE `cliente` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
 
 -- --------------------------------------------------------
 
@@ -60,6 +61,7 @@ CREATE TABLE `cobertura` (
 -- Volcado de datos para la tabla `cobertura`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +76,10 @@ CREATE TABLE `codigo` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `codigo`
+--
 
 
 -- --------------------------------------------------------
@@ -92,6 +98,9 @@ CREATE TABLE `gerente` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `gerente`
+--
 
 -- --------------------------------------------------------
 
@@ -110,6 +119,7 @@ CREATE TABLE `grupo` (
 --
 -- Volcado de datos para la tabla `grupo`
 --
+
 
 -- --------------------------------------------------------
 
@@ -137,6 +147,10 @@ CREATE TABLE `oficina` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `oficina`
+--
+
 
 -- --------------------------------------------------------
 
@@ -149,6 +163,10 @@ CREATE TABLE `password_reminders` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `password_reminders`
+--
 
 
 -- --------------------------------------------------------
@@ -165,6 +183,9 @@ CREATE TABLE `plaza` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `plaza`
+--
 
 
 -- --------------------------------------------------------
@@ -178,9 +199,31 @@ CREATE TABLE `reserva` (
   `cliente_id` int(11) NOT NULL,
   `num_reserva` varchar(100) DEFAULT NULL,
   `lugar_entrega` varchar(100) DEFAULT NULL,
+  `direccion1_e` varchar(100) DEFAULT NULL,
+  `direccion2_e` varchar(100) DEFAULT NULL,
+  `colonia_e` varchar(100) DEFAULT NULL,
+  `estado_e` varchar(100) DEFAULT NULL,
+  `municipio_e` varchar(100) DEFAULT NULL,
+  `cp_e` varchar(100) DEFAULT NULL,
+  `referencias_e` varchar(100) DEFAULT NULL,
+  `telefono1_e` varchar(100) DEFAULT NULL,
+  `telefono2_e` varchar(100) DEFAULT NULL,
+  `telefono3_e` varchar(100) DEFAULT NULL,
+  `telefono4_e` varchar(100) DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
   `hora_entrega` varchar(50) NOT NULL,
   `lugar_devolucion` varchar(100) DEFAULT NULL,
+  `direccion1_d` varchar(100) DEFAULT NULL,
+  `direccion2_d` varchar(100) DEFAULT NULL,
+  `colonia_d` varchar(100) DEFAULT NULL,
+  `estado_d` varchar(100) DEFAULT NULL,
+  `municipio_d` varchar(100) DEFAULT NULL,
+  `cp_d` varchar(100) DEFAULT NULL,
+  `referencias_d` varchar(100) DEFAULT NULL,
+  `telefono1_d` varchar(100) DEFAULT NULL,
+  `telefono2_d` varchar(100) DEFAULT NULL,
+  `telefono3_d` varchar(100) DEFAULT NULL,
+  `telefono4_d` varchar(100) DEFAULT NULL,
   `fecha_devolucion` date DEFAULT NULL,
   `hora_devolucion` varchar(50) NOT NULL,
   `tarifa_por_dia` double DEFAULT NULL,
@@ -194,7 +237,12 @@ CREATE TABLE `reserva` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `reserva`
+--
 
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `sesion`
@@ -209,6 +257,10 @@ CREATE TABLE `sesion` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `sesion`
+--
 
 -- --------------------------------------------------------
 
@@ -232,6 +284,10 @@ CREATE TABLE `sucursal` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `sucursal`
+--
+
 
 -- --------------------------------------------------------
 
@@ -249,6 +305,9 @@ CREATE TABLE `tarifa` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tarifa`
+--
 
 
 -- --------------------------------------------------------
@@ -269,7 +328,16 @@ CREATE TABLE `tarifa_detalle` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tarifa_detalle`
+--
 
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `telefono_sucursal`
+--
 
 CREATE TABLE `telefono_sucursal` (
   `id` int(11) NOT NULL,
@@ -299,6 +367,10 @@ CREATE TABLE `tipo_tel` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipo_tel`
+--
+
 
 -- --------------------------------------------------------
 
@@ -317,6 +389,11 @@ CREATE TABLE `tipo_vehiculo` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipo_vehiculo`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -331,6 +408,10 @@ CREATE TABLE `tipo_vehiculo_plaza` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_vehiculo_plaza`
+--
 
 
 -- --------------------------------------------------------
@@ -354,8 +435,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `usuario`, `password`, `email`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Robert99', '$2y$10$I3BClkWkkBQhk2KHq5UmIO1CS6.RhPZhA4CWjwJ.sa.vYM5ia5Emq', 'angeldarkkiller99@live.com', NULL, '2016-04-07 03:40:59', '2016-04-20 10:28:47'),
-(2, 'Luis99', '$2y$10$.BEMnJsOGHmIKLl3vzkoc.pxoxUE0QXsa8lspbt7eOA9uSAILTqIG', 'luis_mh@outlook.es', 'XIXGM2nFTsuN0G55VqtNLmVJXurhj40RB1wpM0RncZ4CSHM58ZDDndXCqupK', '2016-04-07 03:42:24', '2016-06-20 18:00:40');
+(1, 'Angel99', '$2y$10$I3BClkWkkBQhk2KHq5UmIO1CS6.RhPZhA4CWjwJ.sa.vYM5ia5Emq', 'angeldarkkiller99@live.com', NULL, '2016-04-07 03:40:59', '2016-04-20 10:28:47'),
+(2, 'Luis99', '$2y$10$.BEMnJsOGHmIKLl3vzkoc.pxoxUE0QXsa8lspbt7eOA9uSAILTqIG', 'luis_mh@outlook.es', 'ZnbmG9RBlJWjrX2nQuQUB5chUEyWRxLcCRYYGoCZnFfsRNA7TZXlhqkT6GbK', '2016-04-07 03:42:24', '2016-07-01 19:45:29'),
+(21, 'Robert99', '$2y$10$cud5dI5rSICwjsAizbTGoOLPcCU8tAt7DcW1vaJp2NOIhRqaRJKJm', 'roberto@proyectoweb.com', 'AU1sGIPKuxQSd4vpfuHmV3tu67sQH9kq455rdg6idGO5DxIzdr4lQMxiWCuT', '2016-04-27 07:27:06', '2016-07-01 15:41:22'),
+(22, 'prueba', '$2y$10$6g56p5jnKB70XLv9jbiB/.iACR522TSF24VIkvDt7fzoOmptbNrxq', 'prueba@gmail.com', NULL, '2016-04-27 07:29:08', '2016-04-27 07:29:08');
 
 --
 -- Índices para tablas volcadas
@@ -572,7 +655,7 @@ ALTER TABLE `tipo_vehiculo_plaza`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Restricciones para tablas volcadas
 --

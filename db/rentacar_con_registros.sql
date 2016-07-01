@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2016 a las 23:23:52
+-- Tiempo de generación: 01-07-2016 a las 21:46:28
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -19,10 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `rentacar`
 --
-
 CREATE DATABASE rentacar;
 USE rentacar;
-
 -- --------------------------------------------------------
 
 --
@@ -124,7 +122,57 @@ INSERT INTO `cliente` (`id`, `nombre`, `apellidos`, `email`, `telefono`, `num_li
 (76, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-20 20:39:35', '2016-06-20 20:39:35'),
 (77, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-20 20:40:48', '2016-06-20 20:40:48'),
 (78, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-20 20:54:23', '2016-06-20 20:54:23'),
-(79, 'Luis', 'Aguilar', 'miemail@outlook.es', '7778886655', ' 5673-98788', 'No se que comentar.', '2016-06-20 20:58:17', '2016-06-20 20:58:17');
+(79, 'Luis', 'Aguilar', 'miemail@outlook.es', '7778886655', ' 5673-98788', 'No se que comentar.', '2016-06-20 20:58:17', '2016-06-20 20:58:17'),
+(80, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-20 22:20:26', '2016-06-20 22:20:26'),
+(81, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-20 23:20:52', '2016-06-20 23:20:52'),
+(82, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-20 23:37:26', '2016-06-20 23:37:26'),
+(83, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 01:35:28', '2016-06-30 01:35:28'),
+(84, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 01:44:42', '2016-06-30 01:44:42'),
+(85, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 03:37:45', '2016-06-30 03:37:45'),
+(86, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 16:31:31', '2016-06-30 16:31:31'),
+(87, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 21:12:26', '2016-06-30 21:12:26'),
+(88, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 21:13:30', '2016-06-30 21:13:30'),
+(89, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 21:28:29', '2016-06-30 21:28:29'),
+(90, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 21:30:00', '2016-06-30 21:30:00'),
+(91, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 21:34:55', '2016-06-30 21:34:55'),
+(92, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 21:38:42', '2016-06-30 21:38:42'),
+(93, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 21:39:49', '2016-06-30 21:39:49'),
+(94, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 21:53:41', '2016-06-30 21:53:41'),
+(95, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 22:04:55', '2016-06-30 22:04:55'),
+(96, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 22:52:21', '2016-06-30 22:52:21'),
+(97, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-06-30 23:41:43', '2016-06-30 23:41:43'),
+(98, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-06-30 23:45:47', '2016-06-30 23:45:47'),
+(99, 'Luis ', 'Sanchez', 'luis_@hotmail.com', '8887776655', '123-23213', 'Comentarios de prueba', '2016-06-30 23:47:25', '2016-06-30 23:47:25'),
+(100, 'Jose', 'Garfias', 'Jose@gmail.com', '7778889966', '92982983', 'No se que comentar', '2016-06-30 23:50:20', '2016-06-30 23:50:20'),
+(101, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:05:02', '2016-07-01 18:05:02'),
+(102, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:06:34', '2016-07-01 18:06:34'),
+(103, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:08:04', '2016-07-01 18:08:04'),
+(104, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:10:05', '2016-07-01 18:10:05'),
+(105, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:10:47', '2016-07-01 18:10:47'),
+(106, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 18:13:05', '2016-07-01 18:13:05'),
+(107, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 18:28:35', '2016-07-01 18:28:35'),
+(108, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:30:35', '2016-07-01 18:30:35'),
+(109, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 18:33:26', '2016-07-01 18:33:26'),
+(110, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 18:34:22', '2016-07-01 18:34:22'),
+(111, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 18:35:44', '2016-07-01 18:35:44'),
+(112, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 18:37:32', '2016-07-01 18:37:32'),
+(113, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:40:24', '2016-07-01 18:40:24'),
+(114, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 18:53:22', '2016-07-01 18:53:22'),
+(115, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 18:54:58', '2016-07-01 18:54:58'),
+(116, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 18:56:36', '2016-07-01 18:56:36'),
+(117, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 18:59:07', '2016-07-01 18:59:07'),
+(118, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 19:04:04', '2016-07-01 19:04:04'),
+(119, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 19:06:57', '2016-07-01 19:06:57'),
+(120, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 19:10:40', '2016-07-01 19:10:40'),
+(121, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 19:13:22', '2016-07-01 19:13:22'),
+(122, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 19:18:26', '2016-07-01 19:18:26'),
+(123, 'xxx', 'xxx', 'xxx@live.com', '77799898890', '23-23232', '', '2016-07-01 19:21:48', '2016-07-01 19:21:48'),
+(124, 'aaa', 'aaa', 'aaa@live.com', '888776655', '9823-98723', '', '2016-07-01 19:25:04', '2016-07-01 19:25:04'),
+(125, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 19:27:31', '2016-07-01 19:27:31'),
+(126, 'aaa', 'aaa', 'luis_mh@outlook.es', '888776655', '9823-98723', '', '2016-07-01 19:32:22', '2016-07-01 19:32:22'),
+(127, 'Luis', 'Mondragon Herrera', 'luis@live.com', '7776665544', '233-232-323', '', '2016-07-01 19:34:17', '2016-07-01 19:34:17'),
+(128, 'xxx', 'xxx', 'angeldarkkiller99@live.com', '77799898890', '23-23232', '', '2016-07-01 19:35:10', '2016-07-01 19:35:10'),
+(129, 'aaa', 'aaa', 'luis_mh@outlook.es', '888776655', '9823-98723', '', '2016-07-01 19:42:09', '2016-07-01 19:42:09');
 
 -- --------------------------------------------------------
 
@@ -289,7 +337,10 @@ CREATE TABLE `password_reminders` (
 --
 
 INSERT INTO `password_reminders` (`email`, `token`, `created_at`) VALUES
-('luis_mh@outlook.es', 'b5927ffeaf95714f665328f4fcc0916b21537afa', '2016-05-03 23:19:35');
+('prueba@gmail.com', '1c535d5f95dbb951e1f50ba3e68243907ab95f12', '2016-07-01 00:24:20'),
+('roberto@proyectoweb.com', '89c815f076b26880372ce578af267ae29e96bacc', '2016-07-01 15:41:33'),
+('angeldarkkiller99@live.com', '96b91e8c5d6f3e3584b80183a74c435cc99adb80', '2016-07-01 15:53:27'),
+('luis_mh@outlook.es', '7fb9058cbc0c3c4939c34602c0c019cd65c178b1', '2016-07-01 18:29:48');
 
 -- --------------------------------------------------------
 
@@ -314,7 +365,8 @@ INSERT INTO `plaza` (`id`, `nombre_plaza`, `estatus`, `created_at`, `updated_at`
 (3, 'Esta es la plaza 3', 0, '2016-04-15 09:19:14', '2016-04-15 09:19:14'),
 (25, 'Plaza 2', 1, '2016-04-16 05:44:08', '2016-05-02 22:49:29'),
 (30, 'Plaza 1', 1, '2016-04-16 07:12:32', '2016-05-02 22:49:19'),
-(31, 'Plaza 4', 1, '2016-05-02 22:51:52', '2016-05-02 22:51:52');
+(31, 'Plaza 4', 1, '2016-05-02 22:51:52', '2016-05-02 22:51:52'),
+(32, 'Esta es la plaza de mexico', 1, '2016-06-20 22:09:59', '2016-06-20 22:09:59');
 
 -- --------------------------------------------------------
 
@@ -327,9 +379,31 @@ CREATE TABLE `reserva` (
   `cliente_id` int(11) NOT NULL,
   `num_reserva` varchar(100) DEFAULT NULL,
   `lugar_entrega` varchar(100) DEFAULT NULL,
+  `direccion1_e` varchar(100) DEFAULT NULL,
+  `direccion2_e` varchar(100) DEFAULT NULL,
+  `colonia_e` varchar(100) DEFAULT NULL,
+  `estado_e` varchar(100) DEFAULT NULL,
+  `municipio_e` varchar(100) DEFAULT NULL,
+  `cp_e` varchar(100) DEFAULT NULL,
+  `referencias_e` varchar(100) DEFAULT NULL,
+  `telefono1_e` varchar(100) DEFAULT NULL,
+  `telefono2_e` varchar(100) DEFAULT NULL,
+  `telefono3_e` varchar(100) DEFAULT NULL,
+  `telefono4_e` varchar(100) DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
   `hora_entrega` varchar(50) NOT NULL,
   `lugar_devolucion` varchar(100) DEFAULT NULL,
+  `direccion1_d` varchar(100) DEFAULT NULL,
+  `direccion2_d` varchar(100) DEFAULT NULL,
+  `colonia_d` varchar(100) DEFAULT NULL,
+  `estado_d` varchar(100) DEFAULT NULL,
+  `municipio_d` varchar(100) DEFAULT NULL,
+  `cp_d` varchar(100) DEFAULT NULL,
+  `referencias_d` varchar(100) DEFAULT NULL,
+  `telefono1_d` varchar(100) DEFAULT NULL,
+  `telefono2_d` varchar(100) DEFAULT NULL,
+  `telefono3_d` varchar(100) DEFAULT NULL,
+  `telefono4_d` varchar(100) DEFAULT NULL,
   `fecha_devolucion` date DEFAULT NULL,
   `hora_devolucion` varchar(50) NOT NULL,
   `tarifa_por_dia` double DEFAULT NULL,
@@ -347,67 +421,41 @@ CREATE TABLE `reserva` (
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `cliente_id`, `num_reserva`, `lugar_entrega`, `fecha_entrega`, `hora_entrega`, `lugar_devolucion`, `fecha_devolucion`, `hora_devolucion`, `tarifa_por_dia`, `dias`, `total`, `vehiculo`, `transmision`, `foto`, `fecha`, `created_at`, `updated_at`) VALUES
-(1, 19, '20160503052033', 'Aguascalientes', '2016-05-03', '5:01 AM', 'Aguascalientes', '2016-05-12', '5:00 AM', 400, '9', 3600, 'AVEO - GOL SEDAN', 1, 'megane.jpg', '2016-05-03', '2016-05-03 10:20:33', '2016-05-03 10:20:33'),
-(2, 20, '20160503052415', 'México', '2016-05-03', '12:00 AM', 'Aguascalientes', '2016-05-05', '3:00 AM', 900, '2', 1800, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-03', '2016-05-03 10:24:15', '2016-05-03 10:24:15'),
-(4, 22, '20160503053117', 'Aguascalientes', '2016-05-03', '2:00 AM', 'México', '2016-05-06', '5:00 PM', 800, '3', 2400, 'VERSA', 2, 'grande1.jpg', '2016-05-03', '2016-05-03 10:31:17', '2016-05-03 10:31:17'),
-(5, 23, '20160503053929', 'Aguascalientes', '2016-05-10', '10:00 AM', 'Aguascalientes', '2016-05-25', '3:00 PM', 800, '15', 12000, 'ELANTRA', 2, 'Honda-Jazz-20151.jpg', '2016-05-03', '2016-05-03 10:39:29', '2016-05-03 10:39:29'),
-(6, 24, '20160503054545', 'Aguascalientes', '2016-05-03', '3:00 PM', 'México', '2016-05-26', '1:00 PM', 1800, '23', 41400, 'EXPEDITION - SUBURBAN', 2, 'Auto_ford_ecosport_mv_frente.gif', '2016-05-03', '2016-05-03 10:45:45', '2016-05-03 10:45:45'),
-(7, 25, '20160503054803', 'México', '2016-05-12', '3:01 AM', 'Aguascalientes', '2016-05-15', '3:03 PM', 600, '3', 1800, 'TIIDA', 1, 'mediano1.jpg', '2016-05-03', '2016-05-03 10:48:03', '2016-05-03 10:48:03'),
-(8, 26, '20160503061627', 'México', '2016-05-03', '3:00 AM', 'México', '2017-01-01', '4:02 AM', 400, '243', 97200, 'AVEO - VW GOL SEDAN', 1, 'mazda3-450px.jpg', '2016-05-03', '2016-05-03 11:16:27', '2016-05-03 11:16:27'),
-(9, 27, '20160503151436', 'Aguascalientes', '2016-05-05', '1:00 PM', 'Aguascalientes', '2016-05-25', '3:00 PM', 700, '20', 14000, 'VERSA', 1, 'grande1.jpg', '2016-05-03', '2016-05-03 20:14:36', '2016-05-03 20:14:36'),
-(10, 28, '20160503160522', 'México', '2016-05-05', '5:00 PM', 'Aguascalientes', '2016-05-28', '1:00 PM', 600, '23', 13800, 'TIIDA', 1, 'mediano1.jpg', '2016-05-03', '2016-05-03 21:05:22', '2016-05-03 21:05:22'),
-(11, 29, '20160503164158', 'Aguascalientes', '2016-05-03', '3:00 PM', 'México', '2016-05-04', '12:00 AM', 400, '1', 400, 'AVEO - VW GOL SEDAN', 1, 'mazda3-450px.jpg', '2016-05-03', '2016-05-03 21:41:58', '2016-05-03 21:41:58'),
-(12, 30, '20160504001128', 'Aguascalientes', '2016-05-04', '3:00 PM', 'México', '2016-05-26', '5:00 PM', 700, '22', 15400, 'TIIDA', 2, 'mediano1.jpg', '2016-05-04', '2016-05-04 05:11:28', '2016-05-04 05:11:28'),
-(13, 31, '20160507233249', 'Aguascalientes', '2016-05-07', '4:00 PM', 'México', '2016-05-21', '2:00 PM', 728, '14', 10192, 'AVEO - GOL SEDAN', 1, 'megane.jpg', '2016-05-07', '2016-05-08 04:32:49', '2016-05-08 04:32:49'),
-(14, 32, '20160514152104', 'Aguascalientes', '2016-05-14', '3:00 PM', 'México', '2016-05-18', '3:00 AM', 1300, '4', 5200, 'EXPRESS VAN - URBAN - HI ACE', 1, 'imagenes-de-camionetas-blanca.jpg', '2016-05-14', '2016-05-14 20:21:04', '2016-05-14 20:21:04'),
-(15, 33, '20160514153726', 'México', '2016-05-20', '3:00 PM', 'México', '2016-05-25', '3:00 PM', 1200, '5', 6000, 'ELANTRA', 2, 'Honda-Jazz-20151.jpg', '2016-05-14', '2016-05-14 20:37:26', '2016-05-14 20:37:26'),
-(16, 34, '20160514160405', 'México', '2016-05-19', '3:00 PM', 'Monterrey', '2016-05-24', '2:00 PM', 600, '5', 3000, 'TIIDA', 1, 'mediano1.jpg', '2016-05-14', '2016-05-14 21:04:05', '2016-05-14 21:04:05'),
-(17, 35, '20160514160557', 'Aguascalientes', '2016-05-20', '1:00 PM', 'Aguascalientes', '2016-05-26', '3:00 PM', 400, '6', 2400, 'AVEO - VW GOL SEDAN', 1, 'mazda3-450px.jpg', '2016-05-14', '2016-05-14 21:05:57', '2016-05-14 21:05:57'),
-(18, 36, '20160514164203', 'Aguascalientes', '2016-05-21', '3:00 PM', 'Aguascalientes', '2016-05-24', '2:00 PM', 450, '3', 1350, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-05-14', '2016-05-14 21:42:03', '2016-05-14 21:42:03'),
-(19, 37, '20160515130927', 'Aguascalientes', '2016-05-15', '3:00 PM', 'Aguascalientes', '2016-05-17', '3:00 PM', 900, '2', 1800, 'ELANTRA', 1, 'Honda-Jazz-20151.jpg', '2016-05-15', '2016-05-15 18:09:27', '2016-05-15 18:09:27'),
-(20, 38, '20160515131315', 'México', '2016-05-17', '1:02 PM', 'Aguascalientes', '2016-05-18', '3:00 PM', 700, '1', 700, 'TIIDA', 2, 'mediano1.jpg', '2016-05-15', '2016-05-15 18:13:15', '2016-05-15 18:13:15'),
-(21, 39, '20160515131549', 'Aguascalientes', '2016-05-17', '3:02 PM', 'Aguascalientes', '2016-05-19', '5:00 PM', 1300, '2', 2600, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'camionetas_grandes.jpg', '2016-05-15', '2016-05-15 18:15:49', '2016-05-15 18:15:49'),
-(22, 40, '20160515131721', 'Aguascalientes', '2016-05-17', '3:00 PM', 'Aguascalientes', '2016-05-20', '4:00 PM', 600, '3', 1800, 'TIIDA', 1, 'mediano1.jpg', '2016-05-15', '2016-05-15 18:17:21', '2016-05-15 18:17:21'),
-(23, 41, '20160515131809', 'Aguascalientes', '2016-05-19', '3:02 PM', 'Aguascalientes', '2016-05-25', '4:00 PM', 728, '6', 4368, 'AVEO - GOL SEDAN', 1, 'megane.jpg', '2016-05-15', '2016-05-15 18:18:09', '2016-05-15 18:18:09'),
-(24, 42, '20160515132013', 'Aguascalientes', '2016-05-18', '12:03 PM', 'México', '2016-05-20', '3:00 PM', 900, '2', 1800, 'ELANTRA', 1, 'Honda-Jazz-20151.jpg', '2016-05-15', '2016-05-15 18:20:13', '2016-05-15 18:20:13'),
-(25, 43, '20160515132209', 'Aguascalientes', '2016-05-18', '4:03 PM', 'Aguascalientes', '2016-05-27', '3:00 PM', 900, '9', 8100, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 18:22:09', '2016-05-15 18:22:09'),
-(26, 44, '20160515132339', 'Aguascalientes', '2016-05-19', '5:00 PM', 'Aguascalientes', '2016-05-26', '7:00 PM', 1300, '7', 9100, 'EXPRESS VAN - URBAN - HI ACE', 1, 'imagenes-de-camionetas-blanca.jpg', '2016-05-15', '2016-05-15 18:23:39', '2016-05-15 18:23:39'),
-(27, 45, '20160515132516', 'México', '2016-05-19', '1:00 PM', 'Aguascalientes', '2016-05-25', '2:02 PM', 1100, '6', 6600, 'SIENA - TOWN & COUNTRY - ROUTAN', 1, 'camionetas_grandes.jpg', '2016-05-15', '2016-05-15 18:25:16', '2016-05-15 18:25:16'),
-(28, 46, '20160515132745', 'México', '2016-05-18', '4:00 PM', 'Aguascalientes', '2016-05-20', '4:00 PM', 600, '2', 1200, 'TIIDA', 1, 'mediano1.jpg', '2016-05-15', '2016-05-15 18:27:45', '2016-05-15 18:27:45'),
-(29, 47, '20160515133026', 'Aguascalientes', '2016-05-17', '4:00 PM', 'Aguascalientes', '2016-05-18', '4:00 PM', 450, '1', 450, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 18:30:26', '2016-05-15 18:30:26'),
-(30, 48, '20160515133139', 'Aguascalientes', '2016-05-17', '12:00 PM', 'Aguascalientes', '2016-05-25', '4:00 PM', 400, '8', 3200, 'AVEO - VW GOL SEDAN', 1, 'mazda3-450px.jpg', '2016-05-15', '2016-05-15 18:31:39', '2016-05-15 18:31:39'),
-(31, 49, '20160515133351', 'Aguascalientes', '2016-05-17', '3:00 PM', 'Aguascalientes', '2016-05-20', '3:00 PM', 600, '3', 1800, 'TIIDA', 1, 'mediano1.jpg', '2016-05-15', '2016-05-15 18:33:51', '2016-05-15 18:33:51'),
-(32, 50, '20160515133603', 'México', '2016-05-16', '3:00 PM', 'Aguascalientes', '2016-05-18', '3:00 PM', 1100, '2', 2200, 'SIENA - TOWN & COUNTRY - ROUTAN', 1, 'camionetas_grandes.jpg', '2016-05-15', '2016-05-15 18:36:03', '2016-05-15 18:36:03'),
-(33, 51, '20160515133705', 'Aguascalientes', '2016-05-17', '3:01 PM', 'Aguascalientes', '2016-05-21', '3:00 PM', 1200, '4', 4800, 'ELANTRA', 2, 'Honda-Jazz-20151.jpg', '2016-05-15', '2016-05-15 18:37:05', '2016-05-15 18:37:05'),
-(34, 52, '20160515133805', 'México', '2016-05-17', '4:00 PM', 'México', '2016-05-24', '12:00 AM', 600, '7', 4200, 'TIIDA', 1, 'mediano1.jpg', '2016-05-15', '2016-05-15 18:38:05', '2016-05-15 18:38:05'),
-(35, 53, '20160515133844', 'México', '2016-05-17', '4:00 PM', 'México', '2016-05-24', '12:00 AM', 900, '7', 6300, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 18:38:44', '2016-05-15 18:38:44'),
-(36, 54, '20160515134043', 'México', '2016-05-17', '4:00 PM', 'México', '2016-05-24', '12:00 AM', 500, '7', 3500, 'AVEO - VW GOL SEDAN', 2, 'mazda3-450px.jpg', '2016-05-15', '2016-05-15 18:40:43', '2016-05-15 18:40:43'),
-(37, 55, '20160515140106', 'Aguascalientes', '2016-05-17', '3:00 PM', 'México', '2016-05-26', '4:00 PM', 900, '9', 8100, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 19:01:06', '2016-05-15 19:01:06'),
-(38, 56, '20160515141058', 'Aguascalientes', '2016-05-17', '5:00 PM', 'Aguascalientes', '2016-05-28', '1:00 PM', 700, '11', 7700, 'VERSA', 1, 'grande1.jpg', '2016-05-15', '2016-05-15 19:10:58', '2016-05-15 19:10:58'),
-(39, 57, '20160515142640', 'Aguascalientes', '2016-05-17', '3:00 PM', 'Aguascalientes', '2016-05-26', '3:00 PM', 700, '9', 6300, 'VERSA', 1, 'grande1.jpg', '2016-05-15', '2016-05-15 19:26:40', '2016-05-15 19:26:40'),
-(40, 58, '20160515142847', 'Aguascalientes', '2016-05-17', '3:02 PM', 'Aguascalientes', '2016-05-27', '3:00 PM', 1100, '10', 11000, 'SIENA - TOWN & COUNTRY - ROUTAN', 1, 'camionetas_grandes.jpg', '2016-05-15', '2016-05-15 19:28:47', '2016-05-15 19:28:47'),
-(41, 59, '20160515143016', 'Aguascalientes', '2016-05-17', '2:02 PM', 'Aguascalientes', '2016-05-25', '4:00 PM', 450, '8', 3600, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 19:30:16', '2016-05-15 19:30:16'),
-(42, 60, '20160515143320', 'Aguascalientes', '2016-05-17', '3:00 PM', 'Aguascalientes', '2016-05-21', '3:00 PM', 1200, '4', 4800, 'ELANTRA', 2, 'Honda-Jazz-20151.jpg', '2016-05-15', '2016-05-15 19:33:20', '2016-05-15 19:33:20'),
-(43, 61, '20160515143525', 'México', '2016-05-18', '4:00 PM', 'México', '2016-05-19', '2:01 PM', 700, '1', 700, 'TIIDA', 2, 'mediano1.jpg', '2016-05-15', '2016-05-15 19:35:25', '2016-05-15 19:35:25'),
-(44, 62, '20160515143626', 'México', '2016-05-19', '12:00 AM', 'Aguascalientes', '2016-05-27', '3:00 PM', 900, '8', 7200, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 19:36:26', '2016-05-15 19:36:26'),
-(45, 63, '20160515143757', 'Aguascalientes', '2016-05-19', '12:00 AM', 'Aguascalientes', '2016-05-28', '3:00 PM', 900, '9', 8100, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 19:37:57', '2016-05-15 19:37:57'),
-(46, 64, '20160515143939', 'Aguascalientes', '2016-05-18', '3:00 PM', 'Aguascalientes', '2016-05-19', '4:00 PM', 900, '1', 900, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 19:39:39', '2016-05-15 19:39:39'),
-(47, 65, '20160515144126', 'Aguascalientes', '2016-05-16', '3:00 PM', 'Aguascalientes', '2016-05-25', '3:00 PM', 450, '9', 4050, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-05-15', '2016-05-15 19:41:26', '2016-05-15 19:41:26'),
-(48, 66, '20160515144607', 'Aguascalientes', '2016-05-17', '3:00 PM', 'Aguascalientes', '2016-05-19', '1:00 PM', 400, '2', 800, 'AVEO - VW GOL SEDAN', 1, 'mazda3-450px.jpg', '2016-05-15', '2016-05-15 19:46:07', '2016-05-15 19:46:07'),
-(49, 67, '20160515150349', 'Aguascalientes', '2016-05-17', '3:00 PM', 'Aguascalientes', '2016-05-19', '5:00 PM', 1500, '2', 3000, 'EXPRESS VAN - URBAN - HI ACE', 2, 'imagenes-de-camionetas-blanca.jpg', '2016-05-15', '2016-05-15 20:03:49', '2016-05-15 20:03:49'),
-(50, 68, '20160515150759', 'Aguascalientes', '2016-05-18', '3:00 PM', 'Aguascalientes', '2016-05-27', '5:00 PM', 700, '9', 6300, 'VERSA', 1, 'grande1.jpg', '2016-05-15', '2016-05-15 20:07:59', '2016-05-15 20:07:59'),
-(51, 69, '20160620103855', 'Aguascalientes', '2016-06-22', '4:00 PM', 'Aguascalientes', '2016-06-30', '5:00 PM', 1300, '8', 10400, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'camionetas_grandes.jpg', '2016-06-20', '2016-06-20 15:38:55', '2016-06-20 15:38:55'),
-(52, 70, '20160620113648', 'Aguascalientes', '2016-06-22', '3:00 PM', 'México', '2016-06-25', '12:00 AM', 2200, '3', 6600, 'Minivan 2016', 1, '2016_Mazda6_EXT360_RojoBrillante_12.png', '2016-06-20', '2016-06-20 16:36:48', '2016-06-20 16:36:48'),
-(53, 71, '20160620141057', 'Aguascalientes', '2016-06-20', '2:09 PM', 'Aguascalientes', '2016-06-29', '5:09 PM', 3200, '9', 28800, 'Nueva minivan 2016', 2, '8cfca1f19aef6e49641213e7a65d583e.png', '2016-06-20', '2016-06-20 19:10:57', '2016-06-20 19:10:57'),
-(54, 72, '20160620141434', 'México', '2016-06-20', '2:12 PM', 'México', '2016-06-29', '4:12 PM', 800, '9', 7200, 'VERSA', 2, 'grande1.jpg', '2016-06-20', '2016-06-20 19:14:34', '2016-06-20 19:14:34'),
-(55, 73, '20160620141619', 'Aguascalientes', '2016-06-22', '5:14 AM', 'Monterrey', '2016-06-29', '3:14 PM', 1300, '7', 9100, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'camionetas_grandes.jpg', '2016-06-20', '2016-06-20 19:16:19', '2016-06-20 19:16:19'),
-(56, 74, '20160620150548', 'Aguascalientes', '2016-08-18', '3:00 PM', 'Aguascalientes', '2016-08-24', '3:00 PM', 1300, '6', 7800, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-06-20', '2016-06-20 20:05:48', '2016-06-20 20:05:48'),
-(57, 75, '20160620150916', 'Aguascalientes', '2016-06-21', '3:10 AM', 'Aguascalientes', '2016-06-29', '3:08 PM', 1300, '8', 10400, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-06-20', '2016-06-20 20:09:16', '2016-06-20 20:09:16'),
-(58, 76, '20160620153935', 'Aguascalientes', '2016-06-20', '3:36 PM', 'México', '2016-06-29', '3:36 PM', 1700, '9', 15300, 'EXPEDITION - SUBURBAN ', 1, 'Auto_ford_ecosport_mv_frente.gif', '2016-06-20', '2016-06-20 20:39:35', '2016-06-20 20:39:35'),
-(59, 77, '20160620154048', 'Aguascalientes', '2016-06-20', '3:40 PM', 'Aguascalientes', '2016-06-30', '3:40 PM', 1300, '10', 13000, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-06-20', '2016-06-20 20:40:48', '2016-06-20 20:40:48'),
-(60, 78, '20160620155423', 'México', '2016-06-30', '3:53 PM', 'México', '2016-07-04', '7:00 PM', 450, '4', 1800, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-06-20', '2016-06-20 20:54:23', '2016-06-20 20:54:23'),
-(61, 79, '20160620155817', 'Aguascalientes', '2016-06-26', '5:00 PM', 'Aguascalientes', '2016-06-27', '3:56 PM', 1300, '1', 1300, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-06-20', '2016-06-20 20:58:17', '2016-06-20 20:58:17');
+INSERT INTO `reserva` (`id`, `cliente_id`, `num_reserva`, `lugar_entrega`, `direccion1_e`, `direccion2_e`, `colonia_e`, `estado_e`, `municipio_e`, `cp_e`, `referencias_e`, `telefono1_e`, `telefono2_e`, `telefono3_e`, `telefono4_e`, `fecha_entrega`, `hora_entrega`, `lugar_devolucion`, `direccion1_d`, `direccion2_d`, `colonia_d`, `estado_d`, `municipio_d`, `cp_d`, `referencias_d`, `telefono1_d`, `telefono2_d`, `telefono3_d`, `telefono4_d`, `fecha_devolucion`, `hora_devolucion`, `tarifa_por_dia`, `dias`, `total`, `vehiculo`, `transmision`, `foto`, `fecha`, `created_at`, `updated_at`) VALUES
+(78, 96, '20160630175221', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-06-30', '5:51 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', '', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-02', '5:51 PM', 450, '2', 900, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-06-30', '2016-06-30 22:52:21', '2016-06-30 22:52:21'),
+(79, 97, '20160630184143', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-05', '8:40 AM', 'Toluca', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', '98863', 'Sin referencias', 'Oficina:  666778854', 'Fijo:  33445567', ' ', ' ', '2016-07-07', '9:00 PM', 3000, '2', 6000, 'Nueva van de lujo 2016', 1, '3_1_toyota_rav4_337.jpg', '2016-06-30', '2016-06-30 23:41:43', '2016-06-30 23:41:43'),
+(80, 98, '20160630184547', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-06-30', '8:44 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-06', '6:44 PM', 1300, '6', 7800, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-06-30', '2016-06-30 23:45:47', '2016-06-30 23:45:47'),
+(81, 99, '20160630184725', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-05', '6:46 PM', 'Monterrey', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Delegacion', '889766', '', 'Nextel:  2223334455', 'Oficina:  666778899', 'Fijo:  1110009988', ' ', '2016-07-06', '6:46 PM', 2200, '1', 2200, 'Minivan 2016', 1, '2016_Mazda6_EXT360_RojoBrillante_12.png', '2016-06-30', '2016-06-30 23:47:25', '2016-06-30 23:47:25'),
+(82, 100, '20160630185020', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-07', '6:47 PM', 'Toluca', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', '98863', 'Sin referencias', 'Oficina:  666778854', 'Fijo:  33445567', ' ', ' ', '2016-07-13', '10:47 PM', 800, '6', 4800, 'VERSA', 2, 'grande1.jpg', '2016-06-30', '2016-06-30 23:50:20', '2016-06-30 23:50:20'),
+(83, 101, '20160701130502', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-02', '1:04 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-13', '1:06 PM', 1700, '11', 18700, 'EXPEDITION - SUBURBAN ', 1, 'Auto_ford_ecosport_mv_frente.gif', '2016-07-01', '2016-07-01 18:05:02', '2016-07-01 18:05:02'),
+(84, 102, '20160701130634', 'Aguascalientes', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-01', '1:06 PM', 'México', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-02', '1:06 PM', 3000, '1', 3000, 'Nueva van de lujo 2016', 1, '3_1_toyota_rav4_337.jpg', '2016-07-01', '2016-07-01 18:06:34', '2016-07-01 18:06:34'),
+(85, 103, '20160701130804', 'Aguascalientes', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-01', '1:06 PM', 'México', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-02', '1:06 PM', 1600, '1', 1600, 'Economico sencillo', 1, 'vehiculos-ecologicos-2011_1_596594.jpg', '2016-07-01', '2016-07-01 18:08:04', '2016-07-01 18:08:04'),
+(86, 104, '20160701131005', 'Aguascalientes', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-01', '1:08 PM', 'México', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-02', '1:08 PM', 2200, '1', 2200, 'Minivan 2016', 1, '2016_Mazda6_EXT360_RojoBrillante_12.png', '2016-07-01', '2016-07-01 18:10:05', '2016-07-01 18:10:05'),
+(87, 105, '20160701131047', 'Aguascalientes', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-01', '1:10 PM', 'México', '', '', '', '', '', '', '', ' ', ' ', ' ', ' ', '2016-07-04', '1:10 PM', 450, '3', 1350, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-07-01', '2016-07-01 18:10:47', '2016-07-01 18:10:47'),
+(88, 106, '20160701131305', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-12', '1:12 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-13', '4:12 AM', 1600, '1', 1600, 'Economico sencillo', 1, 'vehiculos-ecologicos-2011_1_596594.jpg', '2016-07-01', '2016-07-01 18:13:05', '2016-07-01 18:13:05'),
+(89, 107, '20160701132835', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-01', '2:28 PM', 'Toluca', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', '98863', 'Sin referencias', 'Oficina:  666778854', 'Fijo:  33445567', ' ', ' ', '2016-07-04', '1:28 PM', 3200, '3', 9600, 'Nueva minivan 2016', 2, '8cfca1f19aef6e49641213e7a65d583e.png', '2016-07-01', '2016-07-01 18:28:35', '2016-07-01 18:28:35'),
+(90, 108, '20160701133035', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-04', '3:30 PM', 'Monterrey', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Delegacion', '889766', '', 'Nextel:  2223334455', 'Oficina:  666778899', 'Fijo:  1110009988', ' ', '2016-08-09', '1:30 PM', 1300, '36', 46800, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-07-01', '2016-07-01 18:30:35', '2016-07-01 18:30:35'),
+(91, 109, '20160701133326', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-02', '1:32 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-06', '1:32 PM', 1600, '4', 6400, 'Economico sencillo', 1, 'vehiculos-ecologicos-2011_1_596594.jpg', '2016-07-01', '2016-07-01 18:33:26', '2016-07-01 18:33:26'),
+(92, 110, '20160701133422', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-12', '1:34 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-13', '1:34 PM', 1600, '1', 1600, 'Economico sencillo', 1, 'vehiculos-ecologicos-2011_1_596594.jpg', '2016-07-01', '2016-07-01 18:34:22', '2016-07-01 18:34:22'),
+(93, 111, '20160701133544', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-03', '1:35 PM', 'Monterrey', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Delegacion', '889766', '', 'Nextel:  2223334455', 'Oficina:  666778899', 'Fijo:  1110009988', ' ', '2016-07-12', '1:35 PM', 800, '9', 7200, 'VERSA', 2, 'grande1.jpg', '2016-07-01', '2016-07-01 18:35:44', '2016-07-01 18:35:44'),
+(94, 112, '20160701133732', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-04', '2:37 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-06', '1:37 PM', 2000, '2', 4000, 'Nueva minivan', 1, '8cfca1f19aef6e49641213e7a65d583e.png', '2016-07-01', '2016-07-01 18:37:32', '2016-07-01 18:37:32'),
+(95, 113, '20160701134024', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-01', '1:40 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-04', '1:40 PM', 3200, '3', 9600, 'Nueva minivan 2016', 2, '8cfca1f19aef6e49641213e7a65d583e.png', '2016-07-01', '2016-07-01 18:40:24', '2016-07-01 18:40:24'),
+(96, 114, '20160701135322', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-01', '1:52 PM', 'Toluca', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', '98863', 'Sin referencias', 'Oficina:  666778854', 'Fijo:  33445567', ' ', ' ', '2016-07-04', '1:52 PM', 2300, '3', 6900, 'Minivan 2016', 2, '2016_Mazda6_EXT360_RojoBrillante_12.png', '2016-07-01', '2016-07-01 18:53:22', '2016-07-01 18:53:22'),
+(97, 115, '20160701135459', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-03', '1:54 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-05', '5:54 PM', 1700, '2', 3400, 'EXPEDITION - SUBURBAN ', 1, 'Auto_ford_ecosport_mv_frente.gif', '2016-07-01', '2016-07-01 18:54:59', '2016-07-01 18:54:59'),
+(98, 116, '20160701135636', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-04', '1:56 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-05', '1:56 PM', 1600, '1', 1600, 'Economico sencillo', 1, 'vehiculos-ecologicos-2011_1_596594.jpg', '2016-07-01', '2016-07-01 18:56:36', '2016-07-01 18:56:36'),
+(99, 117, '20160701135907', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-05', '2:00 PM', 'Toluca', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', '98863', 'Sin referencias', 'Oficina:  666778854', 'Fijo:  33445567', ' ', ' ', '2016-07-08', '4:00 PM', 1300, '3', 3900, 'SIENA - TOWN & COUNTRY - ROUTAN', 2, 'minazul.png', '2016-07-01', '2016-07-01 18:59:07', '2016-07-01 18:59:07'),
+(100, 118, '20160701140405', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-01', '2:03 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-03', '2:03 PM', 1800, '2', 3600, 'EXPEDITION - SUBURBAN ', 2, 'Auto_ford_ecosport_mv_frente.gif', '2016-07-01', '2016-07-01 19:04:05', '2016-07-01 19:04:05'),
+(101, 119, '20160701140657', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-01', '2:06 PM', 'Monterrey', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Delegacion', '889766', '', 'Nextel:  2223334455', 'Oficina:  666778899', 'Fijo:  1110009988', ' ', '2016-07-04', '2:06 PM', 700, '3', 2100, 'VERSA', 1, 'grande1.jpg', '2016-07-01', '2016-07-01 19:06:57', '2016-07-01 19:06:57'),
+(102, 120, '20160701141040', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-14', '2:10 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-16', '2:10 PM', 3000, '2', 6000, 'Nueva van de lujo 2016', 1, '3_1_toyota_rav4_337.jpg', '2016-07-01', '2016-07-01 19:10:40', '2016-07-01 19:10:40'),
+(103, 121, '20160701141322', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-05', '2:12 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-06', '2:12 PM', 800, '1', 800, 'VERSA', 2, 'grande1.jpg', '2016-07-01', '2016-07-01 19:13:22', '2016-07-01 19:13:22'),
+(104, 122, '20160701141826', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-13', '2:18 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-16', '5:18 PM', 900, '3', 2700, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-07-01', '2016-07-01 19:18:26', '2016-07-01 19:18:26'),
+(105, 123, '20160701142149', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-19', '2:21 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-22', '2:21 PM', 900, '3', 2700, 'JETTA CLASICO', 2, '4f1f93e49a97f.jpg', '2016-07-01', '2016-07-01 19:21:49', '2016-07-01 19:21:49'),
+(106, 124, '20160701142504', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-07', '2:24 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-10', '2:24 PM', 450, '3', 1350, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-07-01', '2016-07-01 19:25:04', '2016-07-01 19:25:04'),
+(107, 125, '20160701142731', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-06', '4:26 PM', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-08', '2:26 PM', 1800, '2', 3600, 'EXPEDITION - SUBURBAN ', 2, 'Auto_ford_ecosport_mv_frente.gif', '2016-07-01', '2016-07-01 19:27:31', '2016-07-01 19:27:31'),
+(108, 126, '20160701143222', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-05', '5:31 PM', 'Toluca', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', '98863', 'Sin referencias', 'Oficina:  666778854', 'Fijo:  33445567', ' ', ' ', '2016-07-12', '5:31 PM', 450, '7', 3150, 'JETTA CLASICO', 1, '4f1f93e49a97f.jpg', '2016-07-01', '2016-07-01 19:32:22', '2016-07-01 19:32:22'),
+(109, 127, '20160701143417', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-05', '3:33 PM', 'Monterrey', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Delegacion', '889766', '', 'Nextel:  2223334455', 'Oficina:  666778899', 'Fijo:  1110009988', ' ', '2016-07-08', '2:33 PM', 800, '3', 2400, 'VERSA', 2, 'grande1.jpg', '2016-07-01', '2016-07-01 19:34:17', '2016-07-01 19:34:17'),
+(110, 128, '20160701143510', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-13', '2:34 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-15', '2:34 PM', 2200, '2', 4400, 'Minivan 2016', 1, '2016_Mazda6_EXT360_RojoBrillante_12.png', '2016-07-01', '2016-07-01 19:35:10', '2016-07-01 19:35:10'),
+(111, 129, '20160701144210', 'Aguascalientes', 'Direccion 1', '', 'Colonia', 'Estado', 'Municipio', '565656', '', 'Nextel:  9992332', 'Oficina:  4554544', 'Fijo:  5000054', ' ', '2016-07-01', '4:00 PM', 'México', 'Dirección 1', 'Dirección 2', 'Colonia', 'Estado', 'Municipio', '556665', 'Referencias', 'Oficina:  9906542', ' ', ' ', ' ', '2016-07-06', '2:41 PM', 3200, '5', 16000, 'Nueva minivan 2016', 2, '8cfca1f19aef6e49641213e7a65d583e.png', '2016-07-01', '2016-07-01 19:42:10', '2016-07-01 19:42:10');
 
 -- --------------------------------------------------------
 
@@ -424,6 +472,10 @@ CREATE TABLE `sesion` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `sesion`
+--
 
 -- --------------------------------------------------------
 
@@ -692,12 +744,10 @@ INSERT INTO `telefono_sucursal` (`id`, `sucursal_id`, `tipo_tel_id`, `numero`, `
 (6, 44, 1, '2223334455', '2016-04-21 06:52:22', '2016-04-21 06:52:22'),
 (7, 44, 5, '666778899', '2016-04-21 06:52:25', '2016-04-21 06:52:25'),
 (8, 44, 11, '1110009988', '2016-04-21 06:52:28', '2016-04-21 06:52:28'),
-(113, 118, 11, '99999', '2016-04-25 22:44:06', '2016-04-25 22:44:06'),
 (120, 118, 5, '9906542', '2016-04-25 23:47:42', '2016-04-25 23:47:42'),
 (127, 123, 11, '5000054', '2016-04-25 23:55:19', '2016-04-25 23:55:49'),
 (128, 123, 1, '9992332', '2016-04-25 23:55:19', '2016-04-25 23:55:49'),
 (129, 123, 5, '4554544', '2016-04-25 23:55:49', '2016-04-25 23:55:49'),
-(130, 40, 1, '2223334455', '2016-04-28 03:50:00', '2016-04-28 03:50:00'),
 (131, 40, 5, '666778854', '2016-04-28 03:50:00', '2016-04-28 03:50:00'),
 (132, 40, 11, '33445567', '2016-04-28 03:50:00', '2016-04-28 03:50:00');
 
@@ -878,8 +928,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `usuario`, `password`, `email`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Angel99', '$2y$10$I3BClkWkkBQhk2KHq5UmIO1CS6.RhPZhA4CWjwJ.sa.vYM5ia5Emq', 'angeldarkkiller99@live.com', NULL, '2016-04-07 03:40:59', '2016-04-20 10:28:47'),
-(2, 'Luis99', '$2y$10$.BEMnJsOGHmIKLl3vzkoc.pxoxUE0QXsa8lspbt7eOA9uSAILTqIG', 'luis_mh@outlook.es', 'XIXGM2nFTsuN0G55VqtNLmVJXurhj40RB1wpM0RncZ4CSHM58ZDDndXCqupK', '2016-04-07 03:42:24', '2016-06-20 18:00:40'),
-(21, 'Yeins99', '$2y$10$S/5YbcL/L.20Drlaa8CSZ.GwPs6YQpqBDDtIQTg3AjBdari0wGp/C', 'ye@hotmail.com', 'AU1sGIPKuxQSd4vpfuHmV3tu67sQH9kq455rdg6idGO5DxIzdr4lQMxiWCuT', '2016-04-27 07:27:06', '2016-06-20 21:02:24'),
+(2, 'Luis99', '$2y$10$.BEMnJsOGHmIKLl3vzkoc.pxoxUE0QXsa8lspbt7eOA9uSAILTqIG', 'luis_mh@outlook.es', 'ZnbmG9RBlJWjrX2nQuQUB5chUEyWRxLcCRYYGoCZnFfsRNA7TZXlhqkT6GbK', '2016-04-07 03:42:24', '2016-07-01 19:45:29'),
+(21, 'Robert99', '$2y$10$cud5dI5rSICwjsAizbTGoOLPcCU8tAt7DcW1vaJp2NOIhRqaRJKJm', 'roberto@proyectoweb.com', 'AU1sGIPKuxQSd4vpfuHmV3tu67sQH9kq455rdg6idGO5DxIzdr4lQMxiWCuT', '2016-04-27 07:27:06', '2016-07-01 15:41:22'),
 (22, 'prueba', '$2y$10$6g56p5jnKB70XLv9jbiB/.iACR522TSF24VIkvDt7fzoOmptbNrxq', 'prueba@gmail.com', NULL, '2016-04-27 07:29:08', '2016-04-27 07:29:08');
 
 --
@@ -1017,7 +1067,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 --
 -- AUTO_INCREMENT de la tabla `cobertura`
 --
@@ -1047,17 +1097,17 @@ ALTER TABLE `oficina`
 -- AUTO_INCREMENT de la tabla `plaza`
 --
 ALTER TABLE `plaza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT de la tabla `sesion`
 --
 ALTER TABLE `sesion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT de la tabla `sucursal`
 --
@@ -1067,7 +1117,7 @@ ALTER TABLE `sucursal`
 -- AUTO_INCREMENT de la tabla `tarifa`
 --
 ALTER TABLE `tarifa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT de la tabla `tarifa_detalle`
 --

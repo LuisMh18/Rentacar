@@ -145,6 +145,11 @@ strong a:hover {
   font-size: .9em;
   margin-top: 2em; }
 
+.legenda {
+  color: #d9534f;
+  font-size: .9em;
+  display: none; }
+
 /*--- END articulo 1 y d entrega y devolucion*/
 /**
 ---Tipo de utomovils

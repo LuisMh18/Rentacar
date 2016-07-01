@@ -17,7 +17,6 @@ public function getIndex(){
 
 public function postLogin() {
 
-
 	// Obtenemos los datos del formulario
     $data = [
         'usuario' => Input::get('username'),
@@ -50,7 +49,6 @@ if (Auth::attempt($data)) {
 
 
 
-
 /*******
 Reservas------------
 ********************************************************/
@@ -61,7 +59,21 @@ Reservas------------
 			->where('id', $id)
 	 	  ->first();
 
-   return Response::json($sucursal);
+  $tel_sucursal = DB::table('telefono_sucursal')
+      ->join('tipo_tel', 'telefono_sucursal.tipo_tel_id', '=', 'tipo_tel.id')
+			->where('telefono_sucursal.sucursal_id', $id)
+	 	  ->get();
+
+    $tel_s_cantidad = DB::table('telefono_sucursal')
+        ->join('tipo_tel', 'telefono_sucursal.tipo_tel_id', '=', 'tipo_tel.id')
+  			->where('telefono_sucursal.sucursal_id', $id)
+  	 	  ->count();
+
+   return Response::json(array(
+            'sucursal' => $sucursal,
+            'tel_sucursal' => $tel_sucursal,
+            'tel_s_cantidad' => $tel_s_cantidad
+          ));
 }
 
 //mostrar codigos de los vehiculos
@@ -183,13 +195,45 @@ public function getComprobardatos(){
 public function postRegistrareserva(){
 	//Datos de entrega
 	$fecha_entrega = Input::get('fecha_entrega');
+  $id_sucursal_entrega = Input::get('id_sucursal_entrega');
 	$hora_entrega = Input::get('hora_entrega');
 	$lugar_entrega = Input::get('lugar_entrega');
+  $direccion1 = Input::get('direccion1');
+  $direccion2 = Input::get('direccion2');
+  $colonia = Input::get('colonia');
+  $estado = Input::get('estado');
+  $municipio = Input::get('municipio');
+  $cp = Input::get('cp');
+  $referencia = Input::get('referencia');
+  $tel_e_1 = Input::get('tel_e_1');
+  $tel_e_2 = Input::get('tel_e_2');
+  $tel_e_3 = Input::get('tel_e_3');
+  $tel_e_4 = Input::get('tel_e_4');
+  $num_e_1 = Input::get('num_e_1');
+  $num_e_2 = Input::get('num_e_2');
+  $num_e_3 = Input::get('num_e_3');
+  $num_e_4 = Input::get('num_e_4');
 
 	//Datos de devolucion
 	$fecha_devolucion = Input::get('fecha_devolucion');
+  $id_sucursal_devolucion = Input::get('id_sucursal_devolucion');
 	$hora_devolucion = Input::get('hora_devolucion');
 	$lugar_devolucion = Input::get('lugar_devolucion');
+  $direccion1_d = Input::get('direccion1_d');
+  $direccion2_d = Input::get('direccion2_d');
+  $colonia_d = Input::get('colonia_d');
+  $estado_d = Input::get('estado_d');
+  $municipio_d = Input::get('municipio_d');
+  $cp_d = Input::get('cp_d');
+  $referencia_d = Input::get('referencia_d');
+  $tel_d_1 = Input::get('tel_d_1');
+  $tel_d_2 = Input::get('tel_d_2');
+  $tel_d_3 = Input::get('tel_d_3');
+  $tel_d_4 = Input::get('tel_d_4');
+  $num_d_1 = Input::get('num_d_1');
+  $num_d_2 = Input::get('num_d_2');
+  $num_d_3 = Input::get('num_d_3');
+  $num_d_4 = Input::get('num_d_4');
 
 	//vehiculo
 	$vehiculo = Input::get('vehiculo');
@@ -246,23 +290,48 @@ public function postRegistrareserva(){
 							->where('id', $vehiculo)
 							->pluck('foto');
 
+
 	//registramos la reserva
 		$r = new Reserva;
 		$r->id = Input::get('id');
 		$r->cliente_id = $c['id'];
 		$r->num_reserva = date('Y').date('m').date("d").date("H").date("i").date("s");
-	    $r->lugar_entrega = $s_e;
+	  $r->lugar_entrega = $s_e;
+    $r->direccion1_e = $direccion1;
+    $r->direccion2_e = $direccion2;
+    $r->colonia_e = $colonia;
+    $r->estado_e = $estado;
+    $r->municipio_e = $municipio;
+    $r->cp_e = $cp;
+    $r->referencias_e = $referencia;
+    $r->telefono1_e = $tel_e_1." ".$num_e_1;
+    $r->telefono2_e = $tel_e_2." ".$num_e_2;
+    $r->telefono3_e = $tel_e_3." ".$num_e_3;
+    $r->telefono4_e = $tel_e_4." ".$num_e_4;
+
 		$r->fecha_entrega = $fecha_entrega;
-	    $r->hora_entrega = $hora_entrega;
+	  $r->hora_entrega = $hora_entrega;
 		$r->lugar_devolucion = $s_d;
+    $r->direccion1_d = $direccion1_d;
+    $r->direccion2_d = $direccion2_d;
+    $r->colonia_d = $colonia_d;
+    $r->estado_d = $estado_d;
+    $r->municipio_d = $municipio_d;
+    $r->cp_d = $cp_d;
+    $r->referencias_d = $referencia_d;
+    $r->telefono1_d = $tel_d_1." ".$num_d_1;
+    $r->telefono2_d = $tel_d_2." ".$num_d_2;
+    $r->telefono3_d = $tel_d_3." ".$num_d_3;
+    $r->telefono4_d = $tel_d_4." ".$num_d_4;
+
 		$r->fecha_devolucion = $fecha_devolucion;
-	    $r->hora_devolucion = $hora_devolucion;
+	  $r->hora_devolucion = $hora_devolucion;
 		$r->tarifa_por_dia = $tarifa;
-	    $r->dias = $dias;
-	    $r->total = $tarifa * $dias;
-	    $r->vehiculo = $v_desc;
-	    $r->transmision = $v_t;
-	    $r->foto= $v_foto;
+	  $r->dias = $dias;
+	  $r->total = $tarifa * $dias;
+	  $r->vehiculo = $v_desc;
+	  $r->transmision = $v_t;
+	  $r->foto= $v_foto;
 		$r->fecha = date('Y-m-d');
 		$r->save();
 
@@ -335,9 +404,9 @@ public function postRegistrareserva(){
 					->where('reserva.id', $id)
 					->pluck('cliente_id');
 
-          $sesion = DB::table('sesion')
-                  ->where('reserva_id', $id)
-                  ->get();
+      $sesion = DB::table('sesion')
+              ->where('reserva_id', $id)
+              ->get();
 
           if(count($sesion) == 0){
             echo "Error, la página solicitada no existe.";
@@ -349,18 +418,33 @@ public function postRegistrareserva(){
 
 
              $reserva = DB::table('reserva')
-                             ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'tarifa_por_dia', 'dias', 'total', 'reserva.created_at', 'num_reserva', 'vehiculo', 'transmision')
                              ->where('reserva.id', $id)
                              ->get();
 
+             //obtenemos el emaildel cliente
+             $email = DB::table('cliente')
+                 ->where('id', $id_cliente)
+                 ->pluck('email');
 
-       return View::make('confirmacion', compact('reserva', 'cliente', 'id'));
+              Mail::send('emails/confirmacion', compact('reserva', 'cliente'), function($message) use ($email){
+                  $message->from('emotions@hotmail.com', 'emoTions Rent a Car');
+                  $message->to($email);
+                  $message->subject('Detalle de reserva.');
+              });
+
+
+                return View::make('confirmacion',
+                            compact(
+                            'reserva',
+                            'cliente',
+                            'id'
+                          ));
 
           }
 
 
-
  }
+
 
 public function eliminarsesion(){
   $id = Input::get('id');
@@ -378,7 +462,6 @@ public function eliminarsesion(){
  public function imprimir($id){
 
 						$reserva = DB::table('reserva')
-											->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'tarifa_por_dia', 'dias', 'total', 'reserva.created_at', 'num_reserva', 'vehiculo', 'transmision')
 											->where('reserva.id', $id)
 											->get();
 
@@ -477,7 +560,6 @@ public function getDetallereserva(){
 
 			$reserva = DB::table('reserva')
 											->where('reserva.id', $id)
-											->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'tarifa_por_dia', 'dias', 'total', 'reserva.created_at', 'num_reserva', 'vehiculo', 'transmision', 'foto')
 											->get();
 
 
@@ -509,21 +591,38 @@ public function getExportarlasreservasdeldia(){
 		    $reserva = DB::table('reserva')
 	 					 ->where('fecha', $date)
 						 ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
-					     ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios')
+					     ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'direccion1_e','direccion2_e', 'colonia_e', 'estado_e', 'municipio_e', 'cp_e', 'referencias_e', 'telefono1_e', 'telefono2_e', 'telefono3_e', 'telefono4_e', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'direccion1_d','direccion2_d', 'colonia_d', 'estado_d', 'municipio_d', 'cp_d', 'referencias_d', 'telefono1_d', 'telefono2_d', 'telefono3_d', 'telefono4_d', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios')
 					     ->orderBy('created_at', 'desc')
 					 	 ->get();
 
-	        array_push($data, array('N° de reserva', 'Lugar de entrega', 'Fecha de entrega', 'Hora de entrega', 'Lugar de devolucion', 'Fecha de devolucion', 'Hora de devolucion', 'Tarifa por día', 'Días', 'Total', 'Vehiculo', 'Transmision', 'Fecha de registro', 'Cliente', 'Email', 'Teléfono', 'N° de Licencia', 'Comentarios'));
+	        array_push($data, array('N° de reserva', 'Lugar de entrega', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', 'CP', 'Referencias', 'Teléfono', 'Fecha de entrega', 'Hora de entrega', 'Lugar de devolucion', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', 'CP', 'Referencias', 'Teléfono', 'Fecha de devolucion', 'Hora de devolucion', 'Tarifa por día', 'Días', 'Total', 'Vehiculo', 'Transmision', 'Fecha de registro', 'Cliente', 'Email', 'Teléfono', 'N° de Licencia', 'Comentarios'));
 
-	        foreach ($reserva as $key => $value) {
+	    foreach ($reserva as $key => $value) {
 	        	if($value->transmision == 1){
 
 					array_push($data, array(
 						$value->num_reserva,
 						$value->lugar_entrega,
+            $value->direccion1_e,
+            $value->direccion2_e,
+            $value->colonia_e,
+            $value->estado_e,
+            $value->municipio_e,
+            $value->cp_e,
+            $value->referencias_e,
+            $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
 						$value->fecha_entrega,
 						$value->hora_entrega,
 						$value->lugar_devolucion,
+            $value->direccion1_d,
+            $value->direccion2_d,
+            $value->colonia_d,
+            $value->estado_d,
+            $value->municipio_d,
+            $value->cp_d,
+            $value->referencias_d,
+            $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+
 						$value->fecha_devolucion,
 						$value->hora_devolucion,
 						'$ '.number_format($value->tarifa_por_dia, 2),
@@ -542,28 +641,44 @@ public function getExportarlasreservasdeldia(){
 	        	 } else {
 
 	        	 	array_push($data, array(
-						$value->num_reserva,
-						$value->lugar_entrega,
-						$value->fecha_entrega,
-						$value->hora_entrega,
-						$value->lugar_devolucion,
-						$value->fecha_devolucion,
-						$value->hora_devolucion,
-						'$ '.number_format($value->tarifa_por_dia, 2),
-						$value->dias,
-						'$ '.number_format($value->total, 2),
-						$value->vehiculo,
-						'Estándard',
-						$value->created_at,
-						$value->nombre.' '.$value->apellidos,
-						$value->email,
-						$value->telefono,
-						$value->num_licencia,
-						$value->comentarios
-					 ));
-	        	 	
-	        	 }
-	           }
+                $value->num_reserva,
+    						$value->lugar_entrega,
+                $value->direccion1_e,
+                $value->direccion2_e,
+                $value->colonia_e,
+                $value->estado_e,
+                $value->municipio_e,
+                $value->cp_e,
+                $value->referencias_e,
+                $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+    						$value->fecha_entrega,
+    						$value->hora_entrega,
+    						$value->lugar_devolucion,
+                $value->direccion1_d,
+                $value->direccion2_d,
+                $value->colonia_d,
+                $value->estado_d,
+                $value->municipio_d,
+                $value->cp_d,
+                $value->referencias_d,
+                $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+    						$value->fecha_devolucion,
+    						$value->hora_devolucion,
+    						'$ '.number_format($value->tarifa_por_dia, 2),
+    						$value->dias,
+    						'$ '.number_format($value->total, 2),
+    						$value->vehiculo,
+    						'Estándard',
+    						$value->created_at,
+    						$value->nombre.' '.$value->apellidos,
+    						$value->email,
+    						$value->telefono,
+    						$value->num_licencia,
+    						$value->comentarios
+    					 ));
+
+    	       }
+    	    }
 
 			$sheet->fromArray($data, null, 'A1', false, false);
 
@@ -579,63 +694,96 @@ public function getExportartodaslasreservas(){
 			$excel->sheet('Sheetname', function($sheet) {
 		    $data=[];
 
-		    $reserva = DB::table('reserva')
-						 ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
-					     ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios')
-					     ->orderBy('created_at', 'desc')
-					 	 ->get();
+             $reserva = DB::table('reserva')
+                  ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
+                    ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'direccion1_e','direccion2_e', 'colonia_e', 'estado_e', 'municipio_e', 'cp_e', 'referencias_e', 'telefono1_e', 'telefono2_e', 'telefono3_e', 'telefono4_e', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'direccion1_d','direccion2_d', 'colonia_d', 'estado_d', 'municipio_d', 'cp_d', 'referencias_d', 'telefono1_d', 'telefono2_d', 'telefono3_d', 'telefono4_d', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios')
+                    ->orderBy('created_at', 'desc')
+                  ->get();
 
-	        array_push($data, array('N° de reserva', 'Lugar de entrega', 'Fecha de entrega', 'Hora de entrega', 'Lugar de devolucion', 'Fecha de devolucion', 'Hora de devolucion', 'Tarifa por día', 'Días', 'Total', 'Vehiculo', 'Transmision', 'Fecha de registro', 'Cliente', 'Email', 'Teléfono', 'N° de Licencia', 'Comentarios'));
+	        array_push($data, array('N° de reserva', 'Lugar de entrega', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', 'CP', 'Referencias', 'Teléfono', 'Fecha de entrega', 'Hora de entrega', 'Lugar de devolucion', 'Direccion 1', 'Direccion 2', 'Colonia', 'Estado', 'Municipio', 'CP', 'Referencias', 'Teléfono', 'Fecha de devolucion', 'Hora de devolucion', 'Tarifa por día', 'Días', 'Total', 'Vehiculo', 'Transmision', 'Fecha de registro', 'Cliente', 'Email', 'Teléfono', 'N° de Licencia', 'Comentarios'));
 
-	        foreach ($reserva as $key => $value) {
-	        	if($value->transmision == 1){
+          foreach ($reserva as $key => $value) {
+    	        	if($value->transmision == 1){
 
-					array_push($data, array(
-						$value->num_reserva,
-						$value->lugar_entrega,
-						$value->fecha_entrega,
-						$value->hora_entrega,
-						$value->lugar_devolucion,
-						$value->fecha_devolucion,
-						$value->hora_devolucion,
-						'$ '.number_format($value->tarifa_por_dia, 2),
-						$value->dias,
-						'$ '.number_format($value->total, 2),
-						$value->vehiculo,
-						'Automático',
-						$value->created_at,
-						$value->nombre.' '.$value->apellidos,
-						$value->email,
-						$value->telefono,
-						$value->num_licencia,
-						$value->comentarios
-					 ));
+    					array_push($data, array(
+    						$value->num_reserva,
+    						$value->lugar_entrega,
+                $value->direccion1_e,
+                $value->direccion2_e,
+                $value->colonia_e,
+                $value->estado_e,
+                $value->municipio_e,
+                $value->cp_e,
+                $value->referencias_e,
+                $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+    						$value->fecha_entrega,
+    						$value->hora_entrega,
+    						$value->lugar_devolucion,
+                $value->direccion1_d,
+                $value->direccion2_d,
+                $value->colonia_d,
+                $value->estado_d,
+                $value->municipio_d,
+                $value->cp_d,
+                $value->referencias_d,
+                $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
 
-	        	 } else {
+    						$value->fecha_devolucion,
+    						$value->hora_devolucion,
+    						'$ '.number_format($value->tarifa_por_dia, 2),
+    						$value->dias,
+    						'$ '.number_format($value->total, 2),
+    						$value->vehiculo,
+    						'Automático',
+    						$value->created_at,
+    						$value->nombre.' '.$value->apellidos,
+    						$value->email,
+    						$value->telefono,
+    						$value->num_licencia,
+    						$value->comentarios
+    					 ));
 
-	        	 	array_push($data, array(
-						$value->num_reserva,
-						$value->lugar_entrega,
-						$value->fecha_entrega,
-						$value->hora_entrega,
-						$value->lugar_devolucion,
-						$value->fecha_devolucion,
-						$value->hora_devolucion,
-						'$ '.number_format($value->tarifa_por_dia, 2),
-						$value->dias,
-						'$ '.number_format($value->total, 2),
-						$value->vehiculo,
-						'Estándard',
-						$value->created_at,
-						$value->nombre.' '.$value->apellidos,
-						$value->email,
-						$value->telefono,
-						$value->num_licencia,
-						$value->comentarios
-					 ));
-	        	 	
-	        	 }
-	           }
+    	        	 } else {
+
+    	        	 	array_push($data, array(
+                    $value->num_reserva,
+        						$value->lugar_entrega,
+                    $value->direccion1_e,
+                    $value->direccion2_e,
+                    $value->colonia_e,
+                    $value->estado_e,
+                    $value->municipio_e,
+                    $value->cp_e,
+                    $value->referencias_e,
+                    $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+        						$value->fecha_entrega,
+        						$value->hora_entrega,
+        						$value->lugar_devolucion,
+                    $value->direccion1_d,
+                    $value->direccion2_d,
+                    $value->colonia_d,
+                    $value->estado_d,
+                    $value->municipio_d,
+                    $value->cp_d,
+                    $value->referencias_d,
+                    $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+        						$value->fecha_devolucion,
+        						$value->hora_devolucion,
+        						'$ '.number_format($value->tarifa_por_dia, 2),
+        						$value->dias,
+        						'$ '.number_format($value->total, 2),
+        						$value->vehiculo,
+        						'Estándard',
+        						$value->created_at,
+        						$value->nombre.' '.$value->apellidos,
+        						$value->email,
+        						$value->telefono,
+        						$value->num_licencia,
+        						$value->comentarios
+        					 ));
+
+        	       }
+        	    }
 
 			$sheet->fromArray($data, null, 'A1', false, false);
 
@@ -1159,7 +1307,7 @@ public function getSelectnuevaoficina(){
 	 	->get();
 
 	return Response::json(array('plazas' => $plazas));
-} 
+}
 
 //Listar plazas
 public function getSelectplazas(){
@@ -1179,7 +1327,7 @@ public function getSelectplazas(){
 	 	->get();
 
 	return Response::json(array('tel' => $tel));
-} 
+}
 
 	//Agregar sucursal
 public function postAgregarsucursal(){
@@ -1824,10 +1972,10 @@ public function postAgregarplaza(){
 public function getEliminarplaza(){
 	$id = Input::get('id');
 
-	//comprobamos que la plaza no este en uso 
+	//comprobamos que la plaza no este en uso
 	$tipo_vehiculo_plaza = DB::table('tipo_vehiculo_plaza')
 									->where('plaza_id', $id)
-									->get(); 
+									->get();
 
 	$oficinas = DB::table('oficina')
 									->where('plaza_id', $id)
@@ -2477,7 +2625,7 @@ public function postAgregarplazavehiculo(){
     $datos = json_decode(Input::get('aInfo'));
 
     for ($i=0; $i < count($datos); $i++) {
-      
+
       $plaza_vehiculo = new TipoVehiculoPlaza;
       $plaza_vehiculo->tipo_vehiculo_id = $datos[$i]->id_v;
       $plaza_vehiculo->plaza_id = $datos[$i]->id_plaza;
@@ -2540,7 +2688,7 @@ public function getEliminarvehiculo(){
 
         return Response::json($id);
 
-    } //end else 
+    } //end else
 
 
 	} else {
@@ -2695,7 +2843,7 @@ public function getActualizarplazadelvehiculo(){
 
   return Response::json($p_n);
 
-} 
+}
 
 	//Actualizar vehiculo
 public function postActualizarvehiculo(){
@@ -2730,7 +2878,7 @@ public function postActualizarvehiculo(){
       $new_v->save();
 
   }  else {
-    
+
   		//actualizamos
   		$new_v = TipoVehiculo::find($id);
   		$new_v->codigo_id = $tipo;

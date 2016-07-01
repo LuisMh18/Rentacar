@@ -16,6 +16,7 @@ return array(
 	*/
 
 	'driver' => 'smtp',
+	//'driver' => 'mail',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ return array(
 	*/
 
 	'port' => 465,
+	//'port' => 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +56,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'chikizz99@gmail.com', 'name' => 'emoTions Rent a Car'),
+	'from' => array('address' => 'lapruebamh@gmail.com', 'name' => 'emoTions Rent a Car'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,6 +69,7 @@ return array(
 	|
 	*/
 
+	//'encryption' => 'tls',
 	'encryption' => 'ssl',
 
 	/*
@@ -80,7 +83,7 @@ return array(
 	|
 	*/
 
-	'username' => 'chikizz99@gmail.com',
+	'username' => 'lapruebamh@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------

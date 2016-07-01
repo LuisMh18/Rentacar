@@ -8,9 +8,9 @@ class RemindersController extends Controller {
 	 * 1.- store password
  	 * @return Response
 	 */
-	
+
 	public function postRemind() {
-		
+
 		switch ($response = Password::remind(Input::only('email'), function($message){
 			$message->subject('Restablecer contraseña.');
 
