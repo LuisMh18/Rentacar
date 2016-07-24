@@ -151,10 +151,12 @@ public function getDatostarifadetalle(){
 			$tarifa = DB::table('tarifa_detalle')
 								->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
 								->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
+                ->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
 								->where('tarifa_id', $id_t)
 								->where('tipo_vehiculo_id', $id_v)
+                //->where('tarifa_detalle.codigo_id', 24)
                 ->where('tarifa_detalle.estatus', 1)
-								->select('tipo_vehiculo.id', 'descripcion', 'foto', 'transmision' ,'tarifa_por_dia', 'cobertura')
+								->select('tipo_vehiculo.id', 'descripcion', 'foto', 'transmision' ,'tarifa_por_dia', 'cobertura', 'descripcion_codigo')
 								->get();
 
 
@@ -194,7 +196,7 @@ public function getComprobardatos(){
 //Registrar reservas
 public function postRegistrareserva(){
 	//Datos de entrega
-	$fecha_entrega = Input::get('fecha_entrega');
+  $fecha_entrega = Input::get('fecha_entrega');
   $id_sucursal_entrega = Input::get('id_sucursal_entrega');
 	$hora_entrega = Input::get('hora_entrega');
 	$lugar_entrega = Input::get('lugar_entrega');
@@ -421,16 +423,73 @@ public function postRegistrareserva(){
                              ->where('reserva.id', $id)
                              ->get();
 
+            $l_entrega = DB::table('reserva')
+                             ->where('reserva.id', $id)
+                             ->pluck('lugar_entrega');
+
+            $l_devolucion = DB::table('reserva')
+                             ->where('reserva.id', $id)
+                             ->pluck('lugar_devolucion');
+
+            $sucursal_entrega = DB::table('sucursal')
+                              ->where('nombre_sucursal', $l_entrega)
+                              ->pluck('gerente_id');
+
+            $sucursal_devolucion = DB::table('sucursal')
+                              ->where('nombre_sucursal', $l_devolucion)
+                              ->pluck('gerente_id');
+
              //obtenemos el emaildel cliente
              $email = DB::table('cliente')
                  ->where('id', $id_cliente)
                  ->pluck('email');
+
+
+            $gerente_sucursal_entrega = DB::table('gerente')
+                              ->where('id', $sucursal_entrega)
+                              ->pluck('email');
+
+            $gerente_sucursal_devolucion = DB::table('gerente')
+                              ->where('id', $sucursal_devolucion)
+                              ->pluck('email');
+
+
+              Mail::send('emails/confirmacion', compact('reserva', 'cliente'), function($message){
+                  $message->from('emotions@hotmail.com', 'emoTions Rent a Car');
+                  $message->to('reserva@emotionsrentacar.com');
+                  $message->subject('Detalle de reserva.');
+              });
 
               Mail::send('emails/confirmacion', compact('reserva', 'cliente'), function($message) use ($email){
                   $message->from('emotions@hotmail.com', 'emoTions Rent a Car');
                   $message->to($email);
                   $message->subject('Detalle de reserva.');
               });
+
+              if($gerente_sucursal_entrega == $gerente_sucursal_devolucion){
+
+              Mail::send('emails/confirmacion', compact('reserva', 'cliente'), function($message) use ($gerente_sucursal_entrega){
+                  $message->from('emotions@hotmail.com', 'emoTions Rent a Car');
+                  $message->to($gerente_sucursal_entrega);
+                  $message->subject('Detalle de reserva.');
+              });
+
+
+              } else {
+
+                Mail::send('emails/confirmacion', compact('reserva', 'cliente'), function($message) use ($gerente_sucursal_entrega){
+                  $message->from('emotions@hotmail.com', 'emoTions Rent a Car');
+                  $message->to($gerente_sucursal_entrega);
+                  $message->subject('Detalle de reserva.');
+              });
+
+                  Mail::send('emails/confirmacion', compact('reserva', 'cliente'), function($message) use ($gerente_sucursal_devolucion){
+                  $message->from('emotions@hotmail.com', 'emoTions Rent a Car');
+                  $message->to($gerente_sucursal_devolucion);
+                  $message->subject('Detalle de reserva.');
+              });
+
+              }
 
 
                 return View::make('confirmacion',
@@ -866,6 +925,47 @@ public function getSelectvehiculos(){
 }
 
 
+//Listar los vehiculos del respectivo codigo
+public function getListarvehiculoscodigo(){
+  $id = Input::get('id');
+
+  if($id == 0){
+    $s = 'vacio';
+    return Response::json(array(
+           's' => $s
+           ));
+  } else {
+
+      $vehiculos = DB::table('tipo_vehiculo')
+      ->select('id', 'descripcion', 'transmision')
+      ->where('estatus', '1')
+      ->where('codigo_id', $id)
+      ->get();
+
+      if(count($vehiculos) == 0){
+
+        $s = 'nohay';
+
+     return Response::json(array(
+           's' => $s
+           ));
+
+      } else {
+        $s = 'hay';
+
+     return Response::json(array(
+           'vehiculos' => $vehiculos,
+           's' => $s
+           ));
+      }
+
+
+  }
+
+
+}
+
+
 
 //Agregar tarifa
 public function postAgregartarifa(){
@@ -891,7 +991,7 @@ public function postAgregartarifa(){
 
 		return Response::json($n_t);
 
-
+  
 }
 
 //Agregar tarifa detalle
@@ -903,6 +1003,7 @@ public function postAgregartarifadetalle(){
 			$tarifa_d = new TarifaDetalle;
 			$tarifa_d->tarifa_id = $datos[$i]->id_tarifa;
 			$tarifa_d->grupo_id = $datos[$i]->id_g;
+      $tarifa_d->codigo_id = $datos[$i]->id_codigo;
 			$tarifa_d->cobertura_id = $datos[$i]->id_cobertura;
 			$tarifa_d->tipo_vehiculo_id = $datos[$i]->id_v;
 		  $tarifa_d->tarifa_por_dia = $datos[$i]->tarifa_por_dia;
@@ -1018,9 +1119,10 @@ public function getListartarifadetalleedit(){
 
 	$t_d = DB::table('tarifa_detalle')
 		 ->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
+     ->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
 		 ->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
 		 ->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
-			->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'tipo_vehiculo.descripcion', 'tarifa_por_dia', 'tarifa_detalle.estatus', 'transmision')
+			->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'tipo_vehiculo.descripcion', 'tarifa_por_dia', 'tarifa_detalle.estatus', 'transmision', 'codigo', 'descripcion_codigo', 'tipo_vehiculo.codigo_id')
 			->where('tarifa_detalle.tarifa_id', '=', $id)
 	 	->get();
 
@@ -1080,7 +1182,8 @@ public function getSelectgruposeditdetalle(){
 	$grupos = DB::table('grupo')
 			->select('id', 'descripcion_grupo')
 			->where('id', '!=', $x)
-	 	->get();
+      ->where('estatus', 1)
+	 	  ->get();
 
 	//lISTAMOS el grupo actual
 	$x_a = DB::table('grupo')
@@ -1144,6 +1247,7 @@ public function getSelectcoberturaseditdetalle(){
 
 public function getSelectvehiculoseditdetalle(){
 	$id = Input::get('id');
+  $id_vehiculo = Input::get('id_vehiculo');
 
 	$x = DB::table('tarifa_detalle')
 						->where('id', $id)
@@ -1152,13 +1256,14 @@ public function getSelectvehiculoseditdetalle(){
 	$vehiculos = DB::table('tipo_vehiculo')
 			->select('id', 'descripcion', 'transmision')
 			->where('id', '!=', $x)
-		 ->where('estatus', '1')
-	 	->get();
+      ->where('codigo_id', '=', $id_vehiculo)
+		  ->where('estatus', '1')
+	 	  ->get();
 
 	$x_a = DB::table('tipo_vehiculo')
 			->select('id', 'descripcion', 'transmision')
 			->where('id', '=', $x)
-	 	->get();
+	   	->get();
 
 	//Listamos la tarifa
 	$tarifa = DB::table('tarifa_detalle')
@@ -1173,10 +1278,12 @@ public function getSelectvehiculoseditdetalle(){
 	 ));
 }
 
+
 	//Agregar nuevo detalle al edira tarifa
 public function getAgregartarifadetalle(){
 	$id_tarifa = Input::get('id_tarifa');
 	$grupo = Input::get('grupo');
+  $codigo = Input::get('codigo');
 	$cobertura = Input::get('cobertura');
 	$vehiculo = Input::get('vehiculo');
 	$tarifa_por_dia = Input::get('tarifa_por_dia');
@@ -1185,6 +1292,7 @@ public function getAgregartarifadetalle(){
 	$t = new TarifaDetalle;
 	$t->tarifa_id = $id_tarifa;
 	$t->grupo_id = $grupo;
+  $t->codigo_id = $codigo;
 	$t->cobertura_id = $cobertura;
 	$t->tipo_vehiculo_id = $vehiculo;
 	$t->tarifa_por_dia = $tarifa_por_dia;
@@ -1194,9 +1302,10 @@ public function getAgregartarifadetalle(){
 	//retornamos
 	$t_n = DB::table('tarifa_detalle')
 			->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
+      ->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
 			->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
 			->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
-			->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'tipo_vehiculo.descripcion', 'tarifa_por_dia', 'tarifa_detalle.estatus', 'transmision')
+			->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'tipo_vehiculo.descripcion', 'tarifa_por_dia', 'tarifa_detalle.estatus', 'transmision', 'codigo', 'descripcion_codigo', 'tipo_vehiculo.codigo_id')
 			->where('tarifa_detalle.id', $t['id'])
 			->first();
 
@@ -1210,6 +1319,7 @@ public function getActualizardetalle(){
 	$id = Input::get('id');
 	$id_tarifa = Input::get('id_tarifa');
 	$grupo = Input::get('grupo');
+  $codigo = Input::get('codigo');
 	$cobertura = Input::get('cobertura');
 	$vehiculo = Input::get('vehiculo');
 	$tarifa_por_dia = Input::get('tarifa_por_dia');
@@ -1218,6 +1328,7 @@ public function getActualizardetalle(){
 	$t = TarifaDetalle::find($id);
 	$t->tarifa_id = $id_tarifa;
 	$t->grupo_id = $grupo;
+  $t->codigo_id = $codigo;
 	$t->cobertura_id = $cobertura;
 	$t->tipo_vehiculo_id = $vehiculo;
 	$t->tarifa_por_dia = $tarifa_por_dia;
@@ -1227,9 +1338,10 @@ public function getActualizardetalle(){
 	//retornamos
 	$t_n = DB::table('tarifa_detalle')
 				->join('grupo', 'tarifa_detalle.grupo_id', '=', 'grupo.id')
+        ->join('codigo', 'tarifa_detalle.codigo_id', '=', 'codigo.id')
 				->join('cobertura', 'tarifa_detalle.cobertura_id', '=', 'cobertura.id')
 				->join('tipo_vehiculo', 'tarifa_detalle.tipo_vehiculo_id', '=', 'tipo_vehiculo.id')
-				->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'tipo_vehiculo.descripcion', 'tarifa_por_dia', 'tarifa_detalle.estatus', 'transmision')
+				->select('tarifa_detalle.id', 'descripcion_grupo', 'cobertura', 'tipo_vehiculo.descripcion', 'tarifa_por_dia', 'tarifa_detalle.estatus', 'transmision', 'descripcion_codigo', 'codigo', 'tipo_vehiculo.codigo_id')
 				->where('tarifa_detalle.id', $id)
 				->first();
 
@@ -1263,6 +1375,119 @@ public function getActualizartarifa(){
 
 }
 
+//obtener datos para duplicar tarifa
+public function getObtenerdatostarifa(){
+  $id = Input::get('id');
+  
+  //obtenemos los datos de la tarifa
+  $tarifa = DB::table('tarifa')
+        ->where('id', $id)
+        ->first();
+
+  //obtenemos los datos de la tarifa detalle
+  $tarifa_detalle = DB::table('tarifa_detalle')
+        ->where('tarifa_id', $id)
+        ->get();
+
+  $numero_tarifa_detalle = DB::table('tarifa_detalle')
+        ->where('tarifa_id', $id)
+        ->count();
+
+
+  //registramos la tarifa
+    $new_t = new Tarifa;
+    $new_t->oficina_id = $tarifa->oficina_id;
+    $new_t->fecha_inicio = $tarifa->fecha_inicio;
+    $new_t->fecha_fin = $tarifa->fecha_fin;
+    $new_t->estatus = $tarifa->estatus;
+    $new_t->save();
+
+
+    $id_tarifa = $new_t['id'];
+
+  return Response::json(array(
+                   'id_tarifa' => $id_tarifa,
+                   'numero_tarifa_detalle' => $numero_tarifa_detalle,
+                   'tarifa_detalle' => $tarifa_detalle
+                   ));
+ 
+
+}
+
+
+//Agregar tarifa detalle
+public function postDuplicartarifadetalle(){
+    
+  $tarifa_id = Input::get('tarifa_id');
+  $grupo_id = Input::get('grupo_id');
+  $codigo_id = Input::get('codigo_id');
+  $cobertura_id = Input::get('cobertura_id');
+  $tipo_vehiculo_id = Input::get('tipo_vehiculo_id');
+  $tarifa_por_dia = Input::get('tarifa_por_dia');
+  $estatus = Input::get('estatus');
+   
+
+  $tarifa_d = new TarifaDetalle;
+  $tarifa_d->tarifa_id = $tarifa_id;
+  $tarifa_d->grupo_id = $grupo_id;
+  $tarifa_d->codigo_id = $codigo_id;
+  $tarifa_d->cobertura_id = $cobertura_id;
+  $tarifa_d->tipo_vehiculo_id = $tipo_vehiculo_id;
+  $tarifa_d->tarifa_por_dia = $tarifa_por_dia;
+  $tarifa_d->estatus = $estatus;
+  $tarifa_d->save();
+
+    
+
+}
+
+
+//Listar oficinas para duplicar
+public function getSelectoficinaseditduplicar(){
+  $id = Input::get('id');
+
+
+  //Listamos las oficinas
+  $oficinas = DB::table('oficina')
+      ->select('id', 'nombre_oficina')
+       ->get();
+
+
+  return Response::json(array(
+      'oficinas' => $oficinas
+   ));
+}
+
+
+//retornar la nueva tarifa duplicada
+public function getAgregarnuevatarifaduplicada(){
+
+  $id = Input::get('id');
+  $oficina = Input::get('oficina');
+  $fehca_inicio = Input::get('fehca_inicio');
+  $fecha_fin = Input::get('fecha_fin');
+  $estatus = Input::get('estatus');
+
+  $t = Tarifa::find($id);
+  $t->oficina_id = $oficina;
+  $t->fecha_inicio = $fehca_inicio;
+  $t->fecha_fin = $fecha_fin;
+  $t->estatus = $estatus;
+  $t->save();
+
+  //retornamos
+    $tarifa =DB::table('tarifa')
+   ->join('oficina', 'tarifa.oficina_id', '=', 'oficina.id')
+      ->select('tarifa.id', 'nombre_oficina', 'fecha_inicio', 'fecha_fin', 'estatus')
+     ->where('tarifa.id', $id)
+    ->first();
+
+
+  return Response::json($tarifa);
+
+
+
+}
 
 
 
@@ -2618,7 +2843,7 @@ public function postAgregarvehiculo(){
 		return Response::json($vehiculo);
 
 
-}
+} 
 
 //Agregar las plazas del vehiculo
 public function postAgregarplazavehiculo(){

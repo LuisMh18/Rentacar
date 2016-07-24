@@ -655,7 +655,7 @@
 
 											for(var i = 0; i < l.length; i++) {
 																		tabla_a.fnAddData([
-																					'<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].descripcion_codigo,
+																					'<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo + ' ' +l[i].descripcion_codigo,
 																					'<span class="text-info txt-escondido">Tipo: </span>'+l[i].descripcion,
 													                '<span class="text-info txt-escondido">Transmisión: </span><span class="t_'+l[i].transmision+'"></span>',
 																					'<span id="'+l[i].id+'" class="foto-p">Ver foto</span>',
@@ -794,7 +794,7 @@
 															option += '<option value="0">-- Seleccione --</option>';
               for(datos in p.codigos){
 
-																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].descripcion_codigo+'</option>';
+																			option += '<option value="'+p.codigos[datos].id+'">'+p.codigos[datos].codigo +' '+p.codigos[datos].descripcion_codigo+'</option>';
 																}
 
 																s.append(option);
@@ -843,7 +843,7 @@
 								processData: false, 
 								success: function(p){
 										nueva_fila = '<tr id="fila_'+p.id+'">'+
-												'<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.descripcion_codigo+'</td>'+
+												'<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo +' '+ p.descripcion_codigo+'</td>'+
 											 '<td><span class="text-info txt-escondido">Tipo: </span>'+p.descripcion+'</td>'+
 											 '<td><span class="text-info txt-escondido">Transmisión: </span><span class="t_'+p.transmision+'"></span></td>'+
 												'<td><span id="'+p.id+'" class="foto-p">Ver foto</span></td>'+
@@ -1141,10 +1141,10 @@ function registrarplazasdelvehiculo(id){
 								     	option = "";
               s = $('#tipo-edit-select');
 
-															option += '<option value="'+e.x_a[0].id+'" selected>'+e.x_a[0].descripcion_codigo+'</option>';
+															option += '<option value="'+e.x_a[0].id+'" selected>'+e.x_a[0].codigo +' '+ e.x_a[0].descripcion_codigo+'</option>';
               for(datos in e.codigos){
 
-																			option += '<option value="'+e.codigos[datos].id+'">'+e.codigos[datos].descripcion_codigo +'</option>';
+																			option += '<option value="'+e.codigos[datos].id+'">'+e.codigos[datos].codigo +' '+ e.codigos[datos].descripcion_codigo +'</option>';
 																}
 
 																s.append(option);
@@ -1490,7 +1490,7 @@ $(document).on('click', '#inp-check_edit', function(){
 
 									//Bolvemos a construir la fila
         $('#fila_'+p.id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="text-info txt-escondido">Codigó: </span><span class="hidden">'+p.created_at+'</span>'+p.descripcion_codigo+'</td>'+
+                '<td><span class="text-info txt-escondido">Codigó: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo +' '+ p.descripcion_codigo+'</td>'+
 								'<td><span class="text-info txt-escondido">Tipo: </span>'+p.descripcion+'</td>'+
 								'<td><span class="text-info txt-escondido">Transmisión: </span><span class="t_'+p.transmision+'"></span></td>'+
                 '<td><span id="'+p.id+'" class="foto-p">Ver foto</span></td>'+

@@ -93,6 +93,9 @@
 					<tr>
 							<td>Vehículo: <span class="rfc">{{ $r->vehiculo }}</span> <span>• </span>Transmisión: @if($r->transmision == 1) Automático @else Estándard @endif <span>• </span>Tarifa por día: ${{ number_format($r->tarifa_por_dia, 2) }} <span>• </span>Días: {{ $r->dias }}<span>• </span> Total: ${{ number_format($r->tarifa_por_dia * $r->dias, 2) }} </td>
 					</tr>
+					<tr>
+							<td>“Incluye Renta, KM Libre, Coberturas e IVA”.</td>
+					</tr>
 
 				<tr>
 						<td>Lugar de entrega: {{ $r->lugar_entrega }}<span>• </span>Dirección 1: {{ $r->direccion1_e }} @if($r->direccion2_e == '') @else <span>• </span>Dirección 2: {{ $r->direccion2_e }} @endif <span>• </span>Colonia: {{ $r->colonia_e }} <span>• </span>Estado: {{ $r->estado_e }} <span>• </span>Municipio: {{ $r->municipio_e }} <span>• </span>CP: {{ $r->cp_e }} @if($r->referencias_e == '') @else <span>• </span>Referencias: {{ $r->referencias_e }} @endif <span>• </span>Fecha de entrega: {{ $r->fecha_entrega }}<span>• </span>Hora de entrega: {{ $r->hora_entrega }} @if($r->telefono1_e == '') @else <span>• </span>Teléfono: {{ $r->telefono1_e }} @endif

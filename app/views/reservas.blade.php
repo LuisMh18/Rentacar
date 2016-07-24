@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
 	<title>Reservaciones</title>
 	{{ HTML::style('css/bootstrap.min.css') }}
 	{{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
@@ -42,7 +43,7 @@
 			color:#fff;
 			padding:.3em .5em;
 			border-radius:3px;
-			width:200px;
+			width:80%;
 			border:1px solid #ebccd1;
 			display:none;
 		}
@@ -124,8 +125,8 @@
 								<select class="selectpicker" data-size="5" id="select-sucursal-entrega">
 								  <option value="0" selected>-- Seleccione --</option>
 									 @foreach($sucursal as $su)
-            <option value="{{ $su->id }}">Sucursal {{ $su->nombre_sucursal }}</option>
-          @endforeach
+							            <option value="{{ $su->id }}" id="{{ $su->gerente_id }}">Sucursal {{ $su->nombre_sucursal }}</option>
+							          @endforeach
 									</select>
 							</div><!-- end dia_entrega -->
 
@@ -190,8 +191,8 @@
 								<select class="selectpicker" data-size="5" id="select-sucursal-devolucion">
 								  <option value="0" selected>-- Seleccione --</option>
 									 @foreach($sucursal as $su)
-            <option value="{{ $su->id }}">Sucursal {{ $su->nombre_sucursal }}</option>
-          @endforeach
+						            <option value="{{ $su->id }}" id="{{ $su->gerente_id }}">Sucursal {{ $su->nombre_sucursal }}</option>
+						          @endforeach
 									</select>
 							</div><!-- end dia_entrega -->
 
@@ -230,7 +231,7 @@
 							<div class="div-img-gif">
 								<img src="/img/Cargandocc.gif" alt="Cargando" width="50px"> <span class="txt-cargando-vehiculos">Espere un momento por favor..</span>
 							</div>
-								<span class="txt-sin-datos">No hay resultados..</span>
+								<span class="txt-sin-datos">No contamos con el vehículo solicitado en las fechas seleccionadas.</span>
 						 <div class="oculto"></div><!-- Div para mostrar la informacion de los vehiculos -->
 
 						</article>
@@ -375,11 +376,40 @@
 		});
 
 
+			/*console.log(moment().startOf('day').fromNow());
+
+			console.log(moment().format('HH:mm:ss'));
+
+			console.log(moment().add(1, 'days'));
+
+			var dateB = moment('2014-11-13');
+			var dateC = moment('2014-11-11');
+			 
+			console.log('Difference is ', dateB.diff(dateC, 'hours'), 'Horas');
+
+			console.log('Difference is ', dateB.diff(dateC, 'days'), 'days');
+
+
+			var dateD = moment('2014-11-13');
+			var dateE = moment('2014-11-11');
+			 
+			console.log('La diferencia es:  ', dateD.diff(dateE, 'hours'), 'Horas');*/
+
+			var breakfast = moment('8:32','HH:mm');
+			console.log(breakfast);
+            var lunch = moment('12:52','HH:mm');
+            console.log(lunch);
+
+
+
+
+
+
 				$(function () {
 
 								$('#datetimepicker1').datetimepicker({
 												format: 'YYYY-MM-DD',
-												minDate: moment()
+												minDate: moment().add(1, 'days') //obtenemos la fecha con un dia despues del actual
 
 								});
 
@@ -388,29 +418,29 @@
 				$(function () {
 								$('#datetimepicker2').datetimepicker({
 									format: 'YYYY-MM-DD',
-									minDate: moment()
+									minDate: moment().add(1, 'days')
 								});
 				});
 
 				$(function () {
 								$('#datetimepicker3').datetimepicker({
 									format: 'YYYY-MM-DD',
-									minDate: moment()
+									minDate: moment().add(1, 'days')
 								});
 				});
 
 			$(function () {
 								$('#datetimepicker4').datetimepicker({
 									format: 'YYYY-MM-DD',
-									minDate: moment()
+									minDate: moment().add(1, 'days')
 								});
 				});
 
 
 			$("#datetimepicker1").on("dp.change", function (e) {
+				$('.txt-sin-datos').hide();
 				 tipo = $('#tipo').val();
 				 codigo = $('#idcodigo').attr('value');
-
 					if(codigo == undefined){
 
 					} else {
@@ -420,6 +450,7 @@
 			});
 
 			$("#datetimepicker3").on("dp.change", function (e) {
+				$('.txt-sin-datos').hide();
 				 tipo = $('#tipo').val();
 				 codigo = $('#idcodigo').attr('value');
 
@@ -464,8 +495,25 @@
 								});
 				});
 
+				/*$("#datetimepicker_hora2").on("dp.change", function (e) {
+					
+									hora_entrega = $('#datetimepicker_hora2').val();
+				                   console.log(hora_entrega);
+
+			    });
+
+
+			    $("#datetimepicker_hora4").on("dp.change", function (e) {
+					
+									hora_devolucion = $('#datetimepicker_hora4').val();
+				                   console.log(hora_devolucion);
+
+			    });*/
+
+
 
 				$(document).on('change', '#select-sucursal-entrega', function(){
+					$('.txt-sin-datos').hide();
 					id = $(this).val();
 					$('.m_d_telefonos').html('');
 					opcion2 =	$('#select-sucursal-devolucion option:selected').attr('value');
@@ -564,6 +612,7 @@
 		$(document).on('change', '#select-sucursal-devolucion', function(){
 					id = $(this).val();
 					$('.m_d_telefonos_d').html('');
+
 
 					opcion1 =	$('#select-sucursal-entrega option:selected').attr('value');
 					if(opcion1 == 0){
@@ -681,6 +730,7 @@
 
 		$(document).on('click', 'input:radio[name=codigo]', function(){
 			 codigo = $(this).attr('value');
+			 $('.txt-sin-datos').hide();
 			 $(".reservar").hide();
 			 $('#idcodigo').attr('value', codigo);
 			 compararfechas(codigo);
@@ -690,7 +740,6 @@
 
 
 	function compararfechas(codigo){
-
 		$('.oculto').html('');
 
 		tipo_v = codigo;
@@ -715,19 +764,19 @@
 
 
 							$('.div-img-gif').show();
-							$('.txt-sin-datos').hide();
 							$.ajax({
 									url:  "/admin/compararfechas",
 									type: "GET",
 									data:{lugar_entrega: lugar_entrega},
 									success: function(comparar){
-
+											console.log(comparar.f);
 											if(comparar.f == ''){
 												$('.txt-sin-datos').show();
-											  $('.div-img-gif').hide();
-											  $('.form-ped').hide();
+											    $('.div-img-gif').hide();
+											    $('.form-ped').hide();
+											  //console.log('No hay datos en la sucursal');
 											} else {
-
+													//console.log('Si hay datos en la sucursal');
 												for(datos in comparar.f){
 
 															if(comparar.f[datos].fecha_fin <= fecha_entrega){
@@ -779,8 +828,10 @@
 											$('.txt-sin-datos').show();
 											$('.div-img-gif').hide();
 											$('.form-ped').hide();
+											//console.log('- no hay vehiculos en la sucursal con las fechas elegidas');
 										} else {
-
+											//console.log('- Si hay vehiculos en la sucursal con las fechas elegidas');
+												//console.log(v.vehiculo.length);
 												for(datos in v.vehiculo){
 
 														id_v = v.vehiculo[datos].id;
@@ -826,16 +877,17 @@
 								type: "GET",
 								data:{id_t: id_t, id_v: id_v },
 								success: function(t){
+									console.log(t);
 
-									if(t.t == 0){
+									//if(t.t == 0){
 
-										  //$('.txt-sin-datos').text('No hay resultados..');
-											$('.div-img-gif').hide();
-											//$('.form-ped').hide();
+										 /* $('.txt-sin-datos').show();
+										  $('.div-img-gif').hide();
+										  $('.form-ped').hide();*/
 
-									} else {
+									//} else {
 
-								$('.txt-sin-datos').hide();
+								//$('.txt-sin-datos').hide();
 
 		           			 $('#reservar2').hide();
 		           			 $('#reservar').show();
@@ -844,7 +896,7 @@
 										  div = $('.oculto');
 											contenido = "";
 
-											$('.div-img-gif').hide();
+											//$('.div-img-gif').hide();
 
 											for(datos in t.tarifa){
 
@@ -863,6 +915,7 @@
 																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
 																	                '<span>N° de días seleccionados: '+dias+'</span>'+
 																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span class="text-info">“Incluye Renta, KM Libre, Coberturas e IVA”.</span>'+
 																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
 																					'<div>'+
 																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
@@ -885,6 +938,7 @@
 																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
 																	                '<span>N° de días seleccionados: '+dias+'</span>'+
 																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span class="text-info">“Incluye Renta, KM Libre, Coberturas e IVA”.</span>'+
 																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
 																					'<div>'+
 																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
@@ -911,6 +965,7 @@
 																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
 																	                '<span>N° de días seleccionados: '+dias+'</span>'+
 																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span class="text-info">“Incluye Renta, KM Libre, Coberturas e IVA”.</span>'+
 																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
 																					'<div>'+
 																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
@@ -933,6 +988,7 @@
 																	                '<span>'+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * 7)+' x semana</span>'+
 																	                '<span>N° de días seleccionados: '+dias+'</span>'+
 																	                '<span class="text-success">Total: '+accounting.formatMoney(t.tarifa[datos].tarifa_por_dia * dias)+'</span>'+
+																	                '<span class="text-info">“Incluye Renta, KM Libre, Coberturas e IVA”.</span>'+
 																	                '<span>'+t.tarifa[datos].cobertura+'</span>'+
 																					'<div>'+
 																						'<label class="radio-v text-info">Seleccionar este vehículo:'+
@@ -955,8 +1011,19 @@
 
 													div.append(contenido);
 
-												$('.form-ped').slideDown(400);
-									}
+
+												if($('.oculto').html() == ''){
+													  $('.txt-sin-datos').show();
+													  $('.div-img-gif').hide();
+													  $('.form-ped').hide();
+													
+												} else {
+													  $('.txt-sin-datos').hide();
+													  $('.div-img-gif').hide();
+													  //$('.form-ped').show();
+												      $('.form-ped').slideDown(400);
+												}
+									//}
 
 
 
@@ -1298,7 +1365,7 @@ $(document).on('click', '#reservar', function(){
 $(document).on('click', '#confirm-regist-reserva', function(){
 	//Datos de entrega
 	 fecha_entrega = $('#datetimepicker2').val();
-		hora_entrega = $('#datetimepicker_hora2').val();
+	 hora_entrega = $('#datetimepicker_hora2').val();
 	 lugar_entrega = $('#select-sucursal-entrega option:selected').attr('value');
 	 direccion1 = $('#direccion1').text();
 	 direccion2 = $('#direccion2').text();
@@ -1357,6 +1424,7 @@ $(document).on('click', '#confirm-regist-reserva', function(){
 	 //Dias, diferencia entre las dos d¿fechas
 	var dateB = moment(fecha_entrega);
  var dateC = moment(fecha_devolucion);
+
 
 //console.log('Difference is ', dateB.diff(dateC, 'days'), 'days');
 console.log(dateB.diff(dateB, 'days'));

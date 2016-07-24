@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `rentacar`
 --
-CREATE DATABASE rentacar;
-USE rentacar;
+CREATE DATABASE rentacar2;
+USE rentacar2;
 -- --------------------------------------------------------
 
 --
@@ -320,6 +320,7 @@ CREATE TABLE `tarifa_detalle` (
   `id` int(11) NOT NULL,
   `tarifa_id` int(11) NOT NULL,
   `grupo_id` int(11) NOT NULL,
+  `codigo_id` int(11) NOT NULL,
   `cobertura_id` int(11) NOT NULL,
   `tipo_vehiculo_id` int(11) NOT NULL,
   `tarifa_por_dia` double DEFAULT NULL,
@@ -529,6 +530,7 @@ ALTER TABLE `tarifa_detalle`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_tarifa_detalle_tarifa1_idx` (`tarifa_id`),
   ADD KEY `fk_tarifa_detalle_grupo1_idx` (`grupo_id`),
+  ADD KEY `fk_tarifa_detalle_codigo1_idx` (`codigo_id`),
   ADD KEY `fk_tarifa_detalle_cobertura1_idx` (`cobertura_id`),
   ADD KEY `fk_tarifa_detalle_tipo_vehiculo1_idx` (`tipo_vehiculo_id`);
 

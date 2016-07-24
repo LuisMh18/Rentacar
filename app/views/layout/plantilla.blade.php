@@ -2,26 +2,27 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+
 	@yield('title')
-	
+
 	@section('scripts')
 		{{ HTML::style('css/bootstrap.min.css') }}
 		{{ HTML::style('css/estilos.css') }}
 		{{ HTML::Script('js/jquery.js') }}
 		{{ HTML::Script('js/bootstrap.min.js') }}
 	@show
-	
+
   <script>
         $(document).ready(function(){
-									
+
           $("#acordeon h3").click(function(){
                $("#acordeon ul ul").slideUp();
                 if(!$(this).next().is(":visible")){
                   $(this).next().slideDown();
                 }
           })
-										
+
 										$("#acordeon .t-catalogos").click(function(){
 											    $('.flechita1').addClass('glyphicon glyphicon-menu-down');
 											    $('.flechita2').removeClass('glyphicon glyphicon-menu-down');
@@ -29,7 +30,7 @@
 										     $('.flechita2').addClass('glyphicon glyphicon-menu-right');
 											    $('.flechita3').addClass('glyphicon glyphicon-menu-right');
           })
-										
+
 										$("#acordeon .t-config").click(function(){
 											    $('.flechita2').addClass('glyphicon glyphicon-menu-down');
 											    $('.flechita1').removeClass('glyphicon glyphicon-menu-down');
@@ -37,7 +38,7 @@
 										     $('.flechita1').addClass('glyphicon glyphicon-menu-right');
 											    $('.flechita3').addClass('glyphicon glyphicon-menu-right');
           })
-										
+
 										$("#acordeon .t-reservas").click(function(){
 											    $('.flechita3', this).addClass('glyphicon glyphicon-menu-down');
 											    $('.flechita1').removeClass('glyphicon glyphicon-menu-down');
@@ -45,12 +46,12 @@
 										     $('.flechita1').addClass('glyphicon glyphicon-menu-right');
 											    $('.flechita2').addClass('glyphicon glyphicon-menu-right');
           })
-										
+
 										contador = 1;
-										
+
 										$(document).on('click', '#mostrar-menu', function(){
 												// $('.div_acordeon').toggle(500);
-											
+
 											if(contador == 1){
 												 $('.div_acordeon').animate({
 														left: '0'
@@ -62,18 +63,18 @@
 														left: '-100%'
 													});
 											}
-											
+
 										});
-										
+
       });
     </script>
-	
+
 </head>
 <body class="body_dashboard">
 
 <!-- ///// Menu para dispositivos moviles /////// -->
 
-	<aside class="div_acordeon-md"> 
+	<aside class="div_acordeon-md">
    <div class="logo_em">
    	<img src="/img/logo.png" alt="">
    </div>
@@ -132,9 +133,9 @@
     </ul>
   </div><!-- END DIV ACORDEON-->
 	</aside>
-	
+
 	<!-- ///// Menu para dispositivos grandes /////// -->
-		<aside class="div_acordeon"> 
+		<aside class="div_acordeon">
    <div class="logo_em">
    	<img src="/img/logo.png" alt="">
    </div>
@@ -193,19 +194,19 @@
     </ul>
   </div><!-- END DIV ACORDEON-->
 	</aside>
-	
-	
-	
+
+
+
 <div class="principal_dashboard">
 
 	<div class="col-xs-12 header_dashboard">
-      
+
 								<h3 class="text-align-left titular_seccion"></h3><!-- Titulo que aparece en el header dependiendo de la seccion-->
 							<div class="c-header">
 		      <div class="menu_admin">
           <ul class="nav navbar-nav pull-right menu-sm">
               <li id="fat-menu" class="dropdown">
-                 
+
                   <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="glyphicon glyphicon-user"></span>
                       Bienvenido: {{ Auth::user()->usuario }}
@@ -219,45 +220,45 @@
               </li>
 
           </ul>
-          
+
       </div><!--/.navbar-collapse -->
       <div class="menu_admin2">
 
                   <a href="/logout" title="Cerrar Sesión">
                       <span class="glyphicon glyphicon-off"></span>
                   </a>
-          
+
       </div><!--/.navbar-collapse -->
-      
+
           <div class="menu-oculto">
           	<span id="mostrar-menu" class="glyphicon glyphicon-th-list"></span>
           </div>
       </div>
-		
+
 	</div>
-		
+
  <div class="section_dashboard">
 			<div class="contenido_dashboard">
-				
+
 				<div class="seccion_1">
-			  
+
 				  @yield('content')
-					
+
 				</div>
-			
+
 			</div>
 
 				<footer class="f_admin">
 					<small>&copy; Copyright: Todos los derechos reservados. Emotions Rent a Car</small>
 			</footer>
  </div>
-	
+
 
 </div><!-- END principal_dashboard -->
-	
-	
+
+
 		@section('mis_scripts')	@show
-		
-		
+
+
 </body>
 </html>

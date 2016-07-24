@@ -14,14 +14,14 @@
 Route::get('/', function() {
 
 			$sucursal = DB::table('sucursal')
-													->select('id', 'nombre_sucursal')
-													->orderBy('nombre_sucursal', 'ASC')
-													->get();
+								->select('id', 'nombre_sucursal', 'gerente_id')
+								->orderBy('nombre_sucursal', 'ASC')
+								->get();
 
 
 	return View::make('reservas', 	compact(
-																							  'sucursal'
-																							));
+										  'sucursal'
+										));
 });
 
 
