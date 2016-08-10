@@ -152,7 +152,7 @@
 				  @foreach($reserva as $r)
 
 					<div class="c3 img-ve datos-del-vehiculo c-d-c" style="text-align:center; overflow:hidden;">
-							<img id="imagen-ve" src="<?php echo $message->embed('img/vehiculos/'.$r->foto) ?>" alt="Foto del vehículo">
+							<img id="imagen-ve" style="max-width:200px;" width="200px" src="<?php echo $message->embed('img/vehiculos/'.$r->foto) ?>" alt="Foto del vehículo">
 					</div>
 					<div class="datos-del-vehiculo datos-del-vehiculo-2" style=" width:270px!important">
 
