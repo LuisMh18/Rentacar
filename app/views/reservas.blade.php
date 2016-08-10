@@ -125,7 +125,7 @@
 								<select class="selectpicker" data-size="5" id="select-sucursal-entrega">
 								  <option value="0" selected>-- Seleccione --</option>
 									 @foreach($sucursal as $su)
-							            <option value="{{ $su->id }}" id="{{ $su->gerente_id }}">Sucursal {{ $su->nombre_sucursal }}</option>
+							            <option value="{{ $su->id }}">Sucursal {{ $su->nombre_sucursal }}</option>
 							          @endforeach
 									</select>
 							</div><!-- end dia_entrega -->
