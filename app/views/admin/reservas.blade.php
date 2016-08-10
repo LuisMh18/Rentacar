@@ -82,6 +82,13 @@
 
   .datos-del-vehiculo-2{
     padding-left:20px!
+
+  } 
+
+  .form3 .c3 {
+    max-width: 50%;
+    min-width: 50%;
+}
   
 </style>
 
@@ -164,7 +171,7 @@
 
         <div class="contenedor-datos-vehiculo form3 tipo-transmision">
 
-          <div class="c3 img-ve">
+          <div class="c3 img-ve" style="text-align:center; margin-top:10px;">
               <img width="200px" id="p_fo" alt="Foto del vehículo">
           </div>
           <div class="datos-del-vehiculo datos-del-vehiculo-2">

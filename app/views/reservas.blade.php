@@ -905,7 +905,7 @@
 													if(t.tarifa[datos].transmision == 1){
 
 														contenido += '<div class="form3 tipo-transmision">'+
-																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																			'<div class="c3"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo" style="text-align:center; padding-top:50px;">'+
 																					'<img width="200px" src="img/Imagen_no_disponible.PNG" alt="Imagen no disponible">'+
 																			'</div>'+
 																			'<div class="c4">'+
@@ -928,7 +928,7 @@
 													} else {
 
 														contenido += '<div class="form3 tipo-transmision">'+
-																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo" style="text-align:center;padding-top:50px;">'+
 																					'<img width="200px" src="img/Imagen_no_disponible.PNG" alt="Imagen no disponible">'+
 																			'</div>'+
 																			'<div class="c4">'+
@@ -955,7 +955,7 @@
 													if(t.tarifa[datos].transmision == 1){
 
 														contenido += '<div class="form3 tipo-transmision">'+
-																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo" style="text-align:center;padding-top:50px;">'+
 																					'<img width="200px" src="img/vehiculos/'+t.tarifa[datos].foto+'" alt="Imagen del vehiculo">'+
 																			'</div>'+
 																			'<div class="c4">'+
@@ -978,7 +978,7 @@
 													} else {
 
 														contenido += '<div class="form3 tipo-transmision">'+
-																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo">'+
+																			'<div class="c3 img-ve"  value="'+t.tarifa[datos].id+'" title="Seleccionar este vehículo" style="text-align:center;padding-top:50px;">'+
 																					'<img width="200px" src="img/vehiculos/'+t.tarifa[datos].foto+'" alt="Imagen del vehiculo">'+
 																			'</div>'+
 																			'<div class="c4">'+

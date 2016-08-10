@@ -169,7 +169,7 @@
 				<div class="contenedor-datos-vehiculo form3 tipo-transmision" >
 				  @foreach($reserva as $r)
 
-					<div class="c3 img-ve datos-del-vehiculo c-d-c">
+					<div class="c3 img-ve datos-del-vehiculo c-d-c" style="text-align:center;margin-top:20px;">
 							<img width="200px" src="img/vehiculos/{{ $r->foto }}" alt="Foto del vehículo">
 					</div>
 					<div class="datos-del-vehiculo datos-del-vehiculo-2" style=" width:270px!important">
@@ -184,6 +184,9 @@
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Total:</span> ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} <br>
 						<hr class="hr-oculto">
+						<span class="f-vehiculo">“Incluye Renta, KM Libre, Coberturas e IVA”.</span> <br> 
+						<hr class="hr-oculto">
+
 						
 					</div>
 

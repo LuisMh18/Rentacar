@@ -65,6 +65,11 @@
 	.datos-del-vehiculo-2{
 		padding-left:20px!important;
 	}
+
+	.form3 .c3 {
+    max-width: 50%;
+    min-width: 50%;
+}
 </style>
 <body>
 	<div class="container section">
@@ -146,14 +151,14 @@
 				<div class="contenedor-datos-vehiculo form3 tipo-transmision">
 				  @foreach($reserva as $r)
 
-					<div class="c3 img-ve">
+					<div class="c3 img-ve" style="text-align:center">
 							<img width="200px" src="/img/vehiculos/{{ $r->foto }}" alt="Foto del vehículo">
 					</div>
 					<div class="datos-del-vehiculo datos-del-vehiculo-2">
 
 						<span class="f-vehiculo">Vehículo:</span> {{ $r->vehiculo }} <br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">Transmisión:</span> @if($r->transmision == 1) Automático @else Estándard @endif <br>
+						<span class="f-vehiculo">Transmisión:</span> @if($r->transmision == 1) Automático @else Estándard @endif <br> 
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Tarifa por día:</span> ${{ number_format($r->tarifa_por_dia, 2) }} <br>
 						<hr class="hr-oculto">
@@ -161,6 +166,9 @@
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Total:</span> ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} <br>
 						<hr class="hr-oculto">
+						<span class="f-vehiculo">“Incluye Renta, KM Libre, Coberturas e IVA”.</span> <br> 
+						<hr class="hr-oculto">
+
 						
 					</div>
 
