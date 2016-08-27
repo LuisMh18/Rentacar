@@ -245,7 +245,7 @@
 
 						<span class="f-vehiculo">{{ $r->direccion1_d }} </span><br>
 						<hr class="hr-oculto">
-						@if($r->direccion2_e == '') @else <span class="f-vehiculo">{{ $r->direccion2_d }} </span><br> <hr class="hr-oculto">@endif 
+						@if($r->direccion2_d == '') @else <span class="f-vehiculo">{{ $r->direccion2_d }} </span><br> <hr class="hr-oculto">@endif 
 
 						<span class="f-vehiculo">{{ $r->colonia_d }} </span><br>
 						<hr class="hr-oculto">
