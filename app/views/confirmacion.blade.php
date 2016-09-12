@@ -162,9 +162,9 @@
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Tarifa por día:</span> ${{ number_format($r->tarifa_por_dia, 2) }} <br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">Días de reservación:</span> {{ $r->dias }} <br>
+						<span class="f-vehiculo">Días de reservación:</span>@if($r->diamas == 1) {{ $r->dias + 1 }} @else {{ $r->dias }} @endif<br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">Total:</span> ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} <br>
+						<span class="f-vehiculo">Total:</span>@if($r->diamas == 1) ${{ number_format($r->dias * $r->tarifa_por_dia + $r->tarifa_por_dia, 2) }} @else ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} @endif<br>
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">“Incluye Renta, KM Libre, Coberturas e IVA”.</span> <br> 
 						<hr class="hr-oculto">
@@ -186,7 +186,7 @@
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Fecha: </span>{{ $r->fecha_entrega }}<br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">Hora: </span>{{ $r->hora_entrega }}
+						<span class="f-vehiculo">Hora: </span> <span id="_hora_entrega">{{ $r->hora_entrega }}</span>
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Lugar: </span>{{ $r->lugar_entrega }} <br>
 						<hr class="hr-oculto">
@@ -229,7 +229,7 @@
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Fecha: </span>{{ $r->fecha_devolucion }}<br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">Hora: </span>{{ $r->hora_devolucion }}
+						<span class="f-vehiculo">Hora: </span> <span id="_hora_devolucion">{{ $r->hora_devolucion }}</span>
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Lugar: </span>{{ $r->lugar_devolucion }} <br>
 						<hr class="hr-oculto">
@@ -322,6 +322,17 @@
 
 
 	<script>
+
+	$(document).ready(function(){
+		compararhora();
+	});
+
+	function compararhora(){
+		hora_entrega = $('#_hora_entrega').text();
+		console.log("Hora de entrega: " + hora_entrega);
+		hora_devolucion = $('#_hora_devolucion').text();
+		console.log("Hora de devolucion: " + hora_devolucion);
+	}
 
 	$(document).on('click', '.regresar_inicio', function(){
 						id = $('#id_sesion').val();

@@ -479,8 +479,16 @@
                   }
 
                   $('#p_t_d').text(accounting.formatMoney(d.reserva[0].tarifa_por_dia));
-                  $('#p_d').text(d.reserva[0].dias);
-                  $('#p_to').text(accounting.formatMoney(d.reserva[0].total));
+
+                  if(d.reserva[0].diamas == 1){
+                    $('#p_d').text(parseInt(d.reserva[0].dias) + parseInt(1));
+                    $('#p_to').text(accounting.formatMoney(parseInt(d.reserva[0].total) + parseInt(d.reserva[0].tarifa_por_dia)));
+                    } else {
+                      $('#p_d').text(d.reserva[0].dias);
+                      $('#p_to').text(accounting.formatMoney(d.reserva[0].total));
+                    }
+
+
                   $('#p_l_e').text(d.reserva[0].lugar_entrega);
                   $('#p_d1').text(d.reserva[0].direccion1_e);
                   if(d.reserva[0].direccion2_e == ''){

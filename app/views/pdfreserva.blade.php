@@ -188,7 +188,7 @@
 				  @foreach($reserva as $r)
 
 					<div class="c3 img-ve datos-del-vehiculo c-d-c" style="text-align:center;margin-top:20px;">
-							<img width="200px" src="img/vehiculos/{{ $r->foto }}" alt="Foto del vehículo">
+							<img width="200px" src="img/vehiculos/{{ utf8_decode($r->foto) }}" alt="Foto del vehículo">
 					</div>
 					<div class="datos-del-vehiculo datos-del-vehiculo-2" style=" width:270px!important">
 
@@ -198,9 +198,9 @@
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">Tarifa por d&iacute;a:</span> <span class="datos-r">${{ number_format($r->tarifa_por_dia, 2) }}</span> <br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">D&iacute;as de reservaci&oacute;n:</span> <span class="datos-r">{{ $r->dias }}</span> <br>
+						<span class="f-vehiculo">D&iacute;as de reservaci&oacute;n:</span> <span class="datos-r">@if($r->diamas == 1) {{ $r->dias + 1 }} @else {{ $r->dias }} @endif</span> <br>
 						<hr class="hr-oculto">
-						<span class="f-vehiculo">Total:</span> <span class="datos-r">${{ number_format($r->dias * $r->tarifa_por_dia, 2) }}</span> <br>
+						<span class="f-vehiculo">Total:</span> <span class="datos-r">@if($r->diamas == 1) ${{ number_format($r->dias * $r->tarifa_por_dia + $r->tarifa_por_dia, 2) }} @else ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} @endif</span> <br>
 						<hr class="hr-oculto">
 						<span class="f-vehiculo">"Incluye Renta, KM Libre, Coberturas e IVA".</span> <br> 
 						<hr class="hr-oculto">

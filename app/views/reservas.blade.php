@@ -1335,6 +1335,7 @@
 
 $(document).on('click', '#reservar', function(){
 
+
 	vehiculo = $('input:radio[name=tipo_vehiculo]:checked').val();
 
 	if(vehiculo == undefined){
@@ -1350,9 +1351,77 @@ $(document).on('click', '#reservar', function(){
 			alertas('danger', 'La fecha de devolución no puede ser anterior o igual a la fecha de entrega.');
 		} else {
 
-	 	$('#modal-confirm-reserva').modal({
+
+		/*------------------ULTIMAS MODIFICACIONES AL REGISTRAR NUEVA RESERVA -------------------------*/
+
+				fecha_entrega = $('#datetimepicker2').val();
+
+				fecha_actual = moment().format('YYYY-MM-DD');
+				console.log("Fecha actual: " + fecha_actual);
+
+				console.log("Fecha de entrega: " + fecha_entrega);
+
+
+				var dateB = moment(fecha_entrega);
+			    var dateC = fecha_actual;
+
+			console.log('La diferencia es: ', dateB.diff(dateC, 'days'), 'dias');
+			console.log('La diferencia es: ', dateB.diff(dateC, 'hours'), 'horas');
+
+			if(dateB.diff(dateC, 'days') > 1){
+
+				$('#modal-confirm-reserva').modal({
+						show:'false',
+				})
+
+			} else{
+
+				$('#modal-confirm-reserva').modal({
+						show:'false',
+				});
+
+				/*hora_actual = moment().format('h:mm A');
+
+				console.log("Hora actual: " + hora_actual);
+
+				hora_entrega = $('#datetimepicker_hora2').val();
+				console.log("Hora de entrega: " + hora_entrega);
+
+				var mensaje_actual = hora_actual;  //'11:52 AM'
+
+				var mensaje_entrega = hora_entrega;
+
+				if(mensaje_actual.includes("AM") == true && mensaje_entrega.includes("PM") == true){
+
+					console.log('comparamos primera opcion');
+					calculardiferenciayformatohoras1(mensaje_actual, mensaje_entrega);
+
+				} else if(mensaje_actual.includes("AM") == false && mensaje_entrega.includes("PM") == true){
+
+					console.log('comparamos con la segunda opcion');
+					calculardiferenciahoras1();
+
+				} else if(mensaje_actual.includes("AM") == true && mensaje_entrega.includes("PM") == false){
+
+					console.log('comparamos con la tercera opcion');
+					calculardiferenciahoras2();
+
+				} else if(mensaje_actual.includes("PM") == true && mensaje_entrega.includes("AM") == true){ //si no se cumple ninguna
+
+					console.log('comparamos con la tercera opcion');
+					calculardiferenciayformatohoras2();
+
+				}*/
+
+				//alertas('danger', 'No se puede reservar con menos de 24hrs.');
+			}
+
+
+			/* --------------------------------------------------------------------------------------------- */
+
+	 	/*$('#modal-confirm-reserva').modal({
 				show:'false',
-			});
+		});*/
 
 		}
 
@@ -1362,7 +1431,258 @@ $(document).on('click', '#reservar', function(){
 });
 
 
+
+
+
+/*------------------ULTIMAS MODIFICACIONES AL REGISTRAR NUEVA RESERVA -------------------------*/
+
 $(document).on('click', '#confirm-regist-reserva', function(){
+
+	hora_entrega = $('#datetimepicker_hora2').val();
+
+	hora_devolucion = $('#datetimepicker_hora4').val();
+
+	var mensaje_entrega = hora_entrega;
+
+	var mensaje_devolucion = hora_devolucion;
+
+	if(mensaje_entrega.includes("AM") == true && mensaje_devolucion.includes("PM") == true){
+
+		console.log('comparamos primera opcion');
+		calculardiferenciayformato();
+
+	} else if(mensaje_entrega.includes("AM") == false && mensaje_devolucion.includes("PM") == true){
+
+		console.log('comparamos con la segunda opcion');
+		calculardiferencia();
+
+	} else if(mensaje_entrega.includes("AM") == true && mensaje_devolucion.includes("PM") == false){
+
+		console.log('comparamos con la tercera opcion');
+		calculardiferencia();
+
+	} else { //si no se cumple ninguna
+
+		console.log('No se cumple ninguna');
+		hora_mayor_3_horas = 0;
+	    agregarnuevareserva(hora_mayor_3_horas);
+
+	}
+
+
+	function calculardiferencia(){
+
+		var h_entrega = moment(hora_entrega, 'HH:mm');
+		var h_devolucion = moment(hora_devolucion, 'HH:mm');
+
+		console.log('La diferencia es: ', h_devolucion.diff(h_entrega, 'minutes'), 'minutos');
+
+		//si la diferencia es mayor a 180min osea 3hrs entonses le sumamos 1dia y calculamos el precio
+		if(h_devolucion.diff(h_entrega, 'minutes') > '180'){
+
+			console.log('La hora de devolución es mayor a 180 min');
+			hora_mayor_3_horas = 1;
+			agregarnuevareserva(hora_mayor_3_horas);
+
+		} else {
+
+			console.log('Es menor o igual a 180 min');
+			hora_mayor_3_horas = 0;
+			agregarnuevareserva(hora_mayor_3_horas);
+		}
+
+	}//end function calculardiferencia
+
+
+	function calculardiferenciayformato(){
+
+		hr_entrega = hora_entrega.split(":");
+        console.log("Hora de entrega: " + hora_entrega);
+        console.log(hr_entrega[0]);
+
+        switch (hr_entrega[0] + ":00") { 
+		   	case '12:00': 
+		   	    valor_hora_entrega = "00";
+		   	    calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 12');
+		      	break 
+		   	case '1:00': 
+		   		valor_hora_entrega = "01";
+		   		calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 1');
+		      	break 
+		   	case '2:00': 
+		   		valor_hora_entrega = "02";
+		   		calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 2');
+		      	break
+		    case '3:00': 
+		    	valor_hora_entrega = "03";
+		    	calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 3');
+		      	break 
+		   	case '4:00': 
+		   		valor_hora_entrega = "04";
+		   		calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 4');
+		      	break
+		    case '5:00': 
+		    	valor_hora_entrega = "05";
+		    	calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 5');
+		      	break 
+		   	case '6:00': 
+		   		valor_hora_entrega = "06";
+		   		calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 6');
+		      	break
+		    case '7:00': 
+		    	valor_hora_entrega = "07";
+		    	calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 7');
+		      	break 
+		   	case '8:00': 
+		   		valor_hora_entrega = "08";
+		   		calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 8');
+		      	break 
+		    case '9:00': 
+		    	valor_hora_entrega = "09";
+		    	calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 9');
+		      	break 
+		   	case '10:00': 
+		   		valor_hora_entrega = "10";
+		   		calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 10');
+		      	break
+		     case '11:00': 
+		     	valor_hora_entrega = "11";
+		     	calcularhoradevolucion(valor_hora_entrega);
+		      	//console.log('El valor es 11');
+		      	break 
+		   	default: 
+		      	console.log("Nada");
+		}
+
+
+	} //end function
+
+
+	function calcularhoradevolucion(hora_de_entrega){
+			hr_devolucion = hora_devolucion.split(":");
+	        console.log("Hora de devolución: " + hora_devolucion);
+	        console.log(hr_devolucion[0]);
+
+	        switch (hr_devolucion[0] + ":00") { 
+		   	case '12:00': 
+		   	    valor_hora_devolucion = "12";
+		   	    compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 12');
+		      	break 
+		   	case '1:00': 
+		   		valor_hora_devolucion = "13";
+		   		compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 13');
+		      	break 
+		   	case '2:00': 
+		   		valor_hora_devolucion = "14";
+		   		compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 14');
+		      	break
+		    case '3:00': 
+		    	valor_hora_devolucion = "15";
+		    	compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 15');
+		      	break 
+		   	case '4:00': 
+		   		valor_hora_devolucion = "16";
+		   		compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 16');
+		      	break
+		    case '5:00': 
+		    	valor_hora_devolucion = "17";
+		    	compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 17');
+		      	break 
+		   	case '6:00': 
+		   		valor_hora_devolucion = "18";
+		   		compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 18');
+		      	break
+		    case '7:00': 
+		    	valor_hora_devolucion = "19";
+		    	compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 19');
+		      	break 
+		   	case '8:00': 
+		   		valor_hora_devolucion = "20";
+		   		compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 20');
+		      	break 
+		    case '9:00': 
+		    	valor_hora_devolucion = "21";
+		    	compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 21');
+		      	break 
+		   	case '10:00': 
+		   		valor_hora_devolucion = "22";
+		   		compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 22');
+		      	break
+		     case '11:00': 
+		     	valor_hora_devolucion = "23";
+		     	compararsisonmasdetreshoras(valor_hora_devolucion, hora_de_entrega);
+		      	console.log('El valor es 23');
+		      	break 
+		   	default: 
+		      	console.log("Nada");
+		}
+
+	 } //end function calcularhoradevolucion
+
+
+	 function compararsisonmasdetreshoras(_hora_devolucion, _hora_entrega){
+
+			hr_entrega = hora_entrega.split(":");
+			hr_devolucion = hora_devolucion.split(":");
+			console.log(hr_entrega[1]);
+			console.log(hr_devolucion[1]);
+
+
+			console.log("- Hora de entrega: " + _hora_entrega);
+			console.log("- Hora de devolucion: " + _hora_devolucion);
+
+			var h_entrega = moment(_hora_entrega+":"+hr_entrega[1], 'HH:mm');
+			var h_devolucion = moment(_hora_devolucion+":"+hr_devolucion[1], 'HH:mm');
+
+			console.log('La diferencia es: ', h_devolucion.diff(h_entrega, 'minutes'), 'minutos');
+
+			console.log(_hora_entrega+":"+hr_entrega[1]);
+			console.log(_hora_devolucion+":"+hr_devolucion[1]);
+
+
+			if(h_devolucion.diff(h_entrega, 'minutes') > '180'){
+
+				console.log('La hora de devolución es mayor a 180 min');
+				hora_mayor_3_horas = 1;
+			    agregarnuevareserva(hora_mayor_3_horas);
+
+			} else {
+
+				console.log('Es menor o igual a 180 min');
+				hora_mayor_3_horas = 0;
+			    agregarnuevareserva(hora_mayor_3_horas);
+			}
+
+		}
+
+
+});
+
+
+function agregarnuevareserva(){
+
 	//Datos de entrega
 	 fecha_entrega = $('#datetimepicker2').val();
 	 hora_entrega = $('#datetimepicker_hora2').val();
@@ -1444,6 +1764,7 @@ console.log(dateB.diff(dateB, 'days'));
 								url:  "/admin/registrareserva",
 								type: "POST",
 								data:{
+									hora_mayor_3_horas: hora_mayor_3_horas,
 									fecha_entrega: fecha_entrega,
 									hora_entrega: hora_entrega,
 									lugar_entrega: lugar_entrega,
@@ -1504,11 +1825,10 @@ console.log(dateB.diff(dateB, 'days'));
 
 					});
 
+} //end agregar nueva reserva
 
 
-});
-
-
+/*--------------------------------END ULTIMAS MODIFICACIONES AL REGISTRAR NUEVA RESERVA --------------*/
 
 
 	//cuanso se aga el foco en el input eliminamos lso errores

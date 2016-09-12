@@ -237,6 +237,9 @@ public function postRegistrareserva(){
   $num_d_3 = Input::get('num_d_3');
   $num_d_4 = Input::get('num_d_4');
 
+  //si la hora de devolucion supera a las 3 horas de la de entrega -------------------------------
+  $hora_mayor_3_horas = Input::get('hora_mayor_3_horas');
+
 	//vehiculo
 	$vehiculo = Input::get('vehiculo');
 
@@ -335,6 +338,7 @@ public function postRegistrareserva(){
 	  $r->transmision = $v_t;
 	  $r->foto= $v_foto;
 		$r->fecha = date('Y-m-d');
+    $r->diamas = $hora_mayor_3_horas;
 		$r->save();
 
     //registramos la sesion
@@ -650,7 +654,7 @@ public function getExportarlasreservasdeldia(){
 		    $reserva = DB::table('reserva')
 	 					 ->where('fecha', $date)
 						 ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
-					     ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'direccion1_e','direccion2_e', 'colonia_e', 'estado_e', 'municipio_e', 'cp_e', 'referencias_e', 'telefono1_e', 'telefono2_e', 'telefono3_e', 'telefono4_e', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'direccion1_d','direccion2_d', 'colonia_d', 'estado_d', 'municipio_d', 'cp_d', 'referencias_d', 'telefono1_d', 'telefono2_d', 'telefono3_d', 'telefono4_d', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios')
+					     ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'direccion1_e','direccion2_e', 'colonia_e', 'estado_e', 'municipio_e', 'cp_e', 'referencias_e', 'telefono1_e', 'telefono2_e', 'telefono3_e', 'telefono4_e', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'direccion1_d','direccion2_d', 'colonia_d', 'estado_d', 'municipio_d', 'cp_d', 'referencias_d', 'telefono1_d', 'telefono2_d', 'telefono3_d', 'telefono4_d', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios', 'diamas')
 					     ->orderBy('created_at', 'desc')
 					 	 ->get();
 
@@ -659,43 +663,132 @@ public function getExportarlasreservasdeldia(){
 	    foreach ($reserva as $key => $value) {
 	        	if($value->transmision == 1){
 
-					array_push($data, array(
-						$value->num_reserva,
-						$value->lugar_entrega,
-            $value->direccion1_e,
-            $value->direccion2_e,
-            $value->colonia_e,
-            $value->estado_e,
-            $value->municipio_e,
-            $value->cp_e,
-            $value->referencias_e,
-            $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
-						$value->fecha_entrega,
-						$value->hora_entrega,
-						$value->lugar_devolucion,
-            $value->direccion1_d,
-            $value->direccion2_d,
-            $value->colonia_d,
-            $value->estado_d,
-            $value->municipio_d,
-            $value->cp_d,
-            $value->referencias_d,
-            $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+              if($value->diamas == 1){
 
-						$value->fecha_devolucion,
-						$value->hora_devolucion,
-						'$ '.number_format($value->tarifa_por_dia, 2),
-						$value->dias,
-						'$ '.number_format($value->total, 2),
-						$value->vehiculo,
-						'Automático',
-						$value->created_at,
-						$value->nombre.' '.$value->apellidos,
-						$value->email,
-						$value->telefono,
-						$value->num_licencia,
-						$value->comentarios
-					 ));
+                  array_push($data, array(
+                  $value->num_reserva,
+                  $value->lugar_entrega,
+                  $value->direccion1_e,
+                  $value->direccion2_e,
+                  $value->colonia_e,
+                  $value->estado_e,
+                  $value->municipio_e,
+                  $value->cp_e,
+                  $value->referencias_e,
+                  $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+                  $value->fecha_entrega,
+                  $value->hora_entrega,
+                  $value->lugar_devolucion,
+                  $value->direccion1_d,
+                  $value->direccion2_d,
+                  $value->colonia_d,
+                  $value->estado_d,
+                  $value->municipio_d,
+                  $value->cp_d,
+                  $value->referencias_d,
+                  $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+
+                  $value->fecha_devolucion,
+                  $value->hora_devolucion,
+                  '$ '.number_format($value->tarifa_por_dia, 2),
+                  $value->dias + 1,
+                  '$ '.number_format($value->total + $value->tarifa_por_dia, 2),
+                  $value->vehiculo,
+                  'Automático',
+                  $value->created_at,
+                  $value->nombre.' '.$value->apellidos,
+                  $value->email,
+                  $value->telefono,
+                  $value->num_licencia,
+                  $value->comentarios
+                 ));
+
+              } else {
+
+                if($value->diamas == 1){
+
+                    array_push($data, array(
+                      $value->num_reserva,
+                      $value->lugar_entrega,
+                      $value->direccion1_e,
+                      $value->direccion2_e,
+                      $value->colonia_e,
+                      $value->estado_e,
+                      $value->municipio_e,
+                      $value->cp_e,
+                      $value->referencias_e,
+                      $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+                      $value->fecha_entrega,
+                      $value->hora_entrega,
+                      $value->lugar_devolucion,
+                      $value->direccion1_d,
+                      $value->direccion2_d,
+                      $value->colonia_d,
+                      $value->estado_d,
+                      $value->municipio_d,
+                      $value->cp_d,
+                      $value->referencias_d,
+                      $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+
+                      $value->fecha_devolucion,
+                      $value->hora_devolucion,
+                      '$ '.number_format($value->tarifa_por_dia, 2),
+                      $value->dias + 1,
+                      '$ '.number_format($value->total + $value->tarifa_por_dia, 2),
+                      $value->vehiculo,
+                      'Automático',
+                      $value->created_at,
+                      $value->nombre.' '.$value->apellidos,
+                      $value->email,
+                      $value->telefono,
+                      $value->num_licencia,
+                      $value->comentarios
+                     ));
+
+                } else {
+      					array_push($data, array(
+      						$value->num_reserva,
+      						$value->lugar_entrega,
+                  $value->direccion1_e,
+                  $value->direccion2_e,
+                  $value->colonia_e,
+                  $value->estado_e,
+                  $value->municipio_e,
+                  $value->cp_e,
+                  $value->referencias_e,
+                  $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+      						$value->fecha_entrega,
+      						$value->hora_entrega,
+      						$value->lugar_devolucion,
+                  $value->direccion1_d,
+                  $value->direccion2_d,
+                  $value->colonia_d,
+                  $value->estado_d,
+                  $value->municipio_d,
+                  $value->cp_d,
+                  $value->referencias_d,
+                  $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+
+      						$value->fecha_devolucion,
+      						$value->hora_devolucion,
+      						'$ '.number_format($value->tarifa_por_dia, 2),
+      						$value->dias,
+      						'$ '.number_format($value->total, 2),
+      						$value->vehiculo,
+      						'Automático',
+      						$value->created_at,
+      						$value->nombre.' '.$value->apellidos,
+      						$value->email,
+      						$value->telefono,
+      						$value->num_licencia,
+      						$value->comentarios
+      					 ));
+                  
+                }
+
+
+              } //end else
+
 
 	        	 } else {
 
@@ -755,7 +848,7 @@ public function getExportartodaslasreservas(){
 
              $reserva = DB::table('reserva')
                   ->join('cliente', 'reserva.cliente_id', '=', 'cliente.id')
-                    ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'direccion1_e','direccion2_e', 'colonia_e', 'estado_e', 'municipio_e', 'cp_e', 'referencias_e', 'telefono1_e', 'telefono2_e', 'telefono3_e', 'telefono4_e', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'direccion1_d','direccion2_d', 'colonia_d', 'estado_d', 'municipio_d', 'cp_d', 'referencias_d', 'telefono1_d', 'telefono2_d', 'telefono3_d', 'telefono4_d', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios')
+                    ->select('reserva.id', 'num_reserva', 'lugar_entrega', 'direccion1_e','direccion2_e', 'colonia_e', 'estado_e', 'municipio_e', 'cp_e', 'referencias_e', 'telefono1_e', 'telefono2_e', 'telefono3_e', 'telefono4_e', 'fecha_entrega', 'hora_entrega', 'lugar_devolucion', 'direccion1_d','direccion2_d', 'colonia_d', 'estado_d', 'municipio_d', 'cp_d', 'referencias_d', 'telefono1_d', 'telefono2_d', 'telefono3_d', 'telefono4_d', 'fecha_devolucion', 'hora_devolucion', 'nombre', 'apellidos', 'dias', 'tarifa_por_dia', 'total', 'vehiculo', 'transmision', 'reserva.created_at', 'email', 'telefono', 'num_licencia', 'comentarios', 'diamas')
                     ->orderBy('created_at', 'desc')
                   ->get();
 
@@ -764,82 +857,170 @@ public function getExportartodaslasreservas(){
           foreach ($reserva as $key => $value) {
     	        	if($value->transmision == 1){
 
-    					array_push($data, array(
-    						$value->num_reserva,
-    						$value->lugar_entrega,
-                $value->direccion1_e,
-                $value->direccion2_e,
-                $value->colonia_e,
-                $value->estado_e,
-                $value->municipio_e,
-                $value->cp_e,
-                $value->referencias_e,
-                $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
-    						$value->fecha_entrega,
-    						$value->hora_entrega,
-    						$value->lugar_devolucion,
-                $value->direccion1_d,
-                $value->direccion2_d,
-                $value->colonia_d,
-                $value->estado_d,
-                $value->municipio_d,
-                $value->cp_d,
-                $value->referencias_d,
-                $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+                  if($value->diamas == 1){
 
-    						$value->fecha_devolucion,
-    						$value->hora_devolucion,
-    						'$ '.number_format($value->tarifa_por_dia, 2),
-    						$value->dias,
-    						'$ '.number_format($value->total, 2),
-    						$value->vehiculo,
-    						'Automático',
-    						$value->created_at,
-    						$value->nombre.' '.$value->apellidos,
-    						$value->email,
-    						$value->telefono,
-    						$value->num_licencia,
-    						$value->comentarios
-    					 ));
+                      array_push($data, array(
+                        $value->num_reserva,
+                        $value->lugar_entrega,
+                        $value->direccion1_e,
+                        $value->direccion2_e,
+                        $value->colonia_e,
+                        $value->estado_e,
+                        $value->municipio_e,
+                        $value->cp_e,
+                        $value->referencias_e,
+                        $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+                        $value->fecha_entrega,
+                        $value->hora_entrega,
+                        $value->lugar_devolucion,
+                        $value->direccion1_d,
+                        $value->direccion2_d,
+                        $value->colonia_d,
+                        $value->estado_d,
+                        $value->municipio_d,
+                        $value->cp_d,
+                        $value->referencias_d,
+                        $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+
+                        $value->fecha_devolucion,
+                        $value->hora_devolucion,
+                        '$ '.number_format($value->tarifa_por_dia, 2),
+                        $value->dias + 1,
+                        '$ '.number_format($value->total + $value->tarifa_por_dia, 2),
+                        $value->vehiculo,
+                        'Automático',
+                        $value->created_at,
+                        $value->nombre.' '.$value->apellidos,
+                        $value->email,
+                        $value->telefono,
+                        $value->num_licencia,
+                        $value->comentarios
+                       ));
+
+                  } else {
+
+          					array_push($data, array(
+          						$value->num_reserva,
+          						$value->lugar_entrega,
+                      $value->direccion1_e,
+                      $value->direccion2_e,
+                      $value->colonia_e,
+                      $value->estado_e,
+                      $value->municipio_e,
+                      $value->cp_e,
+                      $value->referencias_e,
+                      $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+          						$value->fecha_entrega,
+          						$value->hora_entrega,
+          						$value->lugar_devolucion,
+                      $value->direccion1_d,
+                      $value->direccion2_d,
+                      $value->colonia_d,
+                      $value->estado_d,
+                      $value->municipio_d,
+                      $value->cp_d,
+                      $value->referencias_d,
+                      $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+
+          						$value->fecha_devolucion,
+          						$value->hora_devolucion,
+          						'$ '.number_format($value->tarifa_por_dia, 2),
+          						$value->dias,
+          						'$ '.number_format($value->total, 2),
+          						$value->vehiculo,
+          						'Automático',
+          						$value->created_at,
+          						$value->nombre.' '.$value->apellidos,
+          						$value->email,
+          						$value->telefono,
+          						$value->num_licencia,
+          						$value->comentarios
+          					 ));
+                  }
+
 
     	        	 } else {
 
-    	        	 	array_push($data, array(
-                    $value->num_reserva,
-        						$value->lugar_entrega,
-                    $value->direccion1_e,
-                    $value->direccion2_e,
-                    $value->colonia_e,
-                    $value->estado_e,
-                    $value->municipio_e,
-                    $value->cp_e,
-                    $value->referencias_e,
-                    $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
-        						$value->fecha_entrega,
-        						$value->hora_entrega,
-        						$value->lugar_devolucion,
-                    $value->direccion1_d,
-                    $value->direccion2_d,
-                    $value->colonia_d,
-                    $value->estado_d,
-                    $value->municipio_d,
-                    $value->cp_d,
-                    $value->referencias_d,
-                    $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
-        						$value->fecha_devolucion,
-        						$value->hora_devolucion,
-        						'$ '.number_format($value->tarifa_por_dia, 2),
-        						$value->dias,
-        						'$ '.number_format($value->total, 2),
-        						$value->vehiculo,
-        						'Estándard',
-        						$value->created_at,
-        						$value->nombre.' '.$value->apellidos,
-        						$value->email,
-        						$value->telefono,
-        						$value->num_licencia,
-        						$value->comentarios
-        					 ));
+                    if($value->diamas == 1){
+
+                      array_push($data, array(
+                        $value->num_reserva,
+                        $value->lugar_entrega,
+                        $value->direccion1_e,
+                        $value->direccion2_e,
+                        $value->colonia_e,
+                        $value->estado_e,
+                        $value->municipio_e,
+                        $value->cp_e,
+                        $value->referencias_e,
+                        $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+                        $value->fecha_entrega,
+                        $value->hora_entrega,
+                        $value->lugar_devolucion,
+                        $value->direccion1_d,
+                        $value->direccion2_d,
+                        $value->colonia_d,
+                        $value->estado_d,
+                        $value->municipio_d,
+                        $value->cp_d,
+                        $value->referencias_d,
+                        $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+                        $value->fecha_devolucion,
+                        $value->hora_devolucion,
+                        '$ '.number_format($value->tarifa_por_dia, 2),
+                        $value->dias + 1,
+                        '$ '.number_format($value->total + $value->tarifa_por_dia, 2),
+                        $value->vehiculo,
+                        'Estándard',
+                        $value->created_at,
+                        $value->nombre.' '.$value->apellidos,
+                        $value->email,
+                        $value->telefono,
+                        $value->num_licencia,
+                        $value->comentarios
+                       ));
+
+                    } else {
+
+        	        	 	array_push($data, array(
+                        $value->num_reserva,
+            						$value->lugar_entrega,
+                        $value->direccion1_e,
+                        $value->direccion2_e,
+                        $value->colonia_e,
+                        $value->estado_e,
+                        $value->municipio_e,
+                        $value->cp_e,
+                        $value->referencias_e,
+                        $value->telefono1_e." ".$value->telefono2_e." ".$value->telefono3_e." ".$value->telefono4_e,
+            						$value->fecha_entrega,
+            						$value->hora_entrega,
+            						$value->lugar_devolucion,
+                        $value->direccion1_d,
+                        $value->direccion2_d,
+                        $value->colonia_d,
+                        $value->estado_d,
+                        $value->municipio_d,
+                        $value->cp_d,
+                        $value->referencias_d,
+                        $value->telefono1_d." ".$value->telefono2_d." ".$value->telefono3_d." ".$value->telefono4_d,
+            						$value->fecha_devolucion,
+            						$value->hora_devolucion,
+            						'$ '.number_format($value->tarifa_por_dia, 2),
+            						$value->dias,
+            						'$ '.number_format($value->total, 2),
+            						$value->vehiculo,
+            						'Estándard',
+            						$value->created_at,
+            						$value->nombre.' '.$value->apellidos,
+            						$value->email,
+            						$value->telefono,
+            						$value->num_licencia,
+            						$value->comentarios
+            					 ));
+                      
+                    }
+
 
         	       }
         	    }

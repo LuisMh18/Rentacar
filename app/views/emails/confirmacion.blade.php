@@ -82,9 +82,9 @@
 						
 						<span style="font-weight: bold; color: #31708f;">Tarifa por día:</span> ${{ number_format($r->tarifa_por_dia, 2) }} <br>
 						
-						<span style="font-weight: bold; color: #31708f;">Días de reservación:</span> {{ $r->dias }} <br>
+						<span style="font-weight: bold; color: #31708f;">Días de reservación:</span> @if($r->diamas == 1) {{ $r->dias + 1 }} @else {{ $r->dias }} @endif <br>
 						
-						<span style="font-weight: bold; color: #31708f;">Total:</span> ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} <br>
+						<span style="font-weight: bold; color: #31708f;">Total:</span> @if($r->diamas == 1) ${{ number_format($r->dias * $r->tarifa_por_dia + $r->tarifa_por_dia, 2) }} @else ${{ number_format($r->dias * $r->tarifa_por_dia, 2) }} @endif <br>
 						
 						<span style="font-weight: bold; color: #31708f;">“Incluye Renta, KM Libre, Coberturas e IVA”.</span> <br> 
 						
@@ -173,7 +173,7 @@
 						
 						<span class="f-vehiculo" style="font-weight: bold; color: #31708f;">CP: {{ $r->cp_d }}</span><br>
 						
-						@if($r->referencias_d == '') @else <span class="f-vehiculo">Referencias: {{ $r->referencias_d }}</span> @endif
+						@if($r->referencias_d == '') @else <span style="font-weight: bold; color: #31708f;">Referencias: {{ $r->referencias_d }}</span> @endif
 						
 					</div>
 
