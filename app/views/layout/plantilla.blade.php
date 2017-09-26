@@ -73,8 +73,7 @@
 <body class="body_dashboard">
 
 <!-- ///// Menu para dispositivos moviles /////// -->
-
-	<aside class="div_acordeon-md">
+<aside class="div_acordeon-md">
    <div class="logo_em">
    	<img src="/img/logo.png" alt="">
    </div>

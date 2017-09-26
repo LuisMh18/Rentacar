@@ -1029,7 +1029,7 @@ Puntos de corte****************************************/
     margin-left: 8%;
     width: 190px; }
 
-  .tipo-carro-a .radio label {.img-ve
+  .tipo-carro-a .radio label {
     font-size: 1em; }
 
   .datos1, .datos2 {
@@ -1041,7 +1041,6 @@ Puntos de corte****************************************/
     .datos1 .form-group, .datos2 .form-group {
       width: 47%; } }
 @media (min-width: 600px) {
-
   .header_dashboard .titular_seccion {
     width: 30%;
     margin-right: 40% !important; }

@@ -783,7 +783,7 @@ public function getExportarlasreservasdeldia(){
       						$value->num_licencia,
       						$value->comentarios
       					 ));
-                  
+
                 }
 
 
@@ -1018,7 +1018,7 @@ public function getExportartodaslasreservas(){
             						$value->num_licencia,
             						$value->comentarios
             					 ));
-                      
+
                     }
 
 
@@ -1172,7 +1172,7 @@ public function postAgregartarifa(){
 
 		return Response::json($n_t);
 
-  
+
 }
 
 //Agregar tarifa detalle
@@ -1559,7 +1559,7 @@ public function getActualizartarifa(){
 //obtener datos para duplicar tarifa
 public function getObtenerdatostarifa(){
   $id = Input::get('id');
-  
+
   //obtenemos los datos de la tarifa
   $tarifa = DB::table('tarifa')
         ->where('id', $id)
@@ -1591,14 +1591,14 @@ public function getObtenerdatostarifa(){
                    'numero_tarifa_detalle' => $numero_tarifa_detalle,
                    'tarifa_detalle' => $tarifa_detalle
                    ));
- 
+
 
 }
 
 
 //Agregar tarifa detalle
 public function postDuplicartarifadetalle(){
-    
+
   $tarifa_id = Input::get('tarifa_id');
   $grupo_id = Input::get('grupo_id');
   $codigo_id = Input::get('codigo_id');
@@ -1606,7 +1606,7 @@ public function postDuplicartarifadetalle(){
   $tipo_vehiculo_id = Input::get('tipo_vehiculo_id');
   $tarifa_por_dia = Input::get('tarifa_por_dia');
   $estatus = Input::get('estatus');
-   
+
 
   $tarifa_d = new TarifaDetalle;
   $tarifa_d->tarifa_id = $tarifa_id;
@@ -1618,7 +1618,7 @@ public function postDuplicartarifadetalle(){
   $tarifa_d->estatus = $estatus;
   $tarifa_d->save();
 
-    
+
 
 }
 
@@ -3024,7 +3024,7 @@ public function postAgregarvehiculo(){
 		return Response::json($vehiculo);
 
 
-} 
+}
 
 //Agregar las plazas del vehiculo
 public function postAgregarplazavehiculo(){

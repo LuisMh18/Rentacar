@@ -252,7 +252,7 @@
 
 							},
 
-							'iDisplayLength': 100,
+							'iDisplayLength': 10,
 
 							"aaSorting": [[ 0, "desc" ]], 
 
@@ -267,17 +267,17 @@
 									tabla_a.fnClearTable();
 
 											for(var i = 0; i < l.length; i++) {
-																		tabla_a.fnAddData([
-																							 '<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo,
-																							 '<span class="text-info txt-escondido">Descripción: </span>'+l[i].descripcion_codigo,
-																							 '<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
-																							 '<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
-																			         '<span class="glyphicon glyphicon-edit"></span>'+
-																			         '</button>',
-																							 '<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar código">'+
-																			         '<span class="glyphicon glyphicon-remove"></span>'+
-																			         '</button>',
-																							]);
+								tabla_a.fnAddData([
+													 '<span class="text-info txt-escondido">Código: </span><span class="hidden">'+l[i].created_at+'</span>'+l[i].codigo,
+													 '<span class="text-info txt-escondido">Descripción: </span>'+l[i].descripcion_codigo,
+													 '<span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+l[i].estatus+'"></span>',
+													 '<button class="btn btn-sm btn-info editar-btn" value="'+l[i].id+'" title="Editar código">'+
+									         '<span class="glyphicon glyphicon-edit"></span>'+
+									         '</button>',
+													 '<button class="btn btn-sm btn-danger eliminar-btn" value="'+l[i].id+'" title="Eliminar código">'+
+									         '<span class="glyphicon glyphicon-remove"></span>'+
+									         '</button>',
+													]);
 
 
 																			} //End for
@@ -358,8 +358,11 @@
 					type: "POST",
 					data:{codigo: codigo, descripcion: descripcion, activo: activo},
 					success: function(p){
-							nueva_fila = '<tr id="fila_'+p.id+'">'+
-									'<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
+							nueva_fila = '<tr id="fila_'+p.id+'"></tr>';
+										
+									tabla_a.prepend(nueva_fila);
+
+								$('#fila_'+p.id).html('<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
 								 '<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
 								 '<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
 									'<td>'+
@@ -371,10 +374,7 @@
 								  '<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar código">'+
 															'<span class="glyphicon glyphicon-remove"></span>'+
 											'</button>'+
-								'</td>'+
-						'</tr>';
-										
-									tabla_a.prepend(nueva_fila);
+								'</td>');
 									
 									$('.estatus_0').text('Inactivo');
 									$('.estatus_0').addClass('text-danger');
@@ -544,8 +544,7 @@ $(document).on('click', '#inp-check_edit', function(){
 								success: function(p){
 										
 									//Bolvemos a construir la fila
-        $('#fila_'+id).replaceWith('<tr id="fila_'+p.id+'">'+
-                '<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
+        $('#fila_'+id).html('<td><span class="text-info txt-escondido">Código: </span><span class="hidden">'+p.created_at+'</span>'+p.codigo+'</td>'+
 																'<td><span class="text-info txt-escondido">Descripción: </span>'+p.descripcion_codigo+'</td>'+
 																'<td><span class="text-info txt-escondido">Estatus: </span><span class="estatus_'+p.estatus+'"></span></td>'+
                '<td>'+
@@ -557,8 +556,8 @@ $(document).on('click', '#inp-check_edit', function(){
 															'<button class="btn btn-sm btn-danger eliminar-btn" value="'+p.id+'" title="Eliminar grupo">'+
 																				'<span class="glyphicon glyphicon-remove"></span>'+
 																'</button>'+
-													'</td>'+
-											'</tr>');
+													'</td>'
+											);
 										
 									
 										alertas("success","Código actualizado correctamente");
